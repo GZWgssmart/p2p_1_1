@@ -1,22 +1,11 @@
 package com.gs.bean;
 
-//用户角色表
 public class RoleUser {
     private Long ruid;
 
-    private Long rid;//角色id
+    private Long rid;
 
-    private Long huid;//后台用户id
-
-    public RoleUser(Long ruid, Long rid, Long huid) {
-        this.ruid = ruid;
-        this.rid = rid;
-        this.huid = huid;
-    }
-
-    public RoleUser() {
-        super();
-    }
+    private Long adminid;
 
     public Long getRuid() {
         return ruid;
@@ -34,11 +23,11 @@ public class RoleUser {
         this.rid = rid;
     }
 
-    public Long getHuid() {
-        return huid;
+    public Long getAdminid() {
+        return adminid;
     }
 
-    public void setHuid(Long huid) {
-        this.huid = huid;
+    public void setAdminid(Long adminid) {
+        this.adminid = adminid;
     }
 }

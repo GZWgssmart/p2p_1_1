@@ -2,65 +2,30 @@ package com.gs.bean;
 
 import java.math.BigDecimal;
 
-//借款详情表
 public class BorrowDetail {
     private Long bdid;
 
-    private String fpic;//法人身份证照片
+    private String cardimage;
 
-    private String ypic;//营业执照副本照片
+    private String businessimage;
 
-    private String qpic;//企业银行账号
+    private String bankaccount;
 
-    private String tpic;//其他资料
+    private String mpurpose;
 
-    private String mpurpose;//资金用途
+    private String repaymentsource;
 
-    private String hksource;//还款来源
+    private String suggest;
 
-    private String suggest;//借款人介绍
+    private String xmdescrip;
 
-    private String xmdescrip;//项目描述
+    private String guarantee;
 
-    private String guarantee;//保障措施
+    private BigDecimal money;
 
-    private BigDecimal money;//金额
+    private Double nprofit;
 
-    private Float nprofit;//年化收益
-
-    private String way;//收益方式
-
-    private String cpname;//产品名称
-
-    private Long baid;//借款人id，baid为t_borrowapply表id
-
-    private Long int1;
-
-    private String str1;
-
-    public BorrowDetail(Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid, Long int1, String str1) {
-        this.bdid = bdid;
-        this.fpic = fpic;
-        this.ypic = ypic;
-        this.qpic = qpic;
-        this.tpic = tpic;
-        this.mpurpose = mpurpose;
-        this.hksource = hksource;
-        this.suggest = suggest;
-        this.xmdescrip = xmdescrip;
-        this.guarantee = guarantee;
-        this.money = money;
-        this.nprofit = nprofit;
-        this.way = way;
-        this.cpname = cpname;
-        this.baid = baid;
-        this.int1 = int1;
-        this.str1 = str1;
-    }
-
-    public BorrowDetail() {
-        super();
-    }
+    private String incomeapproach;
 
     public Long getBdid() {
         return bdid;
@@ -70,36 +35,28 @@ public class BorrowDetail {
         this.bdid = bdid;
     }
 
-    public String getFpic() {
-        return fpic;
+    public String getCardimage() {
+        return cardimage;
     }
 
-    public void setFpic(String fpic) {
-        this.fpic = fpic == null ? null : fpic.trim();
+    public void setCardimage(String cardimage) {
+        this.cardimage = cardimage == null ? null : cardimage.trim();
     }
 
-    public String getYpic() {
-        return ypic;
+    public String getBusinessimage() {
+        return businessimage;
     }
 
-    public void setYpic(String ypic) {
-        this.ypic = ypic == null ? null : ypic.trim();
+    public void setBusinessimage(String businessimage) {
+        this.businessimage = businessimage == null ? null : businessimage.trim();
     }
 
-    public String getQpic() {
-        return qpic;
+    public String getBankaccount() {
+        return bankaccount;
     }
 
-    public void setQpic(String qpic) {
-        this.qpic = qpic == null ? null : qpic.trim();
-    }
-
-    public String getTpic() {
-        return tpic;
-    }
-
-    public void setTpic(String tpic) {
-        this.tpic = tpic == null ? null : tpic.trim();
+    public void setBankaccount(String bankaccount) {
+        this.bankaccount = bankaccount == null ? null : bankaccount.trim();
     }
 
     public String getMpurpose() {
@@ -110,12 +67,12 @@ public class BorrowDetail {
         this.mpurpose = mpurpose == null ? null : mpurpose.trim();
     }
 
-    public String getHksource() {
-        return hksource;
+    public String getRepaymentsource() {
+        return repaymentsource;
     }
 
-    public void setHksource(String hksource) {
-        this.hksource = hksource == null ? null : hksource.trim();
+    public void setRepaymentsource(String repaymentsource) {
+        this.repaymentsource = repaymentsource == null ? null : repaymentsource.trim();
     }
 
     public String getSuggest() {
@@ -150,51 +107,19 @@ public class BorrowDetail {
         this.money = money;
     }
 
-    public Float getNprofit() {
+    public Double getNprofit() {
         return nprofit;
     }
 
-    public void setNprofit(Float nprofit) {
+    public void setNprofit(Double nprofit) {
         this.nprofit = nprofit;
     }
 
-    public String getWay() {
-        return way;
+    public String getIncomeapproach() {
+        return incomeapproach;
     }
 
-    public void setWay(String way) {
-        this.way = way == null ? null : way.trim();
-    }
-
-    public String getCpname() {
-        return cpname;
-    }
-
-    public void setCpname(String cpname) {
-        this.cpname = cpname == null ? null : cpname.trim();
-    }
-
-    public Long getBaid() {
-        return baid;
-    }
-
-    public void setBaid(Long baid) {
-        this.baid = baid;
-    }
-
-    public Long getInt1() {
-        return int1;
-    }
-
-    public void setInt1(Long int1) {
-        this.int1 = int1;
-    }
-
-    public String getStr1() {
-        return str1;
-    }
-
-    public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
+    public void setIncomeapproach(String incomeapproach) {
+        this.incomeapproach = incomeapproach == null ? null : incomeapproach.trim();
     }
 }

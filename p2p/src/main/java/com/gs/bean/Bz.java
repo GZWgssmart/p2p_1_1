@@ -1,22 +1,11 @@
 package com.gs.bean;
 
-//标种表
 public class Bz {
     private Long bzid;
 
-    private String bzname;//标种名称
+    private String bzname;
 
-    private Byte state;
-
-    public Bz(Long bzid, String bzname, Byte state) {
-        this.bzid = bzid;
-        this.bzname = bzname;
-        this.state = state;
-    }
-
-    public Bz() {
-        super();
-    }
+    private Long state;
 
     public Long getBzid() {
         return bzid;
@@ -34,11 +23,11 @@ public class Bz {
         this.bzname = bzname == null ? null : bzname.trim();
     }
 
-    public Byte getState() {
+    public Long getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Long state) {
         this.state = state;
     }
 }

@@ -2,41 +2,24 @@ package com.gs.bean;
 
 import java.math.BigDecimal;
 
-//用户资金表
-public class UserMoney {
+public class AdminMoney {
     private Long umid;
 
-    private Integer uid;//用户id
+    private Long adminid;
 
-    private BigDecimal zmoney;//总资产
+    private BigDecimal summoney;
 
-    private BigDecimal kymoney;//可用余额
+    private BigDecimal kymoney;
 
-    private BigDecimal symoney;//收益总额
+    private BigDecimal symoney;
 
-    private BigDecimal tzmoney;//投资总额
+    private BigDecimal tzmoney;
 
-    private BigDecimal djmoney;//冻结金额
+    private BigDecimal djmoney;
 
-    private BigDecimal dsmoney;//待收金额
+    private BigDecimal dsmoney;
 
-    private BigDecimal jlmoney;//奖励金额
-
-    public UserMoney(Long umid, Integer uid, BigDecimal zmoney, BigDecimal kymoney, BigDecimal symoney, BigDecimal tzmoney, BigDecimal djmoney, BigDecimal dsmoney, BigDecimal jlmoney) {
-        this.umid = umid;
-        this.uid = uid;
-        this.zmoney = zmoney;
-        this.kymoney = kymoney;
-        this.symoney = symoney;
-        this.tzmoney = tzmoney;
-        this.djmoney = djmoney;
-        this.dsmoney = dsmoney;
-        this.jlmoney = jlmoney;
-    }
-
-    public UserMoney() {
-        super();
-    }
+    private BigDecimal jlmoney;
 
     public Long getUmid() {
         return umid;
@@ -46,20 +29,20 @@ public class UserMoney {
         this.umid = umid;
     }
 
-    public Integer getUid() {
-        return uid;
+    public Long getAdminid() {
+        return adminid;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setAdminid(Long adminid) {
+        this.adminid = adminid;
     }
 
-    public BigDecimal getZmoney() {
-        return zmoney;
+    public BigDecimal getSummoney() {
+        return summoney;
     }
 
-    public void setZmoney(BigDecimal zmoney) {
-        this.zmoney = zmoney;
+    public void setSummoney(BigDecimal summoney) {
+        this.summoney = summoney;
     }
 
     public BigDecimal getKymoney() {

@@ -1,25 +1,13 @@
 package com.gs.bean;
 
-//还款方式表
 public class Sway {
     private Long sid;
 
-    private Byte way;//方式
+    private String way;
 
-    private String fw;//算法
+    private String sf;
 
-    private Byte state;//还款方式状态（0不可用，1可用）
-
-    public Sway(Long sid, Byte way, String fw, Byte state) {
-        this.sid = sid;
-        this.way = way;
-        this.fw = fw;
-        this.state = state;
-    }
-
-    public Sway() {
-        super();
-    }
+    private Long state;
 
     public Long getSid() {
         return sid;
@@ -29,27 +17,27 @@ public class Sway {
         this.sid = sid;
     }
 
-    public Byte getWay() {
+    public String getWay() {
         return way;
     }
 
-    public void setWay(Byte way) {
-        this.way = way;
+    public void setWay(String way) {
+        this.way = way == null ? null : way.trim();
     }
 
-    public String getFw() {
-        return fw;
+    public String getSf() {
+        return sf;
     }
 
-    public void setFw(String fw) {
-        this.fw = fw == null ? null : fw.trim();
+    public void setSf(String sf) {
+        this.sf = sf == null ? null : sf.trim();
     }
 
-    public Byte getState() {
+    public Long getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Long state) {
         this.state = state;
     }
 }
