@@ -9,9 +9,11 @@
 <%
     String path = request.getContextPath();
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>账户总览</title><link rel="stylesheet" href="<%=path%>/static/resources/front/v01/src/css/public.css"/>
+    <title>账户总览</title>
+    <link rel="stylesheet" href="<%=path%>/static/resources/front/v01/src/css/public.css"/>
     <link rel="stylesheet" href="<%=path%>/static/resources/front/v01/src/css/account.css"/>
     <link rel="stylesheet" href="<%=path%>/static/resources/front/v01/src/css/datepicker.css"/>
     <link rel="stylesheet" href="<%=path%>/static/resources/front/v01/src/css/login.css"/>
@@ -26,12 +28,13 @@
         <div class="account-right">
             <div class="account-right-nav">
                 <div class="sub-a-nav">
-                    <a href="javascript:void(0);" class="all-a">账户总览</a>
-                    <a href="javascript:void(0);" class="slb-a active">生利宝</a>
+                    <a href="javascript:void(0);" class="all-a active">账户总览</a>
+                    <a href="javascript:void(0);" class="slb-a">生利宝</a>
                 </div>
-                <em class="em-line"></em>
+                <em class="em-line" style="left:0px;"></em>
             </div>
             <div class="account-content" style="display: block;">
+
                 <div class="all-view">
                     <div class="center-view">
                         <div class="center-header">
@@ -48,7 +51,7 @@
                             <p id="reset"></p>
                         </div>
                         <div class="center-user">
-                            <p class="amt color"><span id="usableSum">0.00</span>元</p>
+                            <p class="amt color"><span id="usableSum">${userMoney.kymoney}</span>元</p>
                             <p class="text"><i></i>可用余额</p>
                             <p class="link">
                                 <a href="#ipay" class="active">充值</a>
@@ -56,7 +59,7 @@
                             </p>
                         </div>
                         <div class="center-profit">
-                            <p class="amt"><span id="earnSum">0.00</span>元</p>
+                            <p class="amt"><span id="earnSum">${userMoney.symoney}</span>元</p>
                             <p class="text">收益总额</p>
                             <p class="luckynum">
                                 <i id="DetailsIcon"></i>
@@ -77,13 +80,13 @@
                             </div>
                         </div>
                         <div class="center-data">
-                            <p><i class="color color1"></i>投资总额：<span id="investSum">0.00</span></p>
+                            <p><i class="color color1"></i>投资总额：<span id="investSum">${userMoney.tzmoney}</span></p>
 
-                            <p><i class="color color2"></i>冻结金额：<span id="freezeAmount">0.00</span></p>
+                            <p><i class="color color2"></i>冻结金额：<span id="freezeAmount">${userMoney.djmoney}</span></p>
 
-                            <p><i class="color color3"></i>待收总额：<span id="forPaySum">0.00</span></p>
+                            <p><i class="color color3"></i>待收总额：<span id="forPaySum">${userMoney.dsmoney}</span></p>
 
-                            <p><i class="color color4"></i>奖励金额：<span id="otherEarnAmount">0.00</span></p>
+                            <p><i class="color color4"></i>奖励金额：<span id="otherEarnAmount">${userMoney.jlmoney}</span></p>
                         </div>
                     </div>
                 </div>
@@ -119,9 +122,9 @@
                             <a href="javascript:void(0);" class="slb-sy" id="earn">收益</a>
                             <em class="em-list"></em>
                             <div class="account-form cl">
-                                <input type="text" class="date icon icon-date" id="startDate">
+                                <input type="date" class="date icon icon-date" id="startDate">
                                 <p class="text">至</p>
-                                <input type="text" class="date icon icon-date" id="endDate">
+                                <input type="date" class="date icon icon-date" id="endDate">
                                 <button type="button" class="search" id="slbSearch">搜索</button>
                             </div>
                         </div>
@@ -181,16 +184,24 @@
         $(".all-a").bind("click",function(){
             $(".slb-a").removeClass("active");
             $(this).addClass("active");
+            $(".em-line").css("left",'0px');
             $(".slb-view").hide();
-            $(".account-content").show();
+            $(".all-view").show();
         });
 
         $(".slb-a").bind("click",function(){
             $(".all-a").removeClass("active");
             $(this).addClass("active");
-            $(".account-content").hide();
+            $(".em-line").css("left",'120px');
+            $(".all-view").hide();
             $(".slb-view").show();
 
+        });
+
+        $(".luckyLink").mouseover(function (){
+            $(".luckyDetails").show();
+        }).mouseout(function (){
+            $(".luckyDetails").hide();
         });
     })
 </script>

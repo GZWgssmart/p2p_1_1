@@ -320,8 +320,7 @@ DROP TABLE IF EXISTS `t_logtx`;
 CREATE TABLE `t_logtx` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `uid` bigint(20) DEFAULT NULL COMMENT '用户id',
-  `bankcard` varchar(50) DEFAULT NULL COMMENT '银行卡号',
-  `banktype` varchar(20) DEFAULT NULL COMMENT '所属银行',
+  `bcid` bigint(20) DEFAULT NULL COMMENT '用户id',
   `money` decimal(7,2) DEFAULT NULL COMMENT '提现金额',
   `date` datetime DEFAULT NULL COMMENT '时间',
   `state` tinyint(4) DEFAULT NULL COMMENT '状态，0提现成功，1未提现失败',

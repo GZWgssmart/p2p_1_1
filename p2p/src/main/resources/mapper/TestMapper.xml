@@ -6,11 +6,4 @@
 
 
 
-    <select id="countCriteria" resultType="long">
-        <![CDATA[
-		select count(ll.id) from t_user u, t_login_log ll
-		where u.id = ll.user_id
-		]]>
-    </select>
-
 </mapper>

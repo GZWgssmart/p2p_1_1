@@ -7,6 +7,7 @@
           <element id="module-output" name="p2p" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.29" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.12.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.3.12.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.12.RELEASE" />
@@ -41,6 +42,8 @@
           <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" />
           <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
           <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.04" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">
