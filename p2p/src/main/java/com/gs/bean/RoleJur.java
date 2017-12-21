@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //角色权限表
 public class RoleJur {

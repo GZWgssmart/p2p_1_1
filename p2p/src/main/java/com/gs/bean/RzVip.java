@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //认证审核表
 public class RzVip {

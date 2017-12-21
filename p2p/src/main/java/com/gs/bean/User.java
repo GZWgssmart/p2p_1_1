@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //前台用户表
 public class User {

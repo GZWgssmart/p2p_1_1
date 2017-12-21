@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //短信模板表
 public class DxModel {

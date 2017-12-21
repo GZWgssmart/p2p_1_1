@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //用户角色表
 public class RoleUser {

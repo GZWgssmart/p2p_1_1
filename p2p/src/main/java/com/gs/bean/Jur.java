@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //权限表
 public class Jur {

@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //首页信息表
 public class Home {

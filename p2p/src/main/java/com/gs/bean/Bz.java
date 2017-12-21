@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //标种表
 public class Bz {

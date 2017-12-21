@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,10 +9,6 @@ public class LogTx {
 
     private Long uid;//用户id
 
-    private String bankcard;//银行卡号
-
-    private String banktype;//所属银行
-
     private BigDecimal money;//提现金额
 
     private Date date;//时间
@@ -22,8 +18,6 @@ public class LogTx {
     public LogTx(Long id, Long uid, String bankcard, String banktype, BigDecimal money, Date date, Byte state) {
         this.id = id;
         this.uid = uid;
-        this.bankcard = bankcard;
-        this.banktype = banktype;
         this.money = money;
         this.date = date;
         this.state = state;
@@ -47,22 +41,6 @@ public class LogTx {
 
     public void setUid(Long uid) {
         this.uid = uid;
-    }
-
-    public String getBankcard() {
-        return bankcard;
-    }
-
-    public void setBankcard(String bankcard) {
-        this.bankcard = bankcard == null ? null : bankcard.trim();
-    }
-
-    public String getBanktype() {
-        return banktype;
-    }
-
-    public void setBanktype(String banktype) {
-        this.banktype = banktype == null ? null : banktype.trim();
     }
 
     public BigDecimal getMoney() {

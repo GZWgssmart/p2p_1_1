@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //借款类型表
 public class Jklx {

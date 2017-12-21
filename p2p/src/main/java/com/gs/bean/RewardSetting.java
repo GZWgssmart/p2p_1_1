@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 import java.math.BigDecimal;
 

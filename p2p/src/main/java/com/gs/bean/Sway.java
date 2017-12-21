@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //还款方式表
 public class Sway {

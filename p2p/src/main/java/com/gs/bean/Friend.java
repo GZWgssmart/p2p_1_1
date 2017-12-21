@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //合作伙伴表
 public class Friend {

@@ -1,4 +1,4 @@
-package top.zzh.bean;
+package com.gs.bean;
 
 //后台用户表
 public class HUser {
