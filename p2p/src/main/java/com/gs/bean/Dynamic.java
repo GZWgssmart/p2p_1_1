@@ -1,29 +1,17 @@
 package com.gs.bean;
 
 import java.util.Date;
-//公司动态表
-public class Dynamic {
+
+public class DyNamic {
     private Long dyid;
 
-    private String title;//标题
+    private String title;
 
-    private Date date;//时间
+    private Date date;
 
-    private String content;//内容
+    private String content;
 
-    private String pic;//封面图片
-
-    public Dynamic(Long dyid, String title, Date date, String content, String pic) {
-        this.dyid = dyid;
-        this.title = title;
-        this.date = date;
-        this.content = content;
-        this.pic = pic;
-    }
-
-    public Dynamic() {
-        super();
-    }
+    private String pic;
 
     public Long getDyid() {
         return dyid;

@@ -1,22 +1,11 @@
 package com.gs.bean;
 
-//合作伙伴表
 public class Friend {
     private Long fid;
 
-    private String furl;//链接
+    private String furl;
 
-    private String fpic;//图片
-
-    public Friend(Long fid, String furl, String fpic) {
-        this.fid = fid;
-        this.furl = furl;
-        this.fpic = fpic;
-    }
-
-    public Friend() {
-        super();
-    }
+    private String fpic;
 
     public Long getFid() {
         return fid;

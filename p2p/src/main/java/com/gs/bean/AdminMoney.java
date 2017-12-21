@@ -3,25 +3,23 @@ package com.gs.bean;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-//用户资金表
-public class UserMoney {
+public class AdminMoney {
     private Long umid;
+    private BigInteger uid;//�û�id
 
-    private BigInteger uid;//用户id
+    private BigDecimal summoney;
 
-    private BigDecimal zmoney;//总资产
+    private BigDecimal kymoney;
 
-    private BigDecimal kymoney;//可用余额
+    private BigDecimal symoney;
 
-    private BigDecimal symoney;//收益总额
+    private BigDecimal tzmoney;
 
-    private BigDecimal tzmoney;//投资总额
+    private BigDecimal djmoney;
 
-    private BigDecimal djmoney;//冻结金额
+    private BigDecimal dsmoney;
 
-    private BigDecimal dsmoney;//待收金额
-
-    private BigDecimal jlmoney;//奖励金额
+    private BigDecimal jlmoney;
 
     public Long getUmid() {
         return umid;
@@ -31,20 +29,20 @@ public class UserMoney {
         this.umid = umid;
     }
 
-    public BigInteger getUid() {
+     public BigInteger getUid() {
         return uid;
     }
 
-    public void setUid(BigInteger uid) {
+     public void setUid(BigInteger uid) {
         this.uid = uid;
     }
 
-    public BigDecimal getZmoney() {
-        return zmoney;
+    public BigDecimal getSummoney() {
+        return summoney;
     }
 
-    public void setZmoney(BigDecimal zmoney) {
-        this.zmoney = zmoney;
+    public void setSummoney(BigDecimal summoney) {
+        this.summoney = summoney;
     }
 
     public BigDecimal getKymoney() {

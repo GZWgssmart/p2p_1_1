@@ -2,37 +2,36 @@ package com.gs.bean;
 
 import java.math.BigDecimal;
 
-//å€Ÿæ¬¾è¯¦æƒ…è¡¨
 public class BorrowDetail {
     private Long bdid;
 
-    private String fpic;//æ³•äººèº«ä»½è¯ç…§ç‰‡
+    private String fpic;//·¨ÈËÉí·İÖ¤ÕÕÆ¬
 
-    private String ypic;//è¥ä¸šæ‰§ç…§å‰¯æœ¬ç…§ç‰‡
+    private String ypic;//ÓªÒµÖ´ÕÕ¸±±¾ÕÕÆ¬
 
-    private String qpic;//ä¼ä¸šé“¶è¡Œè´¦å·
+    private String qpic;//ÆóÒµÒøĞĞÕËºÅ
 
-    private String tpic;//å…¶ä»–èµ„æ–™
+    private String tpic;//ÆäËû×ÊÁÏ
 
-    private String mpurpose;//èµ„é‡‘ç”¨é€”
+    private String mpurpose;//×Ê½ğÓÃÍ¾
 
-    private String hksource;//è¿˜æ¬¾æ¥æº
+    private String hksource;//»¹¿îÀ´Ô´
 
-    private String suggest;//å€Ÿæ¬¾äººä»‹ç»
+    private String suggest;//½è¿îÈË½éÉÜ
 
-    private String xmdescrip;//é¡¹ç›®æè¿°
+    private String xmdescrip;//ÏîÄ¿ÃèÊö
 
-    private String guarantee;//ä¿éšœæªæ–½
+    private String guarantee;//±£ÕÏ´ëÊ©
 
-    private BigDecimal money;//é‡‘é¢
+    private BigDecimal money;//½ğ¶î
 
-    private BigDecimal nprofit;//å¹´åŒ–æ”¶ç›Š
+    private BigDecimal nprofit;//Äê»¯ÊÕÒæ
 
-    private String way;//æ”¶ç›Šæ–¹å¼
+    private String way;//ÊÕÒæ·½Ê½
 
-    private String cpname;//äº§å“åç§°
+    private String cpname;//²úÆ·Ãû³Æ
 
-    private Long baid;//å€Ÿæ¬¾äººidï¼Œbaidä¸ºt_borrowapplyè¡¨id
+    private Long baid;//½è¿îÈËid£¬baidÎªt_borrowapply±íid
 
     private Long int1;
 

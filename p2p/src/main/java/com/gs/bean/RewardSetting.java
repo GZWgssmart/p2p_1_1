@@ -2,26 +2,14 @@ package com.gs.bean;
 
 import java.math.BigDecimal;
 
-//投资奖励设置表
 public class RewardSetting {
     private Long rwid;
 
-    private BigDecimal minmoney;//最小金额
+    private BigDecimal minmoney;
 
-    private BigDecimal maxmoney;//最大金额
+    private BigDecimal maxmoney;
 
-    private Double percent;//奖励百分比
-
-    public RewardSetting(Long rwid, BigDecimal minmoney, BigDecimal maxmoney, Double percent) {
-        this.rwid = rwid;
-        this.minmoney = minmoney;
-        this.maxmoney = maxmoney;
-        this.percent = percent;
-    }
-
-    public RewardSetting() {
-        super();
-    }
+    private Double percent;
 
     public Long getRwid() {
         return rwid;

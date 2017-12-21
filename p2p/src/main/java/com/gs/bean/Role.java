@@ -1,22 +1,11 @@
 package com.gs.bean;
 
-//角色表
 public class Role {
     private Long rid;
 
-    private String rname;//角色名称
+    private String realname;
 
-    private String content;//角色描述
-
-    public Role(Long rid, String rname, String content) {
-        this.rid = rid;
-        this.rname = rname;
-        this.content = content;
-    }
-
-    public Role() {
-        super();
-    }
+    private String content;
 
     public Long getRid() {
         return rid;
@@ -26,12 +15,12 @@ public class Role {
         this.rid = rid;
     }
 
-    public String getRname() {
-        return rname;
+    public String getRealname() {
+        return realname;
     }
 
-    public void setRname(String rname) {
-        this.rname = rname == null ? null : rname.trim();
+    public void setRealname(String realname) {
+        this.realname = realname == null ? null : realname.trim();
     }
 
     public String getContent() {

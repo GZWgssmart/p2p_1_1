@@ -3,32 +3,18 @@ package com.gs.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
-//投资总奖励表
 public class Reward {
     private Long rwid;
 
-    private Long uid;//投资人id
+    private Long uid;
 
-    private BigDecimal tmoney;//投资人总额
+    private BigDecimal tmoney;
 
-    private BigDecimal money;//奖励金额
+    private BigDecimal money;
 
-    private Byte state;//状态（0已发放，1未发放）
+    private Long state;
 
-    private Date date;//奖励发放时间
-
-    public Reward(Long rwid, Long uid, BigDecimal tmoney, BigDecimal money, Byte state, Date date) {
-        this.rwid = rwid;
-        this.uid = uid;
-        this.tmoney = tmoney;
-        this.money = money;
-        this.state = state;
-        this.date = date;
-    }
-
-    public Reward() {
-        super();
-    }
+    private Date date;
 
     public Long getRwid() {
         return rwid;
@@ -62,11 +48,11 @@ public class Reward {
         this.money = money;
     }
 
-    public Byte getState() {
+    public Long getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Long state) {
         this.state = state;
     }
 

@@ -2,32 +2,18 @@ package com.gs.bean;
 
 import java.util.Date;
 
-//推荐管理表
 public class Recommend {
     private Long id;
 
-    private Long tid;//推荐人id
+    private Long tid;
 
-    private String tname;//推荐人姓名
+    private String tname;
 
-    private Long uid;//被推荐人id
+    private Long uid;
 
-    private String rname;//被推荐人姓名
+    private String rname;
 
-    private Date date;//推荐时间
-
-    public Recommend(Long id, Long tid, String tname, Long uid, String rname, Date date) {
-        this.id = id;
-        this.tid = tid;
-        this.tname = tname;
-        this.uid = uid;
-        this.rname = rname;
-        this.date = date;
-    }
-
-    public Recommend() {
-        super();
-    }
+    private Date date;
 
     public Long getId() {
         return id;

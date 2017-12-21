@@ -2,32 +2,18 @@ package com.gs.bean;
 
 import java.util.Date;
 
-//提现审核表
 public class TxCheck {
     private Long id;
 
-    private Long txid;//提现人id
+    private Long txid;
 
-    private Long huid;//审核人id
+    private Long huid;
 
-    private Byte isok;//审核是否通过，0通过，1未通过
+    private Long isok;
 
-    private String excute;//审核理由
+    private String excuse;
 
-    private Date date;//审核时间
-
-    public TxCheck(Long id, Long txid, Long huid, Byte isok, String excute, Date date) {
-        this.id = id;
-        this.txid = txid;
-        this.huid = huid;
-        this.isok = isok;
-        this.excute = excute;
-        this.date = date;
-    }
-
-    public TxCheck() {
-        super();
-    }
+    private Date date;
 
     public Long getId() {
         return id;
@@ -53,20 +39,20 @@ public class TxCheck {
         this.huid = huid;
     }
 
-    public Byte getIsok() {
+    public Long getIsok() {
         return isok;
     }
 
-    public void setIsok(Byte isok) {
+    public void setIsok(Long isok) {
         this.isok = isok;
     }
 
-    public String getExcute() {
-        return excute;
+    public String getExcuse() {
+        return excuse;
     }
 
-    public void setExcute(String excute) {
-        this.excute = excute == null ? null : excute.trim();
+    public void setExcuse(String excuse) {
+        this.excuse = excuse == null ? null : excuse.trim();
     }
 
     public Date getDate() {

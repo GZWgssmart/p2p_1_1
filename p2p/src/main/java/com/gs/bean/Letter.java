@@ -2,29 +2,16 @@ package com.gs.bean;
 
 import java.util.Date;
 
-//站内信表
 public class Letter {
     private Long lid;
 
-    private String title;//标题
+    private String title;
 
-    private String content;//内容
+    private String content;
 
-    private Date date;//日期
+    private Date date;
 
-    private Byte state;//状态，0激活，1冻结
-
-    public Letter(Long lid, String title, String content, Date date, Byte state) {
-        this.lid = lid;
-        this.title = title;
-        this.content = content;
-        this.date = date;
-        this.state = state;
-    }
-
-    public Letter() {
-        super();
-    }
+    private Long state;
 
     public Long getLid() {
         return lid;
@@ -58,11 +45,11 @@ public class Letter {
         this.date = date;
     }
 
-    public Byte getState() {
+    public Long getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Long state) {
         this.state = state;
     }
 }

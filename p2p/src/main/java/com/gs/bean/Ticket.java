@@ -3,40 +3,28 @@ package com.gs.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
-//优惠券表
 public class Ticket {
-    private Integer kid;
+    private Long kid;
 
-    private Byte type;//优惠券类型，如现金劵，代金券，体验金
+    private Long type;
 
-    private BigDecimal tkmoney;//优惠券金额
+    private BigDecimal tkmoney;
 
-    private Date tktime;//有效时间
+    private Date tktime;
 
-    public Ticket(Integer kid, Byte type, BigDecimal tkmoney, Date tktime) {
-        this.kid = kid;
-        this.type = type;
-        this.tkmoney = tkmoney;
-        this.tktime = tktime;
-    }
-
-    public Ticket() {
-        super();
-    }
-
-    public Integer getKid() {
+    public Long getKid() {
         return kid;
     }
 
-    public void setKid(Integer kid) {
+    public void setKid(Long kid) {
         this.kid = kid;
     }
 
-    public Byte getType() {
+    public Long getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(Long type) {
         this.type = type;
     }
 
