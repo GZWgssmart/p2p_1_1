@@ -1,12 +1,13 @@
 package com.gs.bean;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 //用户资金表
 public class UserMoney {
     private Long umid;
 
-    private Integer uid;//用户id
+    private BigInteger uid;//用户id
 
     private BigDecimal zmoney;//总资产
 
@@ -22,22 +23,6 @@ public class UserMoney {
 
     private BigDecimal jlmoney;//奖励金额
 
-    public UserMoney(Long umid, Integer uid, BigDecimal zmoney, BigDecimal kymoney, BigDecimal symoney, BigDecimal tzmoney, BigDecimal djmoney, BigDecimal dsmoney, BigDecimal jlmoney) {
-        this.umid = umid;
-        this.uid = uid;
-        this.zmoney = zmoney;
-        this.kymoney = kymoney;
-        this.symoney = symoney;
-        this.tzmoney = tzmoney;
-        this.djmoney = djmoney;
-        this.dsmoney = dsmoney;
-        this.jlmoney = jlmoney;
-    }
-
-    public UserMoney() {
-        super();
-    }
-
     public Long getUmid() {
         return umid;
     }
@@ -46,11 +31,11 @@ public class UserMoney {
         this.umid = umid;
     }
 
-    public Integer getUid() {
+    public BigInteger getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(BigInteger uid) {
         this.uid = uid;
     }
 

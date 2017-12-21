@@ -26,7 +26,7 @@ public class BorrowDetail {
 
     private BigDecimal money;//金额
 
-    private Float nprofit;//年化收益
+    private BigDecimal nprofit;//年化收益
 
     private String way;//收益方式
 
@@ -37,30 +37,6 @@ public class BorrowDetail {
     private Long int1;
 
     private String str1;
-
-    public BorrowDetail(Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid, Long int1, String str1) {
-        this.bdid = bdid;
-        this.fpic = fpic;
-        this.ypic = ypic;
-        this.qpic = qpic;
-        this.tpic = tpic;
-        this.mpurpose = mpurpose;
-        this.hksource = hksource;
-        this.suggest = suggest;
-        this.xmdescrip = xmdescrip;
-        this.guarantee = guarantee;
-        this.money = money;
-        this.nprofit = nprofit;
-        this.way = way;
-        this.cpname = cpname;
-        this.baid = baid;
-        this.int1 = int1;
-        this.str1 = str1;
-    }
-
-    public BorrowDetail() {
-        super();
-    }
 
     public Long getBdid() {
         return bdid;
@@ -75,7 +51,7 @@ public class BorrowDetail {
     }
 
     public void setFpic(String fpic) {
-        this.fpic = fpic == null ? null : fpic.trim();
+        this.fpic = fpic;
     }
 
     public String getYpic() {
@@ -83,7 +59,7 @@ public class BorrowDetail {
     }
 
     public void setYpic(String ypic) {
-        this.ypic = ypic == null ? null : ypic.trim();
+        this.ypic = ypic;
     }
 
     public String getQpic() {
@@ -91,7 +67,7 @@ public class BorrowDetail {
     }
 
     public void setQpic(String qpic) {
-        this.qpic = qpic == null ? null : qpic.trim();
+        this.qpic = qpic;
     }
 
     public String getTpic() {
@@ -99,7 +75,7 @@ public class BorrowDetail {
     }
 
     public void setTpic(String tpic) {
-        this.tpic = tpic == null ? null : tpic.trim();
+        this.tpic = tpic;
     }
 
     public String getMpurpose() {
@@ -107,7 +83,7 @@ public class BorrowDetail {
     }
 
     public void setMpurpose(String mpurpose) {
-        this.mpurpose = mpurpose == null ? null : mpurpose.trim();
+        this.mpurpose = mpurpose;
     }
 
     public String getHksource() {
@@ -115,7 +91,7 @@ public class BorrowDetail {
     }
 
     public void setHksource(String hksource) {
-        this.hksource = hksource == null ? null : hksource.trim();
+        this.hksource = hksource;
     }
 
     public String getSuggest() {
@@ -123,7 +99,7 @@ public class BorrowDetail {
     }
 
     public void setSuggest(String suggest) {
-        this.suggest = suggest == null ? null : suggest.trim();
+        this.suggest = suggest;
     }
 
     public String getXmdescrip() {
@@ -131,7 +107,7 @@ public class BorrowDetail {
     }
 
     public void setXmdescrip(String xmdescrip) {
-        this.xmdescrip = xmdescrip == null ? null : xmdescrip.trim();
+        this.xmdescrip = xmdescrip;
     }
 
     public String getGuarantee() {
@@ -139,7 +115,7 @@ public class BorrowDetail {
     }
 
     public void setGuarantee(String guarantee) {
-        this.guarantee = guarantee == null ? null : guarantee.trim();
+        this.guarantee = guarantee;
     }
 
     public BigDecimal getMoney() {
@@ -150,11 +126,11 @@ public class BorrowDetail {
         this.money = money;
     }
 
-    public Float getNprofit() {
+    public BigDecimal getNprofit() {
         return nprofit;
     }
 
-    public void setNprofit(Float nprofit) {
+    public void setNprofit(BigDecimal nprofit) {
         this.nprofit = nprofit;
     }
 
@@ -163,7 +139,7 @@ public class BorrowDetail {
     }
 
     public void setWay(String way) {
-        this.way = way == null ? null : way.trim();
+        this.way = way;
     }
 
     public String getCpname() {
@@ -171,7 +147,7 @@ public class BorrowDetail {
     }
 
     public void setCpname(String cpname) {
-        this.cpname = cpname == null ? null : cpname.trim();
+        this.cpname = cpname;
     }
 
     public Long getBaid() {
@@ -195,6 +171,6 @@ public class BorrowDetail {
     }
 
     public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
+        this.str1 = str1;
     }
 }

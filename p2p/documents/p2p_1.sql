@@ -1,23 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQL连接
+Source Server         : MySQL
 Source Server Version : 50717
-Source Host           : 127.0.0.1:3306
-Source Database       : p2p
+Source Host           : localhost:3306
+Source Database       : p2p_2
 
 Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-12-20 08:23:56
+Date: 2017-12-20 19:49:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for t_bankcard
--- 绑卡表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_bankcard`;
 CREATE TABLE `t_bankcard` (
@@ -32,32 +31,36 @@ CREATE TABLE `t_bankcard` (
   PRIMARY KEY (`bcid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_bankcard
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_borrowapply
--- 申请借款表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_borrowapply`;
 CREATE TABLE `t_borrowapply` (
   `baid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `rname` varchar(20) NOT NULL COMMENT '真实姓名',
-  `money` decimal(2,0) DEFAULT NULL COMMENT '申请金额',
+  `money` decimal(7,2) DEFAULT NULL COMMENT '申请金额',
   `uid` bigint(20) DEFAULT NULL COMMENT '借款人id，uid为t_user表id',
   `bzid` bigint(20) DEFAULT NULL COMMENT '标种',
   `time` datetime DEFAULT NULL COMMENT '审核时间',
   `state` tinyint(4) DEFAULT NULL COMMENT '审核状态（0表示为审核，1表示已审核）',
-  `type` tinyint(4) DEFAULT NULL COMMENT '借款类型为标种的主键字段',
-  `term` varchar(20) DEFAULT NULL COMMENT '借款期限',
-  `deadline` datetime NOT NULL  COMMENT '截止时间',
+  `type` tinyint(4) NOT NULL COMMENT '借款类型为标种的主键字段',
+  `term` varchar(20) NOT NULL COMMENT '借款期限',
+  `deadline` datetime NOT NULL COMMENT '截止时间',
   `int1` bigint(20) DEFAULT NULL COMMENT '预留字段',
   `str1` varchar(20) DEFAULT NULL COMMENT '预留字段',
-  PRIMARY KEY (`baid`)
+  PRIMARY KEY (`baid`,`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_borrowapply
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_borrowdetail
--- 借款详情表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_borrowdetail`;
 CREATE TABLE `t_borrowdetail` (
@@ -71,8 +74,8 @@ CREATE TABLE `t_borrowdetail` (
   `suggest` varchar(500) DEFAULT NULL COMMENT '借款人介绍',
   `xmdescrip` varchar(500) DEFAULT NULL COMMENT '项目描述',
   `guarantee` varchar(500) DEFAULT NULL COMMENT '保障措施',
-  `money` decimal(7,2) DEFAULT NULL COMMENT '金额', 
-  `nprofit` float(3,2) DEFAULT NULL COMMENT '年化收益',
+  `money` decimal(7,2) DEFAULT NULL COMMENT '金额',
+  `nprofit` decimal(7,2) DEFAULT NULL COMMENT '年化收益',
   `way` varchar(200) DEFAULT NULL COMMENT '收益方式',
   `cpname` varchar(200) DEFAULT NULL COMMENT '产品名称',
   `baid` bigint(20) DEFAULT NULL COMMENT '借款人id，baid为t_borrowapply表id',
@@ -81,10 +84,12 @@ CREATE TABLE `t_borrowdetail` (
   PRIMARY KEY (`bdid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_borrowdetail
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_bz
--- 标种表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_bz`;
 CREATE TABLE `t_bz` (
@@ -95,19 +100,25 @@ CREATE TABLE `t_bz` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_bz
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_dxmodel
--- 短信模板表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_dxmodel`;
 CREATE TABLE `t_dxmodel` (
   `dxid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `content` varchar(500) DEFAULT NULL COMMENT '内容',
-  PRIMARY KEY (`nid`)
+  PRIMARY KEY (`dxid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_dxmodel
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_dynamic
--- 公司动态表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_dynamic`;
 CREATE TABLE `t_dynamic` (
@@ -120,8 +131,11 @@ CREATE TABLE `t_dynamic` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_dynamic
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_friend
--- 合作伙伴表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_friend`;
 CREATE TABLE `t_friend` (
@@ -131,10 +145,12 @@ CREATE TABLE `t_friend` (
   PRIMARY KEY (`fid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_friend
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_hkb
--- 还款表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_hkb`;
 CREATE TABLE `t_hkb` (
@@ -165,10 +181,12 @@ CREATE TABLE `t_hkb` (
   PRIMARY KEY (`hkid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_hkb
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_home
--- 首页信息表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_home`;
 CREATE TABLE `t_home` (
@@ -186,8 +204,11 @@ CREATE TABLE `t_home` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_home
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_huser
--- 后台用户表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_huser`;
 CREATE TABLE `t_huser` (
@@ -205,8 +226,11 @@ CREATE TABLE `t_huser` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_huser
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_jklx
--- 借款类型表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_jklx`;
 CREATE TABLE `t_jklx` (
@@ -217,8 +241,11 @@ CREATE TABLE `t_jklx` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_jklx
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_jur
--- 权限表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_jur`;
 CREATE TABLE `t_jur` (
@@ -229,8 +256,11 @@ CREATE TABLE `t_jur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_jur
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_letter
--- 站内信表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_letter`;
 CREATE TABLE `t_letter` (
@@ -242,10 +272,12 @@ CREATE TABLE `t_letter` (
   PRIMARY KEY (`lid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_letter
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_logczz
--- 充值记录表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_logczz`;
 CREATE TABLE `t_logczz` (
@@ -259,10 +291,12 @@ CREATE TABLE `t_logczz` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_logczz
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_logmoney
--- 资金流向表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_logmoney`;
 CREATE TABLE `t_logmoney` (
@@ -276,8 +310,11 @@ CREATE TABLE `t_logmoney` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_logmoney
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_logtx
--- 提现记录表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_logtx`;
 CREATE TABLE `t_logtx` (
@@ -291,10 +328,12 @@ CREATE TABLE `t_logtx` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_logtx
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_media
--- 媒体报道表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_media`;
 CREATE TABLE `t_media` (
@@ -308,8 +347,11 @@ CREATE TABLE `t_media` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_media
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_notice
--- 最新公告表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_notice`;
 CREATE TABLE `t_notice` (
@@ -320,10 +362,12 @@ CREATE TABLE `t_notice` (
   PRIMARY KEY (`nid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_notice
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_option
--- 用户反馈表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_option`;
 CREATE TABLE `t_option` (
@@ -335,8 +379,11 @@ CREATE TABLE `t_option` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_option
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_recommend
--- 推荐管理表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_recommend`;
 CREATE TABLE `t_recommend` (
@@ -350,8 +397,11 @@ CREATE TABLE `t_recommend` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_recommend
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_reward
--- 投资总额奖励表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_reward`;
 CREATE TABLE `t_reward` (
@@ -365,8 +415,11 @@ CREATE TABLE `t_reward` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_reward
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_rewardsetting
--- 投资奖励设置表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_rewardsetting`;
 CREATE TABLE `t_rewardsetting` (
@@ -377,10 +430,12 @@ CREATE TABLE `t_rewardsetting` (
   PRIMARY KEY (`rwid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_rewardsetting
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_role
--- 角色表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_role`;
 CREATE TABLE `t_role` (
@@ -391,8 +446,11 @@ CREATE TABLE `t_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_role
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_rolejur
--- 角色权限表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_rolejur`;
 CREATE TABLE `t_rolejur` (
@@ -402,10 +460,12 @@ CREATE TABLE `t_rolejur` (
   PRIMARY KEY (`rjid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_rolejur
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_roleuser
--- 用户角色表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_roleuser`;
 CREATE TABLE `t_roleuser` (
@@ -416,13 +476,16 @@ CREATE TABLE `t_roleuser` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_roleuser
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_rzvip
--- 认证表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_rzvip`;
 CREATE TABLE `t_rzvip` (
   `rid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `uid` bigint(20) NOT NULL  COMMENT '用户id',
+  `uid` bigint(20) NOT NULL COMMENT '用户id',
   `xl` varchar(40) DEFAULT NULL COMMENT '学历',
   `ism` tinyint(4) DEFAULT NULL COMMENT '婚否（0已婚，1未婚，2单身）',
   `bschool` varchar(30) DEFAULT NULL COMMENT '毕业学校',
@@ -431,12 +494,15 @@ CREATE TABLE `t_rzvip` (
   `age` int(11) DEFAULT NULL COMMENT '年龄',
   `int1` bigint(20) DEFAULT NULL COMMENT '预留字段',
   `str1` varchar(20) DEFAULT NULL COMMENT '预留字段',
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_rzvip
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_rzvipcheck
--- 认证审核表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_rzvipcheck`;
 CREATE TABLE `t_rzvipcheck` (
@@ -449,10 +515,12 @@ CREATE TABLE `t_rzvipcheck` (
   PRIMARY KEY (`rcid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of t_rzvipcheck
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_shborrow
--- 借款审核表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_shborrow`;
 CREATE TABLE `t_shborrow` (
@@ -466,8 +534,11 @@ CREATE TABLE `t_shborrow` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_shborrow
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_skb
--- 还款表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_skb`;
 CREATE TABLE `t_skb` (
@@ -491,8 +562,11 @@ CREATE TABLE `t_skb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_skb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_sway
--- 还款方式表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sway`;
 CREATE TABLE `t_sway` (
@@ -504,8 +578,11 @@ CREATE TABLE `t_sway` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_sway
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_ticket
--- 优惠券表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_ticket`;
 CREATE TABLE `t_ticket` (
@@ -514,11 +591,16 @@ CREATE TABLE `t_ticket` (
   `tkmoney` decimal(7,2) DEFAULT NULL COMMENT '优惠券金额',
   `tktime` datetime DEFAULT NULL COMMENT '有效时间',
   PRIMARY KEY (`kid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_ticket
+-- ----------------------------
+INSERT INTO `t_ticket` VALUES ('1', '0', '300.00', '2017-12-20 15:24:36');
+INSERT INTO `t_ticket` VALUES ('2', '1', '200.00', '2017-12-20 15:25:27');
 
 -- ----------------------------
 -- Table structure for t_txcheck
--- 提现审核表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_txcheck`;
 CREATE TABLE `t_txcheck` (
@@ -532,15 +614,18 @@ CREATE TABLE `t_txcheck` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_txcheck
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_tzb
--- 投资表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_tzb`;
 CREATE TABLE `t_tzb` (
   `tzid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `uid` bigint(20) DEFAULT NULL COMMENT '前台用户t_user表id字段',
   `juid` bigint(20) DEFAULT NULL COMMENT '借款人id，t_borrowapply表主键id',
-  `money` decimal(2,0) NOT NULL COMMENT '投资金额',
+  `money` decimal(7,2) NOT NULL COMMENT '投资金额',
   `time` datetime NOT NULL COMMENT '投资时间',
   `nprofit` float(3,2) NOT NULL COMMENT '利率',
   `cpname` varchar(20) NOT NULL COMMENT '产品名称',
@@ -551,8 +636,11 @@ CREATE TABLE `t_tzb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_tzb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_user
--- 前台用户表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
@@ -576,13 +664,16 @@ CREATE TABLE `t_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_user
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_usermoney
--- 用户资金表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_usermoney`;
 CREATE TABLE `t_usermoney` (
   `umid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `uid` int(11) DEFAULT NULL COMMENT '用户id',
+  `uid` bigint(20) DEFAULT NULL COMMENT '用户id',
   `zmoney` decimal(7,2) DEFAULT NULL COMMENT '总资产',
   `kymoney` decimal(7,2) DEFAULT NULL COMMENT '可用余额',
   `symoney` decimal(7,2) DEFAULT NULL COMMENT '收益总额',
@@ -594,8 +685,11 @@ CREATE TABLE `t_usermoney` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_usermoney
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_userticket
--- 领劵表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_userticket`;
 CREATE TABLE `t_userticket` (
@@ -604,11 +698,16 @@ CREATE TABLE `t_userticket` (
   `kid` bigint(20) DEFAULT NULL COMMENT '劵id',
   `tktime` datetime DEFAULT NULL COMMENT '领劵时间',
   PRIMARY KEY (`ukid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_userticket
+-- ----------------------------
+INSERT INTO `t_userticket` VALUES ('1', '1', '1', '2017-12-20 19:23:07');
+INSERT INTO `t_userticket` VALUES ('2', '2', '2', '2017-12-20 19:24:08');
 
 -- ----------------------------
 -- Table structure for t_ydate
--- 运营数据表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_ydate`;
 CREATE TABLE `t_ydate` (
@@ -621,8 +720,12 @@ CREATE TABLE `t_ydate` (
   `ttzno` int(11) DEFAULT NULL COMMENT '总投资人数',
   `mtzno` int(11) DEFAULT NULL COMMENT '月投资人数',
   `tdkno` int(11) DEFAULT NULL COMMENT '总贷款人数',
-  `mdkno` int(11) DEFAULT NULL COMMENT '月贷款人数', 
+  `mdkno` int(11) DEFAULT NULL COMMENT '月贷款人数',
   `tdkbno` int(11) DEFAULT NULL COMMENT '总贷款笔数',
   `mdkbno` int(11) DEFAULT NULL COMMENT '月贷款笔数',
   PRIMARY KEY (`yid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_ydate
+-- ----------------------------
