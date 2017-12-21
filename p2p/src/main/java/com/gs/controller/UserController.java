@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping("login_page")
+    @RequestMapping("/login_page")
     public String login_page(){
         return "user/login";
+    }
+    @RequestMapping("/user_money")
+    public String user_money(){
+        return "user/user_money";
     }
 }
