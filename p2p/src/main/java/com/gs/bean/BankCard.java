@@ -1,23 +1,40 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
 
+//银行绑卡表
 public class BankCard {
+
     private Long bcid;
 
-    private Long adminid;
+    private Long uid;//用户id
 
-    private Long bankcard;
+    private String cardno;//银行卡号
 
-    private String realname;
+    private String rname;//绑卡人姓名
 
-    private String idno;
+    private String idno;//身份证号
 
-    private String banktype;
+    private String type;//所属银行
 
-    private Long state;
+    private Byte state;//银行卡状态，0激活，1冻结
 
-    private Date date;
+    private Date date;//绑卡时间
+
+    public BankCard(Long bcid, Long uid, String cardno, String rname, String idno, String type, Byte state, Date date) {
+        this.bcid = bcid;
+        this.uid = uid;
+        this.cardno = cardno;
+        this.rname = rname;
+        this.idno = idno;
+        this.type = type;
+        this.state = state;
+        this.date = date;
+    }
+
+    public BankCard() {
+        super();
+    }
 
     public Long getBcid() {
         return bcid;
@@ -27,28 +44,28 @@ public class BankCard {
         this.bcid = bcid;
     }
 
-    public Long getAdminid() {
-        return adminid;
+    public Long getUid() {
+        return uid;
     }
 
-    public void setAdminid(Long adminid) {
-        this.adminid = adminid;
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 
-    public Long getBankcard() {
-        return bankcard;
+    public String getCardno() {
+        return cardno;
     }
 
-    public void setBankcard(Long bankcard) {
-        this.bankcard = bankcard;
+    public void setCardno(String cardno) {
+        this.cardno = cardno == null ? null : cardno.trim();
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRname() {
+        return rname;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname == null ? null : realname.trim();
+    public void setRname(String rname) {
+        this.rname = rname == null ? null : rname.trim();
     }
 
     public String getIdno() {
@@ -59,19 +76,19 @@ public class BankCard {
         this.idno = idno == null ? null : idno.trim();
     }
 
-    public String getBanktype() {
-        return banktype;
+    public String getType() {
+        return type;
     }
 
-    public void setBanktype(String banktype) {
-        this.banktype = banktype == null ? null : banktype.trim();
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
-    public Long getState() {
+    public Byte getState() {
         return state;
     }
 
-    public void setState(Long state) {
+    public void setState(Byte state) {
         this.state = state;
     }
 

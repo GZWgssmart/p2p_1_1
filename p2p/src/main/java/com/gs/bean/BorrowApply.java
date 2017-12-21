@@ -1,28 +1,53 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+//申请借款表
 public class BorrowApply {
+
     private Long baid;
 
-    private String realname;
+    private String rname;//真实姓名
 
-    private BigDecimal money;
+    private BigDecimal money;//申请金额
 
-    private Long adminid;
+    private Long uid;//借款人id
 
-    private Long bzid;
+    private Long bzid;//标种id
 
-    private Date audittime;
+    private Date time;//审核时间
 
-    private Long audittstate;
+    private Byte state;//审核状态（0表示为审核，1表示已审核）
 
-    private Long borrowertype;
+    private Byte type;//借款类型为标种的主键字段
 
-    private Long borrowerterm;
+    private String term;//借款期限
 
-    private Date deadline;
+    private Date deadline;//截止时间
+
+    private Long int1;
+
+    private String str1;
+
+    public BorrowApply(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, String term, Date deadline, Long int1, String str1) {
+        this.baid = baid;
+        this.rname = rname;
+        this.money = money;
+        this.uid = uid;
+        this.bzid = bzid;
+        this.time = time;
+        this.state = state;
+        this.type = type;
+        this.term = term;
+        this.deadline = deadline;
+        this.int1 = int1;
+        this.str1 = str1;
+    }
+
+    public BorrowApply() {
+        super();
+    }
 
     public Long getBaid() {
         return baid;
@@ -32,12 +57,12 @@ public class BorrowApply {
         this.baid = baid;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRname() {
+        return rname;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname == null ? null : realname.trim();
+    public void setRname(String rname) {
+        this.rname = rname == null ? null : rname.trim();
     }
 
     public BigDecimal getMoney() {
@@ -48,12 +73,12 @@ public class BorrowApply {
         this.money = money;
     }
 
-    public Long getAdminid() {
-        return adminid;
+    public Long getUid() {
+        return uid;
     }
 
-    public void setAdminid(Long adminid) {
-        this.adminid = adminid;
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 
     public Long getBzid() {
@@ -64,36 +89,36 @@ public class BorrowApply {
         this.bzid = bzid;
     }
 
-    public Date getAudittime() {
-        return audittime;
+    public Date getTime() {
+        return time;
     }
 
-    public void setAudittime(Date audittime) {
-        this.audittime = audittime;
+    public void setTime(Date time) {
+        this.time = time;
     }
 
-    public Long getAudittstate() {
-        return audittstate;
+    public Byte getState() {
+        return state;
     }
 
-    public void setAudittstate(Long audittstate) {
-        this.audittstate = audittstate;
+    public void setState(Byte state) {
+        this.state = state;
     }
 
-    public Long getBorrowertype() {
-        return borrowertype;
+    public Byte getType() {
+        return type;
     }
 
-    public void setBorrowertype(Long borrowertype) {
-        this.borrowertype = borrowertype;
+    public void setType(Byte type) {
+        this.type = type;
     }
 
-    public Long getBorrowerterm() {
-        return borrowerterm;
+    public String getTerm() {
+        return term;
     }
 
-    public void setBorrowerterm(Long borrowerterm) {
-        this.borrowerterm = borrowerterm;
+    public void setTerm(String term) {
+        this.term = term == null ? null : term.trim();
     }
 
     public Date getDeadline() {
@@ -102,5 +127,21 @@ public class BorrowApply {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+    public Long getInt1() {
+        return int1;
+    }
+
+    public void setInt1(Long int1) {
+        this.int1 = int1;
+    }
+
+    public String getStr1() {
+        return str1;
+    }
+
+    public void setStr1(String str1) {
+        this.str1 = str1 == null ? null : str1.trim();
     }
 }

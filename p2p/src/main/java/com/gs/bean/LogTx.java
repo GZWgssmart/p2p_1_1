@@ -1,22 +1,37 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+//提现记录表
 public class LogTx {
     private Long id;
 
-    private Long adminid;
+    private Long uid;//用户id
 
-    private Long bankcard;
+    private String bankcard;//银行卡号
 
-    private String banktype;
+    private String banktype;//所属银行
 
-    private BigDecimal money;
+    private BigDecimal money;//提现金额
 
-    private Date date;
+    private Date date;//时间
 
-    private Long state;
+    private Byte state;//状态，0提现成功，1未提现失败
+
+    public LogTx(Long id, Long uid, String bankcard, String banktype, BigDecimal money, Date date, Byte state) {
+        this.id = id;
+        this.uid = uid;
+        this.bankcard = bankcard;
+        this.banktype = banktype;
+        this.money = money;
+        this.date = date;
+        this.state = state;
+    }
+
+    public LogTx() {
+        super();
+    }
 
     public Long getId() {
         return id;
@@ -26,20 +41,20 @@ public class LogTx {
         this.id = id;
     }
 
-    public Long getAdminid() {
-        return adminid;
+    public Long getUid() {
+        return uid;
     }
 
-    public void setAdminid(Long adminid) {
-        this.adminid = adminid;
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 
-    public Long getBankcard() {
+    public String getBankcard() {
         return bankcard;
     }
 
-    public void setBankcard(Long bankcard) {
-        this.bankcard = bankcard;
+    public void setBankcard(String bankcard) {
+        this.bankcard = bankcard == null ? null : bankcard.trim();
     }
 
     public String getBanktype() {
@@ -66,11 +81,11 @@ public class LogTx {
         this.date = date;
     }
 
-    public Long getState() {
+    public Byte getState() {
         return state;
     }
 
-    public void setState(Long state) {
+    public void setState(Byte state) {
         this.state = state;
     }
 }

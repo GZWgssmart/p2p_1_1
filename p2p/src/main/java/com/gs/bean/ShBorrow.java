@@ -1,19 +1,33 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
 
+//借款审核表
 public class ShBorrow {
     private Long shid;
 
-    private Long huid;
+    private Long huid;//审核人id
 
-    private Long isok;
+    private Byte isok;//审核是否通过（0未通过，1已通过）
 
-    private String excuse;
+    private String excute;//审核理由
 
-    private Date date;
+    private Date date;//审核时间
 
-    private Long baid;
+    private Long baid;//借款人id
+
+    public ShBorrow(Long shid, Long huid, Byte isok, String excute, Date date, Long baid) {
+        this.shid = shid;
+        this.huid = huid;
+        this.isok = isok;
+        this.excute = excute;
+        this.date = date;
+        this.baid = baid;
+    }
+
+    public ShBorrow() {
+        super();
+    }
 
     public Long getShid() {
         return shid;
@@ -31,20 +45,20 @@ public class ShBorrow {
         this.huid = huid;
     }
 
-    public Long getIsok() {
+    public Byte getIsok() {
         return isok;
     }
 
-    public void setIsok(Long isok) {
+    public void setIsok(Byte isok) {
         this.isok = isok;
     }
 
-    public String getExcuse() {
-        return excuse;
+    public String getExcute() {
+        return excute;
     }
 
-    public void setExcuse(String excuse) {
-        this.excuse = excuse == null ? null : excuse.trim();
+    public void setExcute(String excute) {
+        this.excute = excute == null ? null : excute.trim();
     }
 
     public Date getDate() {

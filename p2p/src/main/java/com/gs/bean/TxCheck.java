@@ -1,19 +1,33 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
 
+//提现审核表
 public class TxCheck {
     private Long id;
 
-    private Long txid;
+    private Long txid;//提现人id
 
-    private Long huid;
+    private Long huid;//审核人id
 
-    private Long isok;
+    private Byte isok;//审核是否通过，0通过，1未通过
 
-    private String excuse;
+    private String excute;//审核理由
 
-    private Date date;
+    private Date date;//审核时间
+
+    public TxCheck(Long id, Long txid, Long huid, Byte isok, String excute, Date date) {
+        this.id = id;
+        this.txid = txid;
+        this.huid = huid;
+        this.isok = isok;
+        this.excute = excute;
+        this.date = date;
+    }
+
+    public TxCheck() {
+        super();
+    }
 
     public Long getId() {
         return id;
@@ -39,20 +53,20 @@ public class TxCheck {
         this.huid = huid;
     }
 
-    public Long getIsok() {
+    public Byte getIsok() {
         return isok;
     }
 
-    public void setIsok(Long isok) {
+    public void setIsok(Byte isok) {
         this.isok = isok;
     }
 
-    public String getExcuse() {
-        return excuse;
+    public String getExcute() {
+        return excute;
     }
 
-    public void setExcuse(String excuse) {
-        this.excuse = excuse == null ? null : excuse.trim();
+    public void setExcute(String excute) {
+        this.excute = excute == null ? null : excute.trim();
     }
 
     public Date getDate() {

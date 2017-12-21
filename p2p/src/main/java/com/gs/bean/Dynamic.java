@@ -1,17 +1,29 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
-
-public class DyNamic {
+//公司动态表
+public class Dynamic {
     private Long dyid;
 
-    private String title;
+    private String title;//标题
 
-    private Date date;
+    private Date date;//时间
 
-    private String content;
+    private String content;//内容
 
-    private String pic;
+    private String pic;//封面图片
+
+    public Dynamic(Long dyid, String title, Date date, String content, String pic) {
+        this.dyid = dyid;
+        this.title = title;
+        this.date = date;
+        this.content = content;
+        this.pic = pic;
+    }
+
+    public Dynamic() {
+        super();
+    }
 
     public Long getDyid() {
         return dyid;

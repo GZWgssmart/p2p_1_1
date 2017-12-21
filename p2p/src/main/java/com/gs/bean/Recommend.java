@@ -1,19 +1,33 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
 
+//推荐管理表
 public class Recommend {
     private Long id;
 
-    private Long tid;
+    private Long tid;//推荐人id
 
-    private String tname;
+    private String tname;//推荐人姓名
 
-    private Long uid;
+    private Long uid;//被推荐人id
 
-    private String rname;
+    private String rname;//被推荐人姓名
 
-    private Date date;
+    private Date date;//推荐时间
+
+    public Recommend(Long id, Long tid, String tname, Long uid, String rname, Date date) {
+        this.id = id;
+        this.tid = tid;
+        this.tname = tname;
+        this.uid = uid;
+        this.rname = rname;
+        this.date = date;
+    }
+
+    public Recommend() {
+        super();
+    }
 
     public Long getId() {
         return id;

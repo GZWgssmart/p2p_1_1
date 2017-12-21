@@ -1,9 +1,19 @@
-package com.gs.bean;
+package top.zzh.bean;
 
+//短信模板表
 public class DxModel {
     private Long dxid;
 
-    private String content;
+    private String content;//内容
+
+    public DxModel(Long dxid, String content) {
+        this.dxid = dxid;
+        this.content = content;
+    }
+
+    public DxModel() {
+        super();
+    }
 
     public Long getDxid() {
         return dxid;

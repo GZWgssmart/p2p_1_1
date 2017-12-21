@@ -1,11 +1,22 @@
-package com.gs.bean;
+package top.zzh.bean;
 
+//权限表
 public class Jur {
     private Long jid;
 
-    private String jurl;
+    private String jurl;//权限URL
 
-    private String content;
+    private String content;//权限描述
+
+    public Jur(Long jid, String jurl, String content) {
+        this.jid = jid;
+        this.jurl = jurl;
+        this.content = content;
+    }
+
+    public Jur() {
+        super();
+    }
 
     public Long getJid() {
         return jid;

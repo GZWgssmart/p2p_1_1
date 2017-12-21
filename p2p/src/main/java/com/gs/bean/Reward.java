@@ -1,20 +1,34 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+//投资总奖励表
 public class Reward {
     private Long rwid;
 
-    private Long uid;
+    private Long uid;//投资人id
 
-    private BigDecimal tmoney;
+    private BigDecimal tmoney;//投资人总额
 
-    private BigDecimal money;
+    private BigDecimal money;//奖励金额
 
-    private Long state;
+    private Byte state;//状态（0已发放，1未发放）
 
-    private Date date;
+    private Date date;//奖励发放时间
+
+    public Reward(Long rwid, Long uid, BigDecimal tmoney, BigDecimal money, Byte state, Date date) {
+        this.rwid = rwid;
+        this.uid = uid;
+        this.tmoney = tmoney;
+        this.money = money;
+        this.state = state;
+        this.date = date;
+    }
+
+    public Reward() {
+        super();
+    }
 
     public Long getRwid() {
         return rwid;
@@ -48,11 +62,11 @@ public class Reward {
         this.money = money;
     }
 
-    public Long getState() {
+    public Byte getState() {
         return state;
     }
 
-    public void setState(Long state) {
+    public void setState(Byte state) {
         this.state = state;
     }
 

@@ -1,19 +1,33 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
 
+//媒体报道表
 public class Media {
     private Long mid;
 
-    private String title;
+    private String title;//标题
 
-    private String content;
+    private String content;//内容
 
-    private String pic;
+    private String pic;//封面图片
 
-    private Date date;
+    private Date date;//时间
 
-    private String url;
+    private String url;//报道的URL地址
+
+    public Media(Long mid, String title, String content, String pic, Date date, String url) {
+        this.mid = mid;
+        this.title = title;
+        this.content = content;
+        this.pic = pic;
+        this.date = date;
+        this.url = url;
+    }
+
+    public Media() {
+        super();
+    }
 
     public Long getMid() {
         return mid;

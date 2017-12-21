@@ -1,24 +1,48 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
 
-public class RzvipCheck {
-    private Long id;
+//认证审核表
+public class RzVipCheck {
+    private Long rcid;
 
-    private Long huid;
+    private Long uid;//用户id
 
-    private Long isok;
+    private Long huid;//审核id
 
-    private String excuse;
+    private Byte isok;//审核是否通过，0通过，1未通过
 
-    private Date date;
+    private String excute;//理由
 
-    public Long getId() {
-        return id;
+    private Date date;//审核时间
+
+    public RzVipCheck(Long rcid, Long uid, Long huid, Byte isok, String excute, Date date) {
+        this.rcid = rcid;
+        this.uid = uid;
+        this.huid = huid;
+        this.isok = isok;
+        this.excute = excute;
+        this.date = date;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public RzVipCheck() {
+        super();
+    }
+
+    public Long getRcid() {
+        return rcid;
+    }
+
+    public void setRcid(Long rcid) {
+        this.rcid = rcid;
+    }
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 
     public Long getHuid() {
@@ -29,20 +53,20 @@ public class RzvipCheck {
         this.huid = huid;
     }
 
-    public Long getIsok() {
+    public Byte getIsok() {
         return isok;
     }
 
-    public void setIsok(Long isok) {
+    public void setIsok(Byte isok) {
         this.isok = isok;
     }
 
-    public String getExcuse() {
-        return excuse;
+    public String getExcute() {
+        return excute;
     }
 
-    public void setExcuse(String excuse) {
-        this.excuse = excuse == null ? null : excuse.trim();
+    public void setExcute(String excute) {
+        this.excute = excute == null ? null : excute.trim();
     }
 
     public Date getDate() {

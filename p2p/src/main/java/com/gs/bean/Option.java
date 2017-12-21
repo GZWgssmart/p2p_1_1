@@ -1,15 +1,27 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
 
+//用户反馈表
 public class Option {
     private Long opid;
 
-    private String phone;
+    private String phone;//手机号码
 
-    private String content;
+    private String content;//反馈内容
 
-    private Date date;
+    private Date date;//反馈时间
+
+    public Option(Long opid, String phone, String content, Date date) {
+        this.opid = opid;
+        this.phone = phone;
+        this.content = content;
+        this.date = date;
+    }
+
+    public Option() {
+        super();
+    }
 
     public Long getOpid() {
         return opid;

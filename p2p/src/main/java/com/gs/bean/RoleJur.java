@@ -1,11 +1,22 @@
-package com.gs.bean;
+package top.zzh.bean;
 
+//角色权限表
 public class RoleJur {
     private Long rjid;
 
-    private Long jid;
+    private Long rid;//角色id
 
-    private Long rid;
+    private Long jid;//权限id
+
+    public RoleJur(Long rjid, Long rid, Long jid) {
+        this.rjid = rjid;
+        this.rid = rid;
+        this.jid = jid;
+    }
+
+    public RoleJur() {
+        super();
+    }
 
     public Long getRjid() {
         return rjid;
@@ -15,19 +26,19 @@ public class RoleJur {
         this.rjid = rjid;
     }
 
-    public Long getJid() {
-        return jid;
-    }
-
-    public void setJid(Long jid) {
-        this.jid = jid;
-    }
-
     public Long getRid() {
         return rid;
     }
 
     public void setRid(Long rid) {
         this.rid = rid;
+    }
+
+    public Long getJid() {
+        return jid;
+    }
+
+    public void setJid(Long jid) {
+        this.jid = jid;
     }
 }

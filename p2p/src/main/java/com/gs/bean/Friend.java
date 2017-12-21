@@ -1,11 +1,22 @@
-package com.gs.bean;
+package top.zzh.bean;
 
+//合作伙伴表
 public class Friend {
     private Long fid;
 
-    private String furl;
+    private String furl;//链接
 
-    private String fpic;
+    private String fpic;//图片
+
+    public Friend(Long fid, String furl, String fpic) {
+        this.fid = fid;
+        this.furl = furl;
+        this.fpic = fpic;
+    }
+
+    public Friend() {
+        super();
+    }
 
     public Long getFid() {
         return fid;

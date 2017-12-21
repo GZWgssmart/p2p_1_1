@@ -1,15 +1,27 @@
-package com.gs.bean;
+package top.zzh.bean;
 
 import java.util.Date;
 
-public class NoTice {
+//最新公告表
+public class Notice {
     private Long nid;
 
-    private String content;
+    private String content;//内容
 
-    private String title;
+    private String title;//标题
 
-    private Date date;
+    private Date date;//公告时间
+
+    public Notice(Long nid, String content, String title, Date date) {
+        this.nid = nid;
+        this.content = content;
+        this.title = title;
+        this.date = date;
+    }
+
+    public Notice() {
+        super();
+    }
 
     public Long getNid() {
         return nid;

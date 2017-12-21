@@ -1,11 +1,22 @@
-package com.gs.bean;
+package top.zzh.bean;
 
+//标种表
 public class Bz {
     private Long bzid;
 
-    private String bzname;
+    private String bzname;//标种名称
 
-    private Long state;
+    private Byte state;
+
+    public Bz(Long bzid, String bzname, Byte state) {
+        this.bzid = bzid;
+        this.bzname = bzname;
+        this.state = state;
+    }
+
+    public Bz() {
+        super();
+    }
 
     public Long getBzid() {
         return bzid;
@@ -23,11 +34,11 @@ public class Bz {
         this.bzname = bzname == null ? null : bzname.trim();
     }
 
-    public Long getState() {
+    public Byte getState() {
         return state;
     }
 
-    public void setState(Long state) {
+    public void setState(Byte state) {
         this.state = state;
     }
 }
