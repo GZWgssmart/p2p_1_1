@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.LogTxDAO">
+
+
+    <insert id="save" parameterType="com.gs.bean.LogTx" >
+        <![CDATA[
+          insert into t_logtx(uid, money, date, state, bcid) values
+          (#{uid},#{money},#{date},#{state},#{bcid})
+        ]]>
+    </insert>
+
+    <select id="getById" resultType="long">
+        <![CDATA[
+		select * from t_logtx where id=#{id}
+		]]>
+    </select>
+
+    <select id="listByPager"  resultType="com.gs.vo.LogTxVo">
+        <![CDATA[
+		select l.id,u.rname,b.cardno,l.date,l.state from t_logtx l,t_user u,t_bankcard b
+		 where l.uid = u.uid and l.bcid = b.bcid and u.uid = b.uid
+		  and uid=#{uid} limit #{pager.beginIndex}, #{pager.pageSize};
+		]]>
+    </select>
+
+
+</mapper>

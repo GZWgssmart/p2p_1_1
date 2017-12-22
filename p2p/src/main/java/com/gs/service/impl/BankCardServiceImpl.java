@@ -1,7 +1,10 @@
 package com.gs.service.impl;
 
+import com.gs.bean.BankCard;
 import com.gs.common.Pager;
+import com.gs.dao.BankCardDAO;
 import com.gs.service.BankCardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,10 +13,12 @@ import java.util.List;
  * Created by Administrator on 2017/12/20.
  */
 @Service
-public class BankCardServiceImple implements BankCardService {
+public class BankCardServiceImpl implements BankCardService {
+    @Autowired
+    private BankCardDAO bankCardDAO;
     @Override
     public void save(Object obj) {
-
+        bankCardDAO.save(obj);
     }
 
     @Override
@@ -23,7 +28,7 @@ public class BankCardServiceImple implements BankCardService {
 
     @Override
     public void removeById(Long id) {
-
+        bankCardDAO.removeById(id);
     }
 
     @Override
@@ -33,7 +38,7 @@ public class BankCardServiceImple implements BankCardService {
 
     @Override
     public Object getById(Long id) {
-        return null;
+        return bankCardDAO.getById(id);
     }
 
     @Override
@@ -49,5 +54,10 @@ public class BankCardServiceImple implements BankCardService {
     @Override
     public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
         return null;
+    }
+
+    @Override
+    public List<BankCard> getBylistAll(Long id) {
+        return bankCardDAO.getBylistAll(id);
     }
 }

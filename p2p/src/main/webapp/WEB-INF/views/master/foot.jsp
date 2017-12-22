@@ -12,8 +12,6 @@
 </head>
 <body>
 <div id="ajaxFooter">
-
-
     <div class="mod-sidebar">
         <ul>
             <li><a target="_blank" href="tencent://message/?uin=3036302675&amp;Site=&amp;Menu=yes" class="sidebar-qq"></a></li>

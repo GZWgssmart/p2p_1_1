@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/test")
 public class testController {
 
-    @RequestMapping("/test")
+    @RequestMapping("tests")
     public String test(){
-        return "test";
+        return "deposit/recharge";
     }
+
 }
