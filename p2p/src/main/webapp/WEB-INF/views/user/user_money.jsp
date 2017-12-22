@@ -38,10 +38,10 @@
                 <div class="all-view">
                     <div class="center-view">
                         <div class="center-header">
-                            <img src="<%=path%>/static/resources/front/v01/src/images/account/header.png" width="120" height="120">
+                            <img src="<%=path%>/static/upload/123.jpg" width="120" height="120">
                         </div>
                         <div class="center-self">
-                            <p class="name">18174099445</p>
+                            <p class="name">${user.phone}</p>
                             <p class="safety">安全等级： <span id="safeLevel">高</span></p>
                             <p class="center-icon">
                                 <a href="#safe" class="icon icon-c-phone"></a>

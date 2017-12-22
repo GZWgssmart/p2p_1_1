@@ -32,8 +32,8 @@
             </div>
             <p class="error-msg icon icon-error"></p>
             <div class="from">
-                <label for="username" class="icon icon-user"></label>
-                <input type="text" name="username" id="username" autocomplete="off" placeholder="输入手机号码"/>
+                <label for="phone" class="icon icon-user"></label>
+                <input type="text" name="phone" id="phone" autocomplete="off" placeholder="输入手机号码"/>
             </div>
             <div class="from">
                 <label for="password" class="icon icon-pwd"></label>
@@ -48,7 +48,7 @@
             </div>
             <button class="btn"  type="button">登录</button>
             <div class="forget">
-                <a href="recoverpwd.html" tppabs="http://www.pujinziben.com/recoverpwd.html">忘记密码</a>
+                <a href="recoverpwd.html">忘记密码</a>
             </div>
         </div>
     </div>
