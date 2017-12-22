@@ -16,7 +16,7 @@
     <div class="account-left-nav">
         <div class="navbar icon icon-account">我的账户</div>
         <ul class="sub-nav">
-            <li class="active"><a href="#account">账户总览</a></li>
+            <li class="tive"><a href="#account">账户总览</a></li>
             <li><a href="#ipay">充值</a></li>
             <li><a href="#cash">提现</a></li>
 
