@@ -16,7 +16,12 @@ public class testController {
 
     @RequestMapping("tests")
     public String test(){
-        return "deposit/recharge";
+        return "backpage/index";
+    }
+
+    @RequestMapping("testca")
+    public String testca(){
+        return "backpage/cashList";
     }
 
 }
