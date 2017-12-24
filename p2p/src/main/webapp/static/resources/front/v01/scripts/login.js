@@ -55,16 +55,16 @@ $(function(){
 		});
 		$("#password").bind('keyup', function(event){
 			   if (event.keyCode=="13"){
-				   submit();  
+				   submit();
 			   }
 		})
 });
 function submit(){
-	var username = $('#username').val();
+	var phone = $('#phone').val();
 	var password = $('#password').val();
-	if(username==''){
-		showError('请输入手机号码',$('#username'));
-		return;
+	if(phone==''){
+		showError('请输入手机号码',$('#phone'));
+        return;
 	};
 	if(password==''){
 		showError('请输入密码',$('#password'));
@@ -74,31 +74,26 @@ function submit(){
 		utils.toast('请拖动验证码到正确位置');
 		return;
 	};
-	
-	$('.btn').addClass('disabled').text('登录中...').unbind('click');
-	var param={phone:username,password:password,pageId:'userlogin'};
-	utils.ajax({
-        url:'front/login.do',
-        data:JSON.stringify(param),
-        type:'POST',
-        dataType:'json',
-        success: function(data){
-        	if(data.error==0){
-        		utils.Storage.setItem('surveyCount',data.surveyCount);
-        		
-        		utils.Storage.setItem('uid',data.id);
-        		utils.Storage.setItem('username',data.username);
-        		utils.Storage.setItem('ipayAccount',data.ipayAccount);
-        		utils.Storage.setItem('loginCount',data.loginCount);
-        		window.location.href=jumpHref;
-        	}else{
-        		utils.alert(data.msg);
-        		$('.btn').removeClass('disabled').text('登录').bind('click',function(){
-        			submit();
-        		});
-        	}
-        }
-    });
+
+    $('.btn').addClass('disabled').text('登录中...').unbind('click');
+    var url =basePath + "/login";
+    $.post(url,
+		{
+            phone:phone,
+            pwd:password
+        },
+        function(data){
+            if (data.result === 'ok' || data.result === 'logined') {
+                window.location.href = "/user/user_money";
+            } else{
+                utils.alert(data.message);
+                $('.btn').removeClass('disabled').text('登录').bind('click',function(){
+                    submit();
+                });
+            }
+        },
+        "json"
+    );
 }
 //错误提示
 function showError(msg,obj){

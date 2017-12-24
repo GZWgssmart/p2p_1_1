@@ -14,7 +14,7 @@
     <title>普金资本-安全可靠专注于供应链金融的国资背景P2P理财平台</title>
     <link rel="stylesheet" href="<%=path %>/static/p2p/public.css">
     <link rel="stylesheet" href="<%=path %>/static/p2p/index.css">
-    <link rel="icon" href="https://www.pujinziben.com/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon">
+    <link rel="icon" href="<%=path %>/static/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon">
     <link rel="stylesheet" href="<%=path%>/static/css/index.css"/>
 </head>
 
