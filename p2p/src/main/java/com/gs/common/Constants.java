@@ -7,4 +7,5 @@ public class Constants {
 
     public static final String CODE_IN_SESSION = "code";
     public static final String USER_IN_SESSION = "user";
+    public static final String HUSER_IN_SESSION = "huser";
 }

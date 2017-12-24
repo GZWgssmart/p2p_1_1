@@ -45,6 +45,6 @@ public class LoginFilter implements Filter {
     }
 
     private boolean notFilter(String uri) {
-        return uri.equals("/") || uri.contains("/user/") || uri.contains("/code") || uri.contains("/static/")|| uri.contains("/test") || uri.contains("/logtx");
+        return uri.equals("/") || uri.contains("/user/") || uri.contains("/code") || uri.contains("/static/")|| uri.contains("/test") || uri.contains("/logtx") || uri.contains("/huser/");
     }
 }
