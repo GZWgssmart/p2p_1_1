@@ -12,7 +12,8 @@ public enum ControllerStatusEnum {
     CASH_SAVE_SUCCESS(104, "ok", "添加成功"),
     CASH_SAVE_FAIL(105, "error", "添加失败，稍候再试"),
     CASH_UPDATE_SUCCESS(106, "ok", "修改成功"),
-    CASH_UPDATE_FAIL(107, "error", "修改失败，稍候再试")
+    CASH_UPDATE_FAIL(107, "error", "修改失败，稍候再试"),
+    REG_PHONE_FAIL(108, "error", "该手机号已注册，可直接去登录")
     ;
 
     private Integer code;

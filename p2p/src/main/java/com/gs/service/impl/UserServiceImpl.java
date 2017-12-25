@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int getByPhone(String phone) {
+        return userDAO.getByPhone(phone);
+    }
+
+    @Override
     public void save(Object obj) {
 
     }
