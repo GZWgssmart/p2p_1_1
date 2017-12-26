@@ -24,7 +24,7 @@ public class SendCode {
 	
 	private static String Url = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";
 	
-	public static int sendsms(String mobile,String text) {
+	public static int sendsms(String mobile) {
 		
 		int fig= 0;
 		HttpClient client = new HttpClient(); 

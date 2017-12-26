@@ -26,7 +26,7 @@ public class DxModelController {
 
     @RequestMapping("reAndLo")
     public int index(HttpSession session,String phone){
-       int moblecode =  SendCode.sendsms(phone,"text");
+       int moblecode =  SendCode.sendsms(phone);
         session.setAttribute("moble", moblecode);
         return moblecode;
     }

@@ -1,14 +1,48 @@
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.DxmodelDAO">
 
-<mapper namespace="com.gs.dao.UserDAO">
-
-    <select id="getByPhonePwd" resultType="com.gs.bean.User">
-        <![CDATA[
-        select uid, uname, upwd, phone, tzm, idtype, idno, zpwd, email, rname, tid, face,
-        sex, isvip from t_user where phone = #{phone} and upwd = #{upwd}
-        ]]>
+    <select id="selectById" parameterType="java.lang.Integer">
+        select dxid, content from t_dxmodel where dxid = #{dxid}
     </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from t_dxmodel where dxid = #{dxid}
+    </delete>
+
+    <insert id="insert" parameterType="com.gs.bean.Dxmodel">
+        insert into t_dxmodel (dxid, content) values (#{dxid}, #{content})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.gs.bean.Dxmodel">
+        insert into t_dxmodel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dxid != null">dxid,</if>
+            <if test="content != null">content,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dxid != null">#{dxid},</if>
+            <if test="content != null">#{content},</if>
+        </trim>
+    </insert>
+
+    <update id="updateByIdSelective" parameterType="com.gs.bean.Dxmodel">
+        update t_dxmodel
+        <set>
+            <if test="content != null">content = #{content},</if>
+        </set>
+        where dxid = #{dxid}
+    </update>
+
+    <update id="updateById" parameterType="com.gs.bean.Dxmodel">
+        update t_dxmodel set content = #{content} where dxid = #{dxid}
+    </update>
+
+    <!--
+        select dxid,content from t_dxmodel where dxid =1;
+        delete from t_dxmodel where dxid =1;
+        insert into t_dxmodel (content) values ('验证码错误');
+        update t_dxmodel set content = '请重新输入' where dxid =1;
+   -->
 
 </mapper>
