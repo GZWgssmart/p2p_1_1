@@ -1,6 +1,7 @@
 package com.gs.service.impl;
 
 import com.gs.dao.BaseDAO;
+import com.gs.dao.JklxDAO;
 import com.gs.service.AbstractBaseService;
 import com.gs.service.JklxService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class JklxServiceImpl extends AbstractBaseService implements JklxService {
-    private JklxService jklxService;
+    private JklxDAO jklxDAO;
 
     @Autowired
-    public void setSwayService(JklxService jklxService) {
-        super.setBaseDAO((BaseDAO) jklxService);
-        this.jklxService = jklxService;
+    public void setJklxDAO(JklxDAO jklxDAO) {
+        super.setBaseDAO(jklxDAO);
+        this.jklxDAO = jklxDAO;
     }
 }

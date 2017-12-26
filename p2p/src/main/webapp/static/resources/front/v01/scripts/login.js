@@ -84,7 +84,7 @@ function submit(){
         },
         function(data){
             if (data.result === 'ok' || data.result === 'logined') {
-                window.location.href = "/user/user_money";
+                window.location.href = "/user/user_home";
             } else{
                 utils.alert(data.message);
                 $('.btn').removeClass('disabled').text('登录').bind('click',function(){

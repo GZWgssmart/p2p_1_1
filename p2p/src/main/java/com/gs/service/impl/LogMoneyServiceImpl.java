@@ -4,6 +4,7 @@ import com.gs.common.Pager;
 import com.gs.dao.LogMoneyDAO;
 import com.gs.dao.TzbDAO;
 import com.gs.service.AbstractBaseService;
+import com.gs.service.LogMoneyService;
 import com.gs.service.TzbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.List;
  * @version 1.0
  */
 @Service
-public class LogMoneyServiceImpl extends AbstractBaseService implements TzbService {
+public class LogMoneyServiceImpl extends AbstractBaseService implements LogMoneyService {
 
     private LogMoneyDAO logMoneyDAO;
 
@@ -26,5 +27,10 @@ public class LogMoneyServiceImpl extends AbstractBaseService implements TzbServi
     public void setLogMoneyDAO(LogMoneyDAO logMoneyDAO) {
         super.setBaseDAO(logMoneyDAO);
         this.logMoneyDAO = logMoneyDAO;
+    }
+
+    @Override
+    public List<Object> getByUserId(Byte type, String date, Long user_id) {
+        return logMoneyDAO.getByUserId(type,date,user_id);
     }
 }

@@ -26,26 +26,10 @@ public class DxModelController {
 
     @RequestMapping("reAndLo")
     public int index(HttpSession session,String phone){
-       int moblecode =  SendCode.sendsms(phone,"text");
+       int moblecode =  SendCode.sendsms(phone);
         session.setAttribute("moble", moblecode);
         return moblecode;
     }
-
-
-    @RequestMapping("reg")
-    public ControllerStatusVO reg(HttpSession session, String moble){
-        ControllerStatusVO statusVO = null;
-        String moblecode =  (String)session.getAttribute("moble");
-        if(userService.getByPhone(moble)!=0){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.REG_PHONE_FAIL);
-        }else{
-            String str="12345";
-            SendCode.sendsms(moble,str);
-
-        }
-        return statusVO;
-    }
-
 
 
 }

@@ -20,12 +20,8 @@
 </head>
 <link rel="icon" href="<%=path%>/static/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon" />
 <body>
-    <%@include file="../master/head.jsp" %>
-    <div class="account cl">
-        <%@include file="../master/left.jsp" %>
-
+<div class="account-right" style="width: 100%;height: 951px;">
         <!-- begin -->
-        <div class="account-right">
             <div class="account-right-nav">
                 <div class="sub-a-nav">
                     <a href="javascript:void(0);" class="all-a active">账户总览</a>
@@ -145,22 +141,7 @@
 
                             </ul>
                         </div>
-                        <div class="govern-list list-c">
-                            <ul class="govern-list-box list-box">
-                                <li class="title">
-                                    <div class="children0">日期</div>
-                                    <div class="children1">金额（元）</div>
-                                    <div class="children2">生利宝余额（元）</div>
-                                    <div class="children3">信息</div>
-                                </li>
-                            </ul>
-                            <ul class="govern-list-box listData">
 
-                            </ul>
-                            <ul class="paging">
-
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
@@ -175,8 +156,7 @@
             </div>
         </div>
         <!-- end -->
-    </div>
-    <%@include file="../master/foot.jsp" %>
+</div>
 </body>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script>

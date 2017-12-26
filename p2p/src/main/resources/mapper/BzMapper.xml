@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.BzDAO">
+
+    <select id="selectById" parameterType="java.lang.Integer">
+        select bzid, bzname, state from t_bz where bzid = #{bzid}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from t_bz where bzid = #{bzid}
+    </delete>
+
+    <insert id="insert" parameterType="com.gs.bean.Bz">
+        insert into t_bz (bzid, bzname, state) values (#{bzid}, #{bzname}, #{state})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.gs.bean.Bz">
+        insert into t_bz
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bzid != null">bzid,</if>
+            <if test="bzname != null">bzname,</if>
+            <if test="state != null">state,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bzid != null">#{bzid},</if>
+            <if test="bzname != null">#{bzname},</if>
+            <if test="state != null">#{state}, </if>
+        </trim>
+    </insert>
+
+    <update id="updateByIdSelective"  parameterType="com.gs.bean.Bz">
+        update t_bz
+        <set>
+            <if test="bzname != null">bzname = #{bzname},</if>
+            <if test="state != null">state = #{state},</if>
+        </set>
+        where bzid = #{bzid}
+    </update>
+
+    <update id="updateById" parameterType="com.gs.bean.Bz">
+        update t_bz set bzname = #{bzname},state = #{state} where bzid = #{bzid}
+    </update>
+
+    <!--
+        select bzid, bzname, state from t_bz;
+        delete from t_bz where bzid = 2;
+        insert into t_bz (bzname, state) values ('多金宝',1);
+        update t_bz set bzname ='恒金宝',state = 0 where bzid = 1;
+    -->
+
+</mapper>

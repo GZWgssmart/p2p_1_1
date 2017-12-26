@@ -4,7 +4,22 @@
 
 <mapper namespace="com.gs.dao.LogMoneyDAO">
 
-
+    <select id="getByUserId" resultType="com.gs.bean.LogMoney">
+        <![CDATA[
+		select * from t_logmoney
+		where uid = #{user_id}
+		]]>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="type == 0">
+            and type = 0
+        </if>
+        <if test=" time != null and time != 'null' and time != ''">
+            and "date" <![CDATA[<=]]> #{time}
+        </if>
+        order by "date"
+    </select>
 
 
 
