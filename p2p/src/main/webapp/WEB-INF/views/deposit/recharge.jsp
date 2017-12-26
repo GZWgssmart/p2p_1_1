@@ -44,10 +44,18 @@
 等行为,一经发现将予以处罚,包括但不限于：限制收款、冻结账户、永久停止服务,并有可能影响相关信用记录。</p>
 		<div class="pay-from">
 			<div class="label cl">
-				<label>充值金额：</label><input type="text" id="ipay-amt" maxlength="18" placeholder="请输入充值金额"><p class="roll">元</p>
+				<label class="long">充值金额：</label><input type="text" id="ipay-amt" maxlength="18" placeholder="请输入充值金额"><p class="roll">元</p>
+			</div>
+			<div class="label cl label-msg">
+				<label class="long">我的银行卡：</label>
+				<input type="text" class="select" id="select-bank" readonly="">
+				<ul class="select-box">
+		<%--<li data-name="建设银行" data-bankno="6212842120000014418">
+			<a href="javascript:;">建设银行&nbsp;&nbsp;|&nbsp;&nbsp;6212 ******** 4418</a>
+		</li>--%></ul>
 			</div>
 			<div class="label cl">
-				<label>充值类型：</label><img src="./我的账户—普金资本充值_files/huifu.png">
+				<label class="long">充值类型：</label><img src="<%=path %>/static/images/huifu.png">
 			</div>
 			<button type="button" class="btn" id="ipay-submit">立即充值</button>
 		</div>
@@ -82,8 +90,11 @@
 	</div>
 	<%@include file="../master/foot.jsp" %>
 	<script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/static/js/account.js"></script>
+
 	<script>
         $(function(){
+            hashChange();
             $(".show-ipay").bind("click",function(){
                 $(".show-ipay-list").removeClass("active");
                 $(this).addClass("active");

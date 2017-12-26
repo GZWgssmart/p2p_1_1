@@ -2,10 +2,12 @@ package com.gs.service.impl;
 
 import com.gs.common.Pager;
 import com.gs.dao.UserMoneyDAO;
+import com.gs.service.AbstractBaseService;
 import com.gs.service.UserMoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,54 +18,22 @@ import java.util.List;
  * @version 1.0
  */
 @Service
-public class UserMoneyServiceImpl implements UserMoneyService{
-    @Autowired
+public class UserMoneyServiceImpl extends AbstractBaseService implements UserMoneyService{
     private UserMoneyDAO userMoneyDAO;
-    @Override
-    public void save(Object obj) {
-        userMoneyDAO.save(obj);
-    }
 
-    @Override
-    public void remove(Object obj) {
-        userMoneyDAO.remove(obj);
-    }
-
-    @Override
-    public void removeById(Long id) {
-        userMoneyDAO.removeById(id);
-    }
-
-    @Override
-    public void update(Object obj) {
-        userMoneyDAO.update(obj);
-    }
-
-    @Override
-    public Object getById(Long id) {
-        return userMoneyDAO.getById(id);
-    }
-
-    @Override
-    public List<Object> listAll() {
-        return userMoneyDAO.listAll();
-    }
-
-    @Override
-    public Pager listPager(int pageNo, int pageSize) {
-        return null;
-    }
-
-    @Override
-    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
-        Pager pager = new Pager(pageNo, pageSize);
-        pager.setRows(userMoneyDAO.listPagerCriteria(pager, obj));
-        pager.setTotal(userMoneyDAO.countCriteria(obj));
-        return pager;
+    @Autowired
+    public void setUserMoneyDAO(UserMoneyDAO userMoneyDAO) {
+        super.setBaseDAO(userMoneyDAO);
+        this.userMoneyDAO = userMoneyDAO;
     }
 
     @Override
     public Object getByUserId(Long id) {
-        return userMoneyDAO.getByUserId(id);
+        return null;
+    }
+
+    @Override
+    public void updateById(Long id,BigDecimal money) {
+        userMoneyDAO.updateById(id,money);
     }
 }
