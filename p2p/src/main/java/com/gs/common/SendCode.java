@@ -17,7 +17,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
-import org.dom4j.Element;   
+import org.dom4j.Element;
 
 
 public class SendCode {
@@ -27,7 +27,7 @@ public class SendCode {
 	public static int sendsms(String mobile,String text) {
 		
 		int fig= 0;
-		HttpClient client = new HttpClient(); 
+		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod(Url);
 
 		client.getParams().setContentCharset("utf-8");

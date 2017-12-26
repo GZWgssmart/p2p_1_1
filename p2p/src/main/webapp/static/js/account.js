@@ -117,26 +117,27 @@ var bankname;
 //初始化银行下拉框
 function initrecharge() {
     $.post(contextPath + "/bank/select",
-        function(data) {
-            if(data.length>0) {
-                for(var i=0;i<data.length;i++){
-                    $('<li data-name="'+data[i].type+'" data-bankno="'+data[i].cardno+'"><a href="javascript:;">'+data[i].type+'&nbsp;&nbsp;|&nbsp;&nbsp;'+data[i].cardno+'</a></li>')
-                        .click(function(){
+        function (data) {
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    $('<li data-name="' + data[i].type + '" data-bankno="' + data[i].cardno + '"><a href="javascript:;">' + data[i].type + '&nbsp;&nbsp;|&nbsp;&nbsp;' + data[i].cardno + '</a></li>')
+                        .click(function () {
                             bankno = $(this).attr('data-bankno');//jquery bug
                             bankname = $(this).data('name');
                             $('#select-bank')
-                                .val(bankname+'  |  '+bankno)
-                                .data('bankno',bankno);
+                                .val(bankname + '  |  ' + bankno)
+                                .data('bankno', bankno);
                             $('.select-box').slideUp(200);
                         })
                         .appendTo($('.select-box'));
-                };
-               /* var withdrawPhone=data.bindingPhone;
-                $('#withdrawPhone').text(withdrawPhone.substr(0, 3) + '****' + withdrawPhone.substr(7));*/
+                }
+                ;
+                /* var withdrawPhone=data.bindingPhone;
+                 $('#withdrawPhone').text(withdrawPhone.substr(0, 3) + '****' + withdrawPhone.substr(7));*/
                 //默认值
-                $("#select-bank").val(data[0].type+'  |  '+data[0].cardno)
-                    .data('bankno',data[0].cardno)
-                    .click(function(){
+                $("#select-bank").val(data[0].type + '  |  ' + data[0].cardno)
+                    .data('bankno', data[0].cardno)
+                    .click(function () {
                         $('.select-box').slideToggle(200);
                     });
                 bankno = data[0].cardno;//jquery bug
@@ -144,29 +145,66 @@ function initrecharge() {
             }
         },
         "json"
-        );
+    );
 
     //充值
-    $('#ipay-submit').click(function(){
+    $('#ipay-submit').click(function () {
 
         var money = $('#ipay-amt').val();
-        if(money == ''){
-            alert('请输入充值金额');return;
+        if (money == '') {
+            alert('请输入充值金额');
+            return;
         }
-        var logCzz = {banktype:bankname,bankcard:bankno,money:money};
-        $.post(contextPath+"/logczz/add",
+        var logCzz = {banktype: bankname, bankcard: bankno, money: money};
+        $.post(contextPath + "/logczz/add",
             logCzz,
-            function(data){
-                if(data.result === "ok") {
+            function (data) {
+                if (data.result === "ok") {
                     alert("充值成功");
-                }else{
+                } else {
                     alert("充值失败");
                 }
 
             },
-        "json"
+            "json"
         );
-    })
+    });
+    $('.show-ipay-list').click(function () {
+        if ($(this).hasClass('active')) {
+            return;
+        }
+        $(this).addClass('active').siblings('a').removeClass('active');
+        $('.em-line').animate({'left': '120px'}, 500);
+        $('.ipay-pay').hide();
+        $('.ipay-list').show();
+
+        $('#startDate').datepicker({format: 'yyyy-mm-dd'}).on('changeDate', function () {
+        });
+        $('#endDate').datepicker({format: 'yyyy-mm-dd'}).on('changeDate', function () {
+        });
+        if ($('.listData li').size() == 0) {
+            //初始化数据查询
+            initIpayData();
+        }
+        //搜索
+        $('#ipaySearch').unbind('click').click(function () {
+            var startDate = $('#startDate').val();
+            var endDate = $('#endDate').val();
+            if (startDate == '') {
+                utils.toast('开始时间不能为空');
+                return;
+            }
+            if (endDate == '') {
+                utils.toast('结束时间不能为空');
+                return;
+            }
+            if (startDate > endDate) {
+                utils.toast('开始时间不能大于结束时间');
+                return;
+            }
+            initIpayData(startDate, endDate);
+        });
+    });
 
 }
 

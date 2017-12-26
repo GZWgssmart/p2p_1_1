@@ -14,7 +14,8 @@ public enum ControllerStatusEnum {
     CASH_UPDATE_SUCCESS(106, "ok", "修改成功"),
     CASH_UPDATE_FAIL(107, "error", "修改失败，稍候再试"),
     USER_RECHARGE_SUCCESS(201, "ok", "充值成功"),
-    USER_RECHARGE_FAIL(202, "error", "充值失败")
+    USER_RECHARGE_FAIL(202, "error", "充值失败"),
+    REG_PHONE_FAIL(202, "error", "充值失败")
     ;
 
     private Integer code;

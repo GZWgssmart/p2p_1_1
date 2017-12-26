@@ -80,7 +80,9 @@
 					<div class="children4">充值状态</div>
 				</li>
 			</ul>
-			<ul class="ipay-list-box listData"><li class="none" style="line-height: 60px;">没有符合条件的内容！</li></ul>
+			<ul class="ipay-list-box listData">
+				<%--<li class="none" style="line-height: 60px;">没有符合条件的内容！</li>--%>
+			</ul>
 			<ul class="paging"></ul>
 		</div>
 	</div>
@@ -90,7 +92,10 @@
 	</div>
 	<%@include file="../master/foot.jsp" %>
 	<script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
+
+	<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="<%=path%>/static/js/account.js"></script>
+
 
 	<script>
         $(function(){
