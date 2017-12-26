@@ -29,7 +29,7 @@ public class UserMoneyServiceImpl extends AbstractBaseService implements UserMon
 
     @Override
     public Object getByUserId(Long id) {
-        return null;
+        return userMoneyDAO.getByUserId(id);
     }
 
     @Override

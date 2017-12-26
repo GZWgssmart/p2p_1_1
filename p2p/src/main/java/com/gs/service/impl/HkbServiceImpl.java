@@ -3,6 +3,7 @@ package com.gs.service.impl;
 import com.gs.common.Pager;
 import com.gs.dao.HkbDAO;
 import com.gs.service.AbstractBaseService;
+import com.gs.service.HkbService;
 import com.gs.service.TzbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import java.util.List;
  * @version 1.0
  */
 @Service
-public class HkbServiceImpl extends AbstractBaseService implements TzbService {
+public class HkbServiceImpl extends AbstractBaseService implements HkbService {
 
     private HkbDAO hkbDAO;
 

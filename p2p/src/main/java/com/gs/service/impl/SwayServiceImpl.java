@@ -1,6 +1,7 @@
 package com.gs.service.impl;
 
 import com.gs.dao.BaseDAO;
+import com.gs.dao.SwayDAO;
 import com.gs.service.AbstractBaseService;
 import com.gs.service.SwayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ import java.util.List;
  */
 @Service
 public class SwayServiceImpl extends AbstractBaseService implements SwayService {
-    private SwayService swayService;
+    private SwayDAO swayDAO;
 
     @Autowired
-    public void setSwayService(SwayService swayService) {
-        super.setBaseDAO((BaseDAO) swayService);
-        this.swayService = swayService;
+    public void setSwayDAO(SwayDAO swayDAO) {
+        super.setBaseDAO(swayDAO);
+        this.swayDAO = swayDAO;
     }
 }

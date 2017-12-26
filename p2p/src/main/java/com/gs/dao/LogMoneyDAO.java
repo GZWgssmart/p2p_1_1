@@ -1,6 +1,9 @@
 package com.gs.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * UserMoneyDAO接口，实现CRUD
@@ -11,4 +14,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface LogMoneyDAO extends BaseDAO{
+    List<Object> getByUserId(@Param("type") Byte type, @Param("time") String date, @Param("user_id") Long user_id);
 }
