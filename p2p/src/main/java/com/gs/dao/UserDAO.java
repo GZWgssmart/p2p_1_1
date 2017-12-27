@@ -10,7 +10,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDAO extends BaseDAO {
 
-    User getByPhonePwd(@Param("phone") String phone, @Param("pwd") String pwd);
+    User getByPhonePwd(@Param("phone") String phone, @Param("upwd") String upwd);
+
+    User getByPhone(@Param("phone") String phone);
+
+    User getByUserCode(@Param("tzm") String tzm);
 
     int getByPhone(@Param("phone") String phone);
 }

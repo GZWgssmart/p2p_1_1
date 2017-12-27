@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 	String path = request.getContextPath();
-	User user = (User)session.getAttribute("user");
 %>
 <html>
 <head>
@@ -43,7 +42,7 @@
 			</div>
 			<div class="from from-msg">
 				<label for="msgcode" class="icon icon-msg"></label>
-				<input type="text" name="msgcode" id="msgcode" onblur="choseCode(this)"maxlength="6" placeholder="输入短信验证码"/>
+				<input type="text" name="msgcode" id="msgcode" onblur="choseCode(this)" maxlength="6" placeholder="输入短信验证码"/>
 				<div class="msg-btn">
 					<button type="button" id="getMsgCode">获取验证码</button>
 				</div>
@@ -52,8 +51,8 @@
 				<p class="code icon icon-bottom">推荐码(选填)</p>
 			</div>
 			<div class="from from-ext">
-				<label for="useCode" class="icon icon-ext"></label>
-				<input type="text" name="" id="useCode" placeholder="输入邀请码"/>
+				<label for="userCode" class="icon icon-ext"></label>
+				<input type="text" name="" id="userCode" onblur="choseUserCode(this)"  placeholder="输入邀请码"/>
 			</div>
 			<button class="btn" type="button" onclick="regist(this)">注册</button>
 			<div class="agree"><input type="checkbox" id="agree">我已阅读并同意《<a href="javascript:AgreeMent(0);">普金资本服务协议</a>》和《<a href="javascript:AgreeMent(1);">风险提示书</a>》</div>
