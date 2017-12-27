@@ -7,6 +7,6 @@ import com.gs.bean.User;
  */
 public interface UserService extends BaseService {
 
-    User getByPhonePwd(String phone, String upwd);
+    User getByPhonePwd(String phone, String pwd);
     int getByPhone(String phone);
 }

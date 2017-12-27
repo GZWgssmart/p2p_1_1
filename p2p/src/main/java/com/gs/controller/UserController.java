@@ -39,7 +39,7 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public ControllerStatusVO login(HttpSession session, HttpServletRequest request, String phone, String pwd){
+    public ControllerStatusVO login(HttpSession session,String phone, String pwd){
         ControllerStatusVO statusVO = null;
         User user = userService.getByPhonePwd(phone, EncryptUtils.md5(pwd));
         if (user != null) {
@@ -52,7 +52,7 @@ public class UserController {
         }
     }
     @RequestMapping("/user_home")
-    public String user_home(HttpSession session, HttpServletRequest request){
+    public String user_home(){
 
         return "user/user_home";
     }
