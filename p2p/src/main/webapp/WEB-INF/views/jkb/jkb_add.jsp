@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="<%=path%>/static/resources/front/v01/src/css/account.css"/>
     <link rel="stylesheet" href="<%=path%>/static/resources/front/v01/src/css/datepicker.css"/>
     <link rel="stylesheet" href="<%=path%>/static/resources/front/v01/src/css/login.css"/>
+    <!-- 提示框 -->
+    <script src="<%=path %>/static/js/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="<%=path %>/static/css/sweetalert.css">
 </head>
 
 <link rel="icon" href="<%=path%>/static/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon" />
@@ -79,119 +82,126 @@
         <p class="tips-title">
             <b>温馨提示：</b>凡是在普金资本充值未投标的用户，15天以内提现收取本金0.5%的提现服务费，15天以后提现免服务费。禁止信用卡套现！<br>
             a）提现手续费由汇付收取，固定费用2元。<br>
-            b）请输入您要提现的金额，我们将在1至3个工作日(国家节假日除外)之内将钱转入您网站上填写的银行账号。<br>
+            b）请输入您要提现的金额，我们将在1至3个工作日(国家节假日除外)之内完成审核。<br>
             c）每笔提现金额至少为100元以上。
         </p>
         <div class="pay-from">
-
-            <div class="label cl">
-                <label class="long">真实姓名：</label><p class="text" id="realName">${user.rname }</p>
-                <span></span>
-            </div>
-            <div class="label cl">
-                <label class="long">申请金额：</label><input type="text" id="money" placeholder="请输入申请金额">
-                <span></span>
-            </div>
-            <div class="label cl">
-                <label class="long">产品名称：</label><input type="text" id="cpname" placeholder="请输入产品名称">
-                <span></span>
-            </div>
-            <div class="label cl label-msg">
-                <label class="long">借款标种：</label>
-                <select  id="bzid" style="width: 300px;height: 40px">
-                    <option value="">请选择标种</option>
-                    <c:forEach items="${bzList}" var="d">
-                        <option value="${d.bzid}">${d.bzname}</option>
-                    </c:forEach>
-                </select>
-                <span></span>
-            </div>
-            <div class="label cl label-msg">
-                <label class="long">借款类型：</label>
-                <select  id="type" style="width: 300px;height: 40px">
-                    <option value="">请选择借款类型</option>
-                    <c:forEach items="${jklxList}" var="d">
-                        <option value="${d.lxid}">${d.lxname}</option>
-                    </c:forEach>
-                </select>
-                <span></span>
-            </div>
-            <div class="label cl">
-                <label class="long">借款期限：</label><input type="number" id="term" placeholder="请输入借款期限">
-                <span></span>
-            </div>
-            <div class="label cl" style="display: none" id="addpshow">
-                <label class="long"></label>
-                <span id="addp"></span>
-            </div>
-            <div class="label cl">
-                <label class="long">法人身份证：</label>
-                <input type="file" id="upload" style="display:none" name="upload" onclick="addElementImg('addp')">
-                <input type="text" placeholder="选择法人身份证图片" readonly="readonly" onclick="F_Open_dialog()">
-            </div>
-            <div class="label cl" style="display: none" id="addpshow1">
-                <label class="long"></label>
-                <span id="addp1"></span>
-            </div>
-            <div class="label cl">
-                <label class="long">营业执照副本:</label>
-                <input type="file" id="upload1" style="display:none" name="upload1" onclick="addElementImg1('addp1')">
-                <input type="text" placeholder="选择营业执照副本" readonly="readonly" onclick="F_Open_dialog1()">
-            </div>
-            <div class="label cl" style="display: none" id="addpshow2">
-                <label class="long"></label>
-                <span id="addp2"></span>
-            </div>
-            <div class="label cl">
-                <label class="long">企业银行账号:</label>
-                <input type="file" id="upload2" style="display:none" name="upload2" onclick="addElementImg2('addp2')">
-                <input type="text" placeholder="选择企业银行账号" readonly="readonly" onclick="F_Open_dialog2()">
-            </div>
-            <div class="label cl" style="display: none" id="addpshow3">
-                <label class="long"></label>
-                <span id="addp3"></span>
-            </div>
-            <div class="label cl">
-                <label class="long">其他资料：</label>
-                <input type="file" id="upload3" style="display:none" name="upload3" onclick="addElementImg3('addp3')">
-                <input type="text" placeholder="选择其他资料" readonly="readonly" onclick="F_Open_dialog3()">
-            </div>
-            <div class="label cl">
-                <label class="long">资金用途：</label><input type="text" id="mpurpose" placeholder="请输入资金用途">
-            </div>
-            <div class="label cl">
-                <label class="long">还款来源：</label><input type="text" id="hksource" placeholder="请输入还款来源">
-            </div>
-            <div class="label cl">
-                <label class="long">年化收益：</label><input type="number" id="nprofit" placeholder="请输入年化收益">
-            </div>
-            <div class="label cl label-msg">
-                <label class="long">收益方式：</label>
-                <select  id="way" style="width: 300px;height: 40px">
-                    <option value="按月付息，到期还本">按月付息，到期还本</option>
-                    <option value="等额本金">等额本金</option>
-                    <option value="到期一次性还本付息">到期一次性还本付息</option>
-                </select>
-                <span></span>
-            </div>
-            <div class="label cl">
-                <label class="long">借款人介绍：</label>
-                <textarea id="suggest" placeholder="&nbsp;&nbsp;&nbsp;请输入借款人介绍" style="width: 570px;height: 50px;"></textarea>
-            </div>
-            <br/><br/>
-            <div class="label cl">
-                <label class="long">项目描述：</label>
-                <textarea id="xmdescrip" placeholder="&nbsp;&nbsp;&nbsp;请输入项目描述" style="width: 570px;height: 50px;"></textarea>
-            </div>
-            <br/><br/>
-            <div class="label cl">
-                <label class="long">保障措施：</label>
-                <textarea id="guarantee" placeholder="&nbsp;&nbsp;&nbsp;请输入保障措施" style="width: 570px;height: 50px;"></textarea>
-            </div>
-            <br/><br/><br/>
-            <div class="label cl">
-                <button type="button" class="btn long error" id="cash-submit" onclick="return bindingcode();">立即绑定</button>
-            </div>
+            <form id="form1" method="post">
+                <div class="label cl">
+                    <label class="long">真实姓名：</label>
+                    <input class="text" name="rname" id="rname" value="${user.rname }" readonly="readonly">
+                    <span></span>
+                </div>
+                <div class="label cl">
+                    <label class="long">申请金额：</label>
+                    <input type="text" name="money" id="money" placeholder="请输入申请金额">
+                    <span></span>
+                </div>
+                <div class="label cl label-msg">
+                    <label class="long">借款标种：</label>
+                    <select  id="bzid" name="bzid" style="width: 300px;height: 40px">
+                        <option value="">请选择标种</option>
+                        <c:forEach items="${bzList}" var="d">
+                            <option value="${d.bzid}">${d.bzname}</option>
+                        </c:forEach>
+                    </select>
+                    <span></span>
+                </div>
+                <div class="label cl label-msg">
+                    <label class="long">借款类型：</label>
+                    <select  id="lxid" name="lxid" style="width: 300px;height: 40px">
+                        <option value="">请选择借款类型</option>
+                        <c:forEach items="${jklxList}" var="d">
+                            <option value="${d.lxid}">${d.lxname}</option>
+                        </c:forEach>
+                    </select>
+                    <span></span>
+                </div>
+                <div class="label cl">
+                    <label class="long">借款期限：</label>
+                    <input type="number" name="term" id="term" placeholder="请输入借款期限">
+                    <span></span>
+                </div>
+                <div class="label cl" style="display: none" id="addpshow">
+                    <label class="long"></label>
+                    <span id="addp"></span>
+                </div>
+                <div class="label cl">
+                    <label class="long">法人身份证：</label>
+                    <input type="text" placeholder="选择法人身份证图片" readonly="readonly" onclick="F_Open_dialog()">
+                </div>
+                <div class="label cl" style="display: none" id="addpshow1">
+                    <label class="long"></label>
+                    <span id="addp1"></span>
+                </div>
+                <div class="label cl">
+                    <label class="long">营业执照副本:</label>
+                    <input type="text" placeholder="选择营业执照副本" readonly="readonly" onclick="F_Open_dialog1()">
+                </div>
+                <div class="label cl" style="display: none" id="addpshow2">
+                    <label class="long"></label>
+                    <span id="addp2"></span>
+                </div>
+                <div class="label cl">
+                    <label class="long">企业银行账号:</label>
+                    <input type="text" placeholder="选择企业银行账号" readonly="readonly" onclick="F_Open_dialog2()">
+                </div>
+                <div class="label cl" style="display: none" id="addpshow3">
+                    <label class="long"></label>
+                    <span id="addp3"></span>
+                </div>
+                <div class="label cl">
+                    <label class="long">其他资料：</label>
+                    <input type="text" placeholder="选择其他资料" readonly="readonly" onclick="F_Open_dialog3()">
+                </div>
+                <div class="label cl">
+                    <label class="long">资金用途：</label>
+                    <input type="text" name="mpurpose" id="mpurpose" placeholder="请输入资金用途">
+                </div>
+                <div class="label cl">
+                    <label class="long">还款来源：</label>
+                    <input type="text" name="hksource" id="hksource" placeholder="请输入还款来源">
+                </div>
+                <div class="label cl">
+                    <label class="long">年化收益：</label>
+                    <input type="number" name="nprofit" id="nprofit" placeholder="请输入年化收益">
+                </div>
+                <div class="label cl label-msg">
+                    <label class="long">收益方式：</label>
+                    <select  id="way" name="way" style="width: 300px;height: 40px">
+                        <option value="按月付息，到期还本">按月付息，到期还本</option>
+                        <option value="等额本金">等额本金</option>
+                        <option value="到期一次性还本付息">到期一次性还本付息</option>
+                    </select>
+                    <span></span>
+                </div>
+                <div class="label cl">
+                    <label class="long">借款人介绍：</label>
+                    <textarea name="suggest" id="suggest" placeholder="&nbsp;&nbsp;&nbsp;请输入借款人介绍" style="width: 570px;height: 50px;"></textarea>
+                </div>
+                <br/><br/>
+                <div class="label cl">
+                    <label class="long">项目描述：</label>
+                    <textarea name="xmdescrip" id="xmdescrip" placeholder="&nbsp;&nbsp;&nbsp;请输入项目描述" style="width: 570px;height: 50px;"></textarea>
+                </div>
+                <br/><br/>
+                <div class="label cl">
+                    <label class="long">保障措施：</label>
+                    <textarea name="guarantee" id="guarantee" placeholder="&nbsp;&nbsp;&nbsp;请输入保障措施" style="width: 570px;height: 50px;"></textarea>
+                </div>
+                <br/><br/><br/>
+                <div class="label cl">
+                    <button type="button" class="btn long error" id="cash-submit" onclick="save('/jkb_save', 'form1');"> 申 请 </button>
+                </div>
+            </form>
+            <form id="form2" action="<%=path%>/jkb/jkb_addimg" style="display: none" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="bdid" name="bdid">
+                <input type="file" id="fpic" style="display:none" name="file" onclick="addElementImg('addp')">
+                <input type="file" id="ypic" style="display:none" name="file" onclick="addElementImg1('addp1')">
+                <input type="file" id="qpic" style="display:none" name="file" onclick="addElementImg2('addp2')">
+                <input type="file" id="tpic" style="display:none" name="file" onclick="addElementImg3('addp3')">
+                <input type="submit" value=" 修 改 " id="btn_upate">
+            </form>
         </div>
         <div id="returnHtml"></div>
     </div>

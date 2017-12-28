@@ -253,6 +253,14 @@ function formatValid(value) {
 	}
 }
 
+function formatValidNUm(value) {
+    if (value == "1") {
+        return "是";
+    } else {
+        return "否";
+    }
+}
+
 function showInfoAlert(message) {
 	$.messager.alert("提示", message, "info");
 }
