@@ -1,4 +1,4 @@
-﻿package com.gs.controller;
+package com.gs.controller;
 
 import com.gs.bean.User;
 import com.gs.bean.UserMoney;
@@ -34,22 +34,23 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login_page")
-    public String login_page(){
+    public String login_page() {
         return "user/login";
     }
 
     @RequestMapping("/regist_page")
-    public String regist(){
+    public String regist() {
         return "user/regist";
     }
 
-   @RequestMapping("/user_home")
-    public String user_home(){
+    @RequestMapping("/user_home")
+    public String user_home() {
         return "user/user_home";
     }
 
     /**
      * 登录
+     *
      * @param session
      * @param request
      * @param phone
@@ -58,7 +59,7 @@ public class UserController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public ControllerStatusVO login(HttpSession session, HttpServletRequest request, String phone, String pwd){
+    public ControllerStatusVO login(HttpSession session, HttpServletRequest request, String phone, String pwd) {
         ControllerStatusVO statusVO = null;
         User user = userService.getByPhonePwd(phone, EncryptUtils.md5(pwd));
         if (user != null) {
@@ -73,6 +74,7 @@ public class UserController {
 
     /**
      * 注册
+     *
      * @param uname
      * @param phone
      * @param upwd
@@ -87,7 +89,7 @@ public class UserController {
         user.setPhone(phone);
         user.setUpwd(EncryptUtils.md5(upwd));
 //        if(tzm != "" || tzm.equals("")) {
-            user.setTzm("256002");
+        user.setTzm("256002");
 //        }
         userService.save(user);
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_SAVE_SUCCESS);
@@ -96,6 +98,7 @@ public class UserController {
 
     /**
      * 验证推荐码是否存在
+     *
      * @param tzm
      * @return
      */
@@ -115,6 +118,7 @@ public class UserController {
 
     /**
      * 验证手机号是否存在
+     *
      * @return
      */
     @RequestMapping("/isPhoneExist")
@@ -132,10 +136,10 @@ public class UserController {
     }
 
     @RequestMapping("/user_money")
-    public String user_money(HttpSession session, HttpServletRequest request){
-        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+    public String user_money(HttpSession session, HttpServletRequest request) {
+        User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(user.getUid());
-        request.setAttribute("userMoney",userMoney);
+        request.setAttribute("userMoney", userMoney);
         return "user/user_money";
     }
 

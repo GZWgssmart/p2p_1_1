@@ -18,11 +18,11 @@ public class BorrowApply {
 
     private Date time;//审核时间
 
-    private Byte state;//审核状态（0表示为审核，1表示已审核）
+    private Byte state;//审核状态（1表示为审核，2表示已审核）
 
-    private Byte type;//借款类型为标种的主键字段
+    private Long lxid;//借款类型为标种的主键字段
 
-    private String term;//借款期限
+    private Integer term;//借款期限
 
     private Date deadline;//截止时间
 
@@ -30,7 +30,7 @@ public class BorrowApply {
 
     private String str1;
 
-    public BorrowApply(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, String term, Date deadline, Long int1, String str1) {
+    public BorrowApply(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Long lxid, Integer term, Date deadline, Long int1, String str1) {
         this.baid = baid;
         this.rname = rname;
         this.money = money;
@@ -38,7 +38,7 @@ public class BorrowApply {
         this.bzid = bzid;
         this.time = time;
         this.state = state;
-        this.type = type;
+        this.lxid = lxid;
         this.term = term;
         this.deadline = deadline;
         this.int1 = int1;
@@ -105,20 +105,20 @@ public class BorrowApply {
         this.state = state;
     }
 
-    public Byte getType() {
-        return type;
+    public Long getLxid() {
+        return lxid;
     }
 
-    public void setType(Byte type) {
-        this.type = type;
+    public void setLxid(Long lxid) {
+        this.lxid = lxid;
     }
 
-    public String getTerm() {
+    public Integer getTerm() {
         return term;
     }
 
-    public void setTerm(String term) {
-        this.term = term == null ? null : term.trim();
+    public void setTerm(Integer term) {
+        this.term = term;
     }
 
     public Date getDeadline() {

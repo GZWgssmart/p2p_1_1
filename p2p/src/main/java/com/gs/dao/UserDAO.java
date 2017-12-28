@@ -16,5 +16,4 @@ public interface UserDAO extends BaseDAO {
 
     User getByUserCode(@Param("tzm") String tzm);
 
-    int getByPhone(@Param("phone") String phone);
 }

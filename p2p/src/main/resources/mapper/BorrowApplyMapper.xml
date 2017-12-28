@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.BorrowApplyDAO">
+
+    <insert id="save" parameterType="borrowApply">
+        <selectKey keyColumn="baid" keyProperty="baid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        <![CDATA[
+          insert into t_borrowapply(rname,money,uid,bzid,lxid,term,deadline) values(#{rname},#{money},#{uid},#{bzid},#{lxid},#{term},#{deadline})
+        ]]>
+    </insert>
+
+    <select id="listAll" resultType="com.gs.bean.BorrowApply">
+        <![CDATA[
+        select * from t_borrowapply where state = 0;
+    ]]>
+    </select>
+</mapper>
