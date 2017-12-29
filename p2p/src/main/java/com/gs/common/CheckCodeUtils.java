@@ -61,4 +61,17 @@ public class CheckCodeUtils {
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
     }
 
+    public static String recommendCode() {
+        String[] code = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b","c","d","e"};
+        String recommend = "";
+        for (int i = 0; i < 5; i++) {
+            int id = (int) Math.ceil(Math.random() * 14);
+            recommend += code[id];
+        }
+        return recommend;
+
+
+
+    }
+
 }

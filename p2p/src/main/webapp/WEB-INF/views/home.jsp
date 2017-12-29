@@ -30,7 +30,7 @@
 					   class="site-navi-tab">用户基本信息管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
 					   class="site-navi-tab">用户列表</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
+				<li><a href="javascript:void(0);" src="<%=path%>/recommend/page"
 					   class="site-navi-tab">推荐人管理</a></li>
 			</ul>
 		</div>

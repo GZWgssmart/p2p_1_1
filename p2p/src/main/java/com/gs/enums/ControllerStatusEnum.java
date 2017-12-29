@@ -19,6 +19,8 @@ public enum ControllerStatusEnum {
     PHONE_UNEXIST(111, "unexist", "手机号不存在"),
     USERCODE_EXIST(112, "exist", "推荐码存在"),
     USERCODE_UNEXIST(113, "unexist", "推荐码不存在"),
+    RECOMMEND_DELETE_SUCCESS(114, "ok", "删除成功"),
+    RECOMMEND_DELETE_FAIL(115, "error", "删除失败，请稍后再试"),
     USER_RECHARGE_SUCCESS(201, "ok", "充值成功"),
     USER_RECHARGE_FAIL(202, "error", "充值失败"),
     REG_PHONE_FAIL(202, "error", "充值失败"),
