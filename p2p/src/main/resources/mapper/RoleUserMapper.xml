@@ -1,0 +1,51 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.RoleUserDAO">
+    <insert id="save" parameterType="roleUser">
+        <![CDATA[
+            insert into t_roleuser(rid,huid) values (#{rid},#{huid});
+        ]]>
+    </insert>
+
+    <select id="listAll" resultType="roleUser">
+        <![CDATA[
+        select * from t_roleuser
+        ]]>
+    </select>
+
+    <update id="update" parameterType="roleUser">
+        <![CDATA[
+            update t_roleuser
+        ]]>
+        <set>
+            <if test="rid != null">
+                rid = #{rid},
+            </if>
+            <if test="huid != null">
+                huid =#{huid},
+            </if>
+        </set>
+        where ruid = #{ruid}
+    </update>
+
+    <sql id="roleUser_criteria">
+        <if test="roleUser != null and roleUser.rname != null and roleUser.rname != ''">
+            and r.rname like concat('%', #{roleUser.rname} ,'%')
+        </if>
+        <if test="roleUser != null and roleUser.huname != null and roleUser.huname != ''">
+            and r.content like concat('%', #{roleUser.huname} ,'%')
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.RoleUserVO">
+        select r.rid,r.rname,r.content,h.huid as huid,h.phone as phone,h.humae as huname,h.email as email,
+        from t_role r,t_roleuser ru,t_huser h where r.rid = ru.rid and h.huid = ru.huid
+        <include refid="roleUser_criteria"/>
+    </select>
+
+    <select id="countCriteria" resultType="Long">
+        select count(ru.ruid) from t_roleuser ru where ru.ruid = ruid
+        <include refid="roleUser_criteria"/>
+    </select>
+</mapper>

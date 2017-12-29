@@ -1,6 +1,7 @@
 package com.gs.controller;
 
 import com.gs.bean.Jur;
+import com.gs.common.Combobox;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.JurService;
@@ -15,6 +16,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/12/21.
@@ -71,5 +74,17 @@ public class JurController {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.JUR_UPDATE_FAIL);
         }
         return statusVO;
+    }
+
+    @RequestMapping("all")
+    @ResponseBody
+    public List<Combobox> listAll(){
+        List<Object> objectList = jurService.listAll();
+        List<Combobox> comboboxList = new ArrayList<>();
+        for(Object obj:objectList){
+            Jur jur = (Jur) obj;
+            comboboxList.add(new Combobox(jur.getJid()+"",jur.getContent(),false));
+        }
+        return comboboxList;
     }
 }

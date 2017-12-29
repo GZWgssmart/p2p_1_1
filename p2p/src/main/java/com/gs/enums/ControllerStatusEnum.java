@@ -17,7 +17,13 @@ public enum ControllerStatusEnum {
     JUR_SAVE_SUCCESS(108,"ok","权限导入成功"),
     JUR_SAVE_FAIL(109,"error","权限导入失败"),
     JUR_UPDATE_SUCCESS(110,"ok","权限修改成功"),
-    JUR_UPDATE_FAIL(111,"error","权限修改失败");
+    JUR_UPDATE_FAIL(111,"error","权限修改失败"),
+
+    ROLE_SAVE_SUCCESS(112,"ok","角色与角色权限新增成功"),
+    ROLE_SAVE_FAIL(113,"error","角色与角色权限新增失败"),
+    ROLE_UPDATE_SUCCESS(114,"ok","角色修改成功"),
+    ROLE_UPDATE_FAIL(115,"error","角色修改失败");
+
 
     private Integer code;
     private String result;

@@ -5,6 +5,7 @@ import com.gs.common.Pager;
 import com.gs.dao.RoleDAO;
 import com.gs.service.AbstractBaseService;
 import com.gs.service.RoleService;
+import com.gs.vo.RoleJurVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,10 @@ public class RoleServiceImpl extends AbstractBaseService implements RoleService{
     public void setRoleDAO(RoleDAO roleDAO) {
         super.setBaseDAO(roleDAO);
         this.roleDAO = roleDAO;
+    }
+
+    @Override
+    public void insertBatch(RoleJurVO roleJurVO) {
+        roleDAO.insertBatch(roleJurVO);
     }
 }
