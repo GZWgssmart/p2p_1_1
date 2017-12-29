@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.BorrowDetailDAO">
+
+    <insert id="save" parameterType="borrowDetail">
+        <selectKey keyColumn="bdid" keyProperty="bdid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        <![CDATA[
+          insert into t_borrowdetail(mpurpose,hksource,suggest,xmdescrip,guarantee,money,nprofit,way,cpname,baid)
+          values(#{mpurpose},#{hksource},#{suggest},#{xmdescrip},#{guarantee},#{money},#{nprofit},#{way},#{cpname},#{baid})
+        ]]>
+    </insert>
+
+    <update id="updatePic" parameterType="borrowDetail">
+        <![CDATA[
+         update t_borrowdetail set fpic = #{fpic}, ypic = #{ypic},tpic = #{tpic},qpic = #{qpic}  where bdid = #{bdid}
+        ]]>
+    </update>
+
+
+
+</mapper>
