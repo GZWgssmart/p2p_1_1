@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface LogTxService extends BaseService {
     Pager listByPager(int pageNo, int pageSize,Long uid);
+    void updateById (Byte state,Long id);
 
 }

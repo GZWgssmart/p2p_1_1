@@ -32,4 +32,9 @@ public class LogTxServiceImpl extends AbstractBaseService implements LogTxServic
         pager.setRows(logTxDAO.listByPager(pager,uid));
         return pager;
     }
+
+    @Override
+    public void updateById(Byte state, Long id) {
+        logTxDAO.updateById(state,id);
+    }
 }

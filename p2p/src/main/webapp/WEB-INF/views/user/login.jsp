@@ -28,7 +28,7 @@
         <div class="login-box">
             <div class="login-top cl">
                 <p class="welcome">欢迎登录</p>
-                <p>没有账户，<a href="<%=path%>/user/regist_page">免费注册</a></p>
+                <p>没有账户，<a href="regist.html" tppabs="http://www.pujinziben.com/regist.html">免费注册</a></p>
             </div>
             <p class="error-msg icon icon-error"></p>
             <div class="from">

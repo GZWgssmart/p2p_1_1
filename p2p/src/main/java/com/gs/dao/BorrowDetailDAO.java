@@ -11,5 +11,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface BorrowDetailDAO extends BaseDAO{
-    void updatePic(Object obj);
 }

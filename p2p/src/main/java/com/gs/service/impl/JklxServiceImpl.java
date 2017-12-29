@@ -1,7 +1,5 @@
 package com.gs.service.impl;
 
-import com.gs.bean.Jklx;
-import com.gs.common.Pager;
 import com.gs.dao.BaseDAO;
 import com.gs.dao.JklxDAO;
 import com.gs.service.AbstractBaseService;
@@ -20,35 +18,5 @@ public class JklxServiceImpl extends AbstractBaseService implements JklxService 
     public void setJklxDAO(JklxDAO jklxDAO) {
         super.setBaseDAO(jklxDAO);
         this.jklxDAO = jklxDAO;
-    }
-
-    @Override
-    public void save(Object obj) {
-        super.save(obj);
-    }
-
-    @Override
-    public void removeById(Long id) {
-        super.removeById(id);
-    }
-
-    @Override
-    public void update(Object obj) {
-        super.update(obj);
-    }
-
-    @Override
-    public Pager listPager(int pageNo, int pageSize) {
-        return super.listPager(pageNo, pageSize);
-    }
-
-    @Override
-    public Long countCriteria(Object obj) {
-        return null;
-    }
-
-    @Override
-    public void updateState(Jklx jklx) {
-        jklxDAO.updateState(jklx);
     }
 }

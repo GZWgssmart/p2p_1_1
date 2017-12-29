@@ -48,40 +48,41 @@
 			c）每笔提现金额至少为100元以上。
 		</p>
 		<div class="pay-from">
+			<input id="autoflag" type="hidden" value="${inItPage}">
 			<div class="label cl">
-				<label class="long">持卡人：</label><p class="text" id="cash-realName">谭芳芳</p>
+				<label class="long">持卡人：</label><p class="text" id="cash-realName">${inItPage.uname}</p>
 			</div>
 			<div class="label cl">
-				<label class="long">可提现金额：</label><p class="text color" id="cash-usableSum">0.00元</p>
+				<label class="long">可提现金额：</label><p class="text color" id="cash-usableSum">${inItPage.kymoney}元</p>
 			</div>
 			<div class="label cl label-msg">
 				<label class="long">提现至银行：</label><input type="text" class="select" id="select-bank" readonly="">
 				<ul class="select-box">
 					
-				<li data-name="建设银行" data-bankno="6212842120000014418"><a href="javascript:;">建设银行&nbsp;&nbsp;|&nbsp;&nbsp;6212 ******** 4418</a></li></ul>
+				</ul>
 			</div>
 			<div class="label cl">
 				<label class="long">提现金额：</label><input type="text" maxlength="15" id="cashInput" placeholder="请输入提现金额">
 			</div>
 			<div class="label cl">
-				<label class="long">提现手续费：</label><p class="text">2.00元</p>
+				<label class="long">提现手续费：</label><p class="text" id="refreew"></p>
 			</div>
-			<div class="label cl">
+			<%--<div class="label cl">
 				<label class="long">提现服务费：</label><p class="text" id="refreew">0.00</p>
-			</div>
-			<!-- <div class="label cl">
+			</div>--%>
+			 <div class="label cl">
 				<label class="long">交易密码：</label><input type="password" maxlength="16" id="cash-password" autocomplete="new-password" placeholder="请输入交易密码"/>
 				<p class="text ml10"><a href="recoverpwd.html#deal">忘记密码</a></p>
-			</div> -->
-			<div class="label cl">
-				<label class="long">手机号码：</label><p class="text " id="withdrawPhone">157****3886</p>
 			</div>
-			<div class="label cl label-msg">
+			<div class="label cl">
+				<label class="long">手机号码：</label><p class="text " aria-valuetext="" id="withdrawPhone">${inItPage.phone}</p>
+			</div>
+		<%--	<div class="label cl label-msg">
 				<label class="long">验证码：</label><input type="text" maxlength="6" id="cash-smsCode" placeholder="请输入短信验证码">
 				<div class="msg-btn">
 					<button type="button" id="getMsgCode">获取验证码</button>
 				</div>
-			</div>
+			</div>--%>
 			<button type="button" class="btn long disabled" id="cash-submit">立即提现</button>
 		</div>
 		<div id="returnHtml"></div>
@@ -107,7 +108,8 @@
 					<div class="children6">操作</div>
 				</li>
 			</ul>
-			<ul class="cash-list listData" style="display: none;"><li class="none" style="line-height: 60px;">没有符合条件的内容！</li></ul>
+			<ul class="cash-list listData" style="display: none;">
+			</ul>
 			<ul class="paging"></ul>
 		</div>
 	</div>
@@ -118,9 +120,16 @@
 	<%@include file="../master/foot.jsp" %>
 </body>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=path%>/static/js/publlic.js"></script>
+
+
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="<%=path%>/static/js/account.js"></script>
 <script>
     $(function(){
+        hashChange();
         $(".show-cash").bind("click",function(){
+            window.location.href=contextPath + "/logtx/page";
             $(".show-cash-list").removeClass("active");
             $(this).addClass("active");
             $(".em-line").css("left",'0px');

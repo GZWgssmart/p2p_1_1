@@ -92,6 +92,8 @@
 	</div>
 	<%@include file="../master/foot.jsp" %>
 	<script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/static/js/publlic.js"></script>
+
 
 	<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="<%=path%>/static/js/account.js"></script>
