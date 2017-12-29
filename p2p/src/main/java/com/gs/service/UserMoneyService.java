@@ -1,5 +1,7 @@
 package com.gs.service;
 
+import org.apache.ibatis.annotations.Param;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,4 +14,5 @@ import java.math.BigDecimal;
 public interface UserMoneyService extends BaseService {
     Object getByUserId(Long id);
     void updateById(Long id,BigDecimal money);
+    void updateByIdMaoll(Long id, BigDecimal money);
 }

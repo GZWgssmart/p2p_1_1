@@ -4,17 +4,16 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2017/12/21.
+ * Created by Administrator on 2017/12/26.
  */
-public class LogTxVo {
-
-   private Long id;
-   private String rname;
-   private BigDecimal money;//提现金额
-    private BigDecimal proce;
-    private String cardno;
-   private Date date;
-   private Byte state;
+public class LogCzzVo {
+    private Long id;
+    private String rname;
+    private BigDecimal money;//金额
+    private String bankcard;//银行卡号
+    private String banktype;//所属银行
+    private Date date;
+    private Byte state;
 
     public Long getId() {
         return id;
@@ -40,20 +39,20 @@ public class LogTxVo {
         this.money = money;
     }
 
-    public BigDecimal getProce() {
-        return proce;
+    public String getBankcard() {
+        return bankcard;
     }
 
-    public void setProce(BigDecimal proce) {
-        this.proce = proce;
+    public void setBankcard(String bankcard) {
+        this.bankcard = bankcard;
     }
 
-    public String getCardno() {
-        return cardno;
+    public String getBanktype() {
+        return banktype;
     }
 
-    public void setCardno(String cardno) {
-        this.cardno = cardno;
+    public void setBanktype(String banktype) {
+        this.banktype = banktype;
     }
 
     public Date getDate() {

@@ -5,6 +5,18 @@
 <mapper namespace="com.gs.dao.LogCzzDAO">
 
 
+    <sql id="common_where">
+
+        <if test="obj != null and obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
+            and l.date between #{obj.startTime} and #{obj.endTime}
+        </if>
+    </sql>
+
+    <sql id="common_form">
+         from t_logczz l,t_user u
+        where l.uid = u.uid and u.uid=#{obj.uid}
+    </sql>
+
     <insert id="save" parameterType="com.gs.bean.LogCzz">
         <![CDATA[
           insert into t_logczz(uid, bankcard, banktype, money, date, state) values
@@ -18,12 +30,24 @@
 		]]>
     </select>
 
-    <select id="listByPager"  resultType="com.gs.vo.LogTxVo">
+    <select id="listAllById" parameterType="long"  resultType="com.gs.vo.LogCzzVo">
         <![CDATA[
-		select l.id,u.rname,b.cardno,l.date,l.state from t_logtx l,t_user u,t_bankcard b
-		 where l.uid = u.uid and l.bcid = b.bcid and u.uid = b.uid
-		  and uid=#{uid} limit #{pager.beginIndex}, #{pager.pageSize};
+		select l.id,u.rname,l.bankcard,l.banktype,l.date,l.state from t_logczz l,t_user u
+        where l.uid = u.uid and u.uid=#{id};
 		]]>
+    </select>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.LogCzzVo">
+          select l.id,u.rname,l.money,l.bankcard,l.banktype,l.date,l.state
+        <include refid="common_form"/>
+         <include refid="common_where"/>
+         limit #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+
+    <select id="countCriteria" parameterType="object" resultType="long">
+        select count(id)
+        <include refid="common_form"/>
+        <include refid="common_where"/>
     </select>
 
 

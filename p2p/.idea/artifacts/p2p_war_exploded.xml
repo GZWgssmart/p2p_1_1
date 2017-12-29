@@ -13,7 +13,6 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.12.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.12.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.12.RELEASE" />
-          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.3.12.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.12.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.12.RELEASE" />
@@ -44,6 +43,10 @@
           <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.04" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
+          <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.0-rc4" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.0.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">

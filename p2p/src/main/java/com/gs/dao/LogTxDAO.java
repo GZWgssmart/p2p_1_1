@@ -13,4 +13,10 @@ import java.util.List;
 @Repository
 public interface LogTxDAO extends BaseDAO{
    List<Object> listByPager(@Param("pager") Pager pager, @Param("uid") Long uid);
+   @Override
+   List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("obj") Object obj);
+   @Override
+   Long countCriteria(@Param("obj") Object obj);
+
+  void updateById (@Param("state") Byte state,@Param("id") Long id);
 }

@@ -36,4 +36,9 @@ public class UserMoneyServiceImpl extends AbstractBaseService implements UserMon
     public void updateById(Long id,BigDecimal money) {
         userMoneyDAO.updateById(id,money);
     }
+
+    @Override
+    public void updateByIdMaoll(Long id, BigDecimal money) {
+        userMoneyDAO.updateByIdMaoll(id,money);
+    }
 }

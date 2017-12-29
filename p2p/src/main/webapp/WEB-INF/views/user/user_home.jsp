@@ -95,8 +95,9 @@
             </ul>
             <div class="navbar icon icon-self">我的管理</div>
             <ul class="sub-nav">
-                <li><a href="<%=path %>/tzb/myTzb" target="mainFrame">投资管理</a></li>
-                <li><a href="<%=path %>/jkb/jkb_page">申请借款</a></li>
+                <li><a href="#invest" target="mainFrame">投资管理</a></li>
+                <li><a href="#claimm" target="mainFrame">债权管理</a></li>
+                <li><a href="#claimb" target="mainFrame">债权购买</a></li>
                 <li><a href="#loan" target="mainFrame">借款管理</a></li>
             </ul>
             <div class="navbar icon icon-settings">账户设置</div>

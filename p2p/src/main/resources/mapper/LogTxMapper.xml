@@ -4,11 +4,21 @@
 
 <mapper namespace="com.gs.dao.LogTxDAO">
 
+    <sql id="common_where">
+
+        <if test="obj != null and obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
+            and l.date between #{obj.startTime} and #{obj.endTime}
+        </if>
+    </sql>
+
+    <sql id="common_form">
+       from t_logtx l,t_user u  where l.uid = u.uid and l.uid = #{obj.uid}
+    </sql>
 
     <insert id="save" parameterType="com.gs.bean.LogTx" >
         <![CDATA[
-          insert into t_logtx(uid, money, date, state, bcid) values
-          (#{uid},#{money},#{date},#{state},#{bcid})
+          insert into t_logtx(uid, money, date, state, bankcard, banktype,proce) values
+          (#{uid},#{money},#{date},#{state},#{bankcard},#{banktype},#{proce})
         ]]>
     </insert>
 
@@ -18,13 +28,21 @@
 		]]>
     </select>
 
-    <select id="listByPager"  resultType="com.gs.vo.LogTxVo">
-        <![CDATA[
-		select l.id,u.rname,b.cardno,l.date,l.state from t_logtx l,t_user u,t_bankcard b
-		 where l.uid = u.uid and l.bcid = b.bcid and u.uid = b.uid
-		  and uid=#{uid} limit #{pager.beginIndex}, #{pager.pageSize};
-		]]>
+    <select id="listPagerCriteria"   resultType="com.gs.vo.LogTxVo">
+		select l.id,u.rname,l.money,l.bankcard as cardno ,l.proce,l.date,l.state
+		<include refid="common_form"/>
+        <include refid="common_where"/> ORDER BY l.state asc
+        limit #{pager.beginIndex}, #{pager.pageSize};
     </select>
 
+    <select id="countCriteria" parameterType="object" resultType="long">
+        select count(id)
+        <include refid="common_form"/>
+        <include refid="common_where"/>
+    </select>
+
+    <update id="updateById">
+        update t_logtx set state = #{state} where id=#{id}
+    </update>
 
 </mapper>

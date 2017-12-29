@@ -1,6 +1,5 @@
 package com.gs.service.impl;
 
-import com.gs.common.Pager;
 import com.gs.dao.BaseDAO;
 import com.gs.dao.DxModelDAO;
 import com.gs.service.AbstractBaseService;
@@ -19,25 +18,5 @@ public class DxModelServiceImpl extends AbstractBaseService implements DxModelSe
     public void setDxModelDAO(DxModelDAO dxModelDAO) {
         super.setBaseDAO(dxModelDAO);
         this.dxModelDAO = dxModelDAO;
-    }
-
-    @Override
-    public void save(Object obj) {
-        super.save(obj);
-    }
-
-    @Override
-    public void remove(Object obj) {
-        super.remove(obj);
-    }
-
-    @Override
-    public void update(Object obj) {
-        super.update(obj);
-    }
-
-    @Override
-    public Pager listPager(int pageNo, int pageSize) {
-        return super.listPager(pageNo, pageSize);
     }
 }

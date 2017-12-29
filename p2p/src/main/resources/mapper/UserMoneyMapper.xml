@@ -14,7 +14,12 @@
     </select>
 
     <update id="updateById">
-        update t_usermoney set zmoney = zmoney + #{money} where uid=#{id}
+        update t_usermoney set kymoney = kymoney + #{money} where uid=#{id}
+    </update>
+
+
+    <update id="updateByIdMaoll">
+        update t_usermoney set kymoney = kymoney - #{money} where uid=#{id}
     </update>
 
 </mapper>

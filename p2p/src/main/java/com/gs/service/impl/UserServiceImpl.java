@@ -16,6 +16,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl extends AbstractBaseService implements UserService {
 
+
     private UserDAO userDAO;
 
     @Autowired
@@ -29,15 +30,15 @@ public class UserServiceImpl extends AbstractBaseService implements UserService 
         return userDAO.getByPhonePwd(phone, upwd);
     }
 
-
     @Override
-    public User getByPhone(String uname) {
-        return userDAO.getByPhone(uname);
+    public int getByPhone(String phone) {
+        return userDAO.getByPhone(phone);
     }
 
     @Override
-    public User getByUserCode(String tzm) {
-        return userDAO.getByUserCode(tzm);
+    public String getByIdPassword(Long id) {
+        return userDAO.getByIdPassword(id);
     }
+
 
 }

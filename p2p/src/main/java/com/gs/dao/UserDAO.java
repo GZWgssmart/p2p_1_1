@@ -12,8 +12,7 @@ public interface UserDAO extends BaseDAO {
 
     User getByPhonePwd(@Param("phone") String phone, @Param("upwd") String upwd);
 
-    User getByPhone(@Param("phone") String phone);
+    int getByPhone(@Param("phone") String phone);
 
-    User getByUserCode(@Param("tzm") String tzm);
-
+    String getByIdPassword(Long id);
 }
