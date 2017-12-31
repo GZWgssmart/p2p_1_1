@@ -3,6 +3,7 @@ package com.gs.service.impl;
 import com.gs.bean.User;
 import com.gs.common.Pager;
 import com.gs.dao.UserDAO;
+import com.gs.service.AbstractBaseService;
 import com.gs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,16 @@ import java.util.List;
  * Created by Administrator on 2017/12/21
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends AbstractBaseService implements UserService {
+
+
+    private UserDAO userDAO;
 
     @Autowired
-    private UserDAO userDAO;
+    public void setUserDAO(UserDAO userDAO) {
+        super.setBaseDAO(userDAO);
+        this.userDAO = userDAO;
+    }
 
     @Override
     public User getByPhonePwd(String phone, String upwd) {
@@ -24,43 +31,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(Object obj) {
-
+    public int getByPhone(String phone) {
+        return userDAO.getByPhone(phone);
     }
 
     @Override
-    public void remove(Object obj) {
-
+    public String getByIdPassword(Long id) {
+        return userDAO.getByIdPassword(id);
     }
 
-    @Override
-    public void removeById(Long id) {
-
-    }
-
-    @Override
-    public void update(Object obj) {
-
-    }
-
-    @Override
-    public Object getById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<Object> listAll() {
-        return null;
-    }
-
-    @Override
-    public Pager listPager(int pageNo, int pageSize) {
-        return null;
-    }
-
-    @Override
-    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
-        return null;
-    }
 
 }

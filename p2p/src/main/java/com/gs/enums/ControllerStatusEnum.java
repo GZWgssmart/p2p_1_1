@@ -12,7 +12,18 @@ public enum ControllerStatusEnum {
     CASH_SAVE_SUCCESS(104, "ok", "添加成功"),
     CASH_SAVE_FAIL(105, "error", "添加失败，稍候再试"),
     CASH_UPDATE_SUCCESS(106, "ok", "修改成功"),
+    
     CASH_UPDATE_FAIL(107, "error", "修改失败，稍候再试"),
+    RECOMMEND_DELETE_SUCCESS(114, "ok", "删除成功"),
+    RECOMMEND_DELETE_FAIL(115, "error", "删除失败，请稍后再试"),
+    USER_RECHARGE_SUCCESS(201, "ok", "充值成功"),
+    USER_RECHARGE_FAIL(202, "error", "充值失败"),
+    REG_PHONE_FAIL(202, "error", "充值失败"),
+    USER_DEPOSIT_SUCCESS(203, "ok", "提现成功"),
+    USER_DEPOSIT_FAIL(204, "error", "提现失败"),
+    USER_CANCL_SUCCESS(205, "ok", "取消成功"),
+    USER_CANCL_FAIL(206, "error", "取消失败"),
+    USER_PASS_FAIL(206, "error", "密码错误"),
 
     JUR_SAVE_SUCCESS(108,"ok","权限导入成功"),
     JUR_SAVE_FAIL(109,"error","权限导入失败"),

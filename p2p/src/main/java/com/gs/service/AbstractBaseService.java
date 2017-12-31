@@ -53,7 +53,8 @@ public abstract class AbstractBaseService implements BaseService {
 
     @Override
     public Pager listPager(int pageNo, int pageSize) {
-        return null;
+        Pager pager = new Pager(pageNo,pageSize);
+        return pager;
     }
 
     @Override

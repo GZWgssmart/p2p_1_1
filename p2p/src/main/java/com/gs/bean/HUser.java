@@ -10,11 +10,9 @@ public class HUser {
 
     private String phone;//手机号码
 
+    private String pwd;//密码
+
     private String huname;//用户名称
-
-    private Integer oid;//所属组id
-
-    private String oname;//组名称
 
     private String email;//电子邮箱
 
@@ -22,14 +20,13 @@ public class HUser {
 
     private String str1;
 
-    public HUser(Long huid, String rname, Byte sex, String phone, String huname, Integer oid, String oname, String email, Long int1, String str1) {
+    public HUser(Long huid, String rname, Byte sex, String phone, String pwd, String huname, String email, Long int1, String str1) {
         this.huid = huid;
         this.rname = rname;
         this.sex = sex;
         this.phone = phone;
+        this.pwd = pwd;
         this.huname = huname;
-        this.oid = oid;
-        this.oname = oname;
         this.email = email;
         this.int1 = int1;
         this.str1 = str1;
@@ -71,28 +68,20 @@ public class HUser {
         this.phone = phone == null ? null : phone.trim();
     }
 
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
     public String getHuname() {
         return huname;
     }
 
     public void setHuname(String huname) {
         this.huname = huname == null ? null : huname.trim();
-    }
-
-    public Integer getOid() {
-        return oid;
-    }
-
-    public void setOid(Integer oid) {
-        this.oid = oid;
-    }
-
-    public String getOname() {
-        return oname;
-    }
-
-    public void setOname(String oname) {
-        this.oname = oname == null ? null : oname.trim();
     }
 
     public String getEmail() {

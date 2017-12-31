@@ -4,11 +4,33 @@
 
 <mapper namespace="com.gs.dao.UserDAO">
 
+    <!--登录验证-->
     <select id="getByPhonePwd" resultType="com.gs.bean.User">
         <![CDATA[
         select uid, uname, upwd, phone, tzm, idtype, idno, zpwd, email, rname, tid, face,
         sex, isvip from t_user where phone = #{phone} and upwd = #{upwd}
         ]]>
     </select>
+
+    <!--验证手机号是否存在-->
+    <select id="getByPhone" resultType="com.gs.bean.User">
+        <![CDATA[
+          select phone from t_user where phone = #{phone}
+        ]]>
+    </select>
+
+    <!--验证推荐码是否存在-->
+    <select id="getByUserCode" resultType="com.gs.bean.User">
+        <![CDATA[
+          select uid, tzm from t_user where tzm = #{tzm}
+        ]]>
+    </select>
+
+    <!--注册-->
+    <insert id="save" parameterType="com.gs.bean.User">
+        <![CDATA[
+          insert into t_user(uname, phone, upwd, tzm) values(#{uname}, #{phone}, #{upwd}, #{tzm});
+        ]]>
+    </insert>
 
 </mapper>

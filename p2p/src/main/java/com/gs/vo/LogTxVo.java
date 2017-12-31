@@ -1,5 +1,6 @@
 package com.gs.vo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -9,7 +10,9 @@ public class LogTxVo {
 
    private Long id;
    private String rname;
-   private String cardno;
+   private BigDecimal money;//提现金额
+    private BigDecimal proce;
+    private String cardno;
    private Date date;
    private Byte state;
 
@@ -27,6 +30,22 @@ public class LogTxVo {
 
     public void setRname(String rname) {
         this.rname = rname;
+    }
+
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
+
+    public BigDecimal getProce() {
+        return proce;
+    }
+
+    public void setProce(BigDecimal proce) {
+        this.proce = proce;
     }
 
     public String getCardno() {

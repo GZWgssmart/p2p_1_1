@@ -1,6 +1,9 @@
 package com.gs.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.math.BigDecimal;
 
 /**
  * UserMoneyDAO接口，实现CRUD
@@ -12,4 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMoneyDAO extends BaseDAO{
     Object getByUserId(Long id);
+    void updateById(@Param("id") Long id,@Param("money") BigDecimal money);
+    void updateByIdMaoll(@Param("id") Long id,@Param("money") BigDecimal money);
+
 }

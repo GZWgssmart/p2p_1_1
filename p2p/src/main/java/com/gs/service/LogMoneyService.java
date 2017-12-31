@@ -1,5 +1,10 @@
 package com.gs.service;
 
+
+
+import java.util.Date;
+import java.util.List;
+
 /**
  * UserMoneyService接口，实现CRUD
  * 创建时间：2017/12/21 11:19
@@ -8,4 +13,5 @@ package com.gs.service;
  * @version 1.0
  */
 public interface LogMoneyService extends BaseService {
+    List<Object> getByUserId(Byte type, String date, Long user_id);
 }

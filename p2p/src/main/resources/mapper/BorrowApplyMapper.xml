@@ -1,0 +1,56 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.BorrowApplyDAO">
+
+    <sql id="jkb_query_common">
+        from t_borrowapply ba,t_borrowdetail bd,t_bz bz
+        where ba.baid = bd.baid
+        and ba.bzid = bz.bzid
+        and ba.state = 1
+    </sql>
+
+    <sql id="jkb_query_criteria">
+        <if test="query != null and query.bzid != null">
+            and bz.bzid = #{query.bzid}
+        </if>
+        <if test="query != null and query.term != null">
+            and ba.term = #{query.term}
+        </if>
+        <if test="query != null and query.nprofit != null">
+            and bd.nprofit = #{query.nprofit}
+        </if>
+        <if test="query != null and query.cpname != null and query.cpname != ''">
+            and bd.cpname like concat('%', #{query.cpname}, '%')
+        </if>
+    </sql>
+    <insert id="save" parameterType="borrowApply">
+        <selectKey keyColumn="baid" keyProperty="baid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        <![CDATA[
+          insert into t_borrowapply(rname,money,uid,bzid,lxid,term,deadline) values(#{rname},#{money},#{uid},#{bzid},#{lxid},#{term},#{deadline})
+        ]]>
+    </insert>
+
+    <select id="listAll" resultType="com.gs.bean.BorrowApply">
+        <![CDATA[
+        select * from t_borrowapply where state = 0;
+    ]]>
+    </select>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.JkbVO">
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,
+        bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,
+        bz.bzid as bzid,bz.bzname as bzname
+        <include refid="jkb_query_common" />
+        <include refid="jkb_query_criteria" />
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(ba.baid)
+        <include refid="jkb_query_common"/>
+        <include refid="jkb_query_criteria"/>
+    </select>
+</mapper>

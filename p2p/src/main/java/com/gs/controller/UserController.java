@@ -51,6 +51,11 @@ public class UserController {
             return statusVO;
         }
     }
+    @RequestMapping("/user_home")
+    public String user_home(HttpSession session, HttpServletRequest request){
+
+        return "user/user_home";
+    }
     @RequestMapping("/user_money")
     public String user_money(HttpSession session, HttpServletRequest request){
         User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
