@@ -11,4 +11,8 @@
         ]]>
     </select>
 
+    <select id="listAll" resultType="hUser">
+        select * from t_huser
+    </select>
+
 </mapper>

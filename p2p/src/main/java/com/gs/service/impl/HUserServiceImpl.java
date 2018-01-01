@@ -16,12 +16,16 @@ import java.util.List;
 @Service
 public class HUserServiceImpl extends AbstractBaseService implements HUserService {
 
-    @Autowired
     private HUserDAO hUserDAO;
+
+    @Autowired
+    public void sethUserDAO(HUserDAO hUserDAO) {
+        super.setBaseDAO(hUserDAO);
+        this.hUserDAO = hUserDAO;
+    }
 
     @Override
     public HUser getByPhonePwd(String phone, String pwd) {
         return hUserDAO.getByPhonePwd(phone, pwd);
     }
-
 }
