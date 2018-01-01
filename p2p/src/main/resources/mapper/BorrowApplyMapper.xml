@@ -5,9 +5,10 @@
 <mapper namespace="com.gs.dao.BorrowApplyDAO">
 
     <sql id="jkb_query_common">
-        from t_borrowapply ba,t_borrowdetail bd,t_bz bz
+        from t_borrowapply ba,t_borrowdetail bd,t_bz bz,t_jklx j
         where ba.baid = bd.baid
         and ba.bzid = bz.bzid
+        and ba.lxid = j.lxid
         and ba.state = 1
     </sql>
 
@@ -42,8 +43,10 @@
 
     <select id="listPagerCriteria" resultType="com.gs.vo.JkbVO">
         select ba.baid,ba.rname,ba.money,ba.state,ba.term,
-        bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,
-        bz.bzid as bzid,bz.bzname as bzname
+        bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,
+        bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,
+        bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,bd.way as way,
+        bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname
         <include refid="jkb_query_common" />
         <include refid="jkb_query_criteria" />
         limit #{pager.beginIndex}, #{pager.pageSize}
@@ -53,4 +56,5 @@
         <include refid="jkb_query_common"/>
         <include refid="jkb_query_criteria"/>
     </select>
+
 </mapper>

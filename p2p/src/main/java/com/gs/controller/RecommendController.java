@@ -1,6 +1,6 @@
 package com.gs.controller;
 
-import com.gs.bean.Recommend;
+import com.gs.enums.ControllerStatusEnum;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gs.bean.User;
 import com.gs.common.CheckCodeUtils;
 import com.gs.common.Pager;
-import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.RecommendService;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.RecommendVO;

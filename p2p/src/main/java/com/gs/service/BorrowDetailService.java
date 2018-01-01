@@ -8,4 +8,5 @@ package com.gs.service;
  * @version 1.0
  */
 public interface BorrowDetailService extends BaseService {
+    void updatePic(Object obj);
 }
