@@ -168,10 +168,11 @@
                 </div>
                 <div class="label cl label-msg">
                     <label class="long">收益方式：</label>
-                    <select  id="way" name="way" style="width: 300px;height: 40px">
-                        <option value="按月付息，到期还本">按月付息，到期还本</option>
-                        <option value="等额本金">等额本金</option>
-                        <option value="到期一次性还本付息">到期一次性还本付息</option>
+                    <select  id="sid" name="sid" style="width: 300px;height: 40px">
+                        <option value="">请选择借款类型</option>
+                        <c:forEach items="${swayList}" var="d">
+                            <option value="${d.sid}">${d.way}</option>
+                        </c:forEach>
                     </select>
                     <span></span>
                 </div>

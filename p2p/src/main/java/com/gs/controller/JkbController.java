@@ -6,14 +6,12 @@ import com.gs.common.Pager;
 import com.gs.common.PathUtils;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.query.JkbQuery;
-import com.gs.service.BorrowApplyService;
-import com.gs.service.BorrowDetailService;
-import com.gs.service.BzService;
-import com.gs.service.JklxService;
+import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,14 +48,18 @@ public class JkbController {
     private BzService bzService;
     @Autowired
     private JklxService jklxService;
+    @Autowired
+    private SwayService swayService;
 
     //进入申请借款页面
     @RequestMapping("/jkb_page")
     public String jkb_page(HttpSession session, HttpServletRequest request){
         List<Bz> bzList = (List)bzService.listAll();
         List<Jklx> jklxList = (List)jklxService.listAll();
+        List<Sway> swayList = (List)swayService.listAll();
         request.setAttribute("bzList",bzList);
         request.setAttribute("jklxList",jklxList);
+        request.setAttribute("swayList",swayList);
         return "jkb/jkb_add";
     }
     //申请借款
@@ -135,5 +137,14 @@ public class JkbController {
         System.out.println("page="+page+";rows="+rows+";jkb"+jkbQuery);
         return borrowApplyService.listPagerCriteria(page, rows, jkbQuery);
     }
+    //后台查看借款详情
+    @RequestMapping("/jkb_look/{baid}")
+    public String jkbLook(HttpSession session, HttpServletRequest request,@PathVariable("baid") Long baid){
+        System.out.println("baid="+baid);
+        BorrowApply borrowApply = (BorrowApply) borrowApplyService.getById(baid);
+        request.setAttribute("borrowApply",borrowApply);
+        return "jkb/jkb_listPage";
+    }
+
 
 }

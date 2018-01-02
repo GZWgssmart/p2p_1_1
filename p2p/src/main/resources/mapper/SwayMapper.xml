@@ -44,6 +44,11 @@
         update sway set way = #{way},fw = #{fw},state = #{state} where sid = #{sid}
     </update>
 
+    <select id="listAll" resultType="com.gs.bean.Sway">
+    <![CDATA[
+        select * from t_sway;
+    ]]>
+    </select>
     <!--
         select sid, way, fw, state from t_sway where sid = 2;
         delete from t_sway where sid = 1;

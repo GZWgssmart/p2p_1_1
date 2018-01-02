@@ -41,6 +41,11 @@
         update t_jklx set lxname = #{lxname},state = #{state} where lxid = #{lxid}
     </update>
 
+    <select id="listAll" resultType="com.gs.bean.Jklx">
+        <![CDATA[
+        select * from t_jklx;
+    ]]>
+    </select>
     <!--
         select lxid,lxname,state from t_jklx where lxid = 1；
         delete from t_jklx where lxid = 1；

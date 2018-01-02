@@ -30,7 +30,9 @@ public class BorrowApply {
 
     private String excuse;//审核理由
 
-    public BorrowApply(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Long lxid, Integer term, Date deadline, Long huserid, String excuse) {
+    private Long sid; //还款方式id
+
+    public BorrowApply(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Long lxid, Integer term, Date deadline, Long huserid, String excuse, Long sid) {
         this.baid = baid;
         this.rname = rname;
         this.money = money;
@@ -43,6 +45,7 @@ public class BorrowApply {
         this.deadline = deadline;
         this.huserid = huserid;
         this.excuse = excuse;
+        this.sid = sid;
     }
 
     public BorrowApply() {
@@ -143,5 +146,13 @@ public class BorrowApply {
 
     public void setExcuse(String excuse) {
         this.excuse = excuse;
+    }
+
+    public Long getSid() {
+        return sid;
+    }
+
+    public void setSid(Long sid) {
+        this.sid = sid;
     }
 }

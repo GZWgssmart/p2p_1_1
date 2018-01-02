@@ -47,5 +47,9 @@
         insert into t_bz (bzname, state) values ('多金宝',1);
         update t_bz set bzname ='恒金宝',state = 0 where bzid = 1;
     -->
-
+    <select id="listAll" resultType="com.gs.bean.Bz">
+        <![CDATA[
+        select * from t_bz;
+    ]]>
+    </select>
 </mapper>

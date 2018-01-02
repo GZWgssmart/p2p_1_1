@@ -43,11 +43,11 @@
             <a href="javascript:;" id="invest-s4" class="">已回收的借款</a>
         </div>
         <div class="account-form cl">
-            <input type="text" class="date icon icon-date" autocomplete="off" id="invest-startDate" readonly="readonly">
+            <input type="text" class="date icon icon-date" id="startDate" readonly="readonly">
             <p class="text">至</p>
-            <input type="text" class="date icon icon-date" autocomplete="off" id="invest-endDate" readonly="readonly">
+            <input type="text" class="date icon icon-date" id="endDate" readonly="readonly">
             <!-- <input type="text" placeholder="请输入关键字搜索" class="search icon icon-search" /> -->
-            <button type="button" class="search" id="investSearch">搜索</button>
+            <button type="button" class="search" id="cashSearch">搜索</button>
         </div>
         <div class="invest-listData invest-listData1" style="display: block;">
             <ul class="investData list-box">
@@ -141,24 +141,22 @@
     </div>
 </div>
 <!-- end -->
-<form name="paginationoptions" style="display: none">
-    <input id="typecss" value="${type}">
-    <p><label for="items_per_page">每页显示的列表数：</label><input type="text" value="10" name="items_per_page" id="items_per_page" class="numeric"/></p>
-    <p><label for="num_display_entries">分页链接显示数：</label><input type="text" value="10" name="num_display_entries" id="num_display_entries" class="numeric"/></p>
-    <p><label>起始与结束点的数目：</label><input type="text" value="2" name="num_edge_entries" id="num_edge_entries" class="numeric"/></p>
-    <p><label for="prev_text">“上一页”标签：</label><input type="text" value="上一页" name="prev_text" id="prev_text"/></p>
-    <p><label for="next_text">“下一页”标签：</label><input type="text" value="下一页" name="next_text" id="next_text"/></p>
-    <input type="button" id="setoptions" value="设置选项" />
-</form>
+
 
 </body>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/jquery.pagination.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/page.js"></script>
+<script type="text/javascript" src="<%=path%>/static/js/publlic.js"></script>
+
+
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="<%=path%>/static/js/account.js"></script>
 <script>
     var localObj = window.location;
     var contextPath = localObj.pathname.split("/")[1];
     var basePath = localObj.protocol + "//" + localObj.host + "/"+ contextPath;
-
+    $(function(){
+        $('#startDate').datepicker({format:'yyyy-mm-dd'}).on('changeDate',function(){});
+        $('#endDate').datepicker({format:'yyyy-mm-dd'}).on('changeDate',function(){});
+    });
 </script>
 </html>

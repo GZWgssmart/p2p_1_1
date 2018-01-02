@@ -28,8 +28,6 @@ public class BorrowDetail {
 
     private BigDecimal nprofit;//年化收益
 
-    private String way;//收益方式
-
     private String cpname;//产品名称
 
     private Long baid;//借款人id，baid为t_borrowapply表id
@@ -132,14 +130,6 @@ public class BorrowDetail {
 
     public void setNprofit(BigDecimal nprofit) {
         this.nprofit = nprofit;
-    }
-
-    public String getWay() {
-        return way;
-    }
-
-    public void setWay(String way) {
-        this.way = way;
     }
 
     public String getCpname() {
