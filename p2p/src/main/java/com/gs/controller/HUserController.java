@@ -1,6 +1,7 @@
 package com.gs.controller;
 
 import com.gs.bean.HUser;
+import com.gs.common.Combobox;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
 import com.gs.enums.ControllerStatusEnum;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/12/22
@@ -69,6 +72,18 @@ public class HUserController {
     @RequestMapping("home")
     public String home() {
         return "home";
+    }
+
+    @RequestMapping("all")
+    @ResponseBody
+    public List<Combobox> listAll(){
+        List<Object> objectList = hUserService.listAll();
+        List<Combobox> comboboxList = new ArrayList<>();
+        for(Object obj : objectList){
+            HUser hUser = (HUser) obj;
+            comboboxList.add(new Combobox(hUser.getHuid()+"",hUser.getHuname(),false));
+        }
+        return comboboxList;
     }
 
 }

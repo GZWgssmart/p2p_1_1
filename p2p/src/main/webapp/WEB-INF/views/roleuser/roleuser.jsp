@@ -28,8 +28,13 @@
     <thead>
     <tr>
         <th data-options="field:'ruid',width:80,checkbox:true">编号</th>
+        <th data-options="field:'rid',width:100">角色编号</th>
         <th data-options="field:'rname',width:100">角色名称</th>
+        <th data-options="field:'content',width:150">角色描述</th>
+        <th data-options="field:'huid',width:100">后台用户编号</th>
+        <th data-options="field:'phone',width:100">电话</th>
         <th data-options="field:'huname',width:150">后台用户名</th>
+        <th data-options="field:'email',width:100">邮箱地址</th>
     </tr>
     </thead>
 </table>
@@ -56,17 +61,17 @@
                 <tr>
                     <td>角色名称:</td>
                     <td>
-                        <input class="easyui-combobox easyui-validatebox rname" data-options="prompt:'请选择角色',
+                        <input id="rid" class="easyui-combobox easyui-validatebox rid" data-options="prompt:'请选择角色',
 						required:true,
-						novalidate:true" name="rname"/>
+						novalidate:true" name="rid"/>
                     </td>
                 </tr>
                 <tr>
                     <td>后台用户:</td>
                     <td>
-                        <input class="easyui-combobox easyui-validatebox huname" data-options="prompt:'请选择后台用户',
+                        <input id="huid" class="easyui-combobox easyui-validatebox huid" data-options="prompt:'请选择后台用户',
                                required:true,
-                        novalidate:true" name="huname"/>
+                        novalidate:true" name="huid"/>
                     </td>
                 </tr>
                 <tr>
@@ -83,17 +88,17 @@
                 <tr>
                     <td>角色名称:</td>
                     <td>
-                        <input class="easyui-combobox easyui-validatebox rname" data-options="prompt:'请输入角色名称',
+                        <input class="easyui-combobox easyui-validatebox rid" data-options="prompt:'请输入角色名称',
 						required:true,
-						novalidate:true" name="rname"/>
+						novalidate:true" name="rid"/>
                     </td>
                 </tr>
                 <tr>
                     <td>后台用户:</td>
                     <td>
-                        <input class="easyui-combobox easyui-validatebox huname" data-options="prompt:'请输入角色描述',
+                        <input class="easyui-combobox easyui-validatebox huid" data-options="prompt:'请输入角色描述',
                                required:true,
-                        novalidate:true" name="huname"/>
+                        novalidate:true" name="huid"/>
                     </td>
                 </tr>
                 <tr>
@@ -109,14 +114,14 @@
 <script>
     $(function () {
         setPagination("list");
-        $(".rname").combobox(
+        $(".rid").combobox(
             {
                 url:'/role/all',
                 valueField:'id',
                 textField:'text',
             }
-        )
-        $(".huname").combobox(
+        );
+        $(".huid").combobox(
             {
                 url:'/huser/all',
                 valueField:'id',
@@ -129,8 +134,8 @@
         var row = $("#" + listId).datagrid("getSelected");
         if (row) {
             $("#" + formId).form("load", row); // 考虑时间字符串
-            $("#rname").combobox("select", row.rname);
-            $("#huname").combobox("select", row.huname);
+            $("#rid").combobox("select", row.rid);
+            $("#huid").combobox("select", row.huid);
             openWin(winId);
         } else {
             showInfoAlert("请选择需要修改的数据");

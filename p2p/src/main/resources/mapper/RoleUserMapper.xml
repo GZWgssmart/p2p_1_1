@@ -29,23 +29,23 @@
         where ruid = #{ruid}
     </update>
 
-    <sql id="roleUser_criteria">
-        <if test="roleUser != null and roleUser.rname != null and roleUser.rname != ''">
-            and r.rname like concat('%', #{roleUser.rname} ,'%')
+    <sql id="roleUserVO_criteria">
+        <if test="roleUserVO != null and roleUserVO.rname != null and roleUserVO.rname != ''">
+            and r.rname like concat('%', #{roleUserVO.rname} ,'%')
         </if>
-        <if test="roleUser != null and roleUser.huname != null and roleUser.huname != ''">
-            and r.content like concat('%', #{roleUser.huname} ,'%')
+        <if test="roleUserVO != null and roleUserVO.huname != null and roleUserVO.huname != ''">
+            and r.content like concat('%', #{roleUserVO.huname} ,'%')
         </if>
     </sql>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.RoleUserVO">
-        select r.rid,r.rname,r.content,h.huid as huid,h.phone as phone,h.humae as huname,h.email as email,
-        from t_role r,t_roleuser ru,t_huser h where r.rid = ru.rid and h.huid = ru.huid
-        <include refid="roleUser_criteria"/>
+        select r.rid,r.rname,r.content,h.huid as huid,h.phone as phone,h.huname as huname,h.email as email from t_role r,t_roleuser ru,
+        t_huser h where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid
+        <include refid="roleUserVO_criteria"/>
     </select>
 
     <select id="countCriteria" resultType="Long">
         select count(ru.ruid) from t_roleuser ru where ru.ruid = ruid
-        <include refid="roleUser_criteria"/>
+        <include refid="roleUserVO_criteria"/>
     </select>
 </mapper>

@@ -33,7 +33,12 @@ public enum ControllerStatusEnum {
     ROLE_SAVE_SUCCESS(112,"ok","角色与角色权限新增成功"),
     ROLE_SAVE_FAIL(113,"error","角色与角色权限新增失败"),
     ROLE_UPDATE_SUCCESS(114,"ok","角色修改成功"),
-    ROLE_UPDATE_FAIL(115,"error","角色修改失败");
+    ROLE_UPDATE_FAIL(115,"error","角色修改失败"),
+
+    ROLE_USER_SAVE_SUCCESS(210,"ok","角色用户添加成功"),
+    ROLE_USER_SAVE_FAIL(211,"fail","角色用户添加失败"),
+    ROLE_USER_UPDATE_SUCCESS(212,"ok","角色用户修改成功"),
+    ROLE_USER_UPDATE_FAIL(213,"fail","角色用户修改失败");
 
 
     private Integer code;
