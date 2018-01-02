@@ -3,24 +3,34 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gs.dao.LogMoneyDAO">
+    <sql id="logMoney_query_common">
+        <if test="query != null and query.type != null">
+            and t_logmoney.type = #{query.type}
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and t_logmoney.date <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and t_logmoney.date <![CDATA[<=]]> #{query.endTime}
+        </if>
+    </sql>
 
-    <select id="getByUserId" resultType="com.gs.bean.LogMoney">
+    <select id="listPagerCriteria" resultType="com.gs.bean.LogMoney">
         <![CDATA[
 		select * from t_logmoney
-		where uid = #{user_id}
+		where uid = #{query.uid}
 		]]>
-        <if test="type != null and type != ''">
-            and type = #{type}
-        </if>
-        <if test="type == 0">
-            and type = 0
-        </if>
-        <if test=" time != null and time != 'null' and time != ''">
-            and "date" <![CDATA[<=]]> #{time}
-        </if>
-        order by "date"
+        <include refid="logMoney_query_common" />
+        limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+		select count(id) from t_logmoney
+		where uid = #{query.uid}
+		]]>
+        <include refid="logMoney_query_common" />
+    </select>
 
 
 </mapper>

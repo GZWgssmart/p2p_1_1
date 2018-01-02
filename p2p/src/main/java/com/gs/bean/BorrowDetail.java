@@ -1,6 +1,7 @@
 package com.gs.bean;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 //借款详情表
 public class BorrowDetail {
@@ -32,7 +33,7 @@ public class BorrowDetail {
 
     private Long baid;//借款人id，baid为t_borrowapply表id
 
-    private Long int1;
+    private Date sqtime;//申请时间
 
     private String str1;
 
@@ -148,12 +149,12 @@ public class BorrowDetail {
         this.baid = baid;
     }
 
-    public Long getInt1() {
-        return int1;
+    public Date getSqtime() {
+        return sqtime;
     }
 
-    public void setInt1(Long int1) {
-        this.int1 = int1;
+    public void setSqtime(Date sqtime) {
+        this.sqtime = sqtime;
     }
 
     public String getStr1() {

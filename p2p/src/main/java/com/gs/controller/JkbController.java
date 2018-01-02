@@ -79,7 +79,6 @@ public class JkbController {
         borrowApplyService.save(borrowApply);
         borrowDetail.setCpname("PJZB"+borrowApply.getBzid()+borrowApply.getLxid()+borrowApply.getBaid());
         borrowDetail.setBaid(borrowApply.getBaid());
-        borrowDetail.setMoney(borrowApply.getMoney());
         borrowDetailService.save(borrowDetail);
         ControllerStatusEnum.JKB_SAVE_WAIT.setCode(Integer.parseInt(borrowDetail.getBdid().toString()));
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.JKB_SAVE_WAIT);
@@ -120,10 +119,22 @@ public class JkbController {
     }
     //进入我的借款管理
     @RequestMapping("/my_jkb")
-    public String myJkb(HttpSession session, HttpServletRequest request){
-        List<BorrowApply> borrowApplyList = (List)borrowApplyService.listAll();
-        request.setAttribute("borrowApplyList",borrowApplyList);
+    public String myJkb(){
         return "jkb/my_jkb";
+    }
+    //进入我的借款管理
+    @RequestMapping("/select")
+    @ResponseBody
+    public Pager SelectPage(HttpSession session,JkbQuery jkbQuery){
+        Pager pager = new Pager();
+        try {
+            if(jkbQuery.getState() == null){
+                jkbQuery.setState((byte)1);
+            }
+            pager =  borrowApplyService.listPagerCriteria(jkbQuery.getCurPage(),8,jkbQuery);
+        }catch (Exception e){e.printStackTrace();}
+
+        return pager;
     }
     //进入后台借款审核页面
     @RequestMapping("/jkb_listPage")
@@ -135,6 +146,7 @@ public class JkbController {
     @ResponseBody
     public Pager jkbList(int page, int rows, JkbQuery jkbQuery) {
         System.out.println("page="+page+";rows="+rows+";jkb"+jkbQuery);
+        jkbQuery.setState((byte)1);
         return borrowApplyService.listPagerCriteria(page, rows, jkbQuery);
     }
     //后台查看借款详情

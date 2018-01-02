@@ -18,7 +18,7 @@ public class BorrowApply {
 
     private Date time;//审核时间
 
-    private Byte state;//审核状态（1表示为审核，2表示已审核）
+    private Byte state;//审核状态（1表示为审核，2表示已审核,3表示为招标中，4表示为成功借款）
 
     private Long lxid;//借款类型为标种的主键字段
 

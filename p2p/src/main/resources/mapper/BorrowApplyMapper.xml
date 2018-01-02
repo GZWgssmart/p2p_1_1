@@ -10,10 +10,12 @@
         and ba.bzid = bz.bzid
         and ba.lxid = j.lxid
         and ba.sid = s.sid
-        and ba.state = 1
     </sql>
 
     <sql id="jkb_query_criteria">
+        <if test="query != null and query.state != null">
+            and ba.state = #{query.state}
+        </if>
         <if test="query != null and query.bzid != null">
             and bz.bzid = #{query.bzid}
         </if>
@@ -22,6 +24,12 @@
         </if>
         <if test="query != null and query.nprofit != null">
             and bd.nprofit = #{query.nprofit}
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and bd.sqtime <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and bd.sqtime <![CDATA[<=]]> #{query.endTime}
         </if>
         <if test="query != null and query.cpname != null and query.cpname != ''">
             and bd.cpname like concat('%', #{query.cpname}, '%')
@@ -43,10 +51,10 @@
     </select>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.JkbVO">
-        select ba.baid,ba.rname,ba.money,ba.state,ba.term,
-        bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,
+        bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
         bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,
-        bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,bd.way as way,
+        bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,
         bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way
         <include refid="jkb_query_common" />
         <include refid="jkb_query_criteria" />

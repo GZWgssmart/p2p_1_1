@@ -1,6 +1,8 @@
 package com.gs.controller;
 
 import com.gs.bean.LogCzz;
+import com.gs.bean.User;
+import com.gs.common.Constants;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.LogCzzService;
@@ -64,7 +66,8 @@ public class LogCzzController {
         /*logCzzVoList = logCzzService.listAllById(1L);*/
 
         try {
-            param.setUid(1L);
+            User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+            param.setUid(user.getUid());
             pager =  logCzzService.listPagerCriteria(param.getCurPage(),8,param);
         }catch (Exception e){e.printStackTrace();}
 

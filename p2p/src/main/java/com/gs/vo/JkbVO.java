@@ -31,6 +31,8 @@ public class JkbVO {
 
     private Byte state;//审核状态（1表示为审核，2表示已审核）
 
+    private String excuse;//审核理由
+
     private Integer term;//借款期限
 
     private Long bdid;
@@ -56,6 +58,8 @@ public class JkbVO {
     private BigDecimal nprofit;//年化收益
 
     private String cpname;//产品名称
+
+    private Date sqtime;//申请时间
 
     public Long getBaid() {
         return baid;
@@ -239,5 +243,21 @@ public class JkbVO {
 
     public void setCpname(String cpname) {
         this.cpname = cpname;
+    }
+
+    public Date getSqtime() {
+        return sqtime;
+    }
+
+    public void setSqtime(Date sqtime) {
+        this.sqtime = sqtime;
+    }
+
+    public String getExcuse() {
+        return excuse;
+    }
+
+    public void setExcuse(String excuse) {
+        this.excuse = excuse;
     }
 }
