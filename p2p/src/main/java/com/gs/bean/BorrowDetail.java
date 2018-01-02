@@ -24,7 +24,7 @@ public class BorrowDetail {
 
     private String guarantee;//保障措施
 
-    private BigDecimal money;//金额
+    private BigDecimal ytmoney;//已投资金额
 
     private BigDecimal nprofit;//年化收益
 
@@ -116,12 +116,12 @@ public class BorrowDetail {
         this.guarantee = guarantee;
     }
 
-    public BigDecimal getMoney() {
-        return money;
+    public BigDecimal getYtmoney() {
+        return ytmoney;
     }
 
-    public void setMoney(BigDecimal money) {
-        this.money = money;
+    public void setYtmoney(BigDecimal ytmoney) {
+        this.ytmoney = ytmoney;
     }
 
     public BigDecimal getNprofit() {
