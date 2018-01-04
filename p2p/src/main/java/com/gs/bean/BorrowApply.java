@@ -26,31 +26,12 @@ public class BorrowApply {
 
     private Date deadline;//截止时间
 
-    private Long huserid;//审核人id
+    private Long husid;//审核人id
 
     private String excuse;//审核理由
 
     private Long sid; //还款方式id
 
-    public BorrowApply(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Long lxid, Integer term, Date deadline, Long huserid, String excuse, Long sid) {
-        this.baid = baid;
-        this.rname = rname;
-        this.money = money;
-        this.uid = uid;
-        this.bzid = bzid;
-        this.time = time;
-        this.state = state;
-        this.lxid = lxid;
-        this.term = term;
-        this.deadline = deadline;
-        this.huserid = huserid;
-        this.excuse = excuse;
-        this.sid = sid;
-    }
-
-    public BorrowApply() {
-        super();
-    }
 
     public Long getBaid() {
         return baid;
@@ -132,12 +113,12 @@ public class BorrowApply {
         this.deadline = deadline;
     }
 
-    public Long getHuserid() {
-        return huserid;
+    public Long getHusid() {
+        return husid;
     }
 
-    public void setHuserid(Long huserid) {
-        this.huserid = huserid;
+    public void setHusid(Long husid) {
+        this.husid = husid;
     }
 
     public String getExcuse() {

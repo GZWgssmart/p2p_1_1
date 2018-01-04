@@ -8,6 +8,7 @@ import com.gs.enums.ControllerStatusEnum;
 import com.gs.query.JkbQuery;
 import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
+import com.gs.vo.JkbVO;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,13 +81,13 @@ public class JkbController {
         borrowDetail.setCpname("PJZB"+borrowApply.getBzid()+borrowApply.getLxid()+borrowApply.getBaid());
         borrowDetail.setBaid(borrowApply.getBaid());
         borrowDetailService.save(borrowDetail);
-        ControllerStatusEnum.JKB_SAVE_WAIT.setCode(Integer.parseInt(borrowDetail.getBdid().toString()));
+        ControllerStatusEnum.JKB_SAVE_WAIT.setCode(Integer.parseInt(borrowApply.getBaid().toString()));
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.JKB_SAVE_WAIT);
         return statusVO;
     }
     //修改借款详情的4个图片
     @RequestMapping("/jkb_addimg")
-    public String jkbAddimg(@RequestParam("file") MultipartFile[] pic,@RequestParam("bdid") Long bdid,HttpServletRequest request) throws Exception{
+    public String jkbAddimg(@RequestParam("file") MultipartFile[] pic,@RequestParam("baid") Long baid,HttpServletRequest request) throws Exception{
         BorrowDetail borrowDetail =new BorrowDetail();
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -95,27 +96,37 @@ public class JkbController {
         String ypic = "";
         String qpic = "";
         String tpic = "";
+        String name = "";
         for (int i=0;i<pic.length;i++){
-            String name = dateString+pic[i].getOriginalFilename();
-            if (i==0){
+            name = dateString+pic[i].getOriginalFilename();
+            if (i==0 && !name.equals(dateString)){
                 fpic = name;
-            }else if(i==1){
+                borrowDetail.setFpic(fpic);
+                pic[i].transferTo(new File(PathUtils.uploadDir(request) + "/" + name));
+            }else if(i==1 && !name.equals(dateString)){
                 ypic = name;
-            }else if(i==2){
+                borrowDetail.setYpic(ypic);
+                pic[i].transferTo(new File(PathUtils.uploadDir(request) + "/" + name));
+            }else if(i==2 && !name.equals(dateString)){
                 qpic = name;
-            }else if (i==3){
+                borrowDetail.setQpic(qpic);
+                pic[i].transferTo(new File(PathUtils.uploadDir(request) + "/" + name));
+            }else if (i==3 && !name.equals(dateString)){
                 tpic = name;
+                borrowDetail.setTpic(tpic);
+                pic[i].transferTo(new File(PathUtils.uploadDir(request) + "/" + name));
             }
-            pic[i].transferTo(new File(PathUtils.uploadDir(request) + "/" + name));
-
         }
-        borrowDetail.setBdid(bdid);
-        borrowDetail.setFpic(fpic);
-        borrowDetail.setYpic(ypic);
-        borrowDetail.setTpic(tpic);
-        borrowDetail.setQpic(qpic);
-        borrowDetailService.updatePic(borrowDetail);
-        return "redirect:/jkb/my_jkb";
+        borrowDetail.setBaid(baid);
+        System.out.println("fpic="+fpic);
+        System.out.println("ypic="+ypic);
+        System.out.println("qpic="+qpic);
+        System.out.println("tpic="+tpic);
+        if (!fpic.equals("") || !ypic.equals("") || !qpic.equals("") || !tpic.equals("")) {
+            System.out.println("ok");
+            borrowDetailService.updatePic(borrowDetail);
+        }
+        return "redirect:/jkb/update_page/"+baid;
     }
     //进入我的借款管理
     @RequestMapping("/my_jkb")
@@ -126,15 +137,48 @@ public class JkbController {
     @RequestMapping("/select")
     @ResponseBody
     public Pager SelectPage(HttpSession session,JkbQuery jkbQuery){
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
         Pager pager = new Pager();
         try {
             if(jkbQuery.getState() == null){
                 jkbQuery.setState((byte)1);
             }
+            jkbQuery.setUid(user.getUid());
             pager =  borrowApplyService.listPagerCriteria(jkbQuery.getCurPage(),8,jkbQuery);
         }catch (Exception e){e.printStackTrace();}
 
         return pager;
+    }
+    //进入我的借款管理
+    @RequestMapping("/update_page/{baid}")
+    public String updatePage(HttpServletRequest request,@PathVariable("baid") Long baid){
+        JkbVO jkbVO = (JkbVO) borrowApplyService.getById(baid);
+        List<Bz> bzList = (List)bzService.listAll();
+        List<Jklx> jklxList = (List)jklxService.listAll();
+        List<Sway> swayList = (List)swayService.listAll();
+        request.setAttribute("jkbVO",jkbVO);
+        request.setAttribute("bzList",bzList);
+        request.setAttribute("jklxList",jklxList);
+        request.setAttribute("swayList",swayList);
+        return "jkb/jkb_update";
+    }
+    //修改申请借款
+    @RequestMapping("/jkb_update")
+    @ResponseBody
+    public ControllerStatusVO jkbUpdate(HttpSession session, BorrowApply borrowApply, BorrowDetail borrowDetail){
+        ControllerStatusVO statusVO = null;
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        borrowApply.setState((byte) 1);
+        Calendar cal = Calendar.getInstance();
+        Date date = new Timestamp(cal.getTime().getTime());
+        cal.setTime(date);
+        cal.add(Calendar.MONTH, borrowApply.getTerm());
+        borrowApply.setDeadline(new Timestamp(cal.getTime().getTime()));
+        borrowApplyService.update(borrowApply);
+        borrowDetailService.update(borrowDetail);
+        ControllerStatusEnum.JKB_SAVE_WAIT.setCode(Integer.parseInt(borrowApply.getBaid().toString()));
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.JKB_SAVE_WAIT);
+        return statusVO;
     }
     //进入后台借款审核页面
     @RequestMapping("/jkb_listPage")
@@ -156,6 +200,11 @@ public class JkbController {
         BorrowApply borrowApply = (BorrowApply) borrowApplyService.getById(baid);
         request.setAttribute("borrowApply",borrowApply);
         return "jkb/jkb_listPage";
+    }
+    //进入计算器页面
+    @RequestMapping("/calc")
+    public String Calc(){
+        return "calc";
     }
 
 

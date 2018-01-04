@@ -39,4 +39,14 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".xialakuang").mouseover(function (){
+            $(".sub-nav").show();
+        }).mouseout(function (){
+            $(".sub-nav").hide();
+        });
+    })
+</script>
 </html>

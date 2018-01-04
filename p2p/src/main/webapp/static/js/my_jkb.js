@@ -156,19 +156,8 @@ function initIpayData2(startDate,endDate,state){
         }
         },
         {
-            key:'state',resolve:function(val){
-            var str ='';
-            if(val == '1'){
-                str = '<p><span class="">审核中</span></p>';
-            }else if(val == '2'){
-                str = '<p><span class="icon icon-wrong">审核失败</span></p>';
-            }else if(val == '3'){
-                str = '<p><span class="">招标中</span></p>';
-            }else if(val == '4'){
-                str = '<p><span class="icon icon-true">成功</span></p>';
-            }
-
-            return str;
+            key:'baid',resolve:function(val){
+            return  '<a href="'+contextPath+'/jkb/update_page/'+val+'" target="_blank">修改申请</a>';
         }
         }
     ];
@@ -185,6 +174,9 @@ function initIpayData2(startDate,endDate,state){
         $('#invest').show();
     });
 
+}
+function update(baid){
+    window.location.href = "/jkb/update_page/"+baid;
 }
 //搜索
 $('#loanSearch').unbind('click').click(function () {

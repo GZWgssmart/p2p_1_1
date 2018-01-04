@@ -16,7 +16,30 @@
 
     <update id="updatePic" parameterType="borrowDetail">
         <![CDATA[
-         update t_borrowdetail set fpic = #{fpic}, ypic = #{ypic},tpic = #{tpic},qpic = #{qpic}  where bdid = #{bdid}
+         update t_borrowdetail
+        ]]>
+        <set>
+            <if test="fpic != null and fpic!=''">
+                fpic = #{fpic},
+            </if>
+            <if test="ypic != null and ypic!=''">
+                ypic = #{ypic},
+            </if>
+            <if test="tpic != null and tpic!=''">
+                tpic = #{tpic},
+            </if>
+            <if test="qpic != null and qpic!=''">
+                qpic = #{qpic},
+            </if>
+        </set>
+        where baid = #{baid}
+    </update>
+
+    <update id="update" parameterType="borrowDetail">
+        <![CDATA[
+         update t_borrowdetail set mpurpose = #{mpurpose}, hksource = #{hksource},suggest = #{suggest},xmdescrip = #{xmdescrip},
+         guarantee = #{guarantee},nprofit = #{nprofit}
+           where baid = #{baid}
         ]]>
     </update>
 

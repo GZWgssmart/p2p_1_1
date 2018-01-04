@@ -17,13 +17,7 @@ function F_Open_dialog3(){
 var i=true;
 function addElementImg(obj) {
     if(i){
-        var ul = document.getElementById(obj);
-        var img = document.createElement("img");
-        img.setAttribute("id", "newImg");
-        img.setAttribute("style", "width:113px;height:50px");
-        img.setAttribute("class", "small_img");
-        img.src = "";
-        ul.appendChild(img);
+
         i=false;
         var input = document.getElementById("fpic");
         var $img = $('#newImg');
@@ -35,7 +29,6 @@ function addElementImg(obj) {
             var windowURL = window.URL || window.webkitURL;
             var dataURL;
             dataURL = windowURL.createObjectURL(fileObj.files[0]);
-            $("#addpshow").show();
             $img.attr('src',dataURL);
         }
     }
@@ -43,12 +36,7 @@ function addElementImg(obj) {
 var j=true;
 function addElementImg1(obj) {
     if(j){
-        var ul = document.getElementById(obj);
-        var img = document.createElement("img");
-        img.setAttribute("id", "newImg1");
-        img.setAttribute("style", "width:113px;height:50px");
-        img.src = "";
-        ul.appendChild(img);
+
         j=false;
         var input = document.getElementById("ypic");
         var $img = $('#newImg1');
@@ -60,7 +48,6 @@ function addElementImg1(obj) {
             var windowURL = window.URL || window.webkitURL;
             var dataURL;
             dataURL = windowURL.createObjectURL(fileObj.files[0]);
-            $("#addpshow1").show();
             $img.attr('src',dataURL);
         }
     }
@@ -68,12 +55,7 @@ function addElementImg1(obj) {
 var k=true;
 function addElementImg2(obj) {
     if(k){
-        var ul = document.getElementById(obj);
-        var img = document.createElement("img");
-        img.setAttribute("id", "newImg2");
-        img.setAttribute("style", "width:113px;height:50px");
-        img.src = "";
-        ul.appendChild(img);
+
         k=false;
         var input = document.getElementById("qpic");
         var $img = $('#newImg2');
@@ -85,7 +67,6 @@ function addElementImg2(obj) {
             var windowURL = window.URL || window.webkitURL;
             var dataURL;
             dataURL = windowURL.createObjectURL(fileObj.files[0]);
-            $("#addpshow2").show();
             $img.attr('src',dataURL);
         }
     }
@@ -93,12 +74,7 @@ function addElementImg2(obj) {
 var l=true;
 function addElementImg3(obj) {
     if(l){
-        var ul = document.getElementById(obj);
-        var img = document.createElement("img");
-        img.setAttribute("id", "newImg3");
-        img.setAttribute("style", "width:113px;height:50px");
-        img.src = "";
-        ul.appendChild(img);
+
         l=false;
         var input = document.getElementById("tpic");
         var $img = $('#newImg3');
@@ -110,13 +86,11 @@ function addElementImg3(obj) {
             var windowURL = window.URL || window.webkitURL;
             var dataURL;
             dataURL = windowURL.createObjectURL(fileObj.files[0]);
-            $("#addpshow3").show();
             $img.attr('src',dataURL);
         }
     }
 }
-
-function save(url, formId) {
+function update(url, formId) {
     $.post(basePath + url,
         $("#" + formId).serialize(),
         function (data) {

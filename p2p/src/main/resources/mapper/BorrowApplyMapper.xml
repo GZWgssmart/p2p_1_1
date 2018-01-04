@@ -16,6 +16,9 @@
         <if test="query != null and query.state != null">
             and ba.state = #{query.state}
         </if>
+        <if test="query != null and query.uid != null">
+            and ba.uid = #{query.uid}
+        </if>
         <if test="query != null and query.bzid != null">
             and bz.bzid = #{query.bzid}
         </if>
@@ -40,7 +43,7 @@
             SELECT LAST_INSERT_ID();
         </selectKey>
         <![CDATA[
-          insert into t_borrowapply(rname,money,uid,bzid,lxid,term,deadline,sid) values(#{rname},#{money},#{uid},#{bzid},#{lxid},#{term},#{deadline}),#{sid})
+          insert into t_borrowapply(rname,money,uid,bzid,lxid,term,deadline,sid,state) values(#{rname},#{money},#{uid},#{bzid},#{lxid},#{term},#{deadline},#{sid},1)
         ]]>
     </insert>
 
@@ -65,5 +68,20 @@
         <include refid="jkb_query_common"/>
         <include refid="jkb_query_criteria"/>
     </select>
-
+    <select id="getById" parameterType="long" resultType="com.gs.vo.JkbVO">
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,
+        bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
+        bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,
+        bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,
+        bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way
+        <include refid="jkb_query_common" />
+        and ba.baid = #{baid}
+    </select>
+    <update id="update" parameterType="borrowApply">
+        <![CDATA[
+         update t_borrowapply set money = #{money},bzid = #{bzid},state = #{state},lxid = #{lxid},term = #{term},
+         deadline = #{deadline},sid = #{sid}
+         where baid = #{baid}
+        ]]>
+    </update>
 </mapper>

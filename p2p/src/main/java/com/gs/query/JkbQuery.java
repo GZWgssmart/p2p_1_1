@@ -10,6 +10,7 @@ import java.math.BigDecimal;
  * @version 1.0
  */
 public class JkbQuery {
+    private Long uid;
     private Long bzid;
     private Integer term;
     private BigDecimal nprofit;
@@ -18,6 +19,14 @@ public class JkbQuery {
     private String startTime;
     private String endTime;
     private int curPage;
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
 
     public Long getBzid() {
         return bzid;

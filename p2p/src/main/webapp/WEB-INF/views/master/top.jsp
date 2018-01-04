@@ -21,15 +21,41 @@
             <ul class="top-list">
                 <li class="first"><a href="javascript:;" class="">退出</a></li>
                 <li><a href="https://www.pujinziben.com/account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
-                <li><a href="https://www.pujinziben.com/about.html#gdbj">关于我们</a></li>
-                <li><a href="https://www.pujinziben.com/help.html">帮助中心</a></li>
+                <li><a href="about.html#gdbj">关于我们</a></li>
+                <li><a href="help.html">帮助中心</a></li>
                 <li><a href="https://www.pujinziben.com/account.html#ipay" class="pay">充值</a></li>
-                <li id="userName"><a href="https://www.pujinziben.com/account.html" class="user">15770783886</a></li>
+                <li><a href="account.html" class="user">${user.uname}</a></li>
+                <li class="no"><a href="javascript:;" class="icon icon-app" id="app">APP下载</a></li>
             </ul>
-
+            <div id="qrCodeDiv" style="display: none;">
+                <div class="CodeDiv">
+                    <img src="<%=path %>/static/p2p/qrCode_ios.png">
+                    <p>IOS下载</p>
+                </div>
+                <div class="CodeDiv">
+                    <img src="<%=path %>/static/p2p/qrCode_android.png">
+                    <p>Android下载</p>
+                </div>
+            </div>
         </div>
     </div>
 
+</div>
+<script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
+<script>
+    $(function(){
 
+        $(".no").mouseover(function (){
+            $("#qrCodeDiv").show();
+        }).mouseout(function (){
+            $("#qrCodeDiv").hide();
+        });
+        $("#qrCodeDiv").mouseover(function (){
+            $("#qrCodeDiv").show();
+        }).mouseout(function (){
+            $("#qrCodeDiv").hide();
+        });
+    })
+</script>
 </body>
 </html>

@@ -3,8 +3,40 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gs.dao.TzbDAO">
+    <sql id="tzb_query_common">
+        from t_tzb tzb,t_sway s,t_borrowapply ba,t_jklx jk
+        where tzb.baid = ba.baid and ba.lxid = jk.lxid and ba.sid = s.sid
+    </sql>
 
+    <sql id="tzb_query_criteria">
+        <if test="query != null and query.state != null">
+            and ba.state = #{query.state}
+        </if>
+        <if test="query != null and query.uid != null">
+            and tzb.uid = #{query.uid}
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and tzb.time <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and tzb.time <![CDATA[<=]]> #{query.endTime}
+        </if>
+    </sql>
 
+    <select id="listPagerCriteria" resultType="com.gs.vo.TzbVO">
+       select tzb.money,tzb.cpname,tzb.nprofit,tzb.time,
+        ba.baid as baid,ba.sid as sid,ba.lxid as lxid,
+        ba.term as term,s.way as way,jk.lxname as lxname
+        <include refid="tzb_query_common" />
+        <include refid="tzb_query_criteria" />
+        order by tzb.time desc
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(tzb.tzid)
+        <include refid="tzb_query_common"/>
+        <include refid="tzb_query_criteria"/>
+    </select>
 
 
 
