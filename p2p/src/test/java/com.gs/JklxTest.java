@@ -25,7 +25,7 @@ public class JklxTest {
         Jklx jklx=new Jklx();
         jklx.setLxid(4L);
         jklx.setLxname("净值贷1");
-        jklx.setState(1);
+        jklx.setState((byte)1);
         jklxService.save(jklx);
     }
 
@@ -33,7 +33,7 @@ public class JklxTest {
     public void Jklxupdatetest(){
         Jklx jklx=new Jklx();
         jklx.setLxid(4L);
-        jklx.setState(0);
+        jklx.setState((byte)0);
         jklxService.updateState(jklx);
     }
 

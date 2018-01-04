@@ -24,7 +24,7 @@ public class BzTest {
     public void Bzsavetest(){
         Bz bz=new Bz();
         bz.setBzname("多金宝1");
-        bz.setState(0);
+        bz.setState((byte)0);
         bzService.save(bz);
     }
 
@@ -33,7 +33,7 @@ public class BzTest {
         Bz bz=new Bz();
         bz.setBzid(5L);
         bz.setBzname("多金宝2");
-        bz.setState(1);
+        bz.setState((byte)1);
         bzService.updateState(bz);
     }
 

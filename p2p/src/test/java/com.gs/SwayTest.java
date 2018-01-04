@@ -27,7 +27,7 @@ public class SwayTest {
         sway.setSid(1L);
         sway.setWay("先息后本");
         sway.setFw("先息后本");
-        sway.setState(0);
+        sway.setState((byte)0);
         swayService.save(sway);
     }
 
@@ -35,7 +35,7 @@ public class SwayTest {
     public void Swayupdatetest(){
         Sway sway=new Sway();
         sway.setSid(1L);
-        sway.setState(1);
+        sway.setState((byte)1);
         swayService.updateState(sway);
     }
 
