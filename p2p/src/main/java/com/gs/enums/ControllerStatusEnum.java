@@ -38,7 +38,41 @@ public enum ControllerStatusEnum {
     ROLE_USER_SAVE_SUCCESS(210,"ok","角色用户添加成功"),
     ROLE_USER_SAVE_FAIL(211,"fail","角色用户添加失败"),
     ROLE_USER_UPDATE_SUCCESS(212,"ok","角色用户修改成功"),
-    ROLE_USER_UPDATE_FAIL(213,"fail","角色用户修改失败");
+    ROLE_USER_UPDATE_FAIL(213,"fail","角色用户修改失败"),
+
+    BZ_SAVE_FAIL(1501, "error", "保存失败"),
+    BZ_SAVE_SUCCESS(1502, "ok", "保存成功"),
+    BZ_UPDATE_FAIL(1503, "error", "修改失败"),
+    BZ_UPDATE_SUCCESS(1504, "ok", "修改成功"),
+    BZ_DELETE_FAIL(1505, "error", "删除失败"),
+    BZ_DELETE_SUCCESS(1506, "ok", "删除成功"),
+    BZ_UPDATE_STATE_FAIL(1507, "error", "修改状态失败"),
+    BZ_UPDATE_STATE_SUCCESS(1508, "ok", "修改状态成功"),
+
+    JKLX_SAVE_FAIL(1601, "error", "保存失败"),
+    JKLX_SAVE_SUCCESS(1602, "ok", "保存成功"),
+    JKLX_UPDATE_FAIL(1603, "error", "修改失败"),
+    JKLX_UPDATE_SUCCESS(1604, "ok", "修改成功"),
+    JKLX_DELETE_FAIL(1605, "error", "删除失败"),
+    JKLX_DELETE_SUCCESS(1606, "ok", "删除成功"),
+    JKLX_UPDATE_STATE_FAIL(1607, "error", "修改状态失败"),
+    JKLX_UPDATE_STATE_SUCCESS(1608, "ok", "修改状态成功"),
+
+    SWAY_SAVE_FAIL(1701, "error", "保存失败"),
+    SWAY_SAVE_SUCCESS(1702, "ok", "保存成功"),
+    SWAY_UPDATE_FAIL(1703, "error", "修改失败"),
+    SWAY_UPDATE_SUCCESS(1704, "ok", "修改成功"),
+    SWAY_DELETE_FAIL(1705, "error", "删除失败"),
+    SWAY_DELETE_SUCCESS(1706, "ok", "删除成功"),
+    SWAY_UPDATE_STATE_FAIL(1707, "error", "修改状态失败"),
+    SWAY_UPDATE_STATE_SUCCESS(1708, "ok", "修改状态成功"),
+
+    DxModel_SAVE_FAIL(1801, "error", "保存失败"),
+    DxModel_SAVE_SUCCESS(1802, "ok", "保存成功"),
+    DxModel_UPDATE_FAIL(1803, "error", "修改失败"),
+    DxModel_UPDATE_SUCCESS(1804, "ok", "修改成功"),
+    DxModel_DELETE_FAIL(1805, "error", "删除失败"),
+    DxModel_DELETE_SUCCESS(1806, "ok", "删除成功");
 
 
     private Integer code;

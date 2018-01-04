@@ -2,53 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gs.dao.SwayDAO">
 
-    <select id="selectById" parameterType="java.lang.Integer">
-        select sid, way, fw, state from t_sway where sid = #{sid}
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+		select count(*) from t_sway
+		]]>
     </select>
 
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        delete from t_sway where sid = #{sid}
+    <insert id="save" parameterType="com.gs.bean.Sway">
+        <![CDATA[
+          insert into t_sway(sid,way,fw,state) values(#{sid},#{way},#{fw},#{state})
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="com.gs.bean.Sway">
+        <![CDATA[
+            update t_sway set way = #{way},fw = #{fw} and state = #{state} where sid = #{sid}
+        ]]>
+    </update>
+
+    <update id="updateState" parameterType="com.gs.bean.Sway">
+        <![CDATA[
+            update t_sway set state = #{state} where sid = #{sid}
+        ]]>
+    </update>
+
+    <delete id="removeById" parameterType="java.lang.Long">
+        <![CDATA[
+            delete from t_sway where sid = #{sid}
+        ]]>
     </delete>
 
-    <insert id="insert" parameterType="com.gs.bean.Sway">
-        insert into t_sway (sid, way, fw,state) values (#{sid}, #{way}, #{fw},#{state})
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.gs.bean.Sway">
-        insert into sway
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="sid != null">sid,</if>
-            <if test="way != null">way,</if>
-            <if test="fw != null">fw,</if>
-            <if test="state != null">state,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="sid != null">#{sid,jdbcType=INTEGER},</if>
-            <if test="way != null">#{way},</if>
-            <if test="fw != null">#{fw},</if>
-            <if test="state != null">#{state},</if>
-        </trim>
-    </insert>
-
-    <update id="updateByIdSelective" parameterType="com.gs.bean.Sway">
-        update sway
-        <set>
-            <if test="way != null">way = #{way},</if>
-            <if test="fw != null">fw = #{fw},</if>
-            <if test="state != null">state = #{state},</if>
-        </set>
-        where sid = #{sid}
-    </update>
-
-    <update id="updateById" parameterType="com.gs.bean.Sway">
-        update sway set way = #{way},fw = #{fw},state = #{state} where sid = #{sid}
-    </update>
-
-    <select id="listAll" resultType="com.gs.bean.Sway">
-    <![CDATA[
-        select * from t_sway;
+    <select id="getById" resultType="com.gs.bean.Sway" >
+        <![CDATA[
+        select * from t_sway where sid = #{sid}
     ]]>
     </select>
+
+    <select id="listPager" resultType="com.gs.bean.Sway">
+        <![CDATA[
+        select * from t_sway limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
+
     <!--
         select sid, way, fw, state from t_sway where sid = 2;
         delete from t_sway where sid = 1;

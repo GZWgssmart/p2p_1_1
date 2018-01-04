@@ -2,50 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gs.dao.JklxDAO">
 
-    <select id="selectById" parameterType="java.lang.Integer">
-        select lxid, lxname, state from t_jklx where lxid = #{lxid}
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+		select count(*) from t_jklx
+		]]>
     </select>
 
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        delete from t_jklx where lxid = #{lxid}
+    <insert id="save" parameterType="com.gs.bean.Jklx">
+        <![CDATA[
+          insert into t_jklx(lxid,lxname,state) values(#{lxid},#{lxname},#{state})
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="com.gs.bean.Jklx">
+        <![CDATA[
+            update t_jklx set lxname = #{lxname},state = #{state} where lxid = #{lxid}
+        ]]>
+    </update>
+
+    <update id="updateState" parameterType="com.gs.bean.Jklx">
+        <![CDATA[
+            update t_jklx set state = #{state} where lxid = #{lxid}
+        ]]>
+    </update>
+
+    <delete id="removeById" parameterType="java.lang.Long">
+        <![CDATA[
+            delete from t_jklx where lxid = #{lxid}
+        ]]>
     </delete>
 
-    <insert id="insert" parameterType="com.gs.bean.Jklx">
-        insert into t_jklx (lxid, lxname, state) values (#{lxid}, #{lxname}, #{state})
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.gs.bean.Jklx">
-        insert into t_jklx
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lxid != null">lxid,</if>
-            <if test="lxname != null">lxname,</if>
-            <if test="state != null">state,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="lxid != null">#{lxid},</if>
-            <if test="lxname != null">#{lxname},</if>
-            <if test="state != null">#{state},</if>
-        </trim>
-    </insert>
-
-    <update id="updateByIdSelective" parameterType="com.gs.bean.Jklx">
-        update t_jklx
-        <set>
-            <if test="lxname != null">lxname = #{lxname},</if>
-            <if test="state != null">state = #{state},</if>
-        </set>
-        where lxid = #{lxid}
-    </update>
-
-    <update id="updateById" parameterType="com.gs.bean.Jklx">
-        update t_jklx set lxname = #{lxname},state = #{state} where lxid = #{lxid}
-    </update>
+    <select id="listPager" resultType="com.gs.bean.Jklx">
+        <![CDATA[
+        select * from t_jklx limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
 
     <select id="listAll" resultType="com.gs.bean.Jklx">
         <![CDATA[
-        select * from t_jklx;
-    ]]>
+          select * from t_jklx where 1=1;
+        ]]>
     </select>
+
     <!--
         select lxid,lxname,state from t_jklx where lxid = 1；
         delete from t_jklx where lxid = 1；
