@@ -44,4 +44,10 @@ public class SwayTest {
         swayService.removeById(1L);
     }
 
+    @Test
+    public void BzListByPager(){
+        swayService.listPagerCriteria(2,2,null);
+    }
+
+
 }

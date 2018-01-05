@@ -44,4 +44,9 @@ public class DxModelTest {
         dxModelService.removeById(1L);
     }
 
+    @Test
+    public void  DxModelListByPager(){
+        dxModelService.listPagerCriteria(1,2,null);
+    }
+
 }

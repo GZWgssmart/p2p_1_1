@@ -2,6 +2,7 @@ package com.gs.dao;
 
 import com.gs.bean.DxModel;
 import com.gs.common.Pager;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,16 +14,15 @@ import java.util.List;
 @Repository
 public interface DxModelDAO extends BaseDAO{
 
-    void save(Object obj);
+    int countByPager();
 
+    void save(Object obj);
 
     void removeById(Long id);
 
-
     void update(Object obj);
 
-
-    List<Object> listPager(Pager pager);
+    List<Object> listPager(@Param("pager") Pager pager);
 
     Integer isRegPhone(String phone);
 }

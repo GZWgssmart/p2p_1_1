@@ -40,10 +40,20 @@ public class JklxServiceImpl extends AbstractBaseService implements JklxService 
     }
 
     @Override
-    public Pager listPager(int pageNo, int pageSize) {
+    public List<Object> listPager(Pager pager) {
+        return null;
+    }
+
+    @Override
+    public int countByPager() {
+        return jklxDAO.countByPager();
+    }
+
+    @Override
+    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
         Pager pager = new Pager(pageNo, pageSize);
         pager.setRows(jklxDAO.listPager(pager));
-        pager.setTotal(jklxDAO.count());
+        pager.setTotal((long) jklxDAO.countByPager());
         return pager;
     }
 

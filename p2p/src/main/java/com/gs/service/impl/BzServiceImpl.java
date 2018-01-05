@@ -33,4 +33,18 @@ public class BzServiceImpl extends AbstractBaseService implements BzService {
     public List<Object> listPager(Pager pager) {
         return null;
     }
+
+    @Override
+    public int countByPager() {
+        return bzDAO.countByPager();
+    }
+
+    @Override
+    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(bzDAO.listPager(pager));
+        pager.setTotal((long) bzDAO.countByPager());
+        return pager;
+    }
+
 }

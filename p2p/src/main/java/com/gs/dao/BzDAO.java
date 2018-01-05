@@ -19,4 +19,6 @@ public interface BzDAO extends BaseDAO{
     @Override
     List<Object> listPager(@Param("pager") Pager pager);
 
+    int countByPager();
+
 }

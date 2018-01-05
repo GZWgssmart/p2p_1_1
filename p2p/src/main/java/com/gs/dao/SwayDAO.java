@@ -16,5 +16,7 @@ public interface SwayDAO extends BaseDAO {
     List<Object> listPager(@Param("pager") Pager pager);
 
     void updateState(Sway sway);
+
+    int countByPager();
 }
 

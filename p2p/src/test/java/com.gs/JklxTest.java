@@ -42,4 +42,10 @@ public class JklxTest {
         jklxService.removeById(4L);
     }
 
+    @Test
+    public void BzListByPager(){
+        jklxService.listPagerCriteria(2,2,null);
+    }
+
+
 }

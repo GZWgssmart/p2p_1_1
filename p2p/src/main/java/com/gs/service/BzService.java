@@ -14,4 +14,6 @@ public interface BzService extends BaseService{
     void updateState(Bz bz);
 
     List<Object> listPager(Pager pager);
+
+    int countByPager();
 }

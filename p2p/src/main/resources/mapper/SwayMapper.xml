@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gs.dao.SwayDAO">
 
-    <select id="countCriteria" resultType="long">
+    <select id="countByPager" resultType="Integer">
         <![CDATA[
-		select count(*) from t_sway
+		select count(sid) from t_sway
 		]]>
     </select>
 

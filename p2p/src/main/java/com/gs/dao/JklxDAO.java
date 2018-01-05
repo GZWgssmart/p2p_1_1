@@ -18,4 +18,7 @@ public interface JklxDAO extends BaseDAO{
 
     void updateState(Jklx jklx);
 
+    int countByPager();
+
+
 }

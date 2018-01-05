@@ -42,4 +42,9 @@ public class BzTest {
         bzService.removeById(5L);
     }
 
+    @Test
+    public void BzListByPager(){
+        bzService.listPagerCriteria(2,2,null);
+    }
+
 }
