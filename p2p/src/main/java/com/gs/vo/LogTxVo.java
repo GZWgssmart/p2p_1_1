@@ -10,6 +10,7 @@ public class LogTxVo {
 
    private Long id;
    private String rname;
+   private String phone;
    private BigDecimal money;//提现金额
     private BigDecimal proce;
     private String cardno;
@@ -30,6 +31,14 @@ public class LogTxVo {
 
     public void setRname(String rname) {
         this.rname = rname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public BigDecimal getMoney() {

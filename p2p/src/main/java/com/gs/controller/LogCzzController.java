@@ -1,8 +1,6 @@
 package com.gs.controller;
 
 import com.gs.bean.LogCzz;
-import com.gs.bean.User;
-import com.gs.common.Constants;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.LogCzzService;
@@ -56,7 +54,7 @@ public class LogCzzController {
 
     @RequestMapping("select")
     @ResponseBody
-    public Pager selectLogCzzPage(HttpSession session, SearchVo param) {
+    public Pager selectLogCzzPage(HttpSession session, SearchVo param,Integer page, Integer rows) {
         Pager pager = new Pager();
         /*List<Object> logCzzVoList = new ArrayList<>();*/
         /*User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
@@ -66,11 +64,22 @@ public class LogCzzController {
         /*logCzzVoList = logCzzService.listAllById(1L);*/
 
         try {
-            User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
-            param.setUid(user.getUid());
-            pager =  logCzzService.listPagerCriteria(param.getCurPage(),8,param);
+            if(page != null && rows != null) {
+                pager = logCzzService.listPagerCriteria(page,rows,null);
+                return pager;
+            }else {
+                param.setUid(1L);
+                pager =  logCzzService.listPagerCriteria(param.getCurPage(), 8, param);
+                return pager;
+            }
         }catch (Exception e){e.printStackTrace();}
 
         return pager;
     }
+
+    @RequestMapping("backcz")
+    public String ShowBackTxshPage() {
+        return "/backpage/czList";
+    }
+
 }

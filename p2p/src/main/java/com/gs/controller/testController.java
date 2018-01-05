@@ -21,7 +21,7 @@ public class testController {
 
     @RequestMapping("testca")
     public String testca(){
-        return "backpage/cashList";
+        return "backpage/txList";
     }
 
 }

@@ -16,6 +16,8 @@ public class TxCheck {
 
     private Date date;//审核时间
 
+    private Byte state;
+
     public TxCheck(Long id, Long txid, Long huid, Byte isok, String excute, Date date) {
         this.id = id;
         this.txid = txid;
@@ -75,5 +77,13 @@ public class TxCheck {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
     }
 }

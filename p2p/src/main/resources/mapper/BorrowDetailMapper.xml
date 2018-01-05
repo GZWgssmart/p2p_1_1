@@ -4,6 +4,49 @@
 
 <mapper namespace="com.gs.dao.BorrowDetailDAO">
 
+    <sql id="common_from">
+        from t_borrowdetail b,t_borrowapply bo,t_sway s,t_bz z,t_jklx j
+    </sql>
+    <sql id="common_where">
+        where b.baid=bo.baid and bo.sid=s.sid and bo.bzid=z.bzid and bo.lxid=j.lxid
+        <if test="obj != null and obj.tt == 1 and obj.tt != ''">
+                and bo.term BETWEEN 1 and 3
+        </if>
+        <if test="obj != null and obj.tt == 2 and obj.tt != ''">
+                and bo.term BETWEEN 3 and 6
+        </if>
+        <if test="obj != null and obj.tt == 3 and obj.tt != ''">
+                and bo.term BETWEEN 6 and 9
+        </if>
+        <if test="obj != null and obj.tt == 4 and obj.tt != ''">
+                and bo.term &gt; 9
+        </if>
+        <if test="obj != null and obj.yy == 1 and obj.yy != ''">
+                and b.nprofit &lt;= 10
+        </if>
+        <if test="obj != null and obj.yy == 2 and obj.yy != ''">
+                and b.nprofit BETWEEN 10 and 15
+        </if>
+        <if test="obj != null and obj.yy == 3 and obj.yy != ''">
+                and b.nprofit BETWEEN 15 and 25
+        </if>
+        <if test="obj != null and obj.xx == 3 and obj.xx != ''">
+                and z.bzname ='多金宝'
+        </if>
+        <if test="obj != null and obj.xx == 4 and obj.xx != ''">
+                and z.bzname ='普金宝'
+        </if>
+        <if test="obj != null and obj.xx == 5 and obj.xx != ''">
+                and z.bzname ='恒金宝'
+        </if>
+        <if test="obj != null and obj.xx == 6 and obj.xx != ''">
+                and z.bzname ='新手标'
+        </if>
+        <if test="obj != null and obj.titles != ''">
+                and b.cpname = #{obj.titles}
+        </if>
+    </sql>
+
     <insert id="save" parameterType="borrowDetail">
         <selectKey keyColumn="bdid" keyProperty="bdid" resultType="long" order="AFTER">
             SELECT LAST_INSERT_ID();
@@ -43,6 +86,16 @@
         ]]>
     </update>
 
+    <select id="listPagerCriteria" resultType="com.gs.vo.investBorrowVo">
+        select bo.baid,z.bzname,b.cpname,s.way,bo.time,bo.deadline,bo.money,b.nprofit,bo.state,b.ytmoney,bo.term
+        <include refid="common_from"/>
+        <include refid="common_where"/>
+        limit #{pager.beginIndex}, #{pager.pageSize};
+    </select>
 
-
+    <select id="countCriteria" resultType="long">
+        select count(b.baid)
+        <include refid="common_from"/>
+        <include refid="common_where"/>
+    </select>
 </mapper>

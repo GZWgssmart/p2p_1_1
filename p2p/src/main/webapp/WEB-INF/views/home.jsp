@@ -44,10 +44,8 @@
 					   class="site-navi-tab">用户借款管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
 					   class="site-navi-tab">银行卡管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+				<li><a href="javascript:void(0);" src="<%=path%>/logczz/backcz"
 					   class="site-navi-tab">充值记录</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
-					   class="site-navi-tab">提现记录</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
 					   class="site-navi-tab">代金券与现金券管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
@@ -105,7 +103,7 @@
 					   class="site-navi-tab">发标审核</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/jkb/jkb_listPage"
 					   class="site-navi-tab">借款审核</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+				<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh"
 					   class="site-navi-tab">提现审核</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
 					   class="site-navi-tab">额度申请</a></li>

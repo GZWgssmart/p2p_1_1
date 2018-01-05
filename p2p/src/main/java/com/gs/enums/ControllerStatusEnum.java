@@ -23,6 +23,8 @@ public enum ControllerStatusEnum {
     USER_DEPOSIT_FAIL(204, "error", "提现失败"),
     USER_CANCL_SUCCESS(205, "ok", "取消成功"),
     USER_CANCL_FAIL(206, "error", "取消失败"),
+    USER_ADUIT_SUCCESS(207, "ok", "操作成功"),
+    USER_ADUIT_FAIL(208, "error", "操作失败"),
     USER_PASS_FAIL(206, "error", "密码错误"),
     JKB_SAVE_WAIT(10000, "ok", "我们将在1至3个工作日(国家节假日除外)之内完成审核"),
     JUR_SAVE_SUCCESS(108,"ok","权限导入成功"),

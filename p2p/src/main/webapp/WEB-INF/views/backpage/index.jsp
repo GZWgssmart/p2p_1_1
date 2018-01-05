@@ -24,7 +24,7 @@
 		<div class="easyui-accordion">
 			<div title="用户管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
-					<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
+					<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh"
 						   class="site-navi-tab">个人基本信息管理</a></li>
 					<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
 						   class="site-navi-tab">用户基本信息管理</a></li>
@@ -36,95 +36,91 @@
 			</div>
 			<div title="资金管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
-					<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+					<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
 						   class="site-navi-tab">用户资金管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">用户投资管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">用户借款管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">银行卡管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">充值记录</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">提现记录</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">代金券与现金券管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">用户体验金管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">充值提现每日任务明细</a></li>
 				</ul>
 			</div>
 			<div title="借贷管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">全部借款</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">债权转让</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">收款还款</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">逾期借款</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">借款额度</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">还款方式</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">标种类型</a></li>
 				</ul>
 			</div>
 			<div title="宣传管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">公司动态</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">媒体报道</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">短信模板管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">信息管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">合作伙伴</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">友情链接</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">站内信管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">banner管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">活动管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">运营数据管理</a></li>
 				</ul>
 			</div>
 
 			<div title="审核管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-						   class="site-navi-tab">发标审核</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-						   class="site-navi-tab">借款审核</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-						   class="site-navi-tab">提现审核</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-						   class="site-navi-tab">额度申请</a></li>
+					<li><a href="javascript:void(0);" src="<%=path%>" class="site-navi-tab">发标审核</a></li>
+					<li><a href="javascript:void(0);" src="<%=path%>" class="site-navi-tab">借款审核</a></li>
+					<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh" class="site-navi-tab">提现审核</a></li>
+					<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh" class="site-navi-tab">额度申请</a></li>
 				</ul>
 			</div>
 			<div title="认证管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">基本信息审核</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">基本资料认证</a></li>
 
 				</ul>
 			</div>
 			<div title="管理员管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">管理员列表</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">员工列表</a></li>
 				</ul>
 			</div>

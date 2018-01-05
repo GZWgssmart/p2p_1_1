@@ -1,6 +1,7 @@
 package com.gs.controller;
 
 import com.gs.bean.LogTx;
+import com.gs.bean.TxCheck;
 import com.gs.bean.User;
 import com.gs.bean.UserMoney;
 import com.gs.common.Constants;
@@ -8,6 +9,7 @@ import com.gs.common.EncryptUtils;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.LogTxService;
+import com.gs.service.TxCheckService;
 import com.gs.service.UserMoneyService;
 import com.gs.service.UserService;
 import com.gs.vo.ControllerStatusVO;
@@ -34,6 +36,8 @@ public class LogTxController {
     private LogTxService logTxService;
     @Autowired
     private UserMoneyService userMoneyService;
+    @Autowired
+    private TxCheckService txCheckService;
 
     @Autowired
     private UserService userService;
@@ -83,7 +87,7 @@ public class LogTxController {
     }
     @RequestMapping("select")
     @ResponseBody
-    public Pager SelectLogTxPage(HttpSession session, SearchVo param) {
+    public Pager SelectLogTxPage(HttpSession session, SearchVo param,Integer page, Integer rows) {
         Pager pager = new Pager();
         /*List<Object> logCzzVoList = new ArrayList<>();*/
         /*User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
@@ -93,9 +97,14 @@ public class LogTxController {
         /*logCzzVoList = logCzzService.listAllById(1L);*/
 
         try {
-            param.setUid(1L);
-            //param.setCurPage(1);
-            pager =  logTxService.listPagerCriteria(param.getCurPage(),8,param);
+            if(page != null && rows != null) {
+               pager = logTxService.listPagerCriteria(page,rows,param);
+                return pager;
+            }else {
+                param.setUid(1L);
+                pager =  logTxService.listPagerCriteria(param.getCurPage(),8,param);
+                return pager;
+            }
         }catch (Exception e){e.printStackTrace();}
 
         return pager;
@@ -115,5 +124,36 @@ public class LogTxController {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_CANCL_FAIL);
         }
         return statusVO;
+    }
+
+    @RequestMapping("backtxsh")
+    public String ShowBackTxshPage() {
+        return "/backpage/txList";
+    }
+
+    @RequestMapping("aduits")
+    @ResponseBody
+    public ControllerStatusVO auditTxSuccess(TxCheck txCheck) {
+        ControllerStatusVO statusVO = new ControllerStatusVO();
+        if(txCheck != null) {
+            logTxService.updateById(txCheck.getState(),txCheck.getTxid());
+            txCheck.setDate(Calendar.getInstance().getTime());
+            if(txCheck.getState().equals(Byte.valueOf("2"))) {
+                txCheck.setIsok(Byte.valueOf("2"));
+            }else if(txCheck.getState().equals(5)) {
+                txCheck.setIsok(Byte.valueOf("5"));
+            }
+            txCheckService.save(txCheck);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_ADUIT_SUCCESS);
+        }else {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_ADUIT_FAIL);
+        }
+        return statusVO;
+    }
+
+    @RequestMapping("aduitse")
+    @ResponseBody
+    public String auditTxError(Long id) {
+        return "";
     }
 }

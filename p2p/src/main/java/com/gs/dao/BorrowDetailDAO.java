@@ -1,6 +1,10 @@
 package com.gs.dao;
 
+import com.gs.common.Pager;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * BorrowDetailDAO接口，实现CRUD
@@ -11,5 +15,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface BorrowDetailDAO extends BaseDAO{
+    @Override
+    List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("obj") Object obj);
+    @Override
+    Long countCriteria(@Param("obj") Object obj);
     void updatePic(Object obj);
 }
