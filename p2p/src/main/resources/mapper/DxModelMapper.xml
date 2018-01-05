@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gs.dao.DxModelDAO">
 
+    <select id="countByPager" resultType="Integer">
+        <![CDATA[
+		select count(dxid) from t_dxmodel
+		]]>
+    </select>
+
     <delete id="removeById" parameterType="java.lang.Long">
         delete from t_dxmodel where dxid = #{dxid}
     </delete>
@@ -16,7 +22,7 @@
 
     <select id="listPager" resultType="com.gs.bean.DxModel">
         <![CDATA[
-        select * from t_dxmodel limit #{pager.beginIndex}, #{pager.pageSize}
+         select * from t_dxmodel limit #{pager.beginIndex}, #{pager.pageSize}
       ]]>
     </select>
 

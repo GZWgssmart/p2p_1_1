@@ -27,6 +27,7 @@ public interface JklxService extends BaseService{
     @Override
     void update(Object obj);
 
-    @Override
-    Pager listPager(int pageNo, int pageSize);
+    List<Object> listPager(Pager pager);
+
+    int countByPager();
 }
