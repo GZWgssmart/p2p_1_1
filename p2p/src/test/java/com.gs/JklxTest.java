@@ -43,7 +43,7 @@ public class JklxTest {
     }
 
     @Test
-    public void BzListByPager(){
+    public void JklxListByPager(){
         jklxService.listPagerCriteria(2,2,null);
     }
 

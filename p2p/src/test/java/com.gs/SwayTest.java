@@ -45,7 +45,7 @@ public class SwayTest {
     }
 
     @Test
-    public void BzListByPager(){
+    public void SwayListByPager(){
         swayService.listPagerCriteria(2,2,null);
     }
 
