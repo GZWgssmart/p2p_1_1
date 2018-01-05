@@ -5,11 +5,12 @@
 <mapper namespace="com.gs.dao.BorrowApplyDAO">
 
     <sql id="jkb_query_common">
-        from t_borrowapply ba,t_borrowdetail bd,t_bz bz,t_jklx j,t_sway s
+        from t_borrowapply ba,t_borrowdetail bd,t_bz bz,t_jklx j,t_sway s,t_usermoney um
         where ba.baid = bd.baid
         and ba.bzid = bz.bzid
         and ba.lxid = j.lxid
         and ba.sid = s.sid
+        and ba.uid = um.uid
     </sql>
 
     <sql id="jkb_query_criteria">
@@ -56,7 +57,7 @@
     <select id="listPagerCriteria" resultType="com.gs.vo.JkbVO">
         select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,
         bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
-        bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,
+        bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,bd.ytmoney as ytmoney,
         bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,
         bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way
         <include refid="jkb_query_common" />
@@ -69,11 +70,12 @@
         <include refid="jkb_query_criteria"/>
     </select>
     <select id="getById" parameterType="long" resultType="com.gs.vo.JkbVO">
-        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.deadline,
         bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
-        bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,
+        bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,bd.ytmoney as ytmoney,
         bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,
-        bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way
+        bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way,
+        um.kymoney as kymoney
         <include refid="jkb_query_common" />
         and ba.baid = #{baid}
     </select>

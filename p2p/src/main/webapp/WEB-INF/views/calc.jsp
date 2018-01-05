@@ -11,8 +11,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>理财工具箱—普金资本-安全可靠专注于供应链金融的国资背景P2P理财平台</title>
-	<meta name="keywords" content="普金资本，P2P汽车、房产融资，借贷，理财计划，投资理财">
-	<meta name="description" content="普金资本是目前中国P2P投资融资行业中最快速、最安全的网上理财平台，为借贷和民间投资用户提供安全、高效的理财服务。">
 	<link rel="stylesheet" href="<%=path %>/static/resources/front/v01/src/css/public.css">
 	<link rel="stylesheet" href="<%=path%>/static/css/aboutus.css">
 <link rel="icon" href="https://www.pujinziben.com/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon"></head>
@@ -66,20 +64,20 @@
 					<span class="input-type gar" id="garday" style="display: none;">
                             <i class="tool-arrow-1   "></i>
                             <span class="text mt15" style="margin-right:5px;">还款方式 </span>
-                        <div class=" re-payment-type-2" get-value="到期本息">
-                            到期本息
+                        <div class=" re-payment-type-2" get-value="一次性还本付息">
+                            一次性还本付息
                         </div>
                         </span>
 					<span class="input-type" id="gar">
                             <i class="tool-arrow-1"></i>
                             <span class="text mt15" style="margin-right:5px;">还款方式 </span>
-                            <div class="re-payment-type-1" get-value="每月付息">
-                                每月付息
+                            <div class="re-payment-type-1" get-value="先息后本">
+                                先息后本
                             </div>
                             <div class=" re-payment-type" style="display: none;">
                                 <dl>
-                                    <dt value="每月付息">每月付息</dt>
-                                    <dd value="到期本息">到期本息</dd>
+                                    <dt value="先息后本">先息后本</dt>
+                                    <dd value="一次性还本付息">一次性还本付息</dd>
                                     <dd value="等额本息">等额本息</dd>
                                 </dl>
                             </div>

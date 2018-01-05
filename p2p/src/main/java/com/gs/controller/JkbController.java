@@ -118,10 +118,6 @@ public class JkbController {
             }
         }
         borrowDetail.setBaid(baid);
-        System.out.println("fpic="+fpic);
-        System.out.println("ypic="+ypic);
-        System.out.println("qpic="+qpic);
-        System.out.println("tpic="+tpic);
         if (!fpic.equals("") || !ypic.equals("") || !qpic.equals("") || !tpic.equals("")) {
             System.out.println("ok");
             borrowDetailService.updatePic(borrowDetail);
@@ -193,20 +189,19 @@ public class JkbController {
         jkbQuery.setState((byte)1);
         return borrowApplyService.listPagerCriteria(page, rows, jkbQuery);
     }
-    //后台查看借款详情
-    @RequestMapping("/jkb_look/{baid}")
-    public String jkbLook(HttpSession session, HttpServletRequest request,@PathVariable("baid") Long baid){
-        System.out.println("baid="+baid);
-        BorrowApply borrowApply = (BorrowApply) borrowApplyService.getById(baid);
-        request.setAttribute("borrowApply",borrowApply);
-        return "jkb/jkb_listPage";
-    }
     //进入计算器页面
     @RequestMapping("/calc")
     public String Calc(){
         return "calc";
     }
 
+    //进入前台投资
+    @RequestMapping("/jkb_look/{baid}")
+    public String JkbLook(HttpServletRequest request,@PathVariable("baid") Long baid){
+        JkbVO jkb = (JkbVO) borrowApplyService.getById(baid);
+        request.setAttribute("jkb",jkb);
+        return "jkb/jkb_look";
+    }
 
 
 }

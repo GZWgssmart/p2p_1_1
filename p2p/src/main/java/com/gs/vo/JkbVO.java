@@ -1,5 +1,7 @@
 package com.gs.vo;
 
+import com.gs.bean.UserMoney;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -35,6 +37,8 @@ public class JkbVO {
 
     private Integer term;//借款期限
 
+    private Date deadline;//截止时间
+
     private Long bdid;
 
     private String fpic;//法人身份证照片
@@ -60,6 +64,12 @@ public class JkbVO {
     private String cpname;//产品名称
 
     private Date sqtime;//申请时间
+
+    private BigDecimal ytmoney;//已投金额
+
+    private Long uid;//借款人id
+
+    private BigDecimal kymoney;//用户资金表
 
     public Long getBaid() {
         return baid;
@@ -259,5 +269,37 @@ public class JkbVO {
 
     public void setExcuse(String excuse) {
         this.excuse = excuse;
+    }
+
+    public BigDecimal getYtmoney() {
+        return ytmoney;
+    }
+
+    public void setYtmoney(BigDecimal ytmoney) {
+        this.ytmoney = ytmoney;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
+
+    public BigDecimal getKymoney() {
+        return kymoney;
+    }
+
+    public void setKymoney(BigDecimal kymoney) {
+        this.kymoney = kymoney;
     }
 }

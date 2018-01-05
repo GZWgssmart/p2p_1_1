@@ -43,6 +43,11 @@
         select * from t_sway limit #{pager.beginIndex}, #{pager.pageSize}
     ]]>
     </select>
+    <select id="listAll" resultType="com.gs.bean.Sway">
+        <![CDATA[
+          select * from t_sway where 1=1
+        ]]>
+    </select>
 
     <!--
         select sid, way, fw, state from t_sway where sid = 2;

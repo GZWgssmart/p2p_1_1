@@ -1,4 +1,4 @@
-var getValue = "每月付息";
+var getValue = "先息后本";
 
 var options = {
     useEasing: true,
@@ -108,13 +108,13 @@ function initTypeCode() {
 
             $('#gar').show();
             $('#garday').hide();
-            getValue = "每月付息";
+            getValue = "先息后本";
 
         } else {
 
             $('#gar').hide();
             $('#garday').show();
-            getValue = "到期本息";
+            getValue = "一次性还本付息";
         }
 
     });

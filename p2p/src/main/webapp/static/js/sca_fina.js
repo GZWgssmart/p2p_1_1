@@ -32,7 +32,7 @@ function calculate() {
     
     var str = "<tr><th>期数</th><th>回款本息</th><th>回款本金</th><th>利息</th><th>待收本息</th></tr>";
 
-    if (getValue == "每月付息") {
+    if (getValue == "先息后本") {
         
         var mon = 0;
         for (var j = 1; j < parseInt(payments) + 1; j++) {
@@ -69,7 +69,7 @@ function calculate() {
         }
         
 
-    } else if (getValue == "到期本息") {
+    } else if (getValue == "一次性还本付息") {
 
         if (type == 1) {  //天数
 
@@ -130,15 +130,15 @@ function calculate() {
             totalAmount += Number(tempAmount);
 
             str += "<tr>";
-            str += "<td>" + (index) + "</ td>"//期数	
-            str += "<td>" + "￥" + (Number(tempAmountAndInterest)).toFixed2() + "</ td>"; //	每期还款本息
-            str += "<td>" + "￥" + (Number(tempAmount)).toFixed2() + "</ td>"; //每期还款本金
-            str += "<td>" + "￥" + (Number(tempInterestAmount)).toFixed2() + "</ td>"; //利息
+            str += "<td>" + (index) + "</td>"//期数
+            str += "<td>" + "￥" + (Number(tempAmountAndInterest)).toFixed2() + "</td>"; //	每期还款本息
+            str += "<td>" + "￥" + (Number(tempAmount)).toFixed2() + "</td>"; //每期还款本金
+            str += "<td>" + "￥" + (Number(tempInterestAmount)).toFixed2() + "</td>"; //利息
 
             if (index == payments) {
-                str += "<td>" + "￥0.00</ td>"; //余额
+                str += "<td>" + "￥0.00</td>"; //余额
             } else {
-                str += "<td>" + "￥" + (interestAmount + principal - Number(tempAmountAndInterest * index)).toFixed2() + "</ td>"; //余额
+                str += "<td>" + "￥" + (interestAmount + principal - Number(tempAmountAndInterest * index)).toFixed2() + "</td>"; //余额
             }
             str += "</tr>";
 
@@ -157,7 +157,7 @@ function calculate() {
         c3 = Number(tempAmountAndInterest).toFixed2();
     }
 
-    if (getValue == "到期本息") {
+    if (getValue == "一次性还本付息") {
         var c11 = new CountUp("c1", 0, c1, 2, 1, options);
         var c22 = new CountUp("c2", 0, c2, 2, 1, options);
         c11.start();
@@ -180,8 +180,13 @@ function count(cc1,cc2,cc3) {
 
 //解决js计算bug
 function accDiv(arg1, arg2) {
-    var t1 = 0, t2 = 0, r1, r2;    try { t1 = arg1.toString().split(".")[1].length } catch (e) { }    try { t2 = arg2.toString().split(".")[1].length } catch (e) { }    with (Math) {
-        r1 = Number(arg1.toString().replace(".", ""))        r2 = Number(arg2.toString().replace(".", ""))        return (r1 / r2) * pow(10, t2 - t1);
+    var t1 = 0, t2 = 0, r1, r2;
+    try { t1 = arg1.toString().split(".")[1].length } catch (e) { }
+    try { t2 = arg2.toString().split(".")[1].length } catch (e) { }
+    with (Math) {
+        r1 = Number(arg1.toString().replace(".", ""))
+        r2 = Number(arg2.toString().replace(".", ""))
+        return (r1 / r2) * pow(10, t2 - t1);
     }
 }
 
