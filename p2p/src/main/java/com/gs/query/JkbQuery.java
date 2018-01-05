@@ -10,10 +10,23 @@ import java.math.BigDecimal;
  * @version 1.0
  */
 public class JkbQuery {
+    private Long uid;
     private Long bzid;
     private Integer term;
     private BigDecimal nprofit;
     private String cpname;
+    private Byte state;
+    private String startTime;
+    private String endTime;
+    private int curPage;
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
 
     public Long getBzid() {
         return bzid;
@@ -45,5 +58,37 @@ public class JkbQuery {
 
     public void setCpname(String cpname) {
         this.cpname = cpname;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public int getCurPage() {
+        return curPage;
+    }
+
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
     }
 }

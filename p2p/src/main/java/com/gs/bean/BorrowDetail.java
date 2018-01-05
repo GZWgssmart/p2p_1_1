@@ -1,6 +1,7 @@
 package com.gs.bean;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 //借款详情表
 public class BorrowDetail {
@@ -24,17 +25,15 @@ public class BorrowDetail {
 
     private String guarantee;//保障措施
 
-    private BigDecimal money;//金额
+    private BigDecimal ytmoney;//已投资金额
 
     private BigDecimal nprofit;//年化收益
-
-    private String way;//收益方式
 
     private String cpname;//产品名称
 
     private Long baid;//借款人id，baid为t_borrowapply表id
 
-    private Long int1;
+    private Date sqtime;//申请时间
 
     private String str1;
 
@@ -118,12 +117,12 @@ public class BorrowDetail {
         this.guarantee = guarantee;
     }
 
-    public BigDecimal getMoney() {
-        return money;
+    public BigDecimal getYtmoney() {
+        return ytmoney;
     }
 
-    public void setMoney(BigDecimal money) {
-        this.money = money;
+    public void setYtmoney(BigDecimal ytmoney) {
+        this.ytmoney = ytmoney;
     }
 
     public BigDecimal getNprofit() {
@@ -132,14 +131,6 @@ public class BorrowDetail {
 
     public void setNprofit(BigDecimal nprofit) {
         this.nprofit = nprofit;
-    }
-
-    public String getWay() {
-        return way;
-    }
-
-    public void setWay(String way) {
-        this.way = way;
     }
 
     public String getCpname() {
@@ -158,12 +149,12 @@ public class BorrowDetail {
         this.baid = baid;
     }
 
-    public Long getInt1() {
-        return int1;
+    public Date getSqtime() {
+        return sqtime;
     }
 
-    public void setInt1(Long int1) {
-        this.int1 = int1;
+    public void setSqtime(Date sqtime) {
+        this.sqtime = sqtime;
     }
 
     public String getStr1() {

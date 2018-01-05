@@ -95,10 +95,9 @@
             </ul>
             <div class="navbar icon icon-self">我的管理</div>
             <ul class="sub-nav">
-                <li><a href="#invest" target="mainFrame">投资管理</a></li>
-                <li><a href="#claimm" target="mainFrame">债权管理</a></li>
-                <li><a href="#claimb" target="mainFrame">债权购买</a></li>
-                <li><a href="#loan" target="mainFrame">借款管理</a></li>
+                <li><a href="<%=path %>/tzb/myTzb" target="mainFrame">投资管理</a></li>
+                <li><a href="<%=path %>/jkb/jkb_page">申请借款</a></li>
+                <li><a href="<%=path %>/jkb/my_jkb" target="mainFrame">借款管理</a></li>
             </ul>
             <div class="navbar icon icon-settings">账户设置</div>
             <ul class="sub-nav">
@@ -125,7 +124,7 @@
         <ul>
             <li><a target="_blank" href="tencent://message/?uin=3036302675&amp;Site=&amp;Menu=yes" class="sidebar-qq"></a></li>
             <li><a href="javascript:;" class="sidebar-wx"></a></li>
-            <li><a href="https://www.pujinziben.com/calculator.html" class="sidebar-cl"></a></li>
+            <li><a href="<%=path%>/jkb/calc" class="sidebar-cl"></a></li>
             <li><a href="javascript:;" class="wenquan" title="填写即送5元代金券"></a></li>
             <li><a href="#top" class="sidebar-top"></a></li>
         </ul>

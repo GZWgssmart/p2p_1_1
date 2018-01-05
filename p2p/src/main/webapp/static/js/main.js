@@ -200,6 +200,86 @@ function getQueryParams(dataGridId, formId) {
     return params;
 }
 
+function getStatus(borrow){
+    if(borrow == 1){
+        return '待审核';
+    }else if(borrow == 2){
+        return '审核成功';
+    }else if(borrow == 3){
+        return '已取消';
+    }else if(borrow == 4){
+        return '转账中';
+    }else if(borrow == 5){
+        return '审核失败';
+    }
+};
+
+function Mack(){
+
+        var str = '<button class="button button1" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',2);">审核成功</button>';
+            str += '<button class="button button2" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',4);">转账</button>';
+            str += '<button class="button button3" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',5);">审核失败</button>';
+    return str;
+}
+
+function MackCommonSuccess(addWin,url,formId,listId){
+    $.post(contextPath+url,
+            $('#'+formId).serialize(),
+            function (data) {
+                if(data.result == "ok") {
+                    closeWin(addWin);
+                    showInfoAlert(data.message);
+                    $("#" + listId).datagrid("reload");
+                }else{
+                    showInfoAlert(data.message);
+                }
+            },
+            "json"
+    );
+}
+
+
+
+function openEditwin(winId, list,statu) {
+    var row = $('#'+list).datagrid("getSelected");
+    if(row) {
+        $('#rname').textbox("setValue",row.rname);
+        $('#txid').val(row.id);
+        $('#statu').val(statu);
+        if(statu == 2 || statu == 5) {
+            openWin(winId);
+        }else if(statu == 4) {
+            MackCommonSuccess('addWin','/logtx/aduits','addForm','list');
+        }
+    }else {
+        showInfoAlert("请选择需要审核的数据！");
+    }
+
+}
+
+
+function getCzStatus(borrow){
+    if(borrow == 1){
+        return '成功';
+    }else if(borrow == 2){
+        return '失败';
+    }
+}
+
+//转换成Data类型 parser:myparser,
+/*function myparser(s){
+    if (!s) return new Date();
+    var ss = (s.split('-'));
+    var y = parseInt(ss[0],10);
+    var m = parseInt(ss[1],10);
+    var d = parseInt(ss[2],10);
+    if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+        return new Date(y,m-1,d);
+    } else {
+        return new Date();
+    }
+}*/
+//时间格式化
 function formatDate(value) {
     if (value == undefined || value == null || value == '') {
         return "";

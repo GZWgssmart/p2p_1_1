@@ -14,7 +14,10 @@
 
     <sql id="common_form">
          from t_logczz l,t_user u
-        where l.uid = u.uid and u.uid=#{obj.uid}
+        where l.uid = u.uid
+        <if test="obj != null and obj.uid !=null ">
+            and u.uid=#{obj.uid}
+        </if>
     </sql>
 
     <insert id="save" parameterType="com.gs.bean.LogCzz">
@@ -38,7 +41,7 @@
     </select>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.LogCzzVo">
-          select l.id,u.rname,l.money,l.bankcard,l.banktype,l.date,l.state
+          select l.id,u.rname,u.phone,l.money,l.bankcard,l.banktype,l.date,l.state
         <include refid="common_form"/>
          <include refid="common_where"/>
          limit #{pager.beginIndex}, #{pager.pageSize};

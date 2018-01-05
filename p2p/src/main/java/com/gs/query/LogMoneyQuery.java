@@ -10,8 +10,19 @@ import java.util.Date;
  * @version 1.0
  */
 public class LogMoneyQuery {
+    private Long uid;
     private Byte type;
-    private Date date;//时间
+    private String startTime;
+    private String endTime;
+    private int curPage;
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
 
     public Byte getType() {
         return type;
@@ -21,11 +32,27 @@ public class LogMoneyQuery {
         this.type = type;
     }
 
-    public Date getDate() {
-        return date;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public int getCurPage() {
+        return curPage;
+    }
+
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
     }
 }

@@ -1,10 +1,16 @@
 package com.gs.controller;
 
-import com.gs.common.SendCode;
-import com.gs.service.UserService;
+import com.gs.bean.DxModel;
+import com.gs.common.Pager;
+import com.gs.enums.ControllerStatusEnum;
+import com.gs.service.DxModelService;
+import com.gs.vo.ControllerStatusVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,18 +22,71 @@ import javax.servlet.http.HttpSession;
  * @version 1.0
  */
 @Controller
-@RequestMapping("/reAndLo")
+@RequestMapping("/dxModel")
 public class DxModelController {
 
     @Autowired
-    private UserService userService;
+    private DxModelService dxModelService;
 
-    @RequestMapping("reAndLo")
-    public int index(HttpSession session,String phone){
-       int moblecode =  SendCode.sendsms(phone);
-        session.setAttribute("moble", moblecode);
-        return moblecode;
+    @RequestMapping("pager")
+    @ResponseBody
+    public Pager pager(int pageIndex, int pageSize) {
+        return dxModelService.listPager(pageIndex,pageSize);
     }
 
+    @RequestMapping("dxModel")
+    public String init() {
+        return "dxModel/dxModel";
+    }
 
+    @RequestMapping("save")
+    @ResponseBody
+    public ControllerStatusVO save(DxModel dxModel){
+        ControllerStatusVO statusVO = null;
+        try {
+            dxModelService.save(dxModel);
+        } catch (RuntimeException e) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_SAVE_FAIL);
+        }
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_SAVE_SUCCESS);
+        return statusVO;
+    }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public ControllerStatusVO update(DxModel dxModel){
+        ControllerStatusVO statusVO = null;
+        try {
+            dxModelService.update(dxModel);
+        } catch (RuntimeException e) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_UPDATE_FAIL);
+        }
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_UPDATE_SUCCESS);
+        return statusVO;
+    }
+
+    @RequestMapping("delete/{dxid}")
+    @ResponseBody
+    public ControllerStatusVO delete( @PathVariable("dxid") Long id){
+        ControllerStatusVO statusVO = null;
+        try {
+            dxModelService.removeById(id);
+        } catch (RuntimeException e) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_DELETE_FAIL);
+        }
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_DELETE_SUCCESS);
+        return statusVO;
+    }
+
+    @RequestMapping("findDxModel/{dxid}")
+    @ResponseBody
+    public DxModel findBz(@PathVariable("dxid") Long dxid){
+        return  (DxModel) dxModelService.getById(dxid);
+    }
+
+    @RequestMapping(value = "/checkPhone",method = RequestMethod.POST)
+    public String checkPhone(String phone){
+
+        return "";
+    }
 }

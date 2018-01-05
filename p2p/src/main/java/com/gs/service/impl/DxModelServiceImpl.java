@@ -1,11 +1,14 @@
 package com.gs.service.impl;
 
+import com.gs.common.Pager;
 import com.gs.dao.BaseDAO;
 import com.gs.dao.DxModelDAO;
 import com.gs.service.AbstractBaseService;
 import com.gs.service.DxModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/12/21
@@ -19,4 +22,47 @@ public class DxModelServiceImpl extends AbstractBaseService implements DxModelSe
         super.setBaseDAO(dxModelDAO);
         this.dxModelDAO = dxModelDAO;
     }
+
+    @Override
+    public void save(Object obj) {
+        super.save(obj);
+    }
+
+    @Override
+    public void remove(Object obj) {
+        super.remove(obj);
+    }
+
+    @Override
+    public void update(Object obj) {
+        super.update(obj);
+    }
+
+    @Override
+    public List<Object> listPager(Pager pager) {
+        return null;
+    }
+
+    @Override
+    public int countByPager() {
+        return dxModelDAO.countByPager();
+    }
+
+    @Override
+    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
+//        Pager pager = new Pager(pageNo, pageSize);
+//        pager.setRows(dxModelDAO.listPager(pager));
+//        pager.setTotal((long) dxModelDAO.countByPager());
+//        return pager;
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(dxModelDAO.listPager(pager));
+        pager.setTotal((long) dxModelDAO.countByPager());
+        return pager;
+    }
+
+    public Integer isRegPhone(String phone) {
+        return dxModelDAO.isRegPhone(phone);
+    }
+
+
 }

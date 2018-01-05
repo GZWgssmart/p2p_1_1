@@ -8,6 +8,9 @@ public class SearchVo {
     private String endTime;
     private int curPage;
     private Long uid;
+    private String rname;
+    private String phone;
+    private Byte state;
 
     public String getStartTime() {
         return startTime;
@@ -39,5 +42,29 @@ public class SearchVo {
 
     public void setUid(Long uid) {
         this.uid = uid;
+    }
+
+    public String getRname() {
+        return rname;
+    }
+
+    public void setRname(String rname) {
+        this.rname = rname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
     }
 }

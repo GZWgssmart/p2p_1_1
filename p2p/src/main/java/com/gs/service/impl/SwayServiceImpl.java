@@ -1,5 +1,7 @@
 package com.gs.service.impl;
 
+import com.gs.bean.Sway;
+import com.gs.common.Pager;
 import com.gs.dao.BaseDAO;
 import com.gs.dao.SwayDAO;
 import com.gs.service.AbstractBaseService;
@@ -20,5 +22,47 @@ public class SwayServiceImpl extends AbstractBaseService implements SwayService 
     public void setSwayDAO(SwayDAO swayDAO) {
         super.setBaseDAO(swayDAO);
         this.swayDAO = swayDAO;
+    }
+
+    @Override
+    public void updateState(Sway sway) {
+        swayDAO.updateState(sway);
+    }
+
+    @Override
+    public void save(Object obj) {
+        super.save(obj);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        super.removeById(id);
+    }
+
+    @Override
+    public void update(Object obj) {
+        super.update(obj);
+    }
+
+    @Override
+    public List<Object> listPager(Pager pager) {
+        return null;
+    }
+
+    @Override
+    public int countByPager() {
+        return swayDAO.countByPager();
+    }
+
+    @Override
+    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(swayDAO.listPager(pager));
+        pager.setTotal((long) swayDAO.countByPager());
+        return pager;
+    }
+    @Override
+    public Long countCriteria(Object obj) {
+        return null;
     }
 }

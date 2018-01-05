@@ -9,6 +9,7 @@ import java.util.Date;
 public class LogCzzVo {
     private Long id;
     private String rname;
+    private String phone;
     private BigDecimal money;//金额
     private String bankcard;//银行卡号
     private String banktype;//所属银行
@@ -29,6 +30,14 @@ public class LogCzzVo {
 
     public void setRname(String rname) {
         this.rname = rname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public BigDecimal getMoney() {

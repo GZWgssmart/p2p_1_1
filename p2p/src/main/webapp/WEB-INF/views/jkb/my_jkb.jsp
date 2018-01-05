@@ -31,134 +31,117 @@
 <div class="account-right" style="width: 100%;height: 951px;">
     <div class="account-right-nav">
         <div class="sub-a-nav">
-            <a href="javascript:void(0);" class="active" id="invest-manage-Link">投资管理</a>
+            <a href="javascript:void(0);" class="active" id="loanLink">借款管理</a>
         </div>
-        <em class="em-line" style="left: 0px;"></em>
+        <em class="em-line"></em>
     </div>
-    <div class="account-content" id="invest" style="display: block;">
+    <div class="account-content" id="loan">
         <div class="sub-nav">
-            <a href="javascript:;" class="active" id="invest-s1">成功借出</a>
-            <a href="javascript:;" id="invest-s2" class="">招标中的借款</a>
-            <a href="javascript:;" id="invest-s3" class="">回款中的借款</a>
-            <a href="javascript:;" id="invest-s4" class="">已回收的借款</a>
+            <a href="javascript:;" class="active" id="loan-s">审核中</a>
+            <a href="javascript:;" class="" id="loan-l">申请失败</a>
+            <a href="javascript:;" id="loan-z" class="">招标中</a>
+            <a href="javascript:;" id="loan-c" class="">成功</a>
         </div>
-        <div class="account-form cl">
-            <input type="text" class="date icon icon-date" autocomplete="off" id="invest-startDate" readonly="readonly">
+        <div class="account-form account-form-manage cl" style="display: block;">
+            <lable class="lable-long">发布时间：</lable>
+            <input type="text" class="date icon icon-date" id="startDate" readonly="readonly">
             <p class="text">至</p>
-            <input type="text" class="date icon icon-date" autocomplete="off" id="invest-endDate" readonly="readonly">
+            <input type="text" class="date icon icon-date" id="endDate" readonly="readonly">
+            <input type="hidden" id="state" readonly="readonly">
             <!-- <input type="text" placeholder="请输入关键字搜索" class="search icon icon-search" /> -->
-            <button type="button" class="search" id="investSearch">搜索</button>
+            <button type="button" class="search" id="loanSearch">搜索</button>
         </div>
-        <div class="invest-listData invest-listData1" style="display: block;">
-            <ul class="investData list-box">
-                <li class="title">
+
+        <div class="loan-listData loan-listData1" style="display: block;">
+            <ul class="loanData list-box">
+                <li class="title title1">
                     <div class="children0">标题</div>
                     <div class="children1">类型</div>
-                    <div class="children2">年利率</div>
-                    <div class="children3">期限</div>
-                    <div class="children4">还款方式</div>
-                    <div class="children5">投资金额</div>
-                    <div class="children6">投资时间</div>
+                    <div class="children2">还款方式</div>
+                    <div class="children3">金额（元）</div>
+                    <div class="children4">年利率</div>
+                    <div class="children5">期限（月）</div>
+                    <div class="children6">申请时间</div>
+                    <div class="children7">状态</div>
                 </li>
             </ul>
-            <ul class="investData listData"><li class="none" style="line-height: 60px;">没有符合条件的内容！</li></ul>
+            <ul class="loanData listData"></ul>
             <ul class="paging"></ul>
         </div>
-        <div class="invest-listData invest-listData2" style="display: none;">
-            <ul class="investData list-box">
-                <li class="title">
+
+        <div class="loan-listData loan-listData2" style="display: none;">
+            <ul class="loanData list-box">
+                <li class="title title1">
                     <div class="children0">标题</div>
                     <div class="children1">类型</div>
-                    <div class="children2">年利率</div>
-                    <div class="children3">期限</div>
-                    <div class="children4">还款方式</div>
-                    <div class="children5">发布时间</div>
-                    <div class="children6">投资金额</div>
-                    <div class="children7">投资时间</div>
+                    <div class="children2">审核理由</div>
+                    <div class="children3">还款方式</div>
+                    <div class="children4">金额（元）</div>
+                    <div class="children5">年利率</div>
+                    <div class="children6">申请时间</div>
+                    <div class="children7">状态</div>
                 </li>
             </ul>
-            <ul class="investData listData"><li class="none" style="line-height: 60px;">没有符合条件的内容！</li></ul>
+            <ul class="loanData listData"></ul>
             <ul class="paging"></ul>
         </div>
-        <div class="invest-listData invest-listData3" style="display: none;">
-            <ul class="investData list-box">
-                <li class="title">
-                    <div class="children0">标题</div>
-                    <div class="children1">类型</div>
-                    <div class="children2">年利率</div>
-                    <div class="children3">期限</div>
-                    <div class="children4">投资金额</div>
-                    <div class="children5">已收金额</div>
-                    <div class="children6">还款时间</div>
-                    <div class="children7">操作</div>
-                </li>
-            </ul>
-            <ul class="investData listData"><li class="none" style="line-height: 60px;">没有符合条件的内容！</li></ul>
-            <ul class="paging"></ul>
-        </div>
-        <div class="invest-listData invest-listData4" style="display: none;">
-            <ul class="investData list-box">
-                <li class="title">
-                    <div class="children0">标题</div>
-                    <div class="children1">类型</div>
-                    <div class="children2">年利率</div>
-                    <div class="children3">期限</div>
-                    <div class="children4">投资金额</div>
-                    <div class="children5">已收金额</div>
-                    <div class="children6">发布时间</div>
-                    <div class="children7">操作</div>
-                </li>
-            </ul>
-            <ul class="investData listData"><li class="none" style="line-height: 60px;">没有符合条件的内容！</li></ul>
-            <ul class="paging"></ul>
-        </div>
+
     </div>
 
-    <div class="popup payment-detail">
-        <p class="title left">还款明细</p>
-        <a href="javascript:void(0);" class="close icon icon-close"></a>
-        <div class="popup-list">
-            <ul class="payment-detail-data list-box">
-                <li class="">
-                    <div class="children0">期数</div>
-                    <div class="children1">还款日期</div>
-                    <div class="children2">应收本金</div>
-                    <div class="children3">应收利息</div>
-                    <div class="children4">剩余本金</div>
-                    <div class="children5">利息管理费</div>
-                    <div class="children6">是否逾期</div>
-                    <div class="children7">逾期天数</div>
-                    <div class="children8">逾期罚息</div>
-                    <div class="children9">已收本息</div>
-                    <div class="children10">还款人</div>
-                </li>
-            </ul>
-            <ul class="listData">
-            </ul>
-            <ul class="paging">
-            </ul>
-        </div>
-    </div>
 </div>
 <!-- end -->
-<form name="paginationoptions" style="display: none">
-    <input id="typecss" value="${type}">
-    <p><label for="items_per_page">每页显示的列表数：</label><input type="text" value="10" name="items_per_page" id="items_per_page" class="numeric"/></p>
-    <p><label for="num_display_entries">分页链接显示数：</label><input type="text" value="10" name="num_display_entries" id="num_display_entries" class="numeric"/></p>
-    <p><label>起始与结束点的数目：</label><input type="text" value="2" name="num_edge_entries" id="num_edge_entries" class="numeric"/></p>
-    <p><label for="prev_text">“上一页”标签：</label><input type="text" value="上一页" name="prev_text" id="prev_text"/></p>
-    <p><label for="next_text">“下一页”标签：</label><input type="text" value="下一页" name="next_text" id="next_text"/></p>
-    <input type="button" id="setoptions" value="设置选项" />
-</form>
+
 
 </body>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/jquery.pagination.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/page.js"></script>
-<script>
-    var localObj = window.location;
-    var contextPath = localObj.pathname.split("/")[1];
-    var basePath = localObj.protocol + "//" + localObj.host + "/"+ contextPath;
+<script type="text/javascript" src="<%=path%>/static/js/publlic.js"></script>
 
+
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="<%=path%>/static/js/my_jkb.js"></script>
+<script>
+
+    $(function(){
+        var startDate = $('#startDate').val();
+        var endDate = $('#endDate').val();
+        var state = $("#state").val();
+        $('#startDate').datepicker({format:'yyyy-mm-dd'}).on('changeDate',function(){});
+        $('#endDate').datepicker({format:'yyyy-mm-dd'}).on('changeDate',function(){});
+            //初始化数据查询
+            initIpayData();
+
+        $("#loan-s").bind("click",function(){
+            state = 1;
+            $(".sub-nav a").removeClass("active");
+            $(this).addClass("active");
+            initIpayData(startDate,endDate,state);
+            $(".loan-listData1").show();
+            $(".loan-listData2").hide();
+        });
+        $("#loan-z").bind("click",function(){
+            state = 3;
+            $(".sub-nav a").removeClass("active");
+            $(this).addClass("active");
+            initIpayData(startDate,endDate,state);
+            $(".loan-listData1").show();
+            $(".loan-listData2").hide();
+        });
+        $("#loan-c").bind("click",function(){
+            state = 4;
+            $(".sub-nav a").removeClass("active");
+            $(this).addClass("active");
+            initIpayData(startDate,endDate,state);
+            $(".loan-listData1").show();
+            $(".loan-listData2").hide();
+        });
+        $("#loan-l").bind("click",function(){
+            state = 2;
+            $(".sub-nav a").removeClass("active");
+            $(this).addClass("active");
+            initIpayData2(startDate,endDate,state);
+            $(".loan-listData2").show();
+            $(".loan-listData1").hide();
+        });
+    });
 </script>
 </html>

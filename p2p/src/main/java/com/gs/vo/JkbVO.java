@@ -25,7 +25,13 @@ public class JkbVO {
 
     private String lxname;//类型名称
 
+    private Long sid;//还款方式id
+
+    private String way;//还款方式
+
     private Byte state;//审核状态（1表示为审核，2表示已审核）
+
+    private String excuse;//审核理由
 
     private Integer term;//借款期限
 
@@ -51,9 +57,9 @@ public class JkbVO {
 
     private BigDecimal nprofit;//年化收益
 
-    private String way;//收益方式
-
     private String cpname;//产品名称
+
+    private Date sqtime;//申请时间
 
     public Long getBaid() {
         return baid;
@@ -109,6 +115,22 @@ public class JkbVO {
 
     public void setLxname(String lxname) {
         this.lxname = lxname;
+    }
+
+    public Long getSid() {
+        return sid;
+    }
+
+    public void setSid(Long sid) {
+        this.sid = sid;
+    }
+
+    public String getWay() {
+        return way;
+    }
+
+    public void setWay(String way) {
+        this.way = way;
     }
 
     public Byte getState() {
@@ -215,19 +237,27 @@ public class JkbVO {
         this.nprofit = nprofit;
     }
 
-    public String getWay() {
-        return way;
-    }
-
-    public void setWay(String way) {
-        this.way = way;
-    }
-
     public String getCpname() {
         return cpname;
     }
 
     public void setCpname(String cpname) {
         this.cpname = cpname;
+    }
+
+    public Date getSqtime() {
+        return sqtime;
+    }
+
+    public void setSqtime(Date sqtime) {
+        this.sqtime = sqtime;
+    }
+
+    public String getExcuse() {
+        return excuse;
+    }
+
+    public void setExcuse(String excuse) {
+        this.excuse = excuse;
     }
 }

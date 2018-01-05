@@ -2,44 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gs.dao.BzDAO">
 
-    <select id="selectById" parameterType="java.lang.Integer">
-        select bzid, bzname, state from t_bz where bzid = #{bzid}
+    <select id="countByPager" resultType="Integer">
+        <![CDATA[
+		select count(bzid) from t_bz
+		]]>
     </select>
 
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        delete from t_bz where bzid = #{bzid}
+    <insert id="save" parameterType="com.gs.bean.Bz">
+        <![CDATA[
+          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},#{state})
+        ]]>
+    </insert>
+
+    <delete id="removeById" parameterType="java.lang.Long">
+        <![CDATA[
+            delete from t_bz where bzid = #{bzid}
+        ]]>
     </delete>
 
-    <insert id="insert" parameterType="com.gs.bean.Bz">
-        insert into t_bz (bzid, bzname, state) values (#{bzid}, #{bzname}, #{state})
-    </insert>
+    <update id="update" parameterType="com.gs.bean.Bz">
 
-    <insert id="insertSelective" parameterType="com.gs.bean.Bz">
-        insert into t_bz
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="bzid != null">bzid,</if>
-            <if test="bzname != null">bzname,</if>
-            <if test="state != null">state,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="bzid != null">#{bzid},</if>
-            <if test="bzname != null">#{bzname},</if>
-            <if test="state != null">#{state}, </if>
-        </trim>
-    </insert>
-
-    <update id="updateByIdSelective"  parameterType="com.gs.bean.Bz">
-        update t_bz
-        <set>
-            <if test="bzname != null">bzname = #{bzname},</if>
-            <if test="state != null">state = #{state},</if>
-        </set>
-        where bzid = #{bzid}
     </update>
 
-    <update id="updateById" parameterType="com.gs.bean.Bz">
-        update t_bz set bzname = #{bzname},state = #{state} where bzid = #{bzid}
+    <update id="updateState" parameterType="com.gs.bean.Bz">
+        <![CDATA[
+            update t_bz set state = #{state} where bzid = #{bzid}
+        ]]>
     </update>
+
+    <select id="listPager" resultType="com.gs.bean.Bz">
+        <![CDATA[
+        select * from t_bz limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
+
+    <select id="listAll" resultType="com.gs.bean.Bz">
+        <![CDATA[
+          select * from t_bz where 1=1
+        ]]>
+    </select>
 
     <!--
         select bzid, bzname, state from t_bz;

@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gs.dao.DxmodelDAO">
+<mapper namespace="com.gs.dao.DxModelDAO">
 
-    <select id="selectById" parameterType="java.lang.Integer">
-        select dxid, content from t_dxmodel where dxid = #{dxid}
+    <select id="countByPager" resultType="Integer">
+        <![CDATA[
+		select count(dxid) from t_dxmodel
+		]]>
     </select>
 
-    <delete id="deleteById" parameterType="java.lang.Integer">
+    <delete id="removeById" parameterType="java.lang.Long">
         delete from t_dxmodel where dxid = #{dxid}
     </delete>
 
-    <insert id="insert" parameterType="com.gs.bean.DxModel">
+    <insert id="save" parameterType="com.gs.bean.DxModel">
         insert into t_dxmodel (dxid, content) values (#{dxid}, #{content})
     </insert>
 
-    <insert id="insertSelective" parameterType="com.gs.bean.DxModel">
-        insert into t_dxmodel
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="dxid != null">dxid,</if>
-            <if test="content != null">content,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="dxid != null">#{dxid},</if>
-            <if test="content != null">#{content},</if>
-        </trim>
-    </insert>
-
-    <update id="updateByIdSelective" parameterType="com.gs.bean.DxModel">
-        update t_dxmodel
-        <set>
-            <if test="content != null">content = #{content},</if>
-        </set>
-        where dxid = #{dxid}
-    </update>
-
-    <update id="updateById" parameterType="com.gs.bean.DxModel">
+    <update id="update" parameterType="com.gs.bean.DxModel">
         update t_dxmodel set content = #{content} where dxid = #{dxid}
     </update>
+
+    <select id="listPager" resultType="com.gs.bean.DxModel">
+        <![CDATA[
+         select * from t_dxmodel limit #{pager.beginIndex}, #{pager.pageSize}
+      ]]>
+    </select>
 
     <!--
         select dxid,content from t_dxmodel where dxid =1;
@@ -44,5 +32,11 @@
         insert into t_dxmodel (content) values ('验证码错误');
         update t_dxmodel set content = '请重新输入' where dxid =1;
    -->
+
+    <select id="isRegPhone" parameterType="java.lang.String" resultType="java.lang.Integer">
+        <![CDATA[
+            select id from t_user WHERE phone=#{phone};
+        ]]>
+    </select>
 
 </mapper>

@@ -115,34 +115,13 @@ function addElementImg3(obj) {
         }
     }
 }
-$(function(){
-    $(".sub-nav li").bind("click",function(){
-        $(".sub-nav li").removeClass("active");
-        $(this).addClass("active");
 
-    });
-    $(".xialakuang").mouseover(function (){
-        $(".xialakuang .sub-nav").show();
-    }).mouseout(function (){
-        $(".xialakuang .sub-nav").hide();
-    });
-    $(".no").mouseover(function (){
-        $("#qrCodeDiv").show();
-    }).mouseout(function (){
-        $("#qrCodeDiv").hide();
-    });
-    $("#qrCodeDiv").mouseover(function (){
-        $("#qrCodeDiv").show();
-    }).mouseout(function (){
-        $("#qrCodeDiv").hide();
-    });
-})
 function save(url, formId) {
     $.post(basePath + url,
         $("#" + formId).serialize(),
         function (data) {
             if (data.result === "ok") {
-                $("#bdid").val(data.code);
+                $("#baid").val(data.code);
                 swal(data.code, data.message, "success");
                 $("#btn_upate").click();
             } else {

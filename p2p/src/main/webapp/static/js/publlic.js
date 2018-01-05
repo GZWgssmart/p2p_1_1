@@ -68,7 +68,14 @@ Page.prototype.initAjax = function(num){
              }
              }
              } else {
-             alert(data.msg);
+                 var oLi = $('<li class="none">没有符合条件的内容！</li>');
+                 var oHeight = _this.listelm.height();
+                 if (oHeight > 0) {
+                     oLi.css({'line-height': oHeight + 'px'})
+                 } else {
+                     oLi.css({'line-height': '60px'});
+                 }
+                 oLi.appendTo(_this.listelm);
              }
         },
         "json"

@@ -13,5 +13,4 @@ import java.util.List;
  * @version 1.0
  */
 public interface LogMoneyService extends BaseService {
-    List<Object> getByUserId(Byte type, String date, Long user_id);
 }

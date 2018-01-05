@@ -29,8 +29,5 @@ public class LogMoneyServiceImpl extends AbstractBaseService implements LogMoney
         this.logMoneyDAO = logMoneyDAO;
     }
 
-    @Override
-    public List<Object> getByUserId(Byte type, String date, Long user_id) {
-        return logMoneyDAO.getByUserId(type,date,user_id);
-    }
+
 }
