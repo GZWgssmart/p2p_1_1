@@ -1,5 +1,6 @@
 var contentType = "application/x-www-form-urlencoded; charset=utf-8";
 var oPage;
+/*
 $(function(){
 		//初始化footer
 		utils.initPage();
@@ -11,6 +12,7 @@ $(function(){
 		};
 		hashChange();
 });
+*/
 function hashChange(){
 	var hash = location.hash.replace('#','');
 	$('.sub-nav li').removeClass('active');
@@ -3825,6 +3827,7 @@ function initclip(text) {
 	clip.glue( 'tj-clip-btn' );
 }
 //安全中心
+/*
 function initSafe(){
 	//充值页面
 	$.ajax({
@@ -3853,10 +3856,10 @@ function initSafe(){
 	    				}else{
 	    					$('.safe-t-r').text('高');
 	    				}
-	    				//登录密码
-	    				$('#password-btn').click(function(){
-	    					changePwd('login');
-	    				})
+	    				// //登录密码
+	    				// $('#password-btn').click(function(){
+	    				// 	changePwd('login');
+	    				// })
 	    				//交易密码
 	    				var dealset = record.usermap.dealset;
 	    				if(dealset == '1'){
@@ -3914,6 +3917,8 @@ function initSafe(){
 	    }
 	});
 }
+*/
+
 //邮箱绑定
 function bindEmail(){
 	utils.Dialog(true);
@@ -4062,8 +4067,13 @@ function changePhoneStepTwo(){
 		});
 	})
 }
+//登录密码
+$('#password-btn').click(function(){
+	alert('......');
+    // changePwd('login');
+
 //修改登录交易密码
-function changePwd(type){
+// function changePwd(type){
 	utils.Dialog(true);
 	$('.change-pwd').fadeIn();
 	$('.change-pwd .close').click(function(){
@@ -4077,7 +4087,9 @@ function changePwd(type){
 	$('#pwd-submit').unbind('click').click(function(){
 		changePwdSubmit(type);
 	});
-}
+// }
+
+})
 function changePwdSubmit(type){
 	var oldPassword = $('#oldPassword').val();
 	var newPassword = $('#newPassword').val();

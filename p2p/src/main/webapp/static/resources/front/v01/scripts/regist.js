@@ -1,4 +1,6 @@
-var isPhoneRegist,isUserRegist;
+var isPhoneRegist, isUserRegist, isCodeRight;
+var localObj = window.location;
+var basePath = localObj.protocol + "//" + localObj.host;
 $(function(){
 		utils.initInput();
 		if(utils.getUrlParam('useCode')){
@@ -20,7 +22,7 @@ $(function(){
 		    // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
 		};
 		// 验证开始需要向网站主后台获取id，challenge，success（是否启用failback）
-		var url = "front/startCaptchaAction.do?t=" + (new Date()).getTime();
+		var url = " " + (new Date()).getTime();
 		$.ajax({
 		    url: url, // 加随机数防止缓存
 		    type: "get",
@@ -53,7 +55,7 @@ $(function(){
 
 function getCode(){
 	var timenow = new Date(); 
-	$("#imgCode").attr("src","imageCode.do?pageId=reg&d="+timenow);
+	$("#imgCode").attr("src"," "+timenow);
 }
 
 function addAssignmentDebt(phone){
@@ -72,7 +74,7 @@ function addAssignmentDebt(phone){
 		}
 		var param = {code:code,type:"reg_checkCode"};
 		utils.ajax({
-			url:'checkMobilePhoneCode.do',
+			url:' ',
 			data:JSON.stringify(param),
 			dataType:'json',
 			success:function(data){
@@ -88,119 +90,177 @@ function addAssignmentDebt(phone){
 	})
 }
 
-function regist(captchaObj){
-	var phone = $('#phone').val();
-	var username = phone;
-	var pwd = $('#pwd').val();
-	var msgCode = $('#msgcode').val();
-	var useCode = $('#useCode').val();
-//	if(username==''){
-//		showError('请输入用户名',$('#username'));
-//		return;
-//	};
-	if(phone==''){
-		showError('请输入手机号',$('#phone'));
-		return;
-	};
-	if(utils.isPhone(phone)){
-		showError('请输入正确手机号',$('#phone'));
-		return;
-	};
-	if(pwd==''){
-		showError('请输入登录密码',$('#pwd'));
-		return;
-	};
-	if(msgCode==''){
-		showError('请输入短信验证码',$('#msgcode'));
-		return;
-	};
-	if(!$('#getMsgCode').data('randomCode')){
-		utils.alert('请获取短信验证码！');
-		return;
-	};
-	if(!$('#agree').is(':checked')){
-		utils.alert('请勾选服务协议');
-		return;
-	}
-	$('.btn').text('注册中...').addClass('disabled');
-	captchaObj.show();
-	 captchaObj.onSuccess(function(){
-		 var param={
-				 name:username,
-				 pwd:pwd,
-				 cellPhone:phone,
-				 code:msgCode,
-//				 randomCode:$('#getMsgCode').data('randomCode'),
-//				 recivePhone:$('#getMsgCode').data('recivePhone'),
-				 refferee:useCode,
-				 pageId:'regist'
-		 };
-			utils.ajax({
-		        url:'front/register.do',
-		        data:JSON.stringify(param),
-		        dataType:'json',
-		        success: function(data){
-		        	if(data.error =='0'){
-		        		utils.alert('注册成功！',function(){
-		        			window.location.href=utils.getBasePath()+'login.html';
-		        		})
-		        	}else{
-		        		utils.alert(data.msg);
-		        	}
-		        	$('.btn').text('注册').removeClass('disabled');
-		        }
-		    })
-	 });
-	
+function regist(){
+    var phone = $('#phone').val();
+    var username = $('#username').val();
+    var pwd = $('#pwd').val();
+    var msgCode = $('#msgcode').val();
+    var userCode = $('#userCode').val();
+    if(username==''){
+        showError('请输入用户名',$('#username'));
+        return;
+    };
+    if(phone==''){
+        showError('请输入手机号',$('#phone'));
+        return;
+    };
+    if(utils.isPhone(phone)){
+        showError('请输入正确手机号',$('#phone'));
+        return;
+    };
+    if(pwd==''){
+        showError('请输入登录密码',$('#pwd'));
+        return;
+    };
+    // if(msgCode==''){
+    // 	showError('请输入短信验证码',$('#msgcode'));
+    // 	return;
+    // };
+    // if(!$('#getMsgCode').data('randomCode')){
+    // 	utils.alert('请获取短信验证码！');
+    // 	return;
+    // };
+    if(!$('#agree').is(':checked')){
+        utils.alert('请勾选服务协议');
+        return;
+    }
+    $('.btn').text('注册中...').addClass('disabled');
+    var param={
+        uname:username,
+        upwd:pwd,
+        phone:phone,
+        // code:msgCode,
+		 // randomCode:$('#getMsgCode').data('randomCode'),
+		 // recivePhone:$('#getMsgCode').data('recivePhone'),
+        tzm:userCode
+    };
+    $.post(
+        basePath + "/user/save",
+        param,
+        function (data) {
+            if (data.result === 'ok') {
+                utils.alert('注册成功！',function(){
+                    window.location.href= basePath + '/user/login_page';
+                })
+                $('.btn').text('注册').removeClass('disabled');
+            }
+        },
+        "json"
+    );
 }
 //验证手机号是否注册
 function chosePhone(obj){
-	isPhoneRegist = false;
 	var phone = $(obj).val();
 	if(phone == ''){
-		showError("请输入手机号码",$(obj));return;
+		showError("请输入手机号码",$(obj));
+		return;
 	};
-	var param={cellPhone:phone};
-	utils.ajax({
-        url:'isExistPhone.do',
-        data:JSON.stringify(param),
-        dataType:'json',
-        success: function(data){
-        	if(data.error =='0'){
-        		utils.toast('手机号已经注册!');
-        		isPhoneRegist = true;
-        	}else if(data.error =='3'){
-        		isPhoneRegist = false;
-        	}else{
-        		utils.alert(data.msg);
-        	}
-        }
-    });
+    var url = basePath + "/user/isPhoneExist";
+    $.post(
+        url,
+        {
+            phone:phone
+        },
+        function (data) {
+            if (data.result === 'exist') {
+                showError("手机号已存在！",$(obj));
+                return;
+            }
+        },
+        "json"
+    );
 };
 //验证用户名是否存在
 function choseUser(obj){
-	isUserRegist = false;
 	var name = $(obj).val();
 	if(name == ''){
-		showError("请输入用户名",$(obj));return;
+		showError("请输入用户名",$(obj));
+		return;
 	};
-	var param={username:name};
-	utils.ajax({
-        url:'front/isExistUserName.do',
+}
+//验证密码是否合法
+function chosePwd(obj){
+    var pwd = $(obj).val();
+    if(pwd == ''){
+        showError("请输入密码！",$(obj));return;
+    };
+    var param={pwd:pwd};
+    utils.ajax({
+        url:'',
         data:JSON.stringify(param),
         dataType:'json',
         success: function(data){
-        	if(data.error =='0'){
-        		showError('用户名已经注册!',$(obj));
-        		isUserRegist = true;
-        	}else if(data.error =='3'){
-        		isUserRegist = false;
-        	}else{
-        		utils.alert(data.msg);
-        	}
+            if(data.error =='0'){
+                showError('密码...!',$(obj));
+            }else{
+                utils.alert(data.msg);
+            }
         }
     });
 }
+//验证码是否正确
+/**
+function choseCode(obj){
+    isCodeRight = false;
+    var code = $(obj).val();
+    if(code == ''){
+        showError("请输入验证码",$(obj));return;
+    };
+    var param={msgCode:code};
+    utils.ajax({
+        url:' ',
+        data:JSON.stringify(param),
+        dataType:'json',
+        success: function(data){
+            if (data.error =='0') {
+                showError('验证码.....!',$(obj));
+                isCodeRight = true;
+            } else {
+                utils.alert(data.msg);
+            }
+        }
+    });
+}
+ **/
+//验证推荐码是否存在
+// function choseUserCode(obj){
+//     var userCode = $(obj).val();
+//     if (userCode != '') {
+//         $.post(
+//             basePath + "/user/isUserCodeExist",
+//             {
+//                 tzm:userCode
+//             },
+//             function (data) {
+//                 if (data.result === 'unexist') {
+//                     showError("推荐码不存在，请重新输入！",$(obj));
+//                     return;
+//                 } else if (data.result === 'exist') {
+//
+// 				}
+//             },
+//             "json"
+//         );
+// 	}
+// };
+/**
+ * 添加推荐人ID
+function addUserCode() {
+    var phone = $('#phone').val();
+    var username = $('#username').val();
+    var pwd = $('#pwd').val();
+    var userCode = $('#userCode').val();
+    $.post(
+        basePath + "/user/save",
+        {
+            tzm:userCode
+        },
+        function (data) {
+
+        },
+        "json"
+    );
+}*/
 //错误提示
 function showError(msg,obj){
 	$('.error-msg').text(msg).addClass('show');
@@ -228,7 +288,7 @@ function AgreeMent(val){
 	$('.AgreeMent .popup-area').empty();
 	var param={TypeId:id}; 
 	utils.ajax({
-        url:'querytips.do',
+        url:' ',
         data:JSON.stringify(param),
         dataType:'json',
         success: function(data){

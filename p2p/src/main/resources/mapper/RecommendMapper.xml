@@ -6,10 +6,10 @@
 <mapper namespace="com.gs.dao.RecommendDAO">
     
     <select id="countTzm" resultType="Integer">
-        select count(uid) t_user where tzm = #{tzm};
+        select count(uid) from t_user where tzm = #{tzm};
     </select>
     <select id="getTzm" resultType="String">
-        select uid,rname t_user where tzm = #{tzm};
+        select uid,rname from t_user where tzm = #{tzm};
     </select>
     <insert id="save" parameterType="recommend">
         insert into t_recommend(tid,tname,uid,rname,date) values(#{tid},#{tname},#{uid},#{rname},now())

@@ -69,24 +69,6 @@ public class RecommendController {
         return statusVO;
     }
 
-    //推荐码生成
-    public String save(User user) {
-        String tzmCode = CheckCodeUtils.recommendCode();
-        boolean tzmisExit = true;
-        while (tzmisExit) {
-            int isExit = recommendService.countTzm(tzmCode);
-            //推荐码存在
-            if (isExit == 1) {
-                tzmCode = CheckCodeUtils.recommendCode();
-                //推荐码不存在
-            } else if (isExit == 0) {
-                tzmisExit = false;
-                user.setTzm(tzmCode);
-            }
-        }
-        return "null";
-    }
-
     @RequestMapping("export")
     public void exportExcel(HttpServletResponse response, RecommendVO recommendVO) {
         Workbook workbook = recommendService.export(recommendVO);

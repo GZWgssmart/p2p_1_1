@@ -103,7 +103,7 @@
             <div class="navbar icon icon-settings">账户设置</div>
             <ul class="sub-nav">
                 <li><a href="#bank" target="mainFrame">我的银行卡</a></li>
-                <li><a href="#safe" target="mainFrame">安全设置</a></li>
+                <li><a href="<%=path %>/user/user_safe" target="mainFrame">安全设置</a></li>
                 <li><a href="#msg" target="mainFrame">消息中心</a></li>
             </ul>
         </div>
@@ -208,13 +208,17 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/chart.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/account.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script>
     $(function(){
         $(".sub-nav li").bind("click",function(){
             $(".sub-nav li").removeClass("active");
             $(this).addClass("active");
-
         });
         $(".xialakuang").mouseover(function (){
             $(".xialakuang .sub-nav").show();

@@ -52,7 +52,8 @@ utils.Loading = function(m){
 };
 /*页面格式化，顶部跟底部
  * @auth wsl
- */ 
+ */
+/**
 utils.initPage = function(){
 	//底部初始化
 	$.ajax({
@@ -154,8 +155,9 @@ utils.initPage = function(){
 	},function(){
 		$(this).children('.sub-nav').removeClass('show');
 	})
-};
+};*/
 //初始化登录状态
+/**
 utils.initLoginData = function(){
 	if(utils.Storage.getItem('uid')){
 		$('#userName a').text(utils.Storage.getItem('username')).attr('href','account.html').addClass('user');
@@ -180,7 +182,7 @@ utils.initLoginData = function(){
 		$('#top .pay').remove();
 	}
 };
-
+*/
 if(window.top!=window.self){
 	window.top.location = window.self.location;
 };
@@ -265,6 +267,7 @@ function clearCookie(){
  * @param $.ajax上送参数
  * @auth wsl
  */
+/*
 utils.ajax = function(opt){
 	var _this = this;
 //	var DateTime = new Date().getTime();
@@ -317,6 +320,7 @@ utils.ajax = function(opt){
 		return $.ajax(_opt);
 	//}
 };
+*/
 /*给表单添加状态
  * @auth wsl
  */
@@ -434,6 +438,7 @@ utils.getUrlParam=function(key){
     }
     return obj[key];
 };
+/*
 function Dialog(text,flag,fn){
     if(flag){
         this.Dom = ['<div class="ui-dialog">',
@@ -465,6 +470,7 @@ function Dialog(text,flag,fn){
     this.text = text;
     this.init();
 }
+*/
 Dialog.prototype.init = function(){
     this.initDom();
     this.initEvent();

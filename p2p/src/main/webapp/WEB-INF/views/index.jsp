@@ -5,10 +5,12 @@
   Time: 14:20
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.gs.bean.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>普金资本-安全可靠专注于供应链金融的国资背景P2P理财平台</title>
@@ -32,12 +34,26 @@
         </div>
         <div class="top-right cl">
             <ul class="top-list">
-                <li class="first"><a href="javascript:;" class="">退出</a></li>
+                <li class="first">
+                    <c:if test="${user == null }">
+                        <a href="<%=path%>/user/regist_page" class="icon icon-person">注册领红包</a>
+                    </c:if>
+                    <c:if test="${user != null }">
+                        <a href="<%=path%>/user/logout" class="">退出</a>
+                    </c:if>
+                </li>
                 <li><a href="https://www.pujinziben.com/account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
                 <li><a href="https://www.pujinziben.com/about.html#gdbj">关于我们</a></li>
                 <li><a href="https://www.pujinziben.com/help.html">帮助中心</a></li>
                 <li><a href="https://www.pujinziben.com/account.html#ipay" class="pay">充值</a></li>
-                <li id="userName"><a href="https://www.pujinziben.com/account.html" class="user">18174099445</a></li>
+                <li id="userName">
+                    <c:if test="${user == null }">
+                        <a href="<%=path%>/user/login_page" class="">登录</a>
+                    </c:if>
+                    <c:if test="${user != null }">
+                        <a href="<%=path%>/user/user_home" class="user">${user.getPhone()}</a>
+                    </c:if>
+                </li>
                 <li class="no"><a href="javascript:;" class="icon icon-app" id="app">APP下载</a></li>
             </ul>
             <div id="qrCodeDiv" style="display: none;">
