@@ -16,18 +16,8 @@
 	<link rel="stylesheet" href="<%=path %>/static/resources/front/v01/src/css/login.css">
 	<link rel="icon" href="https://www.pujinziben.com/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon"></head>
 
-<body onhashchange="hashChange()" rlt="1" style="">
-	<!--[if lt IE 8]>
-    <div class="show-danger">您正在使用 <strong>过时的</strong> 浏览器. 是时候 <a href="http://browsehappy.com/">更换一个更好的浏览器</a> 来提升用户体验.</div>
-  	<![endif]-->
-	<!-- top -->
-	<div class="top" id="top">
-<!-- top -->
-		<%@include file="../master/top.jsp" %>
-	</div>
-	<%@include file="../master/head.jsp" %>
-	<div class="account cl">
-		<%@include file="../master/left.jsp" %>
+<body rlt="1" style="">
+<div class="account-right" style="width: 100%;height: 951px;">
 		<!-- begin -->
 		<div class="account-right">
 <div class="account-right-nav">
@@ -90,7 +80,6 @@
 		</div>
 		<!-- end -->
 	</div>
-	<%@include file="../master/foot.jsp" %>
 	<script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=path%>/static/js/publlic.js"></script>
 

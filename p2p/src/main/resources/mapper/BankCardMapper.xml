@@ -18,6 +18,12 @@
 		]]>
     </select>
 
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+		select count(bcid) from t_bankcard where cardno=#{cardno}
+		]]>
+    </select>
+
     <select id="getBylistAll" parameterType="long" resultType="com.gs.bean.BankCard">
         <![CDATA[
 		select * from t_bankcard where uid=#{id};

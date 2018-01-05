@@ -3,7 +3,9 @@ package com.gs.controller;
 import com.gs.bean.BankCard;
 import com.gs.bean.User;
 import com.gs.common.Constants;
+import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.BankCardService;
+import com.gs.vo.ControllerStatusVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,15 +36,22 @@ public class BankCardController {
     }
 
     @RequestMapping("add")
-    public String SaveBankCard(HttpSession session , BankCard bankCard) {
+    @ResponseBody
+    public ControllerStatusVO SaveBankCard(HttpSession session , BankCard bankCard) {
         User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        ControllerStatusVO statusVO = new ControllerStatusVO();
         if(user != null) {
-            bankCard.setUid(user.getUid());
-            bankCard.setState(Byte.valueOf("1"));
-            bankCard.setDate(Calendar.getInstance().getTime());
+           if(bankCardService.countCriteria(bankCard.getCardno()) == 0){
+               bankCard.setState(Byte.valueOf("1"));
+               bankCard.setDate(Calendar.getInstance().getTime());
+               bankCard.setRname(user.getRname());
+               bankCard.setIdno(user.getIdno());
+               bankCardService.save(bankCard);
+               return statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
+           }
+            return statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_BANK_FAIL);
         }
-        bankCardService.save(bankCard);
-        return "deposit/bank";
+        return null;
     }
 
     @RequestMapping("delete")
@@ -57,11 +66,10 @@ public class BankCardController {
     @ResponseBody
     public List<BankCard> SelectBankCard(HttpSession session) {
         List<BankCard> bankCards = new ArrayList<>();
-        bankCards = bankCardService.getBylistAll(1L);
-       /* User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+        User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null) {
             bankCards = bankCardService.getBylistAll(user.getUid());
-        }*/
+        }
         return bankCards;
     }
 

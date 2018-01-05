@@ -50,8 +50,8 @@
                             <p class="amt color"><span id="usableSum">${userMoney.kymoney}</span>元</p>
                             <p class="text"><i></i>可用余额</p>
                             <p class="link">
-                                <a href="#ipay" class="active">充值</a>
-                                <a href="#cash">提现</a>
+                                <a href="<%=path %>/logczz/page" class="active">充值</a>
+                                <a href="<%=path %>/logtx/page">提现</a>
                             </p>
                         </div>
                         <div class="center-profit">

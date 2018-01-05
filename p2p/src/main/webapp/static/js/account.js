@@ -100,16 +100,40 @@ function initMyDebitCard() {
 //绑定银行卡
 function bindingcode(){
     var uid = $('#uid').val();
-    var realName = $('#realName').val();
-    var idno = $('#idno').val();
-    var cardno = $('#cardno').val();
     var type = $('#type').val();
 
-    var bankCard={uid:uid,realName:realName,idno:idno,cardno:cardno,type:type};
+    var cardno = $.trim($('#cardno').val());
+    if(cardno == "") {
+        $("#banknoInfo").html("请填写银行卡号");
+        return false;
+    }
+    if(cardno.length < 16 || cardno.length > 19) {
+       alert("银行卡号长度必须在16到19之间");
+        return false;
+    }
+    var num = /^\d*$/; //全数字
+    if(!num.exec(cardno)) {
+        alert("银行卡号必须全为数字");
+        return false;
+    }
+
+    //开头6位
+    var strBin = "10,18,30,35,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,60,62,65,68,69,84,87,88,94,95,98,99";
+    if(strBin.indexOf(cardno.substring(0, 2)) == -1) {
+        alert("银行卡号开头6位不符合规范");
+        return false;
+    }
+
+    var bankCard={uid:uid,cardno:cardno,type:type};
     $.post(contextPath+'/bank/add',
         bankCard,
         function(data){
-
+            if(data.result == "ok"){
+                alert(data.message);
+                window.location.href=contextPath + "/bank/page";
+            }else{
+                alert(data.message);
+            }
         },
     "json"
     );
@@ -125,7 +149,12 @@ function initrecharge() {
         var money = $('#ipay-amt').val();
         if (money == '') {
             alert('请输入充值金额');
-            return;
+            return false;
+        }
+        var sum = /^\d*$/;
+        if(!sum.exec(money)) {
+            alert('请输入正确格式的金额');
+            return false;
         }
         var logCzz = {banktype: bankname, bankcard: bankno, money: money};
         $.post(contextPath + "/logczz/add",
@@ -223,7 +252,7 @@ function initIpayData(startDate,endDate){
         endTime:endDate
     };
     oPage = null;
-    oPage = new Page(contextPath+'/logczz/select',param,$('.listData'),$('.paging'),payData,function(){
+    oPage = new Page('/logczz/select',param,$('.listData'),$('.paging'),payData,function(){
         $('#invest').show();
     });
 

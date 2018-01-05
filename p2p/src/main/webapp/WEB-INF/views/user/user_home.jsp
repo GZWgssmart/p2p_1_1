@@ -29,10 +29,10 @@
         <div class="top-right cl">
             <ul class="top-list">
                 <li class="first"><a href="javascript:;" class="">退出</a></li>
-                <li><a href="https://www.pujinziben.com/account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
+                <li><a href="account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
                 <li><a href="about.html#gdbj">关于我们</a></li>
                 <li><a href="help.html">帮助中心</a></li>
-                <li><a href="https://www.pujinziben.com/account.html#ipay" class="pay">充值</a></li>
+                <li><a href="account.html#ipay" class="pay">充值</a></li>
                 <li id="userName"><a href="account.html" class="user">18174099445</a></li>
                 <li class="no"><a href="javascript:;" class="icon icon-app" id="app">APP下载</a></li>
             </ul>
@@ -56,22 +56,22 @@
         <div class="logo"><img src="<%=path %>/static/p2p/logo.png" alt="普金资本"></div>
         <div class="nav-bar">
             <ul>
-                <li class="icon icon-acc"><a href="https://www.pujinziben.com/account.html">我的账户</a></li>
-                <li><a href="https://www.pujinziben.com/about.html">信息披露 </a></li>
-                <li><a href="https://www.pujinziben.com/safety.html">安全保障</a></li>
+                <li class="icon icon-acc"><a href="account.html">我的账户</a></li>
+                <li><a href="about.html">信息披露 </a></li>
+                <li><a href="safety.html">安全保障</a></li>
                 <li class="xialakuang">
-                    <a href="https://www.pujinziben.com/investlist.html">投资理财</a>
+                    <a href="<%=path %>/detail/page">投资理财</a>
                     <div class="sub-nav">
-                        <a href="https://www.pujinziben.com/investlist.html#006">恒金保</a>
-                        <a href="https://www.pujinziben.com/investlist.html#004">普金保</a>
-                        <a href="https://www.pujinziben.com/investlist.html#003">多金宝</a>
-                        <a href="https://www.pujinziben.com/investlist.html#005">新手标</a>
-                        <a href="https://www.pujinziben.com/creditorlist.html">债权转让</a>
+                        <a href="<%=path %>#005">恒金保</a>
+                        <a href="<%=path %>#004">普金保</a>
+                        <a href="<%=path %>#003">多金宝</a>
+                        <a href="<%=path %>#006">新手标</a>
+                        <a href="creditorlist.html">债权转让</a>
                         <p class="left"></p>
                         <p class="right"></p>
                     </div>
                 </li>
-                <li><a href="https://www.pujinziben.com/">首页</a></li>
+                <li><a href="">首页</a></li>
             </ul>
         </div>
     </div>
@@ -86,7 +86,7 @@
             <div class="navbar icon icon-account">我的账户</div>
             <ul class="sub-nav">
                 <li class="active"><a href="<%=path %>/user/user_money" target="mainFrame">账户总览</a></li>
-                <li><a href="#ipay" target="mainFrame">充值</a></li>
+                <li><a href="<%=path %>/logczz/page" target="mainFrame">充值</a></li>
                 <li><a href="<%=path %>/logtx/page" target="mainFrame">提现</a></li>
 
                 <li><a id="myCoupon" href="#taste" target="mainFrame">我的赠券<i id="couponCount"></i></a></li>
@@ -101,8 +101,8 @@
             </ul>
             <div class="navbar icon icon-settings">账户设置</div>
             <ul class="sub-nav">
-                <li><a href="#bank" target="mainFrame">我的银行卡</a></li>
-                <li><a href="<%=path %>/user/user_safe" target="mainFrame">安全设置</a></li>
+                <li><a href="<%=path %>/bank/page" target="mainFrame">我的银行卡</a></li>
+                <li><a href="#safe" target="mainFrame">安全设置</a></li>
                 <li><a href="#msg" target="mainFrame">消息中心</a></li>
             </ul>
         </div>
@@ -207,17 +207,13 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/chart.js"></script>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/account.js"></script>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script>
     $(function(){
         $(".sub-nav li").bind("click",function(){
             $(".sub-nav li").removeClass("active");
             $(this).addClass("active");
+
         });
         $(".xialakuang").mouseover(function (){
             $(".xialakuang .sub-nav").show();

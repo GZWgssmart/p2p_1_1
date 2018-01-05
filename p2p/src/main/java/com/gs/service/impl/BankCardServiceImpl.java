@@ -28,4 +28,9 @@ public class BankCardServiceImpl extends AbstractBaseService implements BankCard
     public List<BankCard> getBylistAll(Long id) {
         return bankCardDAO.getBylistAll(id);
     }
+
+    @Override
+    public Long countCriteria(Object obj) {
+        return bankCardDAO.countCriteria(obj);
+    }
 }

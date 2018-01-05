@@ -46,15 +46,13 @@ public class LogTxController {
     @ResponseBody
     public ModelAndView showPage(HttpSession session) {
         ModelAndView mav = new ModelAndView("deposit/deposit");
-       /* User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+        User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null) {
-            UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(user.getUid());
-            TxInItPage inItPage = new TxInItPage(user.getUid(),user.getUname(),user.getPhone(),userMoney.getKymoney());
-            mav.addObject(inItPage);
-        }*/
-        UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(1L);
-        TxInItPage inItPage = new TxInItPage(1L,"温宁宁","1456456456",userMoney.getKymoney());
-        mav.addObject("inItPage",inItPage);
+            UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(1L);
+            TxInItPage inItPage = new TxInItPage(user.getUid(),"温宁宁","1456456456",userMoney.getKymoney());
+            mav.addObject("inItPage",inItPage);
+        }
+
         return mav;
     }
     @RequestMapping("add")
@@ -62,51 +60,44 @@ public class LogTxController {
     public ControllerStatusVO addLogTx(HttpSession session, LogTx logTx) {
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         ControllerStatusVO statusVO = new ControllerStatusVO();
-        /*if(user != null) {
-            logTx.setUid(user.getUid());
-            logTx.setDate(Calendar.getInstance().getTime());
-            logTx.setState(Byte.valueOf("2"));
-            logTxService.save(logTx);
-        }*/
-        try{
-            if(userService.getByIdPassword(1L).equals(EncryptUtils.md5(logTx.getPassword()))) {
-                logTx.setUid(1L);
-                logTx.setDate(Calendar.getInstance().getTime());
-                logTx.setState(Byte.valueOf("1"));
-                logTxService.save(logTx);
-                userMoneyService.updateByIdMaoll(1L,logTx.getMoney());
-                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_DEPOSIT_SUCCESS);
-            }else{
-                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_PASS_FAIL);
-            }
+        if(user != null) {
+            try{
+                if(userService.getByIdPassword(user.getUid()).equals(EncryptUtils.md5(logTx.getPassword()))) {
+                    logTx.setUid(user.getUid());
+                    logTx.setDate(Calendar.getInstance().getTime());
+                    logTx.setState(Byte.valueOf("1"));
+                    logTxService.save(logTx);
+                    userMoneyService.updateByIdMaoll(user.getUid(),logTx.getMoney());
+                    statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_DEPOSIT_SUCCESS);
+                }else{
+                    statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_PASS_FAIL);
+                }
 
-        }catch (Exception e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_DEPOSIT_FAIL);
+            }catch (Exception e){
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_DEPOSIT_FAIL);
+            }
         }
+
         return statusVO;
     }
     @RequestMapping("select")
     @ResponseBody
     public Pager SelectLogTxPage(HttpSession session, SearchVo param,Integer page, Integer rows) {
         Pager pager = new Pager();
-        /*List<Object> logCzzVoList = new ArrayList<>();*/
-        /*User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+        User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null) {
-            logCzzVoList = logCzzService.listAllById(user.getUid());
-        }*/
-        /*logCzzVoList = logCzzService.listAllById(1L);*/
+            try {
+                if(page != null && rows != null) {
+                    pager = logTxService.listPagerCriteria(page,rows,param);
+                    return pager;
+                }else {
+                    param.setUid(user.getUid());
+                    pager =  logTxService.listPagerCriteria(param.getCurPage(),8,param);
+                    return pager;
+                }
+            }catch (Exception e){e.printStackTrace();}
 
-        try {
-            if(page != null && rows != null) {
-               pager = logTxService.listPagerCriteria(page,rows,param);
-                return pager;
-            }else {
-                param.setUid(1L);
-                pager =  logTxService.listPagerCriteria(param.getCurPage(),8,param);
-                return pager;
-            }
-        }catch (Exception e){e.printStackTrace();}
-
+        }
         return pager;
     }
 
@@ -115,14 +106,17 @@ public class LogTxController {
     public ControllerStatusVO CanclLogTx(HttpSession session , Long id, BigDecimal money ) {
         ControllerStatusVO statusVO = new ControllerStatusVO();
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
-        try{
-            logTxService.updateById(Byte.valueOf("3"),id);
-            userMoneyService.updateById(1L,money);
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_CANCL_SUCCESS);
-        }catch(Exception e) {
-            e.printStackTrace();
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_CANCL_FAIL);
+        if(user != null) {
+            try{
+                logTxService.updateById(Byte.valueOf("3"),id);
+                userMoneyService.updateById(user.getUid(),money);
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_CANCL_SUCCESS);
+            }catch(Exception e) {
+                e.printStackTrace();
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_CANCL_FAIL);
+            }
         }
+
         return statusVO;
     }
 

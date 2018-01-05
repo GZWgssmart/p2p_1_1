@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface BankCardService extends BaseService {
     List<BankCard> getBylistAll(Long id);
-
+    Long countCriteria(Object obj);
 }

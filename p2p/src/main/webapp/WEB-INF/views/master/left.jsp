@@ -17,7 +17,7 @@
         <div class="navbar icon icon-account">我的账户</div>
         <ul class="sub-nav">
             <li class="tive"><a href="#account">账户总览</a></li>
-            <li><a href="#ipay">充值</a></li>
+            <li><a href="<%=path %>/logczz/page">充值</a></li>
             <li><a href="<%=path %>/logtx/page">提现</a></li>
 
             <li><a id="myCoupon" href="#taste">我的赠券<i id="couponCount"></i></a></li>

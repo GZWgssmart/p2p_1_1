@@ -19,10 +19,7 @@
 </head>
 
 <body onhashchange="hashChange()" rlt="1" style="">
-<!--[if lt IE 8]>
-<div class="show-danger">您正在使用 <strong>过时的</strong> 浏览器. 是时候 <a href="http://browsehappy.com/">更换一个更好的浏览器</a> 来提升用户体验.
-</div>
-<![endif]-->
+
 <%@include file="../master/top.jsp" %>
 <%@include file="../master/head.jsp" %>
 
@@ -83,9 +80,7 @@
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/publlic.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/invest_list.js"></script>
-<script>
 
-</script>
 
 </body>
 </html>
