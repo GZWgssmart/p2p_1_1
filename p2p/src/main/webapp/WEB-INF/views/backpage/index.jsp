@@ -44,10 +44,8 @@
 						   class="site-navi-tab">用户借款管理</a></li>
 					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">银行卡管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>"
+					<li><a href="javascript:void(0);" src="<%=path%>/logczz/backcz"
 						   class="site-navi-tab">充值记录</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>"
-						   class="site-navi-tab">提现记录</a></li>
 					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">代金券与现金券管理</a></li>
 					<li><a href="javascript:void(0);" src="<%=path%>"

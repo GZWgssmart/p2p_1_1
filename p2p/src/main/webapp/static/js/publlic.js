@@ -1,5 +1,11 @@
 var AmtRegExp =/^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/;
 
+/*toast提示框
+ * @param msg 提示语
+ * @param time 提示语显示时间
+ * @auth wsl
+ */
+
     /*前台数据分页
      * @param url 请求的url
      * @param param 上送参数

@@ -59,18 +59,20 @@ public class LogCzzController {
     public Pager selectLogCzzPage(HttpSession session, SearchVo param,Integer page, Integer rows) {
         Pager pager = new Pager();
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
-        if(user != null) {
+
             try {
                 if(page != null && rows != null) {
                     pager = logCzzService.listPagerCriteria(page,rows,null);
                     return pager;
                 }else {
-                    param.setUid(user.getUid());
-                    pager =  logCzzService.listPagerCriteria(param.getCurPage(), 8, param);
-                    return pager;
+                    if(user != null) {
+                        param.setUid(user.getUid());
+                        pager = logCzzService.listPagerCriteria(param.getCurPage(), 8, param);
+                        return pager;
+                    }
                 }
             }catch (Exception e){e.printStackTrace();}
-        }
+
         return pager;
     }
 

@@ -30,9 +30,9 @@
 		]]>
     </select>
 
-    <delete id="removeById" parameterType="long">
+    <delete id="remove" parameterType="bankCard">
         <![CDATA[
-          delete t_bankcard where uid={id}
+          delete from t_bankcard where bcid=#{cardno}
         ]]>
     </delete>
 

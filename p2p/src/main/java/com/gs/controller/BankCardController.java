@@ -73,6 +73,19 @@ public class BankCardController {
         return bankCards;
     }
 
+    @RequestMapping("delbyid")
+    @ResponseBody
+    public ControllerStatusVO deleteByBankCard(BankCard bankCard) {
+        System.out.println("backcard:"+bankCard);
+        ControllerStatusVO statusVO = new ControllerStatusVO();
+        if(bankCard != null) {
+            bankCardService.remove(bankCard);
+            return statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_BANK_DELETE);
+        }
+            return null;
+    }
+
+
     @RequestMapping("getbyid")
     @ResponseBody
     public BankCard getByBankCard(Long bcid) {

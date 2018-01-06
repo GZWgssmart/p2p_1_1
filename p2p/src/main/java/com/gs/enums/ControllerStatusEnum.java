@@ -26,6 +26,7 @@ public enum ControllerStatusEnum {
     REG_PHONE_FAIL(202, "error", "充值失败"),
     USER_DEPOSIT_SUCCESS(203, "ok", "提现成功"),
     USER_DEPOSIT_FAIL(204, "error", "提现失败"),
+    USER_BANK_DELETE(301,"ok","解绑成功"),
     USER_CANCL_SUCCESS(205, "ok", "取消成功"),
     USER_CANCL_FAIL(206, "error", "取消失败"),
     USER_ADUIT_SUCCESS(207, "ok", "操作成功"),

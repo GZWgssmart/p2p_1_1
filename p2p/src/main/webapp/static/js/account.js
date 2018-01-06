@@ -61,6 +61,7 @@ function initMyDebitCard() {
             function(data) {
                 for (var i = 0; i < data.length; i++) {
                     var obj = data[i];
+
                     var cardColor = 'bank-card_1';
                     if (i % 2 != 0) {
                         cardColor = 'bank-card_2';
@@ -70,6 +71,8 @@ function initMyDebitCard() {
                     var cardNo1 = obj.cardno.substr(0, 4);
                     var cardNo2 = obj.cardno.substr(obj.cardno.length - 4, obj.cardno.length - 1);
                     var cardUserName = obj.rname.substr(1, obj.rname.length - 1);
+                    var bcid = obj.bcid;
+
                     var card =
                         $('<div id="card1" class="' + cardColor + '">' +
                             '<div class="bank-top">' +
@@ -81,18 +84,38 @@ function initMyDebitCard() {
                             /*'<div class="bank-empty"></div>' +*/
                             '<div class="bank-cardNumber">' + cardNo1 + ' **** **** ' + cardNo2 + '</div>' +
                             '<div class="bank-userName">*' + cardUserName + '</div>' +
+                            '<div><a href="javascript:;"  onclick="deleteCardy('+bcid+');" class="bank-userName" style="color: #8f2500">一键解绑</a></div>'+
                             '</div>' +
                             '</div>');
                     card.appendTo(cards);
+
                 }
                 // 循环完银行卡后显示添加银行卡
                 var cards = $("#myDebitCard");
                 // 添加银行卡对象
                 var card =
                     $('<div id="card3" class="bank-card_3" onclick="addCard();" style="cursor:pointer;">'+
-                        '<div class="bank-addCard"><a href="/bank/bindingpage" >添加银行卡</a></div>'+
+                        '<div class="bank-addCard"><a href="javascript:;" >添加银行卡</a></div>'+
                         '</div>');
                 card.appendTo(cards);
+            },
+            "json"
+        );
+}
+
+function addCard(){
+    window.location.href="/bank/bindingpage";
+}
+function deleteCardy(bcid) {
+    $.post("/bank/delbyid",
+            {
+            cardno:bcid
+        },
+            function (data){
+                if(data.result == "ok") {
+                    window.location.href="/bank/page";
+                    alert(data.message);
+                }
             },
             "json"
         );
