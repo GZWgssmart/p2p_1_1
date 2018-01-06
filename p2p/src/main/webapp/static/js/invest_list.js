@@ -1,6 +1,8 @@
 /**
  * 
  */
+var localObj = window.location;
+var contextPath = localObj.protocol + "//" + localObj.host;
 var listNum = 1,tt = '',xx = '',yy = '',
 rates = '',timeers = '',deadlines = '',flages = '',oData = [],oPage,oParam,serchText='';
 $(function(){
@@ -49,8 +51,8 @@ function loadData(){
 	            {
 	            	key:'borrowTitle',
 	            	resolve:function(val,record){
-	            		var btnStatus = record.state == '2'?'':'disabled';
-	            		var str = '<li><div class="invest-title cl"><p>'+record.bzname+'</p><h3 onclick="toDetail('+record.id+')">'+record.cpname+'</h3></div>'+
+	            		var btnStatus = record.state == '3'?'':'disabled';
+	            		var str = '<li><div class="invest-title cl"><p>'+record.bzname+'</p><h3 onclick="toDetail('+record.baid+')">'+record.cpname+'</h3></div>'+
 						'<div class="invest-content cl"><ul>'+
 								'<li class="row1">'+
 									'<p class="row-top">预期年化收益率</p>'+
@@ -73,7 +75,7 @@ function loadData(){
 									'</div>'+
 									'<p class="row-top">募集进度</p></li>'+
 								'<li class="row6">'+
-									'<button type="button" class="btn '+btnStatus+'" onclick="toInvest('+record.id+','+record.state+')">'+getStatus(record.state)+'</button>'+
+									'<button type="button" class="btn '+btnStatus+'" onclick="toInvest('+record.baid+','+record.state+')">'+getStatus(record.state)+'</button>'+
 								'</li></ul></div></li>'
 	            		return str;
 	            	}
@@ -100,9 +102,9 @@ function getStatus(borrow){
 	if(borrow == 1){
 		return '初审中';
 	}else if(borrow == 2){
-		return '立即投标';
-	}else if(borrow == 3){
 		return '复审中';
+	}else if(borrow == 3){
+		return '立即投标';
 	}else if(borrow == 4){
 		return '还款中';
 	}else if(borrow == 5){
@@ -113,12 +115,12 @@ function getStatus(borrow){
 };
 //投标
 function toInvest(id,status){
-	if(status!=2){return};
-	window.location.href = 'invest.html?id='+id;
+	if(status!=3){return};
+	window.location.href = '/jkb/jkb_look/'+id;
 }
 //详情
 function toDetail(id){
-	window.location.href = 'invest.html?id='+id;
+    window.location.href = '/jkb/jkb_look/'+id;
 }
 //获取还款方式
 /*function paymentMode(val){

@@ -10,7 +10,6 @@
         and ba.bzid = bz.bzid
         and ba.lxid = j.lxid
         and ba.sid = s.sid
-        and ba.uid = um.uid
     </sql>
 
     <sql id="jkb_query_criteria">

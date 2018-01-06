@@ -28,12 +28,25 @@
         </div>
         <div class="top-right cl">
             <ul class="top-list">
-                <li class="first"><a href="javascript:;" class="">退出</a></li>
+                <li class="first">
+                    <c:if test="${user == null }">
+                        <a href="<%=path%>/user/regist_page" class="icon icon-person">注册领红包</a>
+                    </c:if>
+                    <c:if test="${user != null }">
+                        <a href="<%=path%>/user/logout" class="">退出</a>
+                    </c:if>
+                </li>
                 <li><a href="account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
                 <li><a href="about.html#gdbj">关于我们</a></li>
-                <li><a href="help.html">帮助中心</a></li>
-                <li><a href="account.html#ipay" class="pay">充值</a></li>
-                <li id="userName"><a href="account.html" class="user">18174099445</a></li>
+                <li><a href="<%=path%>/html/help">帮助中心</a></li>
+                <li id="userName">
+                    <c:if test="${user == null }">
+                        <a href="<%=path%>/user/login_page" class="">登录</a>
+                    </c:if>
+                    <c:if test="${user != null }">
+                        <a href="<%=path%>/user/user_home" class="user">${user.phone}</a>
+                    </c:if>
+                </li>
                 <li class="no"><a href="javascript:;" class="icon icon-app" id="app">APP下载</a></li>
             </ul>
             <div id="qrCodeDiv" style="display: none;">
@@ -56,22 +69,28 @@
         <div class="logo"><img src="<%=path %>/static/p2p/logo.png" alt="普金资本"></div>
         <div class="nav-bar">
             <ul>
-                <li class="icon icon-acc"><a href="account.html">我的账户</a></li>
-                <li><a href="about.html">信息披露 </a></li>
-                <li><a href="safety.html">安全保障</a></li>
+                <li class="icon icon-acc">
+                    <c:if test="${user != null}">
+                        <a href="<%=path%>/user/user_home">我的账户</a>
+                    </c:if>
+                    <c:if test="${user == null}">
+                        <a href="<%=path%>/user/login_page">我的账户</a>
+                    </c:if>
+                </li>
+                <li><a href="<%=path%>/html/about">信息披露 </a></li>
+                <li><a href="<%=path%>/html/safety">安全保障</a></li>
                 <li class="xialakuang">
                     <a href="<%=path %>/detail/page">投资理财</a>
                     <div class="sub-nav">
-                        <a href="<%=path %>#005">恒金保</a>
-                        <a href="<%=path %>#004">普金保</a>
-                        <a href="<%=path %>#003">多金宝</a>
-                        <a href="<%=path %>#006">新手标</a>
-                        <a href="creditorlist.html">债权转让</a>
+                        <a href="<%=path %>/detail/page#005">恒金保</a>
+                        <a href="<%=path %>/detail/page#004">普金保</a>
+                        <a href="<%=path %>/detail/page#003">多金宝</a>
+                        <a href="<%=path %>/detail/page#006">新手标</a>
                         <p class="left"></p>
                         <p class="right"></p>
                     </div>
                 </li>
-                <li><a href="">首页</a></li>
+                <li><a href="javascript:void(0);" onclick="index();">首页</a></li>
             </ul>
         </div>
     </div>
@@ -198,7 +217,7 @@
             </div>
         </div>
     </div>
-    <div class="popup wechart-box">
+    <div class="popup wechart-box">=path
         <p class="title left">关注普金资本微信公众号</p>
         <a href="javascript:void(0);" class="close icon icon-close"></a>
         <div class="popup-from">
@@ -231,5 +250,8 @@
             $("#qrCodeDiv").hide();
         });
     })
+    function index(){
+        window.location.href = "/";
+    }
 </script>
 </html>

@@ -7,6 +7,7 @@ import java.util.Date;
  * Created by Administrator on 2018/1/2.
  */
 public class investBorrowVo {
+    private Long baid;
     private String bzname;//标种名称
     private String cpname;//产品名称
     private String way;//方式
@@ -18,6 +19,13 @@ public class investBorrowVo {
     private BigDecimal ytmoney;//已投金额
     private Integer term;//借款期限
 
+    public Long getBaid() {
+        return baid;
+    }
+
+    public void setBaid(Long baid) {
+        this.baid = baid;
+    }
 
     public String getBzname() {
         return bzname;

@@ -26,76 +26,10 @@
 <div class="show-danger">您正在使用 <strong>过时的</strong> 浏览器. 是时候 <a href="http://browsehappy.com/">更换一个更好的浏览器</a> 来提升用户体验.</div>
 <![endif]-->
 <!-- top -->
-<div class="top" id="top">
-    <!-- top -->
-    <div class="wrap">
-        <div class="top-left icon icon-phone">
-            <span>客服热线：</span>400-606-2079 <span>（8:30～17:30）</span>
-        </div>
-        <div class="top-right cl">
-            <ul class="top-list">
-                <li class="first">
-                    <c:if test="${user == null }">
-                        <a href="<%=path%>/user/regist_page" class="icon icon-person">注册领红包</a>
-                    </c:if>
-                    <c:if test="${user != null }">
-                        <a href="<%=path%>/user/logout" class="">退出</a>
-                    </c:if>
-                </li>
-                <li><a href="https://www.pujinziben.com/account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
-                <li><a href="https://www.pujinziben.com/about.html#gdbj">关于我们</a></li>
-                <li><a href="https://www.pujinziben.com/help.html">帮助中心</a></li>
-                <li><a href="https://www.pujinziben.com/account.html#ipay" class="pay">充值</a></li>
-                <li id="userName">
-                    <c:if test="${user == null }">
-                        <a href="<%=path%>/user/login_page" class="">登录</a>
-                    </c:if>
-                    <c:if test="${user != null }">
-                        <a href="<%=path%>/user/user_home" class="user">${user.getPhone()}</a>
-                    </c:if>
-                </li>
-                <li class="no"><a href="javascript:;" class="icon icon-app" id="app">APP下载</a></li>
-            </ul>
-            <div id="qrCodeDiv" style="display: none;">
-                <div class="CodeDiv">
-                    <img src="<%=path %>/static/p2p/qrCode_ios.png">
-                    <p>IOS下载</p>
-                </div>
-                <div class="CodeDiv">
-                    <img src="<%=path %>/static/p2p/qrCode_android.png">
-                    <p>Android下载</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<%@include file="./master/top.jsp" %>
 
-</div>
 <!-- nav -->
-<div class="nav">
-    <div class="wrap cl">
-        <div class="logo"><img src="<%=path %>/static/p2p/logo.png" alt="普金资本"></div>
-        <div class="nav-bar">
-            <ul>
-                <li class="icon icon-acc"><a href="https://www.pujinziben.com/account.html">我的账户</a></li>
-                <li><a href="https://www.pujinziben.com/about.html">信息披露 </a></li>
-                <li><a href="https://www.pujinziben.com/safety.html">安全保障</a></li>
-                <li class="xialakuang">
-                    <a href="https://www.pujinziben.com/investlist.html">投资理财</a>
-                    <div class="sub-nav">
-                        <a href="https://www.pujinziben.com/investlist.html#006">恒金保</a>
-                        <a href="https://www.pujinziben.com/investlist.html#004">普金保</a>
-                        <a href="https://www.pujinziben.com/investlist.html#003">多金宝</a>
-                        <a href="https://www.pujinziben.com/investlist.html#005">新手标</a>
-                        <a href="https://www.pujinziben.com/creditorlist.html">债权转让</a>
-                        <p class="left"></p>
-                        <p class="right"></p>
-                    </div>
-                </li>
-                <li><a href="https://www.pujinziben.com/">首页</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<%@include file="./master/head.jsp" %>
 <!-- banner -->
 <div class="ppt">
     <div class=".benn">
@@ -458,23 +392,7 @@
 </body>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script>
-    $(function(){
-        $(".xialakuang").mouseover(function (){
-            $(".sub-nav").show();
-        }).mouseout(function (){
-            $(".sub-nav").hide();
-        });
-        $(".no").mouseover(function (){
-            $("#qrCodeDiv").show();
-        }).mouseout(function (){
-            $("#qrCodeDiv").hide();
-        });
-        $("#qrCodeDiv").mouseover(function (){
-            $("#qrCodeDiv").show();
-        }).mouseout(function (){
-            $("#qrCodeDiv").hide();
-        });
-    });
+
     (function ($) {
         $.fn.extend({
             "ppting": function (t) {

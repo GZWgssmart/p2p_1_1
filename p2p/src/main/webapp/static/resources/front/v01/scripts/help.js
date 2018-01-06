@@ -1,7 +1,8 @@
 var contentType = "application/x-www-form-urlencoded; charset=utf-8";
+var localObj = window.location;
+var contextPath = localObj.protocol + "//" + localObj.host;
 $(function(){
-	//页面初始化
-	utils.initPage();
+
 	hashChange();
 });
 
@@ -27,7 +28,7 @@ function hashChange(){
 /*产品介绍*/
 function initProduct(){
 	$.ajax({
-	    url: 'product.html',
+	    url: contextPath+ '/html/product',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -51,7 +52,7 @@ function initProduct(){
 /*常见问题*/
 function initCommon(){
 	$.ajax({
-	    url: 'common.html',
+	    url:  contextPath+ '/html/common',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -77,7 +78,7 @@ function initCommon(){
 /*合同范本*/
 function initContract(){
 	$.ajax({
-	    url: 'contract.html',
+	    url:  contextPath+ '/html/contract',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -102,7 +103,7 @@ function initContract(){
 /*名词解释*/
 function initNoun(){
 	$.ajax({
-	    url: 'nonu.html',
+	    url:  contextPath+ '/html/nonu',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,

@@ -18,22 +18,28 @@
         <div class="logo"><img src="<%=path %>/static/p2p/logo.png" alt="普金资本"></div>
         <div class="nav-bar">
             <ul>
-                <li class="icon icon-acc"><a href="account.html">我的账户</a></li>
-                <li><a href="about.html">信息披露 </a></li>
-                <li><a href="safety.html">安全保障</a></li>
+                <li class="icon icon-acc">
+                    <c:if test="${user != null}">
+                        <a href="<%=path%>/user/user_home">我的账户</a>
+                    </c:if>
+                    <c:if test="${user == null}">
+                        <a href="<%=path%>/user/login_page">我的账户</a>
+                    </c:if>
+                </li>
+                <li><a href="<%=path%>/html/about">信息披露 </a></li>
+                <li><a href="<%=path%>/html/safety">安全保障</a></li>
                 <li class="xialakuang">
                     <a href="<%=path %>/detail/page">投资理财</a>
                     <div class="sub-nav">
-                        <a href="<%=path %>#005">恒金保</a>
-                        <a href="<%=path %>#004">普金保</a>
-                        <a href="<%=path %>#003">多金宝</a>
-                        <a href="<%=path %>#006">新手标</a>
-                        <a href="creditorlist.html">债权转让</a>
+                        <a href="<%=path %>/detail/page#005">恒金保</a>
+                        <a href="<%=path %>/detail/page#004">普金保</a>
+                        <a href="<%=path %>/detail/page#003">多金宝</a>
+                        <a href="<%=path %>/detail/page#006">新手标</a>
                         <p class="left"></p>
                         <p class="right"></p>
                     </div>
                 </li>
-                <li><a href="">首页</a></li>
+                <li><a href="javascript:void(0);" onclick="index();">首页</a></li>
             </ul>
         </div>
     </div>
@@ -48,5 +54,8 @@
             $(".sub-nav").hide();
         });
     })
+    function index(){
+        window.location.href = "/";
+    }
 </script>
 </html>

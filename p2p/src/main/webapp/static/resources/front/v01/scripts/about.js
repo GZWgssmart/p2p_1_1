@@ -1,9 +1,9 @@
 var contentType = "application/x-www-form-urlencoded; charset=utf-8";
+var localObj = window.location;
+var contextPath = localObj.protocol + "//" + localObj.host;
 var oPage;
 var isClick = false;
 $(function(){
-		//初始化footer
-		utils.initPage();
 		hashChange();
 });
 function animate1() {
@@ -85,7 +85,7 @@ function hashChange(){
 //信息披露
 function initCyjg(){
 	$.ajax({
-		url: 'xxpl.html',
+		url: contextPath+ '/html/xxpl',
 		type: "get",
 		dataType: "html",
 		contentType:contentType,
@@ -162,7 +162,7 @@ function initCyjg(){
 //平台运营信息
 function initYybg(){
 	$.ajax({
-		url: 'ptyy.html',
+		url: contextPath+ '/html/ptyy',
 		type: "get",
 		dataType: "html",
 		contentType:contentType,
@@ -286,7 +286,7 @@ function initYybg(){
 //借款项目信息
 function initJkxm(){
 	$.ajax({
-		url: 'jkxm.html',
+		url: contextPath+ '/html/jkxm',
 		type: "get",
 		dataType: "html",
 		contentType:contentType,
@@ -332,7 +332,7 @@ function initJkxm(){
 //股东背景
 function initGdbj(){
 	$.ajax({
-	    url: 'gdbj.html',
+	    url: contextPath+ '/html/gdbj',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -354,7 +354,7 @@ function initGdbj(){
 //股东背景
 function initGdbj2(){
 	$.ajax({
-		url: 'gdbj.html',
+		url: contextPath+ '/html/gdbj',
 		type: "get",
 		dataType: "html",
 		contentType:contentType,
@@ -369,7 +369,7 @@ function initGdbj2(){
 //公司简介
 function initGsjj(){
 	$.ajax({
-	    url: 'gsjj.html',
+	    url: contextPath+ '/html/gsjj',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -382,7 +382,7 @@ function initGsjj(){
 //平台资质
 function initPtzz(){
 	$.ajax({
-	    url: 'ptzz.html',
+	    url: contextPath+ '/html/ptzz',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -479,7 +479,7 @@ picBanner.prototype.prev = function(){
 //顾问团队
 function initGwtd(){
 	$.ajax({
-	    url: 'gwtd.html',
+	    url: contextPath+ '/html/gwtd',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -501,7 +501,7 @@ function initGwtd(){
 //管理团队
 function initGltd(){
 	$.ajax({
-	    url: 'gltd.html',
+	    url: contextPath+ '/html/gltd',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -514,7 +514,7 @@ function initGltd(){
 //公司动态
 function initGsd(){
 	$.ajax({
-	    url: 'gsdt.html',
+	    url: contextPath+ '/html/gsdt',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -594,7 +594,7 @@ function  initXyxw(){
 //平台公告
 function initPtgg(){
 	$.ajax({
-	    url: 'ptgg.html',
+	    url: contextPath+ '/html/ptgg',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -619,7 +619,7 @@ function initPtgg(){
 //招贤纳士
 function initZxns(){
 	$.ajax({
-	    url: 'zxns.html',
+	    url: contextPath+ '/html/zxns',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,
@@ -637,7 +637,7 @@ function initZxns(){
 //联系我们
 function initLxwm(){
 	$.ajax({
-	    url: 'lxwm.html',
+	    url: contextPath+ '/html/lxwm',
 	    type: "get",
 	    dataType: "html",
 	    contentType:contentType,

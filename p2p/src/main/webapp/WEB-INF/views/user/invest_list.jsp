@@ -2,20 +2,13 @@
 <%
     String path = request.getContextPath();
 %>
-<!DOCTYPE html>
-<!-- saved from url=(0046)https://www.pujinziben.com/investlist.html#006 -->
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>我要投资-普金资本-安全可靠专注于供应链金融的国资背景P2P理财平台</title>
-    <meta name="keywords" content="投资理财产品，小额投资理财，投资理财公司，个人理财、供应链金融产品，三方存管">
-    <meta name="description" content="普金资本是目前国内知名的拥有国资背景的资理财公司，为投资理财用户提供多样的投资理财产品。投资额度小，短期投资周转快，高收益的安全理财尽在普金资本。">
     <link rel="stylesheet" href="<%=path %>/static/resources/front/v01/src/css/public.css">
     <link rel="stylesheet" href="<%=path %>/static/resources/front/v01/src/css/index.css">
-    <link rel="icon" href="https://www.pujinziben.com/resources/front/v01/src/images/logo_title.jpg"
-          type="image/x-icon">
+    <link rel="icon" href="https://www.pujinziben.com/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon">
 </head>
 
 <body onhashchange="hashChange()" rlt="1" style="">
@@ -74,7 +67,7 @@
             <ul class="paging cl" style="width: 260px; margin: 30px auto 0px;">
             </ul>
         </div>
-</div>
+    </div>
 </div>
 <%@include file="../master/foot.jsp" %>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
