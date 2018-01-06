@@ -37,7 +37,7 @@
                     </c:if>
                 </li>
                 <li><a href="account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
-                <li><a href="about.html#gdbj">关于我们</a></li>
+                <li><a href="<%=path%>/html/about#gdbj">关于我们</a></li>
                 <li><a href="<%=path%>/html/help">帮助中心</a></li>
                 <li id="userName">
                     <c:if test="${user == null }">

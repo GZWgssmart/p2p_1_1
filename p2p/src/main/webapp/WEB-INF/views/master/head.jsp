@@ -30,7 +30,7 @@
                 <li><a href="<%=path%>/html/safety">安全保障</a></li>
                 <li class="xialakuang">
                     <a href="<%=path %>/detail/page">投资理财</a>
-                    <div class="sub-nav">
+                    <div class="sub-nav" id="show_bz">
                         <a href="<%=path %>/detail/page#005">恒金保</a>
                         <a href="<%=path %>/detail/page#004">普金保</a>
                         <a href="<%=path %>/detail/page#003">多金宝</a>
@@ -49,9 +49,9 @@
 <script type="text/javascript">
     $(function(){
         $(".xialakuang").mouseover(function (){
-            $(".sub-nav").show();
+            $("#show_bz").show();
         }).mouseout(function (){
-            $(".sub-nav").hide();
+            $("#show_bz").hide();
         });
     })
     function index(){
