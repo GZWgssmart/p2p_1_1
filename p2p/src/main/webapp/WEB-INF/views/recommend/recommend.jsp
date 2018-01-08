@@ -8,7 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Insert title here</title>
-    <%@include file="../master/header.jsp" %>
+    <%@include file="../master/easyui/header.jsp" %>
 </head>
 <body>
 <table id="list" class="easyui-datagrid"
@@ -68,7 +68,7 @@
 </div>
 
 </body>
-<%@include file="../master/footer.jsp" %>
+<%@include file="../master/easyui/footer.jsp" %>
 
 <script>
     $(function () {
