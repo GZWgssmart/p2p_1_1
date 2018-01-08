@@ -26,7 +26,7 @@
         <th data-options="field:'id',width:80,checkbox:true">编号</th>
         <th data-options="field:'tid',width:80">推荐人编号</th>
         <th data-options="field:'tname',width:100">推荐人姓名</th>
-        <th data-options="field:'uid',width:100">被推荐人编号</th>
+        <th data-options="field:'uid',width:100"x>被推荐人编号</th>
         <th data-options="field:'rname',width:100">被推荐人姓名</th>
         <th data-options="field:'date',width:150,formatter:formatDate">推荐时间</th>
     </tr>

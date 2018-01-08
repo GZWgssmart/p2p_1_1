@@ -125,7 +125,9 @@
                 <li><a href="#msg" target="mainFrame">消息中心</a></li>
             </ul>
         </div>
-        <a href="#tuijian" class="tuijian"><img src="<%=path%>/static/resources/front/v01/src/images/account/tuijian.png"/></a>
+        <a href="<%=path %>/recommend/handpage" target="mainFrame" class="tuijian">
+            <img src="<%=path%>/static/resources/front/v01/src/images/account/tuijian.png"/>
+        </a>
     </div>
     <!-- center_left end -->
 

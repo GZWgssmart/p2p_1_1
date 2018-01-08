@@ -8,6 +8,9 @@ function hashChange(){
         case '/logczz/page':
             initrecharge();
             break;
+        case '/recommend/handpage':
+            initTuijian();
+            break;
         case 'tuijian':
             initTuijian();
             break;
@@ -501,6 +504,144 @@ function InitBank() {
         },
         "json"
     );
+}
+function initTuijian() {
+    //复制文本
+    var text = $(".tj-clip-text").text();
+    clipboard(text,'tj-clip-btn','复制成功！','tj-clip');
+    /*
+
+     $('.tuijian-list').hide();
+     $(".invest-list").hide();
+     $(".investList").hide();
+     $(".fanhui").hide();
+     */
+
+    $(".tuijian").click(function () {
+        tuiJianList();
+
+        if($(this).hasClass('active')){
+            return;
+        }
+        $(this).addClass('active').siblings('a').removeClass('active');
+        $('.em-line').animate({'left':'0'},500);
+        $('.tuiJianShow').show();
+        $('.tuijian-list').hide();
+        $(".invest-list").hide();
+        $(".investList").hide();
+        $(".fanhui").hide();
+    });
+
+    $(".show-tuijian-list").bind("click", function () {
+        if($(this).hasClass('active')){
+            return;
+        }
+        $(this).addClass('active').siblings('a').removeClass('active');
+        $('.em-line').animate({'left':'120px'},500);
+        $('.tuiJianShow').hide();
+        $('.tuijian-list').show();
+        $(".invest-list").hide();
+        $(".investList").hide();
+        $(".fanhui").hide();
+
+        $('#startDate').datepicker({format:'yyyy-mm-dd'}).on('changeDate',function(){});
+        $('#endDate').datepicker({format:'yyyy-mm-dd'}).on('changeDate',function(){});
+        if($('.listData li').size() == 0){
+            //初始化数据查询
+            tuiJianList();
+        };
+        //搜索
+        $('#cashSearch').unbind('click').click(function(){
+            var startDate = $('#startDate').val();
+            var endDate = $('#endDate').val();
+            if(startDate == ''){
+                alert('开始时间不能为空');
+                return;
+            }
+            if(endDate == ''){
+                alert('结束时间不能为空');
+                return;
+            }
+            if(startDate>endDate){
+                alert('开始时间不能大于结束时间');
+                return;
+            }
+            tuiJianList();
+        });
+    });
+}
+var isEmployeeReferral=-1;
+function tuiJianList(){
+    var begin = $("#startDate").val();
+    var end = $("#endDate").val();
+    //数据初始化
+    var payData = [
+        {
+            key:'rname',resolve:function(val, record){
+            return val;
+        }
+        }, {
+            key:'date',resolve:function(val, record){
+                return formatDate(val);
+            }
+        }, {
+            key:'rewardMoney',resolve:function(val, record){
+                if (val == null) {
+                    return '<span class="black">0元</span>';
+                } else {
+                    return '<span class="black">'+val+'元</span>';
+                }
+
+            }
+        }, {
+            key:'',resolve:function(val, record){
+                if (isEmployeeReferral != 2){
+                    return "- -";
+                }
+                var a = $("<a href='javascript:;'>查看</a>");
+                a.click(function() {
+                    // 查看推荐的好友投资详细信息
+                    $(".tuijian-list").hide();
+                    $(".investList").show();
+                    $(".invest-listData").show();
+                    $(".fanhui").css({"float":"right","dispaly":"block","color":"#87CEFA"});
+                    $(".fanhui").show();
+                    investRecordInit(record.username, record.userId);
+                });
+                return a;
+            }
+        }
+    ];
+    var param={'startTime':begin,'endTime':end};
+    oPage = null;
+    oPage = new Page('/recommend/pager_criteria',param,$('.tuijian-list .listData'),$('.tuijian-list .paging'),payData,function(data){
+    });
+}
+
+//复制初始化
+function clipboard(text,button,msg,parent) {
+    if(window.clipboardData){        //for ie
+        var copyBtn = document.getElementById(button);
+        copyBtn.onclick = function(){
+            window.clipboardData.setData('text',text);
+            alert(msg);
+        }
+    }else{
+        initclip(text);
+    }
+    return false;
+}
+//获取复制文本
+function initclip(text) {
+    var clip = new ZeroClipboard.Client();
+    clip.setHandCursor(true);
+    clip.addEventListener('mouseOver', function(){
+        clip.setText( text );
+    },false);
+    clip.addEventListener('complete', function(){
+        alert('复制成功！');
+    });
+    clip.glue( 'tj-clip-btn' );
 }
 //时间格式化
 function formatDate(value) {

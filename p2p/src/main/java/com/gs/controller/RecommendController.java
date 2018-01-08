@@ -1,5 +1,6 @@
 package com.gs.controller;
 
+import com.gs.common.Constants;
 import com.gs.enums.ControllerStatusEnum;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.RecommendVO;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -35,8 +37,16 @@ public class RecommendController {
 
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, RecommendVO recommend) {
-        return recommendService.listPagerCriteria(page, rows, recommend);
+    public Pager pagerCriteria(HttpSession session, Integer page, Integer rows, RecommendVO param) {
+        User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+        if(user != null){
+            if(param.getCurPage() != 0){
+                param.setUid(user.getUid());
+                return recommendService.listPagerCriteria(param.getCurPage(), 8, param);
+            }
+        }
+
+        return recommendService.listPagerCriteria(page, rows, param);
     }
 
     //删除单个
@@ -82,6 +92,11 @@ public class RecommendController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping("handpage")
+    public String showRecommendPage() {
+        return "recommend/recopage";
     }
 
 }

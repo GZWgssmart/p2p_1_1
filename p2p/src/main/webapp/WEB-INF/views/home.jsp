@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>后台管理</title>
-	<%@include file="master/easyui/header.jsp" %>
+	<%@include file="./master/easyui/header.jsp" %>
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north'" style="height: 60px;">
@@ -30,7 +30,7 @@
 					   class="site-navi-tab">用户基本信息管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
 					   class="site-navi-tab">用户列表</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
+				<li><a href="javascript:void(0);" src="<%=path%>/recommend/page"
 					   class="site-navi-tab">推荐人管理</a></li>
 			</ul>
 		</div>
@@ -148,5 +148,5 @@
 </div>
 
 </body>
-<%@include file="master/easyui/footer.jsp" %>
+<%@include file="./master/easyui/footer.jsp" %>
 </html>
