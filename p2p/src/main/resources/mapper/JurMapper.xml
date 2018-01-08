@@ -16,6 +16,14 @@
         ]]>
     </select>
 
+    <select id="listJurs" parameterType="string" resultType="String">
+        select j.jurl from t_jur j, t_huser h, t_roleuser ru, t_rolejur rj where h.huid = ru.huid and ru.rid = rj.rid and j.jid = rj.jid and h.phone = #{phone}
+    </select>
+
+    <select id="listJur" parameterType="long" resultType="Long">
+        select j.jid from t_jur j, t_role r, t_rolejur rj where r.rid = rj.rid and j.jid = rj.jid and r.rid = #{rid}
+    </select>
+
     <update id="update" parameterType="jur">
         <![CDATA[
             update t_jur

@@ -9,4 +9,8 @@
         </foreach>
     </insert>
 
+    <delete id="removeById" parameterType="long">
+        delete from t_rolejur where rid = #{rid}
+    </delete>
+
 </mapper>

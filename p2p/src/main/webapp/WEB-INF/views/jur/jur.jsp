@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -12,7 +13,7 @@
 <html>
 <head>
     <title>导入权限</title>
-    <%@include file="../master/header.jsp"%>
+    <%@include file="../master/easyui/header.jsp"%>
 </head>
 <body>
 <table id="list" class="easyui-datagrid"
@@ -36,9 +37,13 @@
 
 <div id="tb" style="height: auto">
     <form id="file_form" method="post" action="/jur/import" enctype="multipart/form-data">
-        <input type="file" name="file" id="file">
-        <input type="submit" value="导入数据" id="lead">
-        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditWin('editWin', 'list', 'editForm')">修改</a>
+        <shiro:hasPermission name="jur:import">
+            <input type="file" name="file" id="file">
+            <input type="submit" value="导入数据" id="lead">
+        </shiro:hasPermission>
+        <shiro:hasPermission name="jur:update">
+            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditWin('editWin', 'list', 'editForm')">修改</a>
+        </shiro:hasPermission>
     </form>
     <div>
         <form id="searchForm">
@@ -84,7 +89,7 @@
 </div>
 
 </body>
-<%@include file="../master/footer.jsp"%>
+<%@include file="../master/easyui/footer.jsp"%>
 <script type="text/javascript" src="<%=path%>/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.form.js"></script>
 <script>

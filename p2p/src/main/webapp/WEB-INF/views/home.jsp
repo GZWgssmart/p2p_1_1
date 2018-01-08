@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%
@@ -126,6 +127,25 @@
 					   class="site-navi-tab">员工列表</a></li>
 			</ul>
 		</div>
+
+		<shiro:hasRole name="超级管理员">
+			<div title="权限管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
+				<ul>
+					<shiro:hasPermission name="jur:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/jur/page"
+							   class="site-navi-tab">权限列表</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="role:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/role/page"
+							   class="site-navi-tab">角色列表</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="roleUser:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/roleUser/page"
+							   class="site-navi-tab">用户角色</a></li>
+					</shiro:hasPermission>
+				</ul>
+			</div>
+		</shiro:hasRole>
 	</div>
 </div>
 <div id="tabs" class="easyui-tabs" data-options="region:'center'">

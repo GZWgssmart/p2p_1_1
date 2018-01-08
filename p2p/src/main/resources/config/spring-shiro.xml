@@ -7,10 +7,12 @@
 
     <!-- 对应于web.xml中配置的那个shiroFilter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-    <!-- 权限管理器 -->
+    <!-- 权限管理器 --><!-- Shiro的核心安全接口,这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
-        <!-- 登录地址 -->
-        <property name="loginUrl" value="/WEB-INF/views/login.jsp"/>
+        <!-- 登录地址 --><!-- 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.html"页面 -->
+        <property name="loginUrl" value="/WEB-INF/views/user/backlogin.jsp"/>
+        <!-- 登录成功后要跳转的连接 -->
+        <property name="successUrl" value="/WEB-INF/views/home.jsp"/>
         <!-- 错误页面 -->
         <property name="unauthorizedUrl" value="/WEB-INF/views/unauth.jsp"/>
         <!-- 权限配置 -->
@@ -20,12 +22,12 @@
                 /css/**=anon
                 /images/**=anon
                 /js/**=anon
-                /jur/**=anon
+                /static/**=anon
             </value>
         </property>
     </bean>
 
-
+    <!-- Shiro生命周期处理器 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
     <!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->
     <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Md5CredentialsMatcher"></bean>
@@ -38,16 +40,19 @@
         <property name="permissionsLookupEnabled" value="true"></property>
         <property name="dataSource" ref="dataSource"></property>
         <property name="authenticationQuery"
-                  value="SELECT password FROM sec_user WHERE user_name = ?"></property>
+                  value="select pwd from t_huser where phone = ?"></property>
         <property name="userRolesQuery"
-                  value="SELECT role_name from sec_user_role left join sec_role using(role_id) left join sec_user using(user_id) WHERE user_name = ?"></property>
+                  value="select r.rname from t_roleuser ru,t_role r,t_huser h where r.rid = ru.rid and h.huid = ru.huid and h.phone = ?"></property>
         <property name="permissionsQuery"
-                  value="SELECT permission_name FROM sec_role_permission left join sec_role using(role_id) left join sec_permission using(permission_id) WHERE role_name = ?"></property>
+                  value="select j.jurl from t_jur j, t_huser h, t_roleuser ru, t_rolejur rj
+        where h.huid = ru.huid and ru.rid = rj.rid and j.jid = rj.jid and h.phone = ?"></property>
     </bean>
 
     <!-- Shiro安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="jdbcRealm"></property>
+        <!-- 自定义realm -->
+        <property name="realms" ref="shiroRealm"></property>
         <property name="cacheManager" ref="shiroCacheManager"></property>
     </bean>
 

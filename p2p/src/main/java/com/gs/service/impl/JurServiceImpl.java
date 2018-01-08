@@ -49,5 +49,15 @@ public class JurServiceImpl extends AbstractBaseService implements JurService {
         jurDAO.insertInfoBatch(jurList);
     }
 
+    @Override
+    public List<String> listJurs(String phone) {
+        return jurDAO.listJurs(phone);
+    }
+
+    @Override
+    public List<Long> listJur(Long rid) {
+        return jurDAO.listJur(rid);
+    }
+
 }
 

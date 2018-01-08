@@ -7,6 +7,7 @@ import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.RoleUserService;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.RoleUserVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class RoleUserController {
     private RoleUserService roleUserService;
 
 
+    @RequiresPermissions("roleUser:page")
     @RequestMapping("page")
     public String Page(){
         return "roleuser/roleuser";
@@ -37,6 +39,7 @@ public class RoleUserController {
         return roleUserService.listPagerCriteria(page, rows, roleUserVO);
     }
 
+    @RequiresPermissions("roleUser:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(RoleUser roleUser){
@@ -50,6 +53,7 @@ public class RoleUserController {
         return statusVO;
     }
 
+    @RequiresPermissions("roleUser:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(RoleUser roleUser){

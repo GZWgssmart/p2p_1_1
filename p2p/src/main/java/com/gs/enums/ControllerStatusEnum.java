@@ -48,6 +48,7 @@ public enum ControllerStatusEnum {
     ROLE_USER_SAVE_FAIL(211,"fail","角色用户添加失败"),
     ROLE_USER_UPDATE_SUCCESS(212,"ok","角色用户修改成功"),
     ROLE_USER_UPDATE_FAIL(213,"fail","角色用户修改失败"),
+    HUSER_LOGIN_UNAUTH(214,"fail","用户登录未授权"),
 
     BZ_SAVE_FAIL(1501, "error", "保存失败"),
     BZ_SAVE_SUCCESS(1502, "ok", "保存成功"),

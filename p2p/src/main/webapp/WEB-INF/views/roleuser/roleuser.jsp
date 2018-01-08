@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -5,14 +6,14 @@
   Time: 8:19
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>、
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
 %>
 <html>
 <head>
     <title>用户角色</title>
-    <%@include file="../master/header.jsp"%>
+    <%@include file="../master/easyui/header.jsp"%>
 </head>
 <body>
 <table id="list" class="easyui-datagrid"
@@ -41,8 +42,12 @@
 
 <div id="tb" style="height: auto">
     <div>
-        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">新增</a>
-        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditWin('editWin', 'list', 'editForm')">修改</a>
+        <shiro:hasPermission name="roleUser:save">
+            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">新增</a>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="roleUser:update">
+            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditWin('editWin', 'list', 'editForm')">修改</a>
+        </shiro:hasPermission>
         <form id="searchForm">
             <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入角色名',
 						required:false,
@@ -110,7 +115,7 @@
 </div>
 
 </body>
-<%@include file="../master/footer.jsp"%>
+<%@include file="../master/easyui/footer.jsp"%>
 <script>
     $(function () {
         setPagination("list");
