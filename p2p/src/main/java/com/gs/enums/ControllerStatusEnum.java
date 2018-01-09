@@ -84,7 +84,13 @@ public enum ControllerStatusEnum {
     DxModel_UPDATE_FAIL(1803, "error", "修改失败"),
     DxModel_UPDATE_SUCCESS(1804, "ok", "修改成功"),
     DxModel_DELETE_FAIL(1805, "error", "删除失败"),
-    DxModel_DELETE_SUCCESS(1806, "ok", "删除成功");
+    DxModel_DELETE_SUCCESS(1806, "ok", "删除成功"),
+
+    TZB_SAVE_SUCCESS(1806,"ok", "投资成功"),
+    TZB_SAVE_OR(1807,"or", "你已经投资过该产品,现已经为你增加投资金额！"),
+    TZB_SAVE_FAIL(1808,"fail", "投资失败！不能给自己投资"),
+    TZB_SAVE_ERROR(1809,"error", "投资失败！请先登录");
+
 
 
     private Integer code;

@@ -7,7 +7,7 @@ import java.math.BigInteger;
 public class UserMoney {
     private Long umid;
 
-    private BigInteger uid;//用户id
+    private Long uid;//用户id
 
     private BigDecimal zmoney;//总资产
 
@@ -31,11 +31,11 @@ public class UserMoney {
         this.umid = umid;
     }
 
-    public BigInteger getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(BigInteger uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 

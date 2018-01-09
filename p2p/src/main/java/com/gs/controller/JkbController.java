@@ -9,7 +9,6 @@ import com.gs.query.JkbQuery;
 import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.JkbVO;
-import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,6 +37,8 @@ import java.util.List;
 @RequestMapping("/jkb")
 public class JkbController {
 
+    @Autowired
+    private UserMoneyService userMoneyService;
     @Autowired
     private BorrowApplyService borrowApplyService;
     @Autowired
@@ -197,11 +195,18 @@ public class JkbController {
 
     //进入前台投资
     @RequestMapping("/jkb_look/{baid}")
-    public String JkbLook(HttpServletRequest request,@PathVariable("baid") Long baid){
+    public String JkbLook(HttpSession session,HttpServletRequest request,@PathVariable("baid") Long baid){
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
         JkbVO jkb = (JkbVO) borrowApplyService.getById(baid);
+        if(user !=null){
+            UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(user.getUid());
+            request.setAttribute("userMoney",userMoney);
+            request.setAttribute("pwd",user.getZpwd());
+        }
         request.setAttribute("jkb",jkb);
         return "jkb/jkb_look";
     }
+
 
 
 }

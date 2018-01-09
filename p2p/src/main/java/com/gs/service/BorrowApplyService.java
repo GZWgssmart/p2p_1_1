@@ -8,4 +8,5 @@ package com.gs.service;
  * @version 1.0
  */
 public interface BorrowApplyService extends BaseService {
+    void updateState(Object obj);
 }

@@ -1,5 +1,7 @@
 package com.gs.service;
 
+import java.util.List;
+
 /**
  * TzbService接口，实现CRUD
  * 创建时间：2017/12/21 16:14
@@ -8,4 +10,5 @@ package com.gs.service;
  * @version 1.0
  */
 public interface HkbService extends BaseService {
+    void saveList(List hkbList);
 }

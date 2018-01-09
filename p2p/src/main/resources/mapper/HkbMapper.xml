@@ -4,8 +4,38 @@
 
 <mapper namespace="com.gs.dao.HkbDAO">
 
+    <insert id="save" parameterType="hkb">
+        <![CDATA[
+          insert into t_hkb(uid,rname,cpname,tnum,ytime,bzname,ybx,ylx,ybj,state,baid,huid)
+          values(#{uid},#{rname},#{cpname},#{tnum},#{ytime},#{bzname},#{ybx},#{ylx},#{ybj},#{state},#{baid},#{huid} )
+        ]]>
+    </insert>
 
+    <insert id="saveList" parameterType="list">
+        <![CDATA[
+      INSERT INTO t_hkb(uid, rname, cpname, bzname,huid,
+      ybx, ylx, ybj, tnum, baid, ytime, state, djq
+      )VALUES
+    ]]>
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.uid},#{item.rname},#{item.cpname},#{item.bzname},#{item.huid}
+            ,#{item.ybx},#{item.ylx},#{item.ybj},#{item.tnum},#{item.baid},#{item.ytime},#{item.state},#{item.djq})
+        </foreach>
+    </insert>
 
+    <select id="listPagerCriteria" resultType="com.gs.bean.Hkb">
+        <![CDATA[
+		select * from t_hkb
+		where baid = #{query.baid}
+		]]>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
 
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+		select count(hkid) from t_hkb
+		where baid = #{query.baid}
+		]]>
+    </select>
 
 </mapper>

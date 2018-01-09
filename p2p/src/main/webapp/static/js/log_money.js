@@ -6,6 +6,7 @@ $(function(){
     $('#startDate').datepicker({format:'yyyy-mm-dd'}).on('changeDate',function(){});
     $('#endDate').datepicker({format:'yyyy-mm-dd'}).on('changeDate',function(){});
     $("#type4").bind("click",function(){
+        $("#type").val('');
         $(".cl li").removeClass("active");
         $(this).addClass("active");
         initIpayData('','',null);
@@ -29,6 +30,12 @@ $(function(){
         initIpayData('','',$("#type").val());
     });
     $("#type3").bind("click",function(){
+        $("#type").val(5);
+        $(".cl li").removeClass("active");
+        $(this).addClass("active");
+        initIpayData('','',$("#type").val());
+    });
+    $("#type5").bind("click",function(){
         $("#type").val(4);
         $(".cl li").removeClass("active");
         $(this).addClass("active");
@@ -62,6 +69,8 @@ function initIpayData(startDate,endDate,type){
             }else if(val == '3'){
                 str = '<p><span class="">回款</span></p>';
             }else if(val == '4'){
+                str = '<p><span class="">投资</span></p>';
+            }else if(val == '5'){
                 str = '<p><span class="">系统金额</span></p>';
             }
             return str;

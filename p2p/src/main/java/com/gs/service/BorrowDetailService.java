@@ -9,4 +9,5 @@ package com.gs.service;
  */
 public interface BorrowDetailService extends BaseService {
     void updatePic(Object obj);
+    void updateBybaid(Object obj);
 }

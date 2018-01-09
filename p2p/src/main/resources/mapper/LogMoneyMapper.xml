@@ -32,5 +32,10 @@
         <include refid="logMoney_query_common" />
     </select>
 
+    <insert id="save" parameterType="logMoney">
+        <![CDATA[
+          insert into t_logmoney(uid, type, `in`, `out`, `date`) values(#{uid},#{type},#{in},#{out},CURRENT_TIMESTAMP)
+        ]]>
+    </insert>
 
 </mapper>

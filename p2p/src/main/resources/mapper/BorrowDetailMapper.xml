@@ -8,7 +8,7 @@
         from t_borrowdetail b,t_borrowapply bo,t_sway s,t_bz z,t_jklx j
     </sql>
     <sql id="common_where">
-        where b.baid=bo.baid and bo.sid=s.sid and bo.bzid=z.bzid and bo.lxid=j.lxid
+        where b.baid=bo.baid and bo.sid=s.sid and bo.bzid=z.bzid and bo.lxid=j.lxid and bo.state<![CDATA[>]]>2
         <if test="obj != null and obj.tt == 1 and obj.tt != ''">
                 and bo.term BETWEEN 1 and 3
         </if>
@@ -43,7 +43,7 @@
                 and z.bzname ='新手标'
         </if>
         <if test="obj != null and obj.titles != ''">
-                and b.cpname = #{obj.titles}
+                and b.cpname like concat('%', #{obj.titles}, '%')
         </if>
     </sql>
 
@@ -86,10 +86,18 @@
         ]]>
     </update>
 
+    <update id="updateBybaid" parameterType="borrowDetail">
+        <![CDATA[
+         update t_borrowdetail set ytmoney = #{ytmoney}
+           where baid = #{baid}
+        ]]>
+    </update>
+
     <select id="listPagerCriteria" resultType="com.gs.vo.investBorrowVo">
         select bo.baid,z.bzname,b.cpname,s.way,bo.time,bo.deadline,bo.money,b.nprofit,bo.state,b.ytmoney,bo.term
         <include refid="common_from"/>
         <include refid="common_where"/>
+        order by bo.state
         limit #{pager.beginIndex}, #{pager.pageSize};
     </select>
 
@@ -97,5 +105,11 @@
         select count(b.baid)
         <include refid="common_from"/>
         <include refid="common_where"/>
+    </select>
+    <select id="getById" parameterType="long" resultType="com.gs.vo.BorrowDetailVO">
+        select bd.ytmoney,bd.baid,bd.nprofit,bd.cpname,ba.money as money,ba.state as state,ba.huid as huid,
+        ba.term as term,ba.bzid as bzid,bz.bzname as bzname,ba.rname as rname,s.way as way
+         from t_borrowdetail bd,t_borrowapply ba,t_sway s,t_bz bz
+         where bd.baid = ba.baid and ba.sid = s.sid and ba.bzid = bz.bzid and bd.baid = #{baid}
     </select>
 </mapper>

@@ -117,6 +117,9 @@ public class UserController {
             }
         }
         userService.save(user);
+        UserMoney userMoney = new UserMoney();
+        userMoney.setUid(user.getUid());
+        userMoneyService.save(userMoney);
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_SAVE_SUCCESS);
         return statusVO;
     }

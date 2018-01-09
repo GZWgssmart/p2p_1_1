@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="<%=path %>/static/resources/front/v01/src/css/public.css">
     <link rel="stylesheet" href="<%=path %>/static/resources/front/v01/src/css/index.css">
     <link rel="icon" href="https://www.pujinziben.com/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon">
+    <!-- 提示框 -->
+    <script src="<%=path %>/static/js/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="<%=path %>/static/css/sweetalert.css">
     <style>
 
         .small_img,.big_img {
@@ -98,7 +101,14 @@
 
             </div>
             <div class="subject-s-r-c">
-                <p>可用余额：<span id="canUseSum">${jkb.kymoney}元</span></p>
+                <p>可用余额：<span id="canUseSum">
+                    <c:if test="${userMoney !=null}">
+                        ${userMoney.kymoney}元
+                    </c:if>
+                    <c:if test="${userMoney ==null}">
+                       0.00元
+                    </c:if>
+                </span></p>
                 <p class="rate">预期收益：<span class="color" id="reckon">0.00</span></p>
             </div>
             <div class="subject-s-r-c">
@@ -106,11 +116,17 @@
                 <p class="rate active" id="increaseP">加息收益：<span class="color" id="increase">0.00</span></p>
             </div>
             <div class="input">
-                <input type="text" style="display: none" id="kymoney" value="${jkb.kymoney}">
+                <input type="text" style="display: none" id="kymoney" value="${userMoney.kymoney}">
+                <input type="text" style="display: none" id="ktmoney" value="${jkb.money-jkb.ytmoney}">
                 <input type="text" style="display: none" id="nprofit" value="${jkb.nprofit}">
+                <input type="text" style="display: none" id="uid" value="${jkb.uid}">
                 <input type="text" style="display: none" id="term" value="${jkb.term}">
                 <input type="text" style="display: none" id="sid" value="${jkb.sid}">
-                <input type="text" placeholder="请输入投资金额" id="amount" onkeyup="reckon()" onblur="focusblur(this)">
+                <input type="text" style="display: none" id="pwd" value="${user.zpwd}">
+                <input type="text" style="display: none" id="cpname" value="${jkb.cpname}">
+                <input type="text" style="display: none" id="ytmoney" value="${jkb.ytmoney}">
+                <input type="text" style="display: none" id="baid" value="${jkb.baid}">
+                <input type="text" placeholder="请输入投资金额" id="amount" onkeyup="reckon()">
                 <button type="button" id="pushAll">全投</button>
             </div>
             <div class="quan">
@@ -136,8 +152,8 @@
     <div class="sub-a-nav">
         <a href="javascript:void(0);" class="" onclick="getDetail(this)" class="active">项目详情</a>
         <a href="javascript:void(0);" onclick="getFile(this)" id="getFile">相关文件</a>
+        <input type="text" style="display:none;" id="state" value="${jkb.state}"/>
         <c:if test="${jkb.state==4}">
-            <input type="text" style="display:none;" id="state" value="${jkb.state}"/>
             <a href="javascript:void(0);" onclick="getPlan(this)" id="getPlan">还款计划</a>
         </c:if>
 
@@ -228,25 +244,10 @@
     </div>
     <div class="sub-a-box invest" id="invest" style="display: none;">
         <ul class="">
-            <li class="title"><div class="children0">投资人</div><div class="children1">金额</div><div class="children2">投资时间</div><div class="children3">投资方式</div></li>
+            <li class="title"><div class="children0">投资人</div><div class="children1">金额</div><div class="children2">投资时间</div><div class="children3">状态</div></li>
         </ul>
         <ul class="listData">
-            <li class="interval">
-                <div class="children0">18****0388</div>
-                <div class="children1">120</div>
-                <div class="children2">2018-01-02 11:57:02</div>
-                <div class="children3">
-                    <p class="icon icon-move">APP</p>
-                </div>
-            </li>
-            <li>
-                <div class="children0">18****0388</div>
-                <div class="children1">120</div>
-                <div class="children2">2018-01-02 11:56:40</div>
-                <div class="children3">
-                    <p class="icon icon-move">APP</p>
-                </div>
-            </li>
+
         </ul>
         <ul class="paging" style="width: 260px; margin: 30px auto 0px;">
         </ul>
@@ -286,7 +287,7 @@
     <a href="javascript:void(0);" class="close icon icon-close"></a>
     <div class="popup-from">
         <div class="label cl">
-            <label>投标密码</label><input type="password" id="password" maxlength="30" placeholder="请输入投标密码">
+            <label>投标密码</label><input type="password" id="password" maxlength="30" placeholder="请输入交易密码">
         </div>
         <button type="button" class="btn" id="haspwd-submit">立即投标</button>
     </div>
@@ -296,6 +297,7 @@
 </body>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script src="<%=path%>/static/js/jkb_look.js"></script>
+<script src="<%=path%>/static/js/publlic.js"></script>
 <script>
 
 </script>

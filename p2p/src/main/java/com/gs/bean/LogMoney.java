@@ -9,7 +9,7 @@ public class LogMoney {
 
     private Long uid;//用户id
 
-    private Byte type;//类型，1充值，2提现，3回款，4系统金额（公司奖励等）
+    private Byte type;//类型，1充值，2提现，3回款，4,投资，5系统金额（公司奖励等）
 
     private BigDecimal in;//收入
 
@@ -17,14 +17,6 @@ public class LogMoney {
 
     private Date date;//时间
 
-    public LogMoney(Long id, Long uid, Byte type, BigDecimal in, BigDecimal out, Date date) {
-        this.id = id;
-        this.uid = uid;
-        this.type = type;
-        this.in = in;
-        this.out = out;
-        this.date = date;
-    }
 
     public LogMoney() {
         super();

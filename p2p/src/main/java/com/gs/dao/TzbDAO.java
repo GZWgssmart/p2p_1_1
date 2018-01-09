@@ -1,6 +1,8 @@
 package com.gs.dao;
 
+import com.gs.bean.Tzb;
 import com.gs.common.Pager;
+import com.gs.vo.ControllerStatusVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -20,4 +22,8 @@ public interface TzbDAO extends BaseDAO {
 
     @Override
     Long countCriteria(@Param("query") Object obj);
+    Object getTzb(@Param("uid") Long uid,@Param("baid") Long baid);
+    ControllerStatusVO add(Object obj);
+
+
 }

@@ -71,7 +71,7 @@
                     <div class="center-main">
                         <div class="canvas">
                             <div class="center-total">
-                                <p id="allTotal">0.00</p>
+                                <p id="allTotal">${userMoney.zmoney}</p>
                                 <p class="text">总资产</p>
                             </div>
                         </div>

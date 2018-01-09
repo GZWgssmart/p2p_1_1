@@ -5,7 +5,7 @@
 <mapper namespace="com.gs.dao.BorrowApplyDAO">
 
     <sql id="jkb_query_common">
-        from t_borrowapply ba,t_borrowdetail bd,t_bz bz,t_jklx j,t_sway s,t_usermoney um
+        from t_borrowapply ba,t_borrowdetail bd,t_bz bz,t_jklx j,t_sway s
         where ba.baid = bd.baid
         and ba.bzid = bz.bzid
         and ba.lxid = j.lxid
@@ -69,12 +69,11 @@
         <include refid="jkb_query_criteria"/>
     </select>
     <select id="getById" parameterType="long" resultType="com.gs.vo.JkbVO">
-        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.deadline,
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.deadline,ba.uid,
         bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
         bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,bd.ytmoney as ytmoney,
         bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,
-        bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way,
-        um.kymoney as kymoney
+        bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way
         <include refid="jkb_query_common" />
         and ba.baid = #{baid}
     </select>
@@ -84,5 +83,26 @@
          deadline = #{deadline},sid = #{sid}
          where baid = #{baid}
         ]]>
+    </update>
+
+    <update id="updateState" parameterType="com.gs.bean.BorrowApply">
+        <![CDATA[
+         update t_borrowapply
+         ]]>
+         <set>
+            <if test="huid != null and huid!=''">
+                huid = #{huid},
+            </if>
+            <if test="excuse != null and excuse!=''">
+                excuse = #{excuse},
+            </if>
+            <if test="state != null and state!=''">
+                state = #{state},
+            </if>
+            <if test="time != null and time!=''">
+                `time` = CURRENT_TIMESTAMP,
+            </if>
+        </set>
+         where baid = #{baid}
     </update>
 </mapper>

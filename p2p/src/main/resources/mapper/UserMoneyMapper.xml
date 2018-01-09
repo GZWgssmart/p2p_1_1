@@ -22,4 +22,37 @@
         update t_usermoney set kymoney = kymoney - #{money} where uid=#{id}
     </update>
 
+    <update id="update">
+        <![CDATA[
+         update t_usermoney
+        ]]>
+        <set>
+            <if test="zmoney != null and zmoney!=''">
+                zmoney = #{zmoney},
+            </if>
+            <if test="kymoney != null and kymoney!=''">
+                kymoney = #{kymoney},
+            </if>
+            <if test="symoney != null and symoney!=''">
+                symoney = #{symoney},
+            </if>
+            <if test="tzmoney != null and tzmoney!=''">
+                tzmoney = #{tzmoney},
+            </if>
+            <if test="djmoney != null and djmoney!=''">
+                djmoney = #{djmoney},
+            </if>
+            <if test="dsmoney != null and dsmoney!=''">
+                dsmoney = #{dsmoney},
+            </if>
+            <if test="jlmoney != null and jlmoney!=''">
+                jlmoney = #{jlmoney},
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
+
+    <insert id="save" parameterType="com.gs.bean.UserMoney">
+        insert into t_usermoney(uid) values(#{uid});
+    </insert>
 </mapper>

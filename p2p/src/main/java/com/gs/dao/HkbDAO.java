@@ -1,6 +1,10 @@
 package com.gs.dao;
 
+import com.gs.common.Pager;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * TzbDAO接口，实现CRUD
@@ -11,4 +15,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface HkbDAO extends BaseDAO {
+    void saveList(List hkbList);
+    @Override
+    List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
+
+    @Override
+    Long countCriteria(@Param("query") Object obj);
 }

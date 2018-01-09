@@ -31,4 +31,9 @@ public class BorrowDetailServiceImpl extends AbstractBaseService implements Borr
     public void updatePic(Object obj) {
         borrowDetailDAO.updatePic(obj);
     }
+
+    @Override
+    public void updateBybaid(Object obj) {
+        borrowDetailDAO.updateBybaid(obj);
+    }
 }
