@@ -13,7 +13,7 @@
     </delete>
 
     <insert id="save" parameterType="com.gs.bean.DxModel">
-        insert into t_dxmodel (dxid, content) values (#{dxid}, #{content})
+        insert into t_dxmodel (content) values (#{content})
     </insert>
 
     <update id="update" parameterType="com.gs.bean.DxModel">

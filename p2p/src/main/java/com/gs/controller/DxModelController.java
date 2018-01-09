@@ -2,6 +2,7 @@ package com.gs.controller;
 
 import com.gs.bean.DxModel;
 import com.gs.common.Pager;
+import com.gs.common.SendCode;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.DxModelService;
 import com.gs.vo.ControllerStatusVO;
@@ -34,21 +35,24 @@ public class DxModelController {
         return dxModelService.listPager(pageIndex,pageSize);
     }
 
-    @RequestMapping("dxModel")
+    @RequestMapping("SendDxModel")
     public String init() {
-        return "dxModel/dxModel";
+        return "reAndLo";
     }
 
     @RequestMapping("save")
     @ResponseBody
-    public ControllerStatusVO save(DxModel dxModel){
+    public ControllerStatusVO save(String phone){
         ControllerStatusVO statusVO = null;
         try {
+            DxModel dxModel=new DxModel();
+            String content=SendCode.sendsms(phone)+"";
+            dxModel.setContent(content);
             dxModelService.save(dxModel);
         } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_SAVE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_SAVE_SUCCESS);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_SUCCESS);
         return statusVO;
     }
 
@@ -59,9 +63,9 @@ public class DxModelController {
         try {
             dxModelService.update(dxModel);
         } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_UPDATE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_UPDATE_FAIL);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_UPDATE_SUCCESS);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_UPDATE_SUCCESS);
         return statusVO;
     }
 
@@ -72,9 +76,9 @@ public class DxModelController {
         try {
             dxModelService.removeById(id);
         } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_DELETE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_DELETE_FAIL);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_DELETE_SUCCESS);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_DELETE_SUCCESS);
         return statusVO;
     }
 

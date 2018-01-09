@@ -10,7 +10,7 @@
 
     <insert id="save" parameterType="com.gs.bean.Bz">
         <![CDATA[
-          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},#{state})
+          insert into t_bz(bzname,state) values(#{bzname},#{state})
         ]]>
     </insert>
 

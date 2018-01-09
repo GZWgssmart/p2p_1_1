@@ -25,7 +25,6 @@ public class SendCode {
 	private static String Url = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";
 	
 	public static int sendsms(String mobile) {
-		
 		int fig= 0;
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod(Url);
@@ -38,8 +37,10 @@ public class SendCode {
 	    String content = new String("您的验证码是：" + mobile_code + "。请不要把验证码泄露给其他人。");
 
 		NameValuePair[] data = {//提交短信
-			    new NameValuePair("account", "C76623307"), //查看用户名请登录用户中心->验证码、通知短信->帐户及签名设置->APIID
-			    new NameValuePair("password", "3f5db7bdf4c69c75883b06e3edaab434"),  //查看密码请登录用户中心->验证码、通知短信->帐户及签名设置->APIKEY
+				//APIID：C02650209
+				//APIKEY：b2eced95a694a58f910d8f72f3695f99
+			    new NameValuePair("account", "C02650209"), //查看用户名请登录用户中心->验证码、通知短信->帐户及签名设置->APIID
+			    new NameValuePair("password", "b2eced95a694a58f910d8f72f3695f99"),  //查看密码请登录用户中心->验证码、通知短信->帐户及签名设置->APIKEY
 			    //new NameValuePair("password", util.StringUtil.MD5Encode("密码")),
 			    new NameValuePair("mobile", mobile), 
 			    new NameValuePair("content", content),
