@@ -12,13 +12,5 @@ public interface DxModelService extends BaseService{
 
     int countByPager();
 
-    void save(Object obj);
-
-    void remove(Object obj);
-
-    void update(Object obj);
-
-    List<Object> listPager(Pager pager);
-
     Integer isRegPhone(String phone);
 }

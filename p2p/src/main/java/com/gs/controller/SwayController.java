@@ -7,7 +7,6 @@ import com.gs.service.SwayService;
 import com.gs.vo.ControllerStatusVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,8 +28,8 @@ public class SwayController {
     }
 
     @RequestMapping("sway")
-    public String init() {
-        return "Sway/Sway";
+    public String sway() {
+        return "swayType/sway";
     }
 
     @RequestMapping("save")
@@ -59,9 +58,9 @@ public class SwayController {
         return statusVO;
     }
 
-    @RequestMapping("delete/{sid}")
+    @RequestMapping("delete")
     @ResponseBody
-    public ControllerStatusVO delete( @PathVariable("sid") Long id){
+    public ControllerStatusVO delete(Long id){
         ControllerStatusVO statusVO = null;
         try {
             swayService.removeById(id);
@@ -72,9 +71,9 @@ public class SwayController {
         return statusVO;
     }
 
-    @RequestMapping("updateState/{sid}/{state}")
+    @RequestMapping("updateState")
     @ResponseBody
-    public ControllerStatusVO updateState(@PathVariable("sid") Long id,@PathVariable("state") Byte state){
+    public ControllerStatusVO updateState(Long id,Byte state){
         ControllerStatusVO statusVO = null;
         try {
             Sway sway = new Sway();
@@ -90,9 +89,4 @@ public class SwayController {
         return statusVO;
     }
 
-    @RequestMapping("findSway/{sid}")
-    @ResponseBody
-    public Sway findSway(@PathVariable("sid") Long sid){
-        return  (Sway) swayService.getById(sid);
-    }
 }

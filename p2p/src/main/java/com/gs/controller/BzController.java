@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * time：2018/1/2.
  */
 @Controller
-@RequestMapping("bz")
+@RequestMapping("/bz")
 public class BzController {
 
     @Autowired
@@ -24,13 +24,13 @@ public class BzController {
 
     @RequestMapping("pager")
     @ResponseBody
-    public Pager pager(int pageIndex, int pageSize) {
-        return bzService.listPager(pageIndex,pageSize);
+    public Pager Pager(int page,int rows) {
+        return bzService.listPager(page,rows);
     }
 
     @RequestMapping("bz")
-    public String init() {
-        return "bz/bz";
+    public String bz() {
+        return "bzType/bz";
     }
 
     @RequestMapping("save")
@@ -59,9 +59,9 @@ public class BzController {
         return statusVO;
     }
 
-    @RequestMapping("delete/{bzid}")
+    @RequestMapping("delete")
     @ResponseBody
-    public ControllerStatusVO delete( @PathVariable("bzid") Long id){
+    public ControllerStatusVO delete(Long id){
         ControllerStatusVO statusVO = null;
         try {
             bzService.removeById(id);
@@ -71,26 +71,5 @@ public class BzController {
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_DELETE_SUCCESS);
         return statusVO;
     }
-
-    @RequestMapping("updateState/{bzid}/{state}")
-    @ResponseBody
-    public ControllerStatusVO updateState(@PathVariable("bzid") Long id, @PathVariable("state") Byte state){
-        ControllerStatusVO statusVO = null;
-        try {
-            Bz bz = new Bz();
-            bz.setBzid(id);
-            bz.setState(state);
-            bzService.updateState(bz);
-        } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_UPDATE_STATE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_UPDATE_STATE_SUCCESS);
-        return statusVO;
-    }
-
-    @RequestMapping("findBz/{bzid}")
-    @ResponseBody
-    public Bz findBz(@PathVariable("bzid") Long bzid){
-        return  (Bz) bzService.getById(bzid);
-    }
+    
 }

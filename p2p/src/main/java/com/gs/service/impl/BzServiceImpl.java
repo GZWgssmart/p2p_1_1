@@ -25,13 +25,21 @@ public class BzServiceImpl extends AbstractBaseService implements BzService {
     }
 
     @Override
-    public void updateState(Bz bz) {
-        bzDAO.updateState(bz);
+    public void save(Object obj) {
+        super.save(obj);
     }
 
     @Override
-    public List<Object> listPager(Pager pager) {
-        return null;
+    public void update(Object obj) {
+        super.update(obj);
+    }
+
+    @Override
+    public Pager listPager(int pageNo, int pageSize) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(bzDAO.listPager(pager));
+        pager.setTotal((long) bzDAO.countByPager());
+        return pager;
     }
 
     @Override
@@ -40,11 +48,7 @@ public class BzServiceImpl extends AbstractBaseService implements BzService {
     }
 
     @Override
-    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
-        Pager pager = new Pager(pageNo, pageSize);
-        pager.setRows(bzDAO.listPager(pager));
-        pager.setTotal((long) bzDAO.countByPager());
-        return pager;
+    public List<Object> listAll() {
+        return super.listAll();
     }
-
 }

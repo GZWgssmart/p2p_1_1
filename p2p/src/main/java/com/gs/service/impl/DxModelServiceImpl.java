@@ -39,25 +39,16 @@ public class DxModelServiceImpl extends AbstractBaseService implements DxModelSe
     }
 
     @Override
-    public List<Object> listPager(Pager pager) {
-        return null;
+    public Pager listPager(int pageNo, int pageSize) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(dxModelDAO.listPager(pager));
+        pager.setTotal((long) dxModelDAO.countByPager());
+        return pager;
     }
 
     @Override
     public int countByPager() {
         return dxModelDAO.countByPager();
-    }
-
-    @Override
-    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
-//        Pager pager = new Pager(pageNo, pageSize);
-//        pager.setRows(dxModelDAO.listPager(pager));
-//        pager.setTotal((long) dxModelDAO.countByPager());
-//        return pager;
-        Pager pager = new Pager(pageNo, pageSize);
-        pager.setRows(dxModelDAO.listPager(pager));
-        pager.setTotal((long) dxModelDAO.countByPager());
-        return pager;
     }
 
     public Integer isRegPhone(String phone) {

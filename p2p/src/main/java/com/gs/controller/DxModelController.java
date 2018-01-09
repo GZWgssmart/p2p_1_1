@@ -36,7 +36,7 @@ public class DxModelController {
     }
 
     @RequestMapping("SendDxModel")
-    public String init() {
+    public String SendDxModel() {
         return "reAndLo";
     }
 
@@ -69,9 +69,9 @@ public class DxModelController {
         return statusVO;
     }
 
-    @RequestMapping("delete/{dxid}")
+    @RequestMapping("delete")
     @ResponseBody
-    public ControllerStatusVO delete( @PathVariable("dxid") Long id){
+    public ControllerStatusVO delete(Long id){
         ControllerStatusVO statusVO = null;
         try {
             dxModelService.removeById(id);
@@ -80,12 +80,6 @@ public class DxModelController {
         }
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_DELETE_SUCCESS);
         return statusVO;
-    }
-
-    @RequestMapping("findDxModel/{dxid}")
-    @ResponseBody
-    public DxModel findBz(@PathVariable("dxid") Long dxid){
-        return  (DxModel) dxModelService.getById(dxid);
     }
 
     @RequestMapping(value = "/checkPhone",method = RequestMethod.POST)
