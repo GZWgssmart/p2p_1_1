@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%
@@ -35,9 +36,13 @@
 
 <div id="tb" style="height: auto">
 
-    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit"
-       onclick="exportExcel('/recommend/export', 'searchForm')">导出Excel</a>
-    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="del('list')">删除</a>
+    <shiro:hasPermission name="recommend:export">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit"
+           onclick="exportExcel('/recommend/export', 'searchForm')">导出Excel</a>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="recommend:remove">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="del('list')">删除</a>
+    </shiro:hasPermission>
     <div>
         <form id="searchForm">
 

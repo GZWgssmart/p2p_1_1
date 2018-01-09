@@ -1,13 +1,14 @@
 package com.gs.controller;
 
+import com.gs.bean.HUser;
 import com.gs.bean.Jur;
 import com.gs.common.Combobox;
+import com.gs.common.Constants;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.JurService;
 import com.gs.vo.ControllerStatusVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,9 @@ public class JurController {
     @RequestMapping("/import")
     @ResponseBody
     public ControllerStatusVO impotr(HttpServletRequest request) throws Exception {
-        int huserid = 1;
+        HttpSession session = request.getSession();
+        HUser hUser = (HUser)session.getAttribute(Constants.HUSER_IN_SESSION);
+        int huserid = Integer.parseInt(String.valueOf(hUser.getHuid()));
         ControllerStatusVO statusVO = null;
         //获取上传的文件
         MultipartHttpServletRequest multipart = (MultipartHttpServletRequest) request;
@@ -70,7 +73,6 @@ public class JurController {
         return jurService.listPagerCriteria(page,rows,jur);
     }
 
-
     @RequiresPermissions("jur:update")
     @RequestMapping("update")
     @ResponseBody
@@ -98,5 +100,15 @@ public class JurController {
     public List<Long> listById(@PathVariable("rid") Long rid){
         List<Long> jurList = jurService.listJur(rid);
         return jurList;
+    }
+
+    @RequiresPermissions("jur:remove")
+    @RequestMapping("remove/{jid}")
+    @ResponseBody
+    public ControllerStatusVO removeById(@PathVariable("jid") Long jid){
+        ControllerStatusVO statusVO = null;
+        jurService.removeById(jid);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.ROLE_USER_DEL_SUCCESS);
+        return statusVO;
     }
 }

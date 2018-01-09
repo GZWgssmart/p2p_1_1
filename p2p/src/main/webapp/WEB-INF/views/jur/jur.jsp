@@ -39,10 +39,13 @@
     <form id="file_form" method="post" action="/jur/import" enctype="multipart/form-data">
         <shiro:hasPermission name="jur:import">
             <input type="file" name="file" id="file">
-            <input type="submit" value="导入数据" id="lead">
+            <input type="button" value="导入数据" id="lead">
         </shiro:hasPermission>
         <shiro:hasPermission name="jur:update">
             <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditWin('editWin', 'list', 'editForm')">修改</a>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="jur:remove">
+            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" onclick="del('list')">删除</a>
         </shiro:hasPermission>
     </form>
     <div>
@@ -89,9 +92,9 @@
 </div>
 
 </body>
+<script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
 <%@include file="../master/easyui/footer.jsp"%>
-<script type="text/javascript" src="<%=path%>/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/jquery.form.js"></script>
+<script type="text/javascript" src="/static/js/jquery.form.js"></script>
 <script>
     $(function(){
         setPagination("list");
@@ -108,18 +111,18 @@
             var fileType = getFileType(filepath)
             if ("xls" == fileType || "xlsx" == fileType) {
                 var file = $("#file").val();
-                $('#file_form').ajaxSubmit({
+                var options = {
                     type: 'post', // 提交方式 get/post
                     url: '/jur/import', // 需要提交的 url
-                    data: {
-                        'file':file
+                    success:showResponse,
+                    data:{
+                        file:'file'
                     },
                     dataType:'json',
-                    success:function (data) {
-                        showResponse(data);
-                    }
-//                    $(this).resetForm(); // 提交后重置表单
-                });
+                    clearForm:true,
+                    resetForm:true
+                };
+                $("#file_form").ajaxSubmit(options);
                 return false; // 阻止表单自动提交事件
             }else {
                 $("#file").val("");
@@ -130,12 +133,11 @@
         }
         return false; // 阻止表单自动提交事件
     });
-    function showResponse(data){
-        alert("ok");
-        if(data.result === "ok"){
+    function showResponse(responseText,statusText,xhr,$form){
+        if(responseText.result === "ok"){
             window.location.href = contextPath + "/jur/page";
         } else {
-            showInfoAlert(data.message);
+            showInfoAlert(responseText.message);
         }
     }
     function openEditWin(winId, listId, formId) {
@@ -149,6 +151,28 @@
             showInfoAlert("请选择需要修改的数据");
         }
     }
+    function del(listId){
+        var rows = $("#" + listId).datagrid("getSelected");
+        if(rows){
+            if(confirm("你确定要删除此权限")){
+                $.post(
+                    "<%= path%>/jur/remove/"+rows.jid,
+                    function (data) {
+                        if(data.result==='ok'){
+                            window.location.href = contextPath + "/jur/page";
+                        }else{
+                            showInfoAlert("删除失败！");
+                        }
+                    },
+                    "json"
+                );
+            }else{
+                return false;
+            }
+        }else{
+            showInfoAlert("请选择你要删除的权限")
+        }
 
+    }
 </script>
 </html>

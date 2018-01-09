@@ -38,6 +38,7 @@ public enum ControllerStatusEnum {
     JUR_SAVE_FAIL(109,"error","权限导入失败"),
     JUR_UPDATE_SUCCESS(110,"ok","权限修改成功"),
     JUR_UPDATE_FAIL(111,"error","权限修改失败"),
+    JUR_DEL_SUCCESS(215,"ok","权限删除成功"),
 
     ROLE_SAVE_SUCCESS(112,"ok","角色与角色权限新增成功"),
     ROLE_SAVE_FAIL(113,"error","角色与角色权限新增失败"),
@@ -48,7 +49,8 @@ public enum ControllerStatusEnum {
     ROLE_USER_SAVE_FAIL(211,"fail","角色用户添加失败"),
     ROLE_USER_UPDATE_SUCCESS(212,"ok","角色用户修改成功"),
     ROLE_USER_UPDATE_FAIL(213,"fail","角色用户修改失败"),
-    HUSER_LOGIN_UNAUTH(214,"fail","用户登录未授权"),
+    ROLE_USER_DEL_SUCCESS(214,"ok","角色用户删除成功"),
+    HUSER_LOGIN_UNAUTH(215,"fail","用户登录未授权"),
 
     BZ_SAVE_FAIL(1501, "error", "保存失败"),
     BZ_SAVE_SUCCESS(1502, "ok", "保存成功"),

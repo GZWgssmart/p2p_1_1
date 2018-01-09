@@ -4,12 +4,14 @@ import com.gs.bean.Role;
 import com.gs.bean.RoleUser;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
+import com.gs.query.RoleUserQuery;
 import com.gs.service.RoleUserService;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.RoleUserVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,8 +37,8 @@ public class RoleUserController {
 
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, RoleUserVO roleUserVO) {
-        return roleUserService.listPagerCriteria(page, rows, roleUserVO);
+    public Pager pagerCriteria(int page, int rows, RoleUserQuery roleUserQuery) {
+        return roleUserService.listPagerCriteria(page, rows, roleUserQuery);
     }
 
     @RequiresPermissions("roleUser:save")
@@ -67,6 +69,15 @@ public class RoleUserController {
         return statusVO;
     }
 
+    @RequiresPermissions("roleUser:remove")
+    @RequestMapping("remove/{ruid}")
+    @ResponseBody
+    public ControllerStatusVO removeById(@PathVariable("ruid") Long ruid){
+        ControllerStatusVO statusVO = null;
+        roleUserService.removeById(ruid);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.JUR_DEL_SUCCESS);
+        return statusVO;
+    }
 
 
 }

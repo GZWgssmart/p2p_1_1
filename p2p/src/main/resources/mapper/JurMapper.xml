@@ -16,6 +16,12 @@
         ]]>
     </select>
 
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+           delete from t_jur where jid = #{jid}
+        <!--]]>
+    </delete>
+
     <select id="listJurs" parameterType="string" resultType="String">
         select j.jurl from t_jur j, t_huser h, t_roleuser ru, t_rolejur rj where h.huid = ru.huid and ru.rid = rj.rid and j.jid = rj.jid and h.phone = #{phone}
     </select>

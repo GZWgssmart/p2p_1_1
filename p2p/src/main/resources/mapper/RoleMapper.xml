@@ -48,6 +48,7 @@
     <select id="listPagerCriteria" resultType="com.gs.bean.Role">
         select r.rid,r.rname,r.content from t_role r where r.rid = rid
         <include refid="role_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
     </select>
 
     <select id="countCriteria" resultType="Long">

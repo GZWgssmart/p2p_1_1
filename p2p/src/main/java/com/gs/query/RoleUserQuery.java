@@ -1,9 +1,9 @@
-package com.gs.vo;
+package com.gs.query;
 
 /**
  * Created by Administrator on 2017/12/29.
  */
-public class RoleUserVO {
+public class RoleUserQuery {
     private Long ruid;
 
     private Long rid;

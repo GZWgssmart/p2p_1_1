@@ -3,6 +3,7 @@ package com.gs.controller;
 import com.gs.common.Constants;
 import com.gs.enums.ControllerStatusEnum;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,7 @@ public class RecommendController {
     @Autowired
     private RecommendService recommendService;
 
+    @RequiresPermissions("recommend:page")
     @RequestMapping("page")
     public String page() {
         return "recommend/recommend";
@@ -50,6 +52,7 @@ public class RecommendController {
     }
 
     //删除单个
+    @RequiresPermissions("recommend:remove")
     @RequestMapping("remove")
     @ResponseBody
     public ControllerStatusVO remove(long id) {
@@ -79,6 +82,7 @@ public class RecommendController {
         return statusVO;
     }
 
+    @RequiresPermissions("recommend:export")
     @RequestMapping("export")
     public void exportExcel(HttpServletResponse response, RecommendVO recommendVO) {
         Workbook workbook = recommendService.export(recommendVO);

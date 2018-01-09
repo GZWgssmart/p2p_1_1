@@ -47,7 +47,7 @@
         <form id="searchForm">
             <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入角色名称',
 						required:false,
-						novalidate:true" name="role"/>
+						novalidate:true" name="rname"/>
             <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入角色描述',
 						required:false,
 						novalidate:true" name="content"/>
@@ -173,17 +173,17 @@
                 var input2="";
                 for (var i=0; i<data.length;i++){
                     if(i<20){
-                        input+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        input+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                         if(i % 3 == 0){
                             input +="<br/>";
                         }
                     }else if(i>=20 && i<40){
-                        input1+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        input1+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                         if(i % 3 == 0){
                             input +="<br/>";
                         }
                     }else{
-                        input2+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        input2+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                         if(i % 3 == 0){
                             input2 +="<br/>";
                         }
@@ -224,17 +224,17 @@
                     var input2="";
                     for (var i=0; i<data.length;i++){
                         if(i<20){
-                            input+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                            input+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                             if(i % 3 == 0){
                                 input +="<br/>";
                             }
                         }else if(i>=20 && i<40){
-                            input1+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                            input1+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                             if(i % 3 == 0){
                                 input +="<br/>";
                             }
                         }else{
-                            input2+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                            input2+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                             if(i % 3 == 0){
                                 input2 +="<br/>";
                             }
