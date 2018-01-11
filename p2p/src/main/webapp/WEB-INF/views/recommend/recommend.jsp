@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%
@@ -8,7 +9,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Insert title here</title>
-    <%@include file="../master/header.jsp" %>
+    <%@include file="../master/easyui/header.jsp" %>
 </head>
 <body>
 <table id="list" class="easyui-datagrid"
@@ -26,7 +27,7 @@
         <th data-options="field:'id',width:80,checkbox:true">编号</th>
         <th data-options="field:'tid',width:80">推荐人编号</th>
         <th data-options="field:'tname',width:100">推荐人姓名</th>
-        <th data-options="field:'uid',width:100">被推荐人编号</th>
+        <th data-options="field:'uid',width:100"x>被推荐人编号</th>
         <th data-options="field:'rname',width:100">被推荐人姓名</th>
         <th data-options="field:'date',width:150,formatter:formatDate">推荐时间</th>
     </tr>
@@ -35,9 +36,13 @@
 
 <div id="tb" style="height: auto">
 
-    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit"
-       onclick="exportExcel('/recommend/export', 'searchForm')">导出Excel</a>
-    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="del('list')">删除</a>
+    <shiro:hasPermission name="recommend:export">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit"
+           onclick="exportExcel('/recommend/export', 'searchForm')">导出Excel</a>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="recommend:remove">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="del('list')">删除</a>
+    </shiro:hasPermission>
     <div>
         <form id="searchForm">
 
@@ -68,7 +73,7 @@
 </div>
 
 </body>
-<%@include file="../master/footer.jsp" %>
+<%@include file="../master/easyui/footer.jsp" %>
 
 <script>
     $(function () {

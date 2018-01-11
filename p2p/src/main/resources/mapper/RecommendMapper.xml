@@ -4,7 +4,7 @@
 
 
 <mapper namespace="com.gs.dao.RecommendDAO">
-    
+
     <select id="countTzm" resultType="Integer">
         select count(uid) from t_user where tzm = #{tzm};
     </select>
