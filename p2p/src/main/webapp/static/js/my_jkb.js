@@ -183,15 +183,15 @@ $('#loanSearch').unbind('click').click(function () {
     var startDate = $('#startDate').val();
     var endDate = $('#endDate').val();
     if (startDate == '') {
-        alert('开始时间不能为空');
+        swal("错误信息", "开始时间不能为空", "error");
         return;
     }
     if (endDate == '') {
-        alert('结束时间不能为空');
+        swal("错误信息", "结束时间不能为空", "error");
         return;
     }
     if (startDate > endDate) {
-        alert('开始时间不能大于结束时间');
+        swal("错误信息", "开始时间不能大于结束时间", "error");
         return;
     }
     initIpayData(startDate, endDate);

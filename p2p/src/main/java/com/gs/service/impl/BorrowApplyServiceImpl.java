@@ -23,4 +23,9 @@ public class BorrowApplyServiceImpl extends AbstractBaseService implements Borro
         super.setBaseDAO(borrowApplyDAO);
         this.borrowApplyDAO = borrowApplyDAO;
     }
+
+    @Override
+    public void updateState(Object obj) {
+        borrowApplyDAO.updateState(obj);
+    }
 }

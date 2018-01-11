@@ -12,6 +12,7 @@ public class TzbQuery {
     private Byte state;
     private String startTime;
     private String endTime;
+    private Long baid;
     private int curPage;
 
     public Long getUid() {
@@ -53,4 +54,14 @@ public class TzbQuery {
     public void setCurPage(int curPage) {
         this.curPage = curPage;
     }
+
+    public Long getBaid() {
+        return baid;
+    }
+
+    public void setBaid(Long baid) {
+        this.baid = baid;
+    }
+
+
 }

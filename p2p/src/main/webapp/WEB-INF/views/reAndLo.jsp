@@ -140,7 +140,7 @@
 	</div>                     
 </div>	
 </body>
-	<script src="<%=path %>/user/js/jquery.min.js"></script>
+	<script src="<%=path %>/static/js/jquery.min.js"></script>
 	<script src="<%=path %>/user/js/jquery.magnific-popup.js" ></script>
 	<script src="<%=path %>/user/js/modernizr.custom.53451.js"></script> 
 	<script src="<%=path %>/user/easyui/jquery.easyui.min.js"></script>
@@ -175,22 +175,25 @@
 			if(phone != ""){
 				$('#ycode').attr("disabled",true);
 				$('#ycode').val(curcount+"秒后重发验证码");
-				InterValObj = window.setInterval(SetRemainTime, 1000);
-				checkPhoneIsExist();
+
 			}else if(phone.length != 11){				
-				$.messager.alert('提示','请输入11位的手机号码!','info');				
-			}else if(!myreg.test(phone)){
-				alert("请输入有效的验证号码！");
-			}else if(checkPhoneIsExist()){
-				alert("该号码已被注册！");
-			}else{
-				alert("手机号码并不能为空！");
+				alert('请输入11位的手机号码!');
+				return false;
+//			}else if(!myreg.test(phone)){
+//				alert("请输入有效的验证号码！");
+//			}else if(checkPhoneIsExist()){
+//                checkPhoneIsExist();
+//				alert("该号码已被注册！");
+//			}else{
+//				alert("手机号码并不能为空！");
 			}
+            SendDxModel();
+            InterValObj = window.setInterval(SetRemainTime, 1000);
 		}
 		
 		 function checkPhoneIsExist(){
             var phone = $("#user_phone").val();
-            var url = "${pageContext.request.contextPath}/user/duanadd";
+            var url = "${pageContext.request.contextPath}/dxModel/save";
    			$.ajax({
    	            type: "POST",
    	            url: url,
@@ -209,6 +212,28 @@
    	            }
    	        }); 
 	     }
+
+        function SendDxModel(){
+            var phone = $("#user_phone").val();
+            var url = "${pageContext.request.contextPath}/dxModel/save";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    "phone":phone
+                },
+                dataType: "text",
+                success: function(data) {
+                    if(data!=0){
+                        mobile_code=data;
+                        //alert(mobile_code);
+                    }
+                },
+                error: function() {
+                    alert("错误");
+                }
+            });
+        }
 		 
 		 function SetRemainTime() {  
 		    if (curcount == 0) {                  

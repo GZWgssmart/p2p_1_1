@@ -14,6 +14,12 @@
         ]]>
     </select>
 
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+        delete from t_roleuser where ruid = #{ruid}
+        ]]>
+    </delete>
+
     <update id="update" parameterType="roleUser">
         <![CDATA[
             update t_roleuser
@@ -29,23 +35,24 @@
         where ruid = #{ruid}
     </update>
 
-    <sql id="roleUserVO_criteria">
-        <if test="roleUserVO != null and roleUserVO.rname != null and roleUserVO.rname != ''">
-            and r.rname like concat('%', #{roleUserVO.rname} ,'%')
+    <sql id="roleUserQuery_criteria">
+        <if test="query != null and query.rname != null and query.rname != ''">
+            and r.rname like concat('%', #{query.rname} ,'%')
         </if>
-        <if test="roleUserVO != null and roleUserVO.huname != null and roleUserVO.huname != ''">
-            and r.content like concat('%', #{roleUserVO.huname} ,'%')
+        <if test="query != null and query.huname != null and query.huname != ''">
+            and h.huname like concat('%', #{query.huname} ,'%')
         </if>
     </sql>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.RoleUserVO">
-        select r.rid,r.rname,r.content,h.huid as huid,h.phone as phone,h.huname as huname,h.email as email from t_role r,t_roleuser ru,
+        select r.rid,r.rname,r.content,h.huid as huid,h.phone as phone,h.huname as huname,h.email as email,ru.ruid as ruid from t_role r,t_roleuser ru,
         t_huser h where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid
-        <include refid="roleUserVO_criteria"/>
+        <include refid="roleUserQuery_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
     </select>
 
     <select id="countCriteria" resultType="Long">
-        select count(ru.ruid) from t_roleuser ru where ru.ruid = ruid
-        <include refid="roleUserVO_criteria"/>
+        select count(ru.ruid) from t_roleuser ru,t_role r,t_huser h where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid
+        <include refid="roleUserQuery_criteria"/>
     </select>
 </mapper>

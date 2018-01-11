@@ -20,4 +20,5 @@ public interface BorrowDetailDAO extends BaseDAO{
     @Override
     Long countCriteria(@Param("obj") Object obj);
     void updatePic(Object obj);
+    void updateBybaid(Object obj);
 }

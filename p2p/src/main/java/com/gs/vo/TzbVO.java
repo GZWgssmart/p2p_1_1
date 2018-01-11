@@ -21,7 +21,7 @@ public class TzbVO {
     private String lxname;//借款类型名称
     private Long sid;//还款方式id
     private String way;//还款方式
-    private BigDecimal ysmoney;//已还金额
+    private String rname;//投资人姓名
 
 
     public BigDecimal getMoney() {
@@ -102,5 +102,13 @@ public class TzbVO {
 
     public void setWay(String way) {
         this.way = way;
+    }
+
+    public String getRname() {
+        return rname;
+    }
+
+    public void setRname(String rname) {
+        this.rname = rname;
     }
 }

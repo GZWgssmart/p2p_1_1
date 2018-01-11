@@ -3,6 +3,7 @@ package com.gs;
 import com.gs.bean.Bz;
 import com.gs.bean.DxModel;
 import com.gs.common.Pager;
+import com.gs.common.SendCode;
 import com.gs.service.BzService;
 import com.gs.service.DxModelService;
 import org.junit.Test;
@@ -29,6 +30,11 @@ public class DxModelTest {
         dxModel.setDxid(1L);
         dxModel.setContent("您的验证码为123456，请妥善保管！");
         dxModelService.save(dxModel);
+    }
+
+    @Test
+    public void testsaveDx(){
+        SendCode.sendsms("15070720713");
     }
 
     @Test

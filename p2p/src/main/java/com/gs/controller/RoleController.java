@@ -11,6 +11,7 @@ import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.JurVO;
 import com.gs.vo.RoleJurVO;
 import org.apache.ibatis.annotations.Param;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,7 @@ public class RoleController {
     private RoleJurService roleJurService;
 
 
+    @RequiresPermissions("role:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO insertBatch(RoleJurVO roleJurVO){
@@ -51,6 +53,7 @@ public class RoleController {
         return statusVO;
     }
 
+    @RequiresPermissions("role:page")
     @RequestMapping("page")
     public String Page(){
         return "role/role";
@@ -62,12 +65,19 @@ public class RoleController {
         return roleService.listPagerCriteria(page,rows,role);
     }
 
+    @RequiresPermissions("role:update")
     @RequestMapping("update")
     @ResponseBody
-    public ControllerStatusVO update(Role role){
+    public ControllerStatusVO update(RoleJurVO roleJurVO){
         ControllerStatusVO statusVO = null;
         try{
-            roleService.update(role);
+            roleService.update(roleJurVO);
+            roleJurService.removeById(roleJurVO.getRid());
+            List<JurVO> jurVOList = new ArrayList<>();
+            for(int i=0;i<roleJurVO.getJids().size();i++){
+                jurVOList.add(new JurVO(roleJurVO.getRid(),roleJurVO.getJids().get(i)));
+            }
+            roleJurService.saveBatch(jurVOList);
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.ROLE_UPDATE_SUCCESS);
         }catch (RuntimeException e){
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.ROLE_UPDATE_FAIL);

@@ -36,7 +36,6 @@ public class LogMoneyController {
     @ResponseBody
     public Pager search(HttpSession session,LogMoneyQuery logMoneyQuery){
         Pager pager = new Pager();
-        System.out.println("type="+logMoneyQuery.getType());
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         logMoneyQuery.setUid(user.getUid());
         pager =  logMoneyService.listPagerCriteria(logMoneyQuery.getCurPage(),8,logMoneyQuery);

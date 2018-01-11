@@ -4,6 +4,8 @@ package com.gs.vo;
  * Created by Administrator on 2017/12/29.
  */
 public class RoleUserVO {
+    private Long ruid;
+
     private Long rid;
 
     private String rname;//角色名称
@@ -17,6 +19,14 @@ public class RoleUserVO {
     private String huname;//用户名称
 
     private String email;//电子邮箱
+
+    public Long getRuid() {
+        return ruid;
+    }
+
+    public void setRuid(Long ruid) {
+        this.ruid = ruid;
+    }
 
     public Long getRid() {
         return rid;

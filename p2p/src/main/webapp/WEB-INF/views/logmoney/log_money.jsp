@@ -44,6 +44,7 @@
                     <li id="type0"><a href="javascript:void(0);">充值</a></li>
                     <li id="type1"><a href="javascript:void(0);">提现</a></li>
                     <li id="type2"><a href="javascript:void(0);">回款</a></li>
+                    <li id="type5"><a href="javascript:void(0);">投资</a></li>
                     <li id="type3"><a href="javascript:void(0);">系统金额</a></li>
                 </ul>
             </div>

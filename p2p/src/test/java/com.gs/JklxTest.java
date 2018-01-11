@@ -30,11 +30,19 @@ public class JklxTest {
     }
 
     @Test
-    public void Jklxupdatetest(){
+    public void JklxupdateStatetest(){
         Jklx jklx=new Jklx();
         jklx.setLxid(4L);
         jklx.setState((byte)0);
         jklxService.updateState(jklx);
+    }
+
+    @Test
+    public void Jklxupdatetest(){
+        Jklx jklx=new Jklx();
+        jklx.setLxid(4L);
+        jklx.setState((byte)0);
+        jklxService.update(jklx);
     }
 
     @Test

@@ -10,7 +10,7 @@
 
     <insert id="save" parameterType="com.gs.bean.Bz">
         <![CDATA[
-          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},#{state})
+          insert into t_bz(bzname,state) values(#{bzname},#{state})
         ]]>
     </insert>
 
@@ -21,7 +21,9 @@
     </delete>
 
     <update id="update" parameterType="com.gs.bean.Bz">
-
+        <![CDATA[
+            update t_bz set bzname = #{bzname},state = #{state} where bzid = #{bzid}
+        ]]>
     </update>
 
     <update id="updateState" parameterType="com.gs.bean.Bz">

@@ -26,7 +26,7 @@ public class BorrowApply {
 
     private Date deadline;//截止时间
 
-    private Long husid;//审核人id
+    private Long huid;//审核人id
 
     private String excuse;//审核理由
 
@@ -113,12 +113,12 @@ public class BorrowApply {
         this.deadline = deadline;
     }
 
-    public Long getHusid() {
-        return husid;
+    public Long getHuid() {
+        return huid;
     }
 
-    public void setHusid(Long husid) {
-        this.husid = husid;
+    public void setHuid(Long huid) {
+        this.huid = huid;
     }
 
     public String getExcuse() {

@@ -29,12 +29,12 @@ public class BzTest {
     }
 
     @Test
-    public void BzupdateStatetest(){
+    public void Bzupdatetest(){
         Bz bz=new Bz();
         bz.setBzid(5L);
         bz.setBzname("多金宝2");
         bz.setState((byte)1);
-        bzService.updateState(bz);
+        bzService.update(bz);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class BzTest {
 
     @Test
     public void BzListByPager(){
-        bzService.listPagerCriteria(2,2,null);
+        bzService.listPager(2,2);
     }
 
 }

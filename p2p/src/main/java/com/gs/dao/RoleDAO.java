@@ -13,11 +13,14 @@ import java.util.List;
 @Repository
 public interface RoleDAO extends BaseDAO {
     @Override
-    List<Object> listPagerCriteria(@Param("pager")Pager pager, @Param("role")Object obj);
+    List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("role") Object obj);
 
     @Override
     Long countCriteria(@Param("role") Object obj);
 
     //插入角色时批量插入角色权限
     public void insertBatch(@Param("roleJurVO") RoleJurVO roleJurVO);
+
+    //根据电话查询所有的juese
+    List<String> listRoles(String phone);
 }

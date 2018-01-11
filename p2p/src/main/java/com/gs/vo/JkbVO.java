@@ -69,8 +69,6 @@ public class JkbVO {
 
     private Long uid;//借款人id
 
-    private BigDecimal kymoney;//用户资金表
-
     public Long getBaid() {
         return baid;
     }
@@ -295,11 +293,5 @@ public class JkbVO {
         this.uid = uid;
     }
 
-    public BigDecimal getKymoney() {
-        return kymoney;
-    }
 
-    public void setKymoney(BigDecimal kymoney) {
-        this.kymoney = kymoney;
-    }
 }

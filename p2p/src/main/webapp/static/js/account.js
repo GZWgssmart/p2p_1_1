@@ -11,6 +11,9 @@ function hashChange(){
         case '/recommend/handpage':
             initTuijian();
             break;
+        case 'tuijian':
+            initTuijian();
+            break;
         case 'ipay':
             initIpay();
             break;
@@ -502,18 +505,17 @@ function InitBank() {
         "json"
     );
 }
-
 function initTuijian() {
     //复制文本
-   var text = $(".tj-clip-text").text();
+    var text = $(".tj-clip-text").text();
     clipboard(text,'tj-clip-btn','复制成功！','tj-clip');
-/*
+    /*
 
-    $('.tuijian-list').hide();
-    $(".invest-list").hide();
-    $(".investList").hide();
-    $(".fanhui").hide();
-*/
+     $('.tuijian-list').hide();
+     $(".invest-list").hide();
+     $(".investList").hide();
+     $(".fanhui").hide();
+     */
 
     $(".tuijian").click(function () {
         tuiJianList();

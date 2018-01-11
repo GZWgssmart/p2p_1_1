@@ -11,23 +11,7 @@ import java.util.List;
  */
 public interface JklxService extends BaseService{
 
-    Long countCriteria(Object obj);
-
     void updateState(Jklx jklx);
-
-    @Override
-    void save(Object obj);
-
-    @Override
-    void removeById(Long id);
-
-    @Override
-    List<Object> listAll();
-
-    @Override
-    void update(Object obj);
-
-    List<Object> listPager(Pager pager);
 
     int countByPager();
 }

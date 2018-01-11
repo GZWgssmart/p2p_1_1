@@ -45,8 +45,11 @@ public class SwayServiceImpl extends AbstractBaseService implements SwayService 
     }
 
     @Override
-    public List<Object> listPager(Pager pager) {
-        return null;
+    public Pager listPager(int pageNo, int pageSize) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(swayDAO.listPager(pager));
+        pager.setTotal((long) swayDAO.countByPager());
+        return pager;
     }
 
     @Override
@@ -54,15 +57,4 @@ public class SwayServiceImpl extends AbstractBaseService implements SwayService 
         return swayDAO.countByPager();
     }
 
-    @Override
-    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
-        Pager pager = new Pager(pageNo, pageSize);
-        pager.setRows(swayDAO.listPager(pager));
-        pager.setTotal((long) swayDAO.countByPager());
-        return pager;
-    }
-    @Override
-    public Long countCriteria(Object obj) {
-        return null;
-    }
 }

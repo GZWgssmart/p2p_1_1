@@ -41,4 +41,13 @@ public class Bz {
     public void setState(Byte state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "Bz{" +
+                "bzid=" + bzid +
+                ", bzname='" + bzname + '\'' +
+                ", state=" + state +
+                '}';
+    }
 }

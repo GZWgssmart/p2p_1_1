@@ -10,7 +10,7 @@
 
     <insert id="save" parameterType="com.gs.bean.Jklx">
         <![CDATA[
-          insert into t_jklx(lxid,lxname,state) values(#{lxid},#{lxname},#{state})
+          insert into t_jklx(lxname,state) values(#{lxname},#{state})
         ]]>
     </insert>
 

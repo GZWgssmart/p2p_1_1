@@ -1,20 +1,26 @@
 package com.gs.controller;
 
+import com.gs.bean.HUser;
 import com.gs.bean.Jur;
 import com.gs.common.Combobox;
+import com.gs.common.Constants;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.JurService;
 import com.gs.vo.ControllerStatusVO;
-import org.apache.ibatis.annotations.Param;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +35,13 @@ public class JurController {
     @Autowired
     private JurService jurService;
 
+    @RequiresPermissions("jur:import")
     @RequestMapping("/import")
     @ResponseBody
     public ControllerStatusVO impotr(HttpServletRequest request) throws Exception {
-        int huserid = 1;
+        HttpSession session = request.getSession();
+        HUser hUser = (HUser)session.getAttribute(Constants.HUSER_IN_SESSION);
+        int huserid = Integer.parseInt(String.valueOf(hUser.getHuid()));
         ControllerStatusVO statusVO = null;
         //获取上传的文件
         MultipartHttpServletRequest multipart = (MultipartHttpServletRequest) request;
@@ -52,6 +61,7 @@ public class JurController {
         return statusVO;
     }
 
+    @RequiresPermissions("jur:page")
     @RequestMapping("page")
     public String Page(){
         return "jur/jur";
@@ -63,6 +73,7 @@ public class JurController {
         return jurService.listPagerCriteria(page,rows,jur);
     }
 
+    @RequiresPermissions("jur:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(Jur jur){
@@ -76,15 +87,28 @@ public class JurController {
         return statusVO;
     }
 
+
     @RequestMapping("all")
     @ResponseBody
-    public List<Combobox> listAll(){
-        List<Object> objectList = jurService.listAll();
-        List<Combobox> comboboxList = new ArrayList<>();
-        for(Object obj:objectList){
-            Jur jur = (Jur) obj;
-            comboboxList.add(new Combobox(jur.getJid()+"",jur.getContent(),false));
-        }
-        return comboboxList;
+    public List<Jur> listAll(){
+        List<Jur> jurList = (List)jurService.listAll();
+        return jurList;
+    }
+
+    @RequestMapping("listAll/{rid}")
+    @ResponseBody
+    public List<Long> listById(@PathVariable("rid") Long rid){
+        List<Long> jurList = jurService.listJur(rid);
+        return jurList;
+    }
+
+    @RequiresPermissions("jur:remove")
+    @RequestMapping("remove/{jid}")
+    @ResponseBody
+    public ControllerStatusVO removeById(@PathVariable("jid") Long jid){
+        ControllerStatusVO statusVO = null;
+        jurService.removeById(jid);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.ROLE_USER_DEL_SUCCESS);
+        return statusVO;
     }
 }

@@ -27,4 +27,9 @@ public class HkbServiceImpl extends AbstractBaseService implements HkbService {
         super.setBaseDAO(hkbDAO);
         this.hkbDAO = hkbDAO;
     }
+
+    @Override
+    public void saveList(List hkbList) {
+        hkbDAO.saveList(hkbList);
+    }
 }

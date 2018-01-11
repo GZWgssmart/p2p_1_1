@@ -14,8 +14,6 @@ import java.util.List;
 @Repository
 public interface BzDAO extends BaseDAO{
 
-    void updateState(Bz bz);
-
     @Override
     List<Object> listPager(@Param("pager") Pager pager);
 

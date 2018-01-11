@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%
@@ -8,7 +9,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>后台管理</title>
-	<%@include file="master/easyui/header.jsp" %>
+	<%@include file="./master/easyui/header.jsp" %>
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north'" style="height: 60px;">
@@ -30,8 +31,10 @@
 					   class="site-navi-tab">用户基本信息管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
 					   class="site-navi-tab">用户列表</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
-					   class="site-navi-tab">推荐人管理</a></li>
+				<shiro:hasPermission name="recommend:page">
+					<li><a href="javascript:void(0);" src="<%=path%>/recommend/page"
+						   class="site-navi-tab">推荐人管理</a></li>
+				</shiro:hasPermission>
 			</ul>
 		</div>
 		<div title="资金管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
@@ -118,14 +121,35 @@
 
 			</ul>
 		</div>
-		<div title="管理员管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
-			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-					   class="site-navi-tab">管理员列表</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-					   class="site-navi-tab">员工列表</a></li>
-			</ul>
-		</div>
+		<shiro:hasRole name="超级管理员">
+			<div title="管理员管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
+				<ul>
+					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+						   class="site-navi-tab">管理员列表</a></li>
+					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+						   class="site-navi-tab">员工列表</a></li>
+				</ul>
+			</div>
+		</shiro:hasRole>
+
+		<shiro:hasAnyRoles name="超级管理员,普通管理员">
+			<div title="权限管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
+				<ul>
+					<shiro:hasPermission name="jur:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/jur/page"
+							   class="site-navi-tab">权限列表</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="role:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/role/page"
+							   class="site-navi-tab">角色列表</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="roleUser:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/roleUser/page"
+							   class="site-navi-tab">用户角色</a></li>
+					</shiro:hasPermission>
+				</ul>
+			</div>
+		</shiro:hasAnyRoles>
 	</div>
 </div>
 <div id="tabs" class="easyui-tabs" data-options="region:'center'">
@@ -148,5 +172,5 @@
 </div>
 
 </body>
-<%@include file="master/easyui/footer.jsp" %>
+<%@include file="./master/easyui/footer.jsp" %>
 </html>

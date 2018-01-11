@@ -38,6 +38,7 @@ public enum ControllerStatusEnum {
     JUR_SAVE_FAIL(109,"error","权限导入失败"),
     JUR_UPDATE_SUCCESS(110,"ok","权限修改成功"),
     JUR_UPDATE_FAIL(111,"error","权限修改失败"),
+    JUR_DEL_SUCCESS(215,"ok","权限删除成功"),
 
     ROLE_SAVE_SUCCESS(112,"ok","角色与角色权限新增成功"),
     ROLE_SAVE_FAIL(113,"error","角色与角色权限新增失败"),
@@ -48,6 +49,8 @@ public enum ControllerStatusEnum {
     ROLE_USER_SAVE_FAIL(211,"fail","角色用户添加失败"),
     ROLE_USER_UPDATE_SUCCESS(212,"ok","角色用户修改成功"),
     ROLE_USER_UPDATE_FAIL(213,"fail","角色用户修改失败"),
+    ROLE_USER_DEL_SUCCESS(214,"ok","角色用户删除成功"),
+    HUSER_LOGIN_UNAUTH(215,"fail","用户登录未授权"),
 
     BZ_SAVE_FAIL(1501, "error", "保存失败"),
     BZ_SAVE_SUCCESS(1502, "ok", "保存成功"),
@@ -81,7 +84,13 @@ public enum ControllerStatusEnum {
     DxModel_UPDATE_FAIL(1803, "error", "修改失败"),
     DxModel_UPDATE_SUCCESS(1804, "ok", "修改成功"),
     DxModel_DELETE_FAIL(1805, "error", "删除失败"),
-    DxModel_DELETE_SUCCESS(1806, "ok", "删除成功");
+    DxModel_DELETE_SUCCESS(1806, "ok", "删除成功"),
+
+    TZB_SAVE_SUCCESS(1806,"ok", "投资成功"),
+    TZB_SAVE_OR(1807,"or", "你已经投资过该产品,现已经为你增加投资金额！"),
+    TZB_SAVE_FAIL(1808,"fail", "投资失败！不能给自己投资"),
+    TZB_SAVE_ERROR(1809,"error", "投资失败！请先登录");
+
 
 
     private Integer code;

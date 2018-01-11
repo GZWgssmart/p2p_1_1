@@ -29,4 +29,9 @@ public class RoleServiceImpl extends AbstractBaseService implements RoleService{
     public void insertBatch(RoleJurVO roleJurVO) {
         roleDAO.insertBatch(roleJurVO);
     }
+
+    @Override
+    public List<String> listRoles(String phone) {
+        return roleDAO.listRoles(phone);
+    }
 }

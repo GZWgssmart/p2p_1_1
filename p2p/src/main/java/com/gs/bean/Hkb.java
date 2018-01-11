@@ -49,36 +49,10 @@ public class Hkb {
 
     private Long huid;//贷后负责人
 
-    private Long int1;
+    private Integer djq;//第几期
 
     private String str1;
 
-    public Hkb(Long hkid, Long uid, String rname, String cpname, Integer rnum, Integer tnum, Date ytime, Date rtime, String bzname, BigDecimal ybx, BigDecimal rbx, BigDecimal ylx, BigDecimal rlx, BigDecimal ybj, BigDecimal rbj, BigDecimal yfx, BigDecimal rfx, Integer yucount, Byte state, Long baid, Date yustartime, Long huid, Long int1, String str1) {
-        this.hkid = hkid;
-        this.uid = uid;
-        this.rname = rname;
-        this.cpname = cpname;
-        this.rnum = rnum;
-        this.tnum = tnum;
-        this.ytime = ytime;
-        this.rtime = rtime;
-        this.bzname = bzname;
-        this.ybx = ybx;
-        this.rbx = rbx;
-        this.ylx = ylx;
-        this.rlx = rlx;
-        this.ybj = ybj;
-        this.rbj = rbj;
-        this.yfx = yfx;
-        this.rfx = rfx;
-        this.yucount = yucount;
-        this.state = state;
-        this.baid = baid;
-        this.yustartime = yustartime;
-        this.huid = huid;
-        this.int1 = int1;
-        this.str1 = str1;
-    }
 
     public Hkb() {
         super();
@@ -260,12 +234,12 @@ public class Hkb {
         this.huid = huid;
     }
 
-    public Long getInt1() {
-        return int1;
+    public Integer getDjq() {
+        return djq;
     }
 
-    public void setInt1(Long int1) {
-        this.int1 = int1;
+    public void setDjq(Integer djq) {
+        this.djq = djq;
     }
 
     public String getStr1() {

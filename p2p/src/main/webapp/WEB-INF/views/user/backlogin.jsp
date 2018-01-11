@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>登录</title>
-    <%@include file="../master/header.jsp"%>
+    <%@include file="../master/easyui/header.jsp"%>
 </head>
 <body>
     <div style="margin:auto; width:600px; height:400px;padding-top:200px;">
@@ -58,6 +58,6 @@
         <p style="clear: both;"></p>
     </div>
 </body>
-<%@ include file="../master/footer.jsp"%>
+<%@ include file="../master/easyui/footer.jsp"%>
 <script src="<%=path %>/static/js/huser/huser.js"></script>
 </html>

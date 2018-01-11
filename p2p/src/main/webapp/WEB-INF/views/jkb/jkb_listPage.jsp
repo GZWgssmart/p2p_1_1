@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Title</title>
-    <%@include file="../master/header.jsp" %>
+    <%@include file="../master/easyui/header.jsp" %>
 </head>
 <body>
 <table id="list" class="easyui-datagrid"
@@ -21,7 +21,7 @@
     <thead>
     <tr>
         <th data-options="field:'baid',width:80,checkbox:true">编号</th>
-        <th data-options="field:'cpname',width:140">产平名称</th>
+        <th data-options="field:'cpname',width:140">产品名称</th>
         <th data-options="field:'rname',width:140">真实姓名</th>
         <th data-options="field:'money',width:140">申请金额（元）</th>
         <th data-options="field:'bzname',width:120">标种</th>
@@ -150,7 +150,7 @@
 
 
 </body>
-<%@include file="../master/footer.jsp" %>
+<%@include file="../master/easyui/footer.jsp" %>
 
 <script>
     $(function() {

@@ -17,7 +17,11 @@
         ]]>
     </select>
 
-    <update id="update" parameterType="role">
+    <select id="listRoles" parameterType="string" resultType="String">
+        select r.rname from t_role r,t_huser h,t_roleuser ru where r.rid = ru.rid and h.huid = ru.huid and h.phone = #{phone}
+    </select>
+
+    <update id="update" parameterType="com.gs.vo.RoleJurVO">
         <![CDATA[
             update t_role
         ]]>
@@ -44,6 +48,7 @@
     <select id="listPagerCriteria" resultType="com.gs.bean.Role">
         select r.rid,r.rname,r.content from t_role r where r.rid = rid
         <include refid="role_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
     </select>
 
     <select id="countCriteria" resultType="Long">

@@ -10,7 +10,7 @@
 
     <insert id="save" parameterType="com.gs.bean.Sway">
         <![CDATA[
-          insert into t_sway(sid,way,fw,state) values(#{sid},#{way},#{fw},#{state})
+          insert into t_sway(way,fw,state) values(#{way},#{fw},#{state})
         ]]>
     </insert>
 

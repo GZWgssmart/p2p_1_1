@@ -28,7 +28,7 @@ public class JklxController {
     }
 
     @RequestMapping("jklx")
-    public String init() {
+    public String jklx() {
         return "jklx/jklx";
     }
 
@@ -58,9 +58,9 @@ public class JklxController {
         return statusVO;
     }
 
-    @RequestMapping("delete/{lxid}")
+    @RequestMapping("delete")
     @ResponseBody
-    public ControllerStatusVO delete( @PathVariable("lxid") Long id){
+    public ControllerStatusVO delete(Long id){
         ControllerStatusVO statusVO = null;
         try {
             jklxService.removeById(id);
@@ -71,9 +71,9 @@ public class JklxController {
         return statusVO;
     }
 
-    @RequestMapping("updateState/{lxid}/{state}")
+    @RequestMapping("updateState")
     @ResponseBody
-    public ControllerStatusVO updateState(@PathVariable("lxid") Long id, @PathVariable("state") Byte state){
+    public ControllerStatusVO updateState(Long id,Byte state){
         ControllerStatusVO statusVO = null;
         try {
             Jklx jklx = new Jklx();
@@ -87,9 +87,4 @@ public class JklxController {
         return statusVO;
     }
 
-    @RequestMapping("findJklx/{lxid}")
-    @ResponseBody
-    public Jklx findJklx(@PathVariable("lxid") Long lxid){
-        return  (Jklx) jklxService.getById(lxid);
-    }
 }

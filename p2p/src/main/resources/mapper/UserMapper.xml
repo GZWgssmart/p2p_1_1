@@ -28,6 +28,9 @@
 
     <!--注册-->
     <insert id="save" parameterType="com.gs.bean.User">
+        <selectKey keyColumn="uid" keyProperty="uid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
         <![CDATA[
           insert into t_user(uname, phone, upwd, tzm) values(#{uname}, #{phone}, #{upwd}, #{tzm});
         ]]>

@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface RoleUserDAO extends BaseDAO{
     @Override
-    List<Object> listPagerCriteria(@Param("pager")Pager pager, @Param("roleUserVO")Object obj);
+    List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
 
     @Override
-    Long countCriteria(@Param("roleUserVO") Object obj);
+    Long countCriteria(@Param("query") Object obj);
 }

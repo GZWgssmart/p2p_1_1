@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface JurDAO extends BaseDAO{
     @Override
-    List<Object> listPagerCriteria(@Param("pager")Pager pager,@Param("jur")Object obj);
+    List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("jur") Object obj);
 
     @Override
     Long countCriteria(@Param("jur") Object obj);
@@ -23,4 +23,10 @@ public interface JurDAO extends BaseDAO{
     //批量插入权限
     public void insertInfoBatch(List<Jur> jurList);
     public void importExcelInfo(@Param("in") InputStream in, @Param("file") MultipartFile file, @Param("huid") Integer huid);
+
+    //根据电话查询所有的权限
+    List<String> listJurs(String phone);
+
+    //根据角色id查询所有的权限jid
+    List<Long> listJur(Long rid);
 }
