@@ -7,7 +7,6 @@
 	<title>普金资本平台</title>
 </head>
 
-
 <div class="about-right-nav">
 	<div class="sub-a-nav">
 		<a href="javascript:void(0);" class="active" id="">平台公告</a>
@@ -21,3 +20,4 @@
 		<ul class="paging"></ul>
 	</div>
 </div>
+

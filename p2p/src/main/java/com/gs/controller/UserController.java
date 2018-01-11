@@ -45,7 +45,10 @@ public class UserController {
     }
 
     @RequestMapping("/regist_page")
-    public String regist(){
+    public String regist(String tzm,HttpServletRequest request){
+        if(tzm != null && tzm.length() == 6 ) {
+            request.setAttribute("tzm",tzm);
+        }
         return "user/regist";
     }
 

@@ -15,6 +15,9 @@
         insert into t_recommend(tid,tname,uid,rname,date) values(#{tid},#{tname},#{uid},#{rname},now())
     </insert>
     <sql id="cash_query_criteria">
+        <if test="query != null and query.uid != null and query.uid!=''">
+            and uid = #{query.uid}
+        </if>
         <if test="query != null and query.tname != null and query.tname!=''">
             and tname like concat('%', #{query.tname}, '%')
         </if>

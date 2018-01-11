@@ -30,7 +30,7 @@
 						   class="site-navi-tab">用户基本信息管理</a></li>
 					<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
 						class="site-navi-tab">用户列表</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
+					<li><a href="javascript:void(0);" src="<%=path%>/recommend/page"
 						   class="site-navi-tab">推荐人管理</a></li>
 				</ul>
 			</div>
@@ -80,9 +80,9 @@
 						   class="site-navi-tab">媒体报道</a></li>
 					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">短信模板管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>"
-						   class="site-navi-tab">信息管理</a></li>
-					<li><a href="javascript:void(0);" src="<%=path%>"
+					<li><a href="javascript:void(0);" src="<%=path%>/notice/page"
+						   class="site-navi-tab">公告管理</a></li>
+					<li><a href="javascript:void(0);" src="<%=path%>/friend/page"
 						   class="site-navi-tab">合作伙伴</a></li>
 					<li><a href="javascript:void(0);" src="<%=path%>"
 						   class="site-navi-tab">友情链接</a></li>

@@ -599,22 +599,23 @@ function initPtgg(){
 	    dataType: "html",
 	    contentType:contentType,
 	    success: function (data) {
-	    	$('.about-right').empty();
-	    	$('.about-right').html(data);
-	    	var dataList = [
-	    	                {
-	    	                	key:'',resolve:function(val,record){
-	    	                		var oLi = '<a href="news.html?id='+record.id+'&flag=1" target="_blank" class="title">'+record.title+'</a><span class="time">'+strTime(record.publishTime)+'</span>';
-	    	                		return oLi;
-	    	                	}
-	    	                }
-	    	                ]
-	    	var param = {
-	    			announcementType:''
-	    	}
-	    	var oPage = new Page('front/frontQueryNewsList.do',param,$('#ptgg .listData'),$('#ptgg .paging'),dataList,function(){});
-	    }
-	});
+            $('.about-right').empty();
+            $('.about-right').html(data);
+            var dataList = [
+                {
+                    key: '', resolve: function (val, record) {
+                    var oLi = '<a href="/notice/nopage?nid=' + record.nid + '"  target="_blank" class="title">' + record.title + '</a><span class="time">' + formatDate(record.date) + '</span>';
+                    return oLi;
+                }
+                }
+            ]
+            var param = {
+                announcementType: ''
+            }
+            var oPage = new Page('/notice/select', param, $('#ptgg .listData'), $('#ptgg .paging'), dataList, function () {
+            });
+        }
+        });
 }
 //招贤纳士
 function initZxns(){
@@ -699,4 +700,35 @@ function AgreeMent(){
         	}
         }
     })
+}
+
+
+function formatDate(value) {
+    if (value == undefined || value == null || value == '') {
+        return "";
+    } else {
+        var date = new Date(value); // 获取js的Date对象
+        var year = date.getFullYear().toString();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate().toString();
+        var hour = date.getHours().toString();
+        var minutes = date.getMinutes().toString();
+        var seconds = date.getSeconds().toString();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+    }
 }

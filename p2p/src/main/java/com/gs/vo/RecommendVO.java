@@ -4,9 +4,7 @@ public class RecommendVO {
     private long id;
     private String tname;
     private String rname;
-    private String startTime;
 
-    private String endTime;
     private long ci;
 
     public long getCi() {
@@ -42,19 +40,5 @@ public class RecommendVO {
         this.rname = rname;
     }
 
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
+  
 }

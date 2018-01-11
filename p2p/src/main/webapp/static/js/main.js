@@ -1,6 +1,20 @@
 var homeTabTitle = '主页';
 var contextPath = "";
 
+var path = "http://"+window.location.host+"/upload/";
+function hashChange(){
+    var hash =  window.location.pathname;
+    /*$('.sub-nav li').removeClass('active');
+     $('a[href="#'+hash+'"]').parent('li').addClass('active');*/
+    switch(hash){
+        case '/friend/update':
+            initrecharge();
+            window.location.href='/friend/page';
+            break;
+
+    };
+}
+
 /**
  * 添加选项卡到中部内容区域
  * @param title 选项卡的标题
@@ -216,11 +230,82 @@ function getStatus(borrow){
 
 function Mack(){
 
-        var str = '<button class="button button1" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',2);">审核成功</button>';
-            str += '<button class="button button2" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',4);">转账</button>';
-            str += '<button class="button button3" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',5);">审核失败</button>';
+    var str = '<button class="button button1" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',2);">审核成功</button>';
+    str += '<button class="button button2" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',4);">转账</button>';
+    str += '<button class="button button3" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',5);">审核失败</button>';
     return str;
 }
+
+
+function NoMack(){
+
+    var str = '<button class="button button1" onclick="return openEditWinprefix('+"'editWin'"+','+"'list'"+','+"'editForm'"+');">修改</button>';
+    str += '<button class="button button3" onclick="return deleteWinprefix('+"'/notice/delete'"+','+"'list'"+');">删除</button>';
+    return str;
+}
+
+function NoticeMack(){
+
+    var str = '<button class="button button1" onclick="return openEditWinpreimage('+"'editWin'"+','+"'list'"+','+"'editForm'"+');">修改</button>';
+    str += '<button class="button button3" onclick="return deleteWinpreimage('+"'/friend/delete'"+','+"'list'"+');">删除</button>';
+    return str;
+}
+
+function openEditWinprefix (winId, listId, formId) {
+    var row = $("#" + listId).datagrid("getSelected");
+    if (row) {
+        $("#" + formId).form("load", row);
+        var ues = UE.getEditor('editor');
+        ues.addListener("ready", function () {
+            ues.setContent(row.content);
+        });
+        openWin(winId);
+    } else {
+        showInfoAlert("请选择需要修改的数据");
+    }
+}
+
+function openEditWinpreimage (winId, listId, formId) {
+    var row = $("#" + listId).datagrid("getSelected");
+    if (row) {
+        $("#" + formId).form("load", row);
+        $("#imgheads").attr('src',path+row.fpic);
+        openWin(winId);
+    } else {
+        showInfoAlert("请选择需要修改的数据");
+    }
+}
+
+function deleteWinprefix(urlId,listId) {
+    var row = $("#"+listId).datagrid("getSelected");
+    if(row) {
+        $.post(urlId,
+            {nid:row.nid},
+            function(data) {
+                if(data.result == "ok") {
+                    showInfoAlert(data.message);
+                    $("#" + listId).datagrid("reload");
+                }
+            },'json'
+        );
+    }
+}
+
+function deleteWinpreimage(urlId,listId) {
+    var row = $("#"+listId).datagrid("getSelected");
+    if(row) {
+        $.post(urlId,
+            {fid:row.fid},
+            function(data) {
+                if(data.result == "ok") {
+                    showInfoAlert(data.message);
+                    $("#" + listId).datagrid("reload");
+                }
+            },'json'
+        );
+    }
+}
+
 
 function MackCommonSuccess(addWin,url,formId,listId){
     $.post(contextPath+url,
@@ -394,6 +479,7 @@ function saveOrUpdate(url, formId, winId, listId) {
             function (data) {
                 if (data.result === "ok") {
                     closeWin(winId);
+                    showInfoAlert(data.message);
                     $("#" + listId).datagrid("reload");
                 } else {
                     showInfoAlert(data.message);
@@ -402,4 +488,103 @@ function saveOrUpdate(url, formId, winId, listId) {
             'json'
         );
     }
+}
+
+function derivation(url,formid) {
+    var form = $('#'+formid);
+    form.attr('action',contextPath+url);
+    form.submit();
+}
+
+function formatImage(value) {
+    return '<img src="'+path+''+value+'" style="width: 350px;height: 90px"/>';
+}
+
+//图片上传预览    IE是用了滤镜。
+var MAXWIDTH = 120;
+var MAXHEIGHT = 90;
+var img = '';
+function previewImage(file) {
+
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=imghead onclick=$("#previewImg").click()>';
+        img = document.getElementById('imghead');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=imghead>';
+        var img = document.getElementById('imghead');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+function previewImages(file) {
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=imgheads onclick=$("#previewImgs").click()>';
+        img = document.getElementById('imgheads');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=imgheads>';
+        var img = document.getElementById('imgheads');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+function clacImgZoomParam(maxWidth, maxHeight, width, height) {
+    var param = {
+        top: 0,
+        left: 0,
+        width: width,
+        height: height
+    };
+    if (width > maxWidth || height > maxHeight) {
+        rateWidth = width / maxWidth;
+        rateHeight = height / maxHeight;
+
+        if (rateWidth > rateHeight) {
+            param.width = maxWidth;
+            param.height = Math.round(height / rateWidth);
+        } else {
+            param.width = Math.round(width / rateHeight);
+            param.height = maxHeight;
+        }
+    }
+    param.left = Math.round((maxWidth - param.width) / 2);
+    param.top = Math.round((maxHeight - param.height) / 2);
+    return param;
 }

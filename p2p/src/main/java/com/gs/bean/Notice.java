@@ -10,9 +10,12 @@ public class Notice {
 
     private String title;//标题
 
-    private Date date;//公告时间
+    private String date;//公告时间
 
-    public Notice(Long nid, String content, String title, Date date) {
+    private String startTime;
+    private String endTime;
+
+    public Notice(Long nid, String content, String title, String date) {
         this.nid = nid;
         this.content = content;
         this.title = title;
@@ -47,11 +50,27 @@ public class Notice {
         this.title = title == null ? null : title.trim();
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

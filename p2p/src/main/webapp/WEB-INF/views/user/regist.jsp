@@ -53,7 +53,7 @@
 			</div>
 			<div class="from from-ext">
 				<label for="useCode" class="icon icon-ext"></label>
-				<input type="text" name="" id="useCode" placeholder="输入邀请码"/>
+				<input type="text" name="tzm" id="useCode" placeholder="输入邀请码" value="${requestScope.tzm}"/>
 			</div>
 			<button class="btn" type="button" onclick="regist(this)">注册</button>
 			<div class="agree"><input type="checkbox" id="agree">我已阅读并同意《<a href="javascript:AgreeMent(0);">普金资本服务协议</a>》和《<a href="javascript:AgreeMent(1);">风险提示书</a>》</div>

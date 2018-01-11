@@ -52,7 +52,7 @@
 </div>
 <%@include file="./master/foot.jsp" %>
 <script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/jquery.js" ></script>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js"></script>
+<script type="text/javascript" src="<%=path%>/static/js/publlic.js"></script>
 <script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/countUp.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/about.js"></script>
 </body>

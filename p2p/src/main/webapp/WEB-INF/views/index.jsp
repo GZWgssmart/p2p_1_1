@@ -64,22 +64,7 @@
     <div class="wrap">
         <div class="news-list icon icon-news">
             <ul id="news-list" style="height: 192px; top: -96px;">
-                <li>
-                    <span>平台公告&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    <a href="https://www.pujinziben.com/news.html?id=186&amp;flag=1" target="_blank">关于多金宝项目正常还款的公告 </a>
-                </li>
-                <li>
-                    <span>平台公告&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    <a href="https://www.pujinziben.com/news.html?id=185&amp;flag=1" target="_blank">关于多金宝项目正常还款的公告</a>
-                </li>
-                <li>
-                    <span>新标预告&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    <a href="https://www.pujinziben.com/news.html?id=184&amp;flag=1" target="_blank">2017年12月4日新标预告</a>
-                </li>
-                <li>
-                    <span>新标预告&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    <a href="https://www.pujinziben.com/news.html?id=183&amp;flag=1" target="_blank">2017年12月2日新标预告</a>
-                </li>
+
             </ul>
         </div>
         <div class="bang-list">
@@ -330,14 +315,11 @@
     <div class="news-main-right" style="display: block;">
         <div class="news-main-top">
             <h3>最新公告</h3>
-            <p class="more icon icon-more"><a href="https://www.pujinziben.com/about.html#ptgg">更多</a></p>
+            <p class="more icon icon-more"><a href="/html/about#ptgg">更多</a></p>
         </div>
         <div class="news-main-content">
             <ul class="news-main-list" id="newsContent">
-                <li><a href="https://www.pujinziben.com/news.html?id=186&amp;flag=1" target="_blank">关于多金宝项目正常还款的公告 </a><span>2017-12-18</span></li>
-                <li><a href="https://www.pujinziben.com/news.html?id=185&amp;flag=1" target="_blank">关于多金宝项目正常还款的公告</a><span>2017-12-08</span></li>
-                <li><a href="https://www.pujinziben.com/news.html?id=184&amp;flag=1" target="_blank">2017年12月4日新标预告</a><span>2017-12-04</span></li>
-                <li><a href="https://www.pujinziben.com/news.html?id=183&amp;flag=1" target="_blank">2017年12月2日新标预告</a><span>2017-12-01</span></li></ul>
+                </ul>
         </div>
         <div class="news-main-top ptop">
             <h3>公司动态</h3>
@@ -360,28 +342,9 @@
         <div class="link-list">
             <div class="link-list-box" style="width: 5840px;">
                 <ul class="cl" id="linkList" style="width: 2920px;">
-                    <li><a target="view_frame" href="http://www.gzctgroup.cn/" title="赣州城投集团"><img src="<%=path %>/static/p2p/201612290824108901.jpg" alt="赣州城投集团"></a></li>
-                    <li><a target="view_frame" href="http://www.heimadc.com/" title="黑马地产"><img src="<%=path %>/static/p2p/201612290824295248.jpg" alt="黑马地产"></a></li>
-                    <li><a target="view_frame" href="http://www.chinapnr.com/" title="汇付天下"><img src="<%=path %>/static/p2p/201612290824515414.jpg" alt="汇付天下"></a></li>
-                    <li><a target="view_frame" href="https://www.fadada.com/" title="法大大"><img src="<%=path %>/static/p2p/201612290825022265.jpg" alt="法大大"></a></li>
-                    <li><a target="view_frame" href="http://www.evergrande.com/" title="恒大集团"><img src="<%=path %>/static/p2p/201612290825216736.jpg" alt="恒大集团"></a></li>
-                    <li><a target="view_frame" href="http://www.erongtu.com/" title="融途网"><img src="<%=path %>/static/p2p/201612290825402257.jpg" alt="融途网"></a></li>
-                    <li><a target="view_frame" href="http://www.jxifa.org.cn/" title="江西省互联网金融协会"><img src="<%=path %>/static/p2p/201704121159104962.png" alt="江西省互联网金融协会"></a></li>
-                    <li><a target="view_frame" href="http://www.cgfae.cn/" title="江西赣南金融资产交易中心"><img src="<%=path %>/static/p2p/201704141712019679.png" alt="江西赣南金融资产交易中心"></a></li>
-                    <li><a target="view_frame" href="http://www.chinacsfl.cn/" title="中国供应链金融服务联盟"><img src="<%=path %>/static/p2p/201704141714413995.png" alt="中国供应链金融服务联盟"></a></li>
-                    <li><a target="view_frame" href="http://www.wdzj.com/" title="网贷之家"><img src="<%=path %>/static/p2p/201704141714599412.png" alt="网贷之家"></a></li>
                 </ul>
                 <ul class="cl" id="linkList2" style="width: 2920px;">
-                    <li><a target="view_frame" href="http://www.gzctgroup.cn/" title="赣州城投集团"><img src="<%=path %>/static/p2p/201612290824108901.jpg" alt="赣州城投集团"></a></li>
-                    <li><a target="view_frame" href="http://www.heimadc.com/" title="黑马地产"><img src="<%=path %>/static/p2p/201612290824295248.jpg" alt="黑马地产"></a></li>
-                    <li><a target="view_frame" href="http://www.chinapnr.com/" title="汇付天下"><img src="<%=path %>/static/p2p/201612290824515414.jpg" alt="汇付天下"></a></li>
-                    <li><a target="view_frame" href="https://www.fadada.com/" title="法大大"><img src="<%=path %>/static/p2p/201612290825022265.jpg" alt="法大大"></a></li>
-                    <li><a target="view_frame" href="http://www.evergrande.com/" title="恒大集团"><img src="<%=path %>/static/p2p/201612290825216736.jpg" alt="恒大集团"></a></li>
-                    <li><a target="view_frame" href="http://www.erongtu.com/" title="融途网"><img src="<%=path %>/static/p2p/201612290825402257.jpg" alt="融途网"></a></li>
-                    <li><a target="view_frame" href="http://www.jxifa.org.cn/" title="江西省互联网金融协会"><img src="<%=path %>/static/p2p/201704121159104962.png" alt="江西省互联网金融协会"></a></li>
-                    <li><a target="view_frame" href="http://www.cgfae.cn/" title="江西赣南金融资产交易中心"><img src="<%=path %>/static/p2p/201704141712019679.png" alt="江西赣南金融资产交易中心"></a></li>
-                    <li><a target="view_frame" href="http://www.chinacsfl.cn/" title="中国供应链金融服务联盟"><img src="<%=path %>/static/p2p/201704141714413995.png" alt="中国供应链金融服务联盟"></a></li>
-                    <li><a target="view_frame" href="http://www.wdzj.com/" title="网贷之家"><img src="<%=path %>/static/p2p/201704141714599412.png" alt="网贷之家"></a></li></ul>
+                </ul>
             </div>
         </div>
     </div>
@@ -391,6 +354,9 @@
 
 </body>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=path%>/static/js/index.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/about.js"></script>
+
 <script>
 
     (function ($) {
