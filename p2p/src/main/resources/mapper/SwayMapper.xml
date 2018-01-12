@@ -28,7 +28,7 @@
 
     <delete id="removeById" parameterType="java.lang.Long">
         <![CDATA[
-            delete from t_sway where sid = #{sid}
+            delete from t_sway where sid = #{id}
         ]]>
     </delete>
 
@@ -38,7 +38,7 @@
     ]]>
     </select>
 
-    <select id="listPager" resultType="com.gs.bean.Sway">
+    <select id="listPager" resultType="com.gs.vo.SwayVo">
         <![CDATA[
         select * from t_sway limit #{pager.beginIndex}, #{pager.pageSize}
     ]]>

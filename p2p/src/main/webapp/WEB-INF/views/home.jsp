@@ -69,10 +69,12 @@
 					   class="site-navi-tab">逾期借款</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
 					   class="site-navi-tab">借款额度</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+				<li><a href="javascript:void(0);" src="<%=path%>/sway/sway"
 					   class="site-navi-tab">还款方式</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+				<li><a href="javascript:void(0);" src="<%=path%>/bz/bz"
 					   class="site-navi-tab">标种类型</a></li>
+				<li><a href="javascript:void(0);" src="<%=path%>/jklx/jklx"
+					   class="site-navi-tab">借款类型</a></li>
 			</ul>
 		</div>
 		<div title="宣传管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
@@ -81,7 +83,7 @@
 					   class="site-navi-tab">公司动态</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
 					   class="site-navi-tab">媒体报道</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+				<li><a href="javascript:void(0);" src="<%=path%>/dxModel/dxModel"
 					   class="site-navi-tab">短信模板管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
 					   class="site-navi-tab">信息管理</a></li>

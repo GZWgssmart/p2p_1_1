@@ -16,7 +16,8 @@ public interface JklxDAO extends BaseDAO{
     @Override
     List<Object> listPager(@Param("pager") Pager pager);
 
-    void updateState(Jklx jklx);
+    @Override
+    void removeById(@Param("id")Long id);
 
     int countByPager();
 

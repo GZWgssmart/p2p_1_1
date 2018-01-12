@@ -28,11 +28,11 @@
 
     <delete id="removeById" parameterType="java.lang.Long">
         <![CDATA[
-            delete from t_jklx where lxid = #{lxid}
+            delete from t_jklx where lxid = #{id}
         ]]>
     </delete>
 
-    <select id="listPager" resultType="com.gs.bean.Jklx">
+    <select id="listPager" resultType="com.gs.vo.JklxVo">
         <![CDATA[
         select * from t_jklx limit #{pager.beginIndex}, #{pager.pageSize}
     ]]>

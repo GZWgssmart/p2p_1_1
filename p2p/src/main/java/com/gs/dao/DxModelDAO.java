@@ -14,15 +14,13 @@ import java.util.List;
 @Repository
 public interface DxModelDAO extends BaseDAO{
 
-    int countByPager();
-
-    void save(Object obj);
-
-    void removeById(Long id);
-
-    void update(Object obj);
-
+    @Override
     List<Object> listPager(@Param("pager") Pager pager);
+
+    @Override
+    void removeById(@Param("id")Long id);
+
+    int countByPager();
 
     Integer isRegPhone(String phone);
 }

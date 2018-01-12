@@ -23,8 +23,8 @@ public class SwayController {
 
     @RequestMapping("pager")
     @ResponseBody
-    public Pager pager(int pageIndex, int pageSize) {
-        return swayService.listPager(pageIndex,pageSize);
+    public Pager Pager(int page, int rows) {
+        return swayService.listPager(page, rows);
     }
 
     @RequestMapping("sway")
@@ -68,24 +68,6 @@ public class SwayController {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.SWAY_DELETE_FAIL);
         }
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.SWAY_DELETE_SUCCESS);
-        return statusVO;
-    }
-
-    @RequestMapping("updateState")
-    @ResponseBody
-    public ControllerStatusVO updateState(Long id,Byte state){
-        ControllerStatusVO statusVO = null;
-        try {
-            Sway sway = new Sway();
-            sway.setSid(id);
-            sway.setState(state);
-            System.out.println(id);
-            System.out.println(state);
-            swayService.updateState(sway);
-        } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.SWAY_UPDATE_STATE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.SWAY_UPDATE_STATE_SUCCESS);
         return statusVO;
     }
 

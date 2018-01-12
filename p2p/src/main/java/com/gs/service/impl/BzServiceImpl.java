@@ -35,6 +35,11 @@ public class BzServiceImpl extends AbstractBaseService implements BzService {
     }
 
     @Override
+    public void removeById(Long id) {
+        super.removeById(id);
+    }
+
+    @Override
     public Pager listPager(int pageNo, int pageSize) {
         Pager pager = new Pager(pageNo, pageSize);
         pager.setRows(bzDAO.listPager(pager));

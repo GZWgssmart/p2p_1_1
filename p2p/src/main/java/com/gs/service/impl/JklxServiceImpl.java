@@ -52,8 +52,4 @@ public class JklxServiceImpl extends AbstractBaseService implements JklxService 
         return jklxDAO.countByPager();
     }
 
-    @Override
-    public void updateState(Jklx jklx) {
-        jklxDAO.updateState(jklx);
-    }
 }

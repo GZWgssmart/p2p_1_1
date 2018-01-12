@@ -31,13 +31,17 @@ public class DxModelController {
 
     @RequestMapping("pager")
     @ResponseBody
-    public Pager pager(int pageIndex, int pageSize) {
-        return dxModelService.listPager(pageIndex,pageSize);
+    public Pager Pager(int page, int rows) {
+        return dxModelService.listPager(page, rows);
     }
 
     @RequestMapping("SendDxModel")
     public String SendDxModel() {
         return "reAndLo";
+    }
+    @RequestMapping("dxModel")
+    public String DxModel() {
+        return "dxModelType/dxModel";
     }
 
     @RequestMapping("save")

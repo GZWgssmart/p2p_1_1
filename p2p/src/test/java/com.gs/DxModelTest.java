@@ -28,7 +28,7 @@ public class DxModelTest {
     public void DxModelsavetest(){
         DxModel dxModel=new DxModel();
         dxModel.setDxid(1L);
-        dxModel.setContent("您的验证码为123456，请妥善保管！");
+        dxModel.setContent("您的验证码为666666，请妥善保管！");
         dxModelService.save(dxModel);
     }
 
@@ -40,19 +40,19 @@ public class DxModelTest {
     @Test
     public void DxModelupdatetest(){
         DxModel dxModel=new DxModel();
-        dxModel.setDxid(1L);
-        dxModel.setContent("您的验证码为654321，请妥善保管！");
+        dxModel.setDxid(6L);
+        dxModel.setContent("您的验证码为111111，请妥善保管！");
         dxModelService.update(dxModel);
     }
 
     @Test
     public void DxModelremoveByIdtest(){
-        dxModelService.removeById(1L);
+        dxModelService.removeById(5L);
     }
 
     @Test
     public void  DxModelListByPager(){
-        dxModelService.listPagerCriteria(1,2,null);
+        dxModelService.listPager(1,2);
     }
 
 }

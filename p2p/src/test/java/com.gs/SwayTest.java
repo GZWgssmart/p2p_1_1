@@ -32,14 +32,6 @@ public class SwayTest {
     }
 
     @Test
-    public void SwayupdateStatetest(){
-        Sway sway=new Sway();
-        sway.setSid(1L);
-        sway.setState((byte)1);
-        swayService.updateState(sway);
-    }
-
-    @Test
     public void Swayupdatetest(){
         Sway sway=new Sway();
         sway.setSid(1L);

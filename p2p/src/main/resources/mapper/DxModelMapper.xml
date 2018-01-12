@@ -9,7 +9,7 @@
     </select>
 
     <delete id="removeById" parameterType="java.lang.Long">
-        delete from t_dxmodel where dxid = #{dxid}
+        delete from t_dxmodel where dxid = #{id}
     </delete>
 
     <insert id="save" parameterType="com.gs.bean.DxModel">

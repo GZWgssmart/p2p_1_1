@@ -16,20 +16,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * time：2018/1/2.
  */
 @Controller
-@RequestMapping("jklx")
+@RequestMapping("/jklx")
 public class JklxController {
     @Autowired
     private JklxService jklxService;
 
     @RequestMapping("pager")
     @ResponseBody
-    public Pager pager(int pageIndex, int pageSize) {
-        return jklxService.listPager(pageIndex,pageSize);
+    public Pager Pager(int page, int rows) {
+        return jklxService.listPager(page, rows);
     }
 
     @RequestMapping("jklx")
     public String jklx() {
-        return "jklx/jklx";
+        return "jklxType/jklx";
     }
 
     @RequestMapping("save")
@@ -68,22 +68,6 @@ public class JklxController {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.JKLX_DELETE_FAIL);
         }
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.JKLX_DELETE_SUCCESS);
-        return statusVO;
-    }
-
-    @RequestMapping("updateState")
-    @ResponseBody
-    public ControllerStatusVO updateState(Long id,Byte state){
-        ControllerStatusVO statusVO = null;
-        try {
-            Jklx jklx = new Jklx();
-            jklx.setLxid(id);
-            jklx.setState(state);
-            jklxService.updateState(jklx);
-        } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.JKLX_UPDATE_STATE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.JKLX_UPDATE_STATE_SUCCESS);
         return statusVO;
     }
 

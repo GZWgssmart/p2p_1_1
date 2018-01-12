@@ -11,7 +11,5 @@ import java.util.List;
  */
 public interface JklxService extends BaseService{
 
-    void updateState(Jklx jklx);
-
     int countByPager();
 }

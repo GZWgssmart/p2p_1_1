@@ -13,5 +13,4 @@ public interface SwayService extends BaseService{
 
     int countByPager();
 
-    void updateState(Sway sway);
 }

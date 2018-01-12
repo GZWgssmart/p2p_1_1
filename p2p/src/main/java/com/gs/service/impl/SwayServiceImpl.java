@@ -25,11 +25,6 @@ public class SwayServiceImpl extends AbstractBaseService implements SwayService 
     }
 
     @Override
-    public void updateState(Sway sway) {
-        swayDAO.updateState(sway);
-    }
-
-    @Override
     public void save(Object obj) {
         super.save(obj);
     }

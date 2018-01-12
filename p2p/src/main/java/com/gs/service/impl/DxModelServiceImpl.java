@@ -34,6 +34,11 @@ public class DxModelServiceImpl extends AbstractBaseService implements DxModelSe
     }
 
     @Override
+    public void removeById(Long id) {
+        super.removeById(id);
+    }
+
+    @Override
     public void update(Object obj) {
         super.update(obj);
     }

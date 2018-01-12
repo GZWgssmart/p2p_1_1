@@ -24,8 +24,8 @@ public class BzController {
 
     @RequestMapping("pager")
     @ResponseBody
-    public Pager Pager(int page,int rows) {
-        return bzService.listPager(page,rows);
+    public Pager Pager(int page, int rows) {
+        return bzService.listPager(page, rows);
     }
 
     @RequestMapping("bz")
@@ -35,7 +35,7 @@ public class BzController {
 
     @RequestMapping("save")
     @ResponseBody
-    public ControllerStatusVO save(Bz bz){
+    public ControllerStatusVO save(Bz bz) {
         ControllerStatusVO statusVO = null;
         try {
             bzService.save(bz);
@@ -48,7 +48,7 @@ public class BzController {
 
     @RequestMapping("update")
     @ResponseBody
-    public ControllerStatusVO update(Bz bz){
+    public ControllerStatusVO update(Bz bz) {
         ControllerStatusVO statusVO = null;
         try {
             bzService.update(bz);
@@ -61,7 +61,7 @@ public class BzController {
 
     @RequestMapping("delete")
     @ResponseBody
-    public ControllerStatusVO delete(Long id){
+    public ControllerStatusVO delete(Long id) {
         ControllerStatusVO statusVO = null;
         try {
             bzService.removeById(id);
@@ -71,5 +71,6 @@ public class BzController {
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_DELETE_SUCCESS);
         return statusVO;
     }
-    
+
+
 }
