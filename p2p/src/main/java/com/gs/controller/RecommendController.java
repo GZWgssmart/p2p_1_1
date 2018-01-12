@@ -31,7 +31,6 @@ public class RecommendController {
     @Autowired
     private RecommendService recommendService;
 
-    @RequiresPermissions("recommend:page")
     @RequestMapping("page")
     public String page() {
         return "recommend/recommend";
@@ -52,7 +51,6 @@ public class RecommendController {
     }
 
     //删除单个
-    @RequiresPermissions("recommend:remove")
     @RequestMapping("remove")
     @ResponseBody
     public ControllerStatusVO remove(long id) {
@@ -82,7 +80,6 @@ public class RecommendController {
         return statusVO;
     }
 
-    @RequiresPermissions("recommend:export")
     @RequestMapping("export")
     public void exportExcel(HttpServletResponse response, RecommendVO recommendVO) {
         Workbook workbook = recommendService.export(recommendVO);

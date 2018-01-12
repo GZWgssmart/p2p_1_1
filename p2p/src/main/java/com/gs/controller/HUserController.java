@@ -7,11 +7,6 @@ import com.gs.common.EncryptUtils;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.HUserService;
 import com.gs.vo.ControllerStatusVO;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,15 +54,7 @@ public class HUserController {
                     HUser hUser = hUserService.getByPhonePwd(phone, EncryptUtils.md5(pwd));
                     if (hUser != null) {
                         session.setAttribute(Constants.HUSER_IN_SESSION, hUser);
-                        try{
-                            Subject subject = SecurityUtils.getSubject();
-                            subject.login(new UsernamePasswordToken(phone,EncryptUtils.md5(pwd)));
-                            Session sessionShiro = subject.getSession();
-                            sessionShiro.setAttribute("hUser",hUser);
-                            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
-                        }catch (AuthenticationException e){
-                            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_LOGIN_UNAUTH) ;
-                        }
+                        statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
                         return statusVO;
                     } else {
                         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_FAIL);
@@ -84,16 +71,7 @@ public class HUserController {
 
     @RequestMapping("home")
     public String home() {
-        return "home";
-    }
-
-    @RequestMapping("down")
-    public String loginout() {
-        Subject subject = SecurityUtils.getSubject();
-        if (subject.isAuthenticated()) {
-            subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
-        }
-        return "user/backlogin";
+        return "/backpage/index";
     }
 
     @RequestMapping("all")
