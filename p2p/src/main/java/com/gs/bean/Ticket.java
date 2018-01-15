@@ -7,13 +7,13 @@ import java.util.Date;
 public class Ticket {
     private Integer kid;
 
-    private Byte type;//优惠券类型，如现金劵，代金券，体验金
+    private Integer type;//优惠券类型，如现金劵，代金券，体验金
 
     private BigDecimal tkmoney;//优惠券金额
 
     private Date tktime;//有效时间
 
-    public Ticket(Integer kid, Byte type, BigDecimal tkmoney, Date tktime) {
+    public Ticket(Integer kid, Integer type, BigDecimal tkmoney, Date tktime) {
         this.kid = kid;
         this.type = type;
         this.tkmoney = tkmoney;
@@ -32,11 +32,11 @@ public class Ticket {
         this.kid = kid;
     }
 
-    public Byte getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

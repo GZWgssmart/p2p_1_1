@@ -86,6 +86,19 @@ public enum ControllerStatusEnum {
     DxModel_DELETE_FAIL(1805, "error", "删除失败"),
     DxModel_DELETE_SUCCESS(1806, "ok", "删除成功"),
 
+    TICKET_SAVE_SUCCESS(600,"ok","优惠券添加成功"),
+    TICKET_SAVE_FAIL(601,"error","添加失败，请稍后再试"),
+    TICKET_UPDATE_SUCCESS(602,"ok","优惠券修改成功"),
+    TICKET_UPDATE_FAIL(603,"error","优惠券修改失败"),
+    UTICKET_SAVE_SUCCESS(604,"ok","领券成功"),
+    UTICKET_SAVE_FAIL(605,"error","领券失败，请稍后再试"),
+    UTICKET_DELETE_SUCCESS(606,"ok","删除成功"),
+    UTICKET_DELETE_FAIL(607,"error","删除失败，请稍后再试"),
+    OPTION_SAVE_SUCCESS(608,"ok","用户反馈成功"),
+    OPTION_SAVE_FAIL(609,"error","用户反馈失败，请稍后再试"),
+    OPTION_DELETE_SUCCESS(610,"ok","删除成功"),
+    OPTION_DELETE_FAIL(611,"error","删除失败，请稍后再试"),
+
     TZB_SAVE_SUCCESS(1806,"ok", "投资成功"),
     TZB_SAVE_OR(1807,"or", "你已经投资过该产品,现已经为你增加投资金额！"),
     TZB_SAVE_FAIL(1808,"fail", "投资失败！不能给自己投资"),
@@ -94,6 +107,7 @@ public enum ControllerStatusEnum {
     HKB_UPDATE_FAIL(1810,"fail", "还款失败！余额不足"),
     HKB_UPDATE_SUCCESS(1811,"success", "还款成功！"),
     SKB_UPDATE_SUCCESS(1812,"success", "还款成功！");
+
 
 
 

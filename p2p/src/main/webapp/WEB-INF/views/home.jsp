@@ -35,6 +35,8 @@
 					<li><a href="javascript:void(0);" src="<%=path%>/recommend/page"
 						   class="site-navi-tab">推荐人管理</a></li>
 				</shiro:hasPermission>
+				<li><a href="javascript:void(0);" src="<%=path%>/option/page"
+					   class="site-navi-tab">用户反馈</a></li>
 			</ul>
 		</div>
 		<div title="资金管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
@@ -49,10 +51,10 @@
 					   class="site-navi-tab">银行卡管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logczz/backcz"
 					   class="site-navi-tab">充值记录</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
-					   class="site-navi-tab">代金券与现金券管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
-					   class="site-navi-tab">用户体验金管理</a></li>
+				<li><a href="javascript:void(0);" src="<%=path%>/ticket/page"
+					   class="site-navi-tab">优惠券管理</a></li>
+				<li><a href="javascript:void(0);" src="<%=path%>/uticket/page"
+					   class="site-navi-tab">用户领券管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
 					   class="site-navi-tab">充值提现每日任务明细</a></li>
 			</ul>
