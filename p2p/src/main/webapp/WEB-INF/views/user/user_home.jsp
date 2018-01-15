@@ -122,7 +122,7 @@
             <ul class="sub-nav">
                 <li><a href="<%=path %>/bank/page" target="mainFrame">我的银行卡</a></li>
                 <li><a href="#safe" target="mainFrame">安全设置</a></li>
-                <li><a href="#msg" target="mainFrame">消息中心</a></li>
+                <li><a href="<%=path %>/letter/showpage" target="mainFrame">消息中心</a></li>
             </ul>
         </div>
         <a href="<%=path %>/recommend/handpage" target="mainFrame" class="tuijian">

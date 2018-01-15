@@ -1,4 +1,5 @@
 var contextPath = "http://localhost:8080";
+var contentType = "application/x-www-form-urlencoded; charset=utf-8";
 var oPage;
 function hashChange(){
     var hash =  window.location.pathname;
@@ -48,8 +49,8 @@ function hashChange(){
         case 'msg':
             initMsgCenters();
             break;
-        case 'hetong':
-            initHeTong();
+        case '/letter/showpage':
+            initMsgData();
             break;
         /*default : initAccount();$('a[href="#account"]').parent('li').addClass('active');
             break;*/
@@ -615,6 +616,186 @@ function tuiJianList(){
     var param={'startTime':begin,'endTime':end};
     oPage = null;
     oPage = new Page('/recommend/pager_criteria',param,$('.tuijian-list .listData'),$('.tuijian-list .paging'),payData,function(data){
+    });
+}
+
+//消息列表初始化
+function initMsgData(){
+    //数据初始化
+    var payData = [
+        {
+            key:'',resolve:function(val, record){
+            var check;
+            if (record.state == 1){
+                check = $('<input class="check" type="checkbox" value="'+ record.lid +'" name="sysMail" />');
+            } else {
+                check = $('<input type="checkbox" value="'+ record.lid +'" name="sysMail" />');
+            }
+            return check;
+        }
+        },
+        {
+            key:'',resolve:function(val){
+            return '系统消息';
+        }
+        },
+        {
+            key:'title',resolve:function(val,record,index){
+            var data;
+            if (record.state == 1){
+                data = $("<a href='javascript:;' style='color: #c0c0c0;'>" + val + "</a>");
+            } else {
+                data = $("<a href='javascript:;' style='color: #333;'>" + val + "</a>");
+            }
+            data.click(function(){
+                initMsgxq(record.lid);
+            })
+            return data;
+        }
+        },
+        {
+            key:'date',resolve:function(val){
+            return formatDate(val);
+        }
+        }
+    ];
+    var app = "app";
+    var param={app:app};
+    oPage = null;
+    oPage = new Page('/letter/select',param,$('.msg-list.listData'),$('.paging'),payData,function(){});
+
+}
+
+// 消息详情
+function initMsgxq(lid) {
+    $.ajax({
+        url: '/letter/pageparti',
+        type: "get",
+        dataType: "html",
+        contentType:contentType,
+        success: function (data) {
+            $('.account-right').empty();
+            $('.account-right').html(data);
+            $(".msgPerson").hide();
+            initMsgxq2(lid);
+        }
+    });
+}
+function initMsgxq2(id) {
+    $.ajax({
+        url: "/letter/partid?lid="+id,
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            $(".msgPerson").show();
+            $(".msgTitle").html(data.title);
+            $(".msgContent").html(data.content);
+            $(".msgTime").html(data.date);
+        }
+    });
+}
+// 选中已读
+function checkAll_Sys(e){
+    if(e.checked){
+        $("input[name='sysMail']").attr("checked","checked");
+    }else{
+        $("input[name='sysMail']").attr("checked",false);
+    }
+}
+// 删除选中已读
+function deleteMsg (obj) {
+    $("#deleteMsg").attr("disabled",true);
+    var stIdArray = [];
+    $("input[name='sysMail']:checked").each(function(){
+        stIdArray.push($(this).val());
+    });
+    if(stIdArray.length == 0){
+        alert("请选择需要删除的内容");
+        $("#deleteMsg").attr("disabled",false);
+        return ;
+    }
+    if(!window.confirm("确定要删除吗?")){
+        $("#deleteMsg").attr("disabled",false);
+        return;
+    }
+    var ids = stIdArray.join(",");
+    $.ajax({
+        url: "/letter/delete",
+        type: "get",
+        data: {ids:ids},
+        dataType: "json",
+        success: function (data) {
+            if(data.result == 'ok') {
+                alert(data.message);
+                initMsgData();
+            } else {
+               alert(data.message);
+            }
+            $("#deleteMsg").attr("disabled",false);
+        }
+    });
+}
+
+function readedSys(){
+    $("#readedSys").attr("disabled",true);
+    var stIdArray = [];
+    $("input[name='sysMail']:checked").each(function(){
+        stIdArray.push($(this).val());
+    });
+    if(stIdArray.length == 0){
+        alert("请选择要标记的内容");
+        $("#readedSys").attr("disabled",false);
+        return ;
+    }
+    if(!window.confirm("确定要将所选邮件标记为已读吗?")){
+        $("#readedSys").attr("disabled",false);
+        return;
+    }
+    var ids = stIdArray.join(",");
+    $.ajax({
+        url: "/letter/update",
+        type: "get",
+        data: {ids:ids,state:1},
+        dataType: "json",
+        success: function (data) {
+            if(data.result == 'ok') {
+                alert(data.message);
+                initMsgData();
+            }
+            $("#readedSys").attr("disabled",false);
+        }
+    });
+}
+
+function unReadSys(){
+    $("#unReadSys").attr("disabled",true);
+    var stIdArray = [];
+    $("input[name='sysMail']:checked").each(function(){
+        stIdArray.push($(this).val());
+    });
+    if(stIdArray.length == 0){
+        alert("请选择要标记的内容");
+        $("#unReadSys").attr("disabled",false);
+        return ;
+    }
+    if(!window.confirm("确定要将所选邮件标记为未读吗?")){
+        $("#unReadSys").attr("disabled",false);
+        return;
+    }
+    var ids = stIdArray.join(",");
+
+    $.ajax({
+        url: "/letter/update",
+        type: "get",
+        data: {ids:ids,state:0},
+        dataType: "json",
+        success: function (data) {
+            if(data.result == 'ok') {
+                alert(data.message);
+                initMsgData();
+            }
+            $("#unReadSys").attr("disabled",false);
+        }
     });
 }
 

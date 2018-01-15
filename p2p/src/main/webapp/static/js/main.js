@@ -238,7 +238,6 @@ function Mack(){
 
 
 function NoMack(){
-
     var str = '<button class="button button1" onclick="return openEditWinprefix('+"'editWin'"+','+"'list'"+','+"'editForm'"+');">修改</button>';
     str += '<button class="button button3" onclick="return deleteWinprefix('+"'/notice/delete'"+','+"'list'"+');">删除</button>';
     return str;
@@ -248,6 +247,13 @@ function NoticeMack(){
 
     var str = '<button class="button button1" onclick="return openEditWinpreimage('+"'editWin'"+','+"'list'"+','+"'editForm'"+');">修改</button>';
     str += '<button class="button button3" onclick="return deleteWinpreimage('+"'/friend/delete'"+','+"'list'"+');">删除</button>';
+    return str;
+}
+
+function LetterMack(){
+
+    var str = '<button class="button button1" onclick="return openEditWinpreLetter('+"'editWin'"+','+"'list'"+','+"'editForm'"+');">修改</button>';
+    str += '<button class="button button3" onclick="return deleteWinpreLetter('+"'/letter/delete'"+','+"'list'"+');">删除</button>';
     return str;
 }
 
@@ -276,6 +282,31 @@ function openEditWinpreimage (winId, listId, formId) {
     }
 }
 
+function openEditWinpreLetter (winId, listId, formId) {
+    var row = $("#" + listId).datagrid("getSelected");
+    if (row) {
+        $("#" + formId).form("load", row);
+        var objs = document.getElementById('select-phones');
+        if(row.uid === 1 || row.uid == null) {
+            objs.style.display='block';
+            document.getElementById('selects').selectedIndex = 1;
+        }else{
+            objs.style.display='none';
+        }
+        openWin(winId);
+    } else {
+        showInfoAlert("请选择需要修改的数据");
+    }
+}
+
+function formatterPhone(value) {
+    return value == null || value.length == 0 ? '公共消息' : value;
+}
+
+function formatterStart(value) {
+    return value == 0 ? '群发' : '单发';
+}
+
 function deleteWinprefix(urlId,listId) {
     var row = $("#"+listId).datagrid("getSelected");
     if(row) {
@@ -296,6 +327,22 @@ function deleteWinpreimage(urlId,listId) {
     if(row) {
         $.post(urlId,
             {fid:row.fid},
+            function(data) {
+                if(data.result == "ok") {
+                    showInfoAlert(data.message);
+                    $("#" + listId).datagrid("reload");
+                }
+            },'json'
+        );
+    }
+}
+
+
+function deleteWinpreLetter(urlId,listId) {
+    var row = $("#"+listId).datagrid("getSelected");
+    if(row) {
+        $.post(urlId,
+            {lid:row.lid},
             function(data) {
                 if(data.result == "ok") {
                     showInfoAlert(data.message);
@@ -588,3 +635,5 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
     param.top = Math.round((maxHeight - param.height) / 2);
     return param;
 }
+
+
