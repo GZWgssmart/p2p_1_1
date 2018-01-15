@@ -9,7 +9,7 @@ public class LogMoney {
 
     private Long uid;//用户id
 
-    private Byte type;//类型，1充值，2提现，3回款，4,投资，5系统金额（公司奖励等）
+    private Byte type;//类型，1充值，2提现，3还款，4,投资，5系统金额（公司奖励等）,6收款
 
     private BigDecimal in;//收入
 

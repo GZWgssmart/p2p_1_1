@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 创建类名：TzbController
@@ -51,6 +52,22 @@ public class TzbController {
 
         return pager;
     }
+    @RequestMapping("/select_haveorno")
+    @ResponseBody
+    public ControllerStatusVO Select(HttpSession session, TzbQuery tzbQuery){
+        ControllerStatusVO statusVO = null;
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        tzbQuery.setUid(user.getUid());
+        tzbQuery.setState((byte)4);
+        List<Tzb> tzbs = (List) tzbService.list(tzbQuery);
+        if (tzbs.size() != 0){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.TZB_SAVE_SUCCESS);
+        }else{
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.TZB_SAVE_FAIL);
+        }
+
+        return statusVO;
+    }
     @RequestMapping("/list")
     @ResponseBody
     public Pager List(HttpSession session, TzbQuery tzbQuery){
@@ -82,4 +99,5 @@ public class TzbController {
         return ControllerStatusVO.status(ControllerStatusEnum.TZB_SAVE_ERROR);
 
     }
+
 }

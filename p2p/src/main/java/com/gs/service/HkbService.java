@@ -1,5 +1,8 @@
 package com.gs.service;
 
+import com.gs.common.Pager;
+import com.gs.vo.ControllerStatusVO;
+
 import java.util.List;
 
 /**
@@ -11,4 +14,7 @@ import java.util.List;
  */
 public interface HkbService extends BaseService {
     void saveList(List hkbList);
+    Pager list(int pageNo, int pageSize, Object obj);
+    List<Object> listByBaid(Object object);
+    ControllerStatusVO update_hkb(Object object);
 }

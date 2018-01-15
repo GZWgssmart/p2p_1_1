@@ -41,7 +41,7 @@ public class Hkb {
 
     private Integer yucount;//逾期次数
 
-    private Byte state;//还款状态（0未还款，1已还款）
+    private Byte state;//还款状态（1未还款，2已还款,3,已逾期）
 
     private Long baid;//借款人id
 

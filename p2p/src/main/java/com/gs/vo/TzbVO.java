@@ -22,6 +22,7 @@ public class TzbVO {
     private Long sid;//还款方式id
     private String way;//还款方式
     private String rname;//投资人姓名
+    private Byte state;//状态
 
 
     public BigDecimal getMoney() {
@@ -110,5 +111,13 @@ public class TzbVO {
 
     public void setRname(String rname) {
         this.rname = rname;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
     }
 }

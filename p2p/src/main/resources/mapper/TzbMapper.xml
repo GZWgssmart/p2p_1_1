@@ -18,9 +18,6 @@
         <if test="query != null and query.state != null">
             and ba.state = #{query.state}
         </if>
-        <if test="query != null and query.uid != null">
-            and tzb.uid = #{query.uid}
-        </if>
         <if test="query != null and query.startTime != null and query.startTime != ''">
             and tzb.time <![CDATA[>=]]> #{query.startTime}
         </if>
@@ -31,7 +28,7 @@
 
     <select id="listPagerCriteria" resultType="com.gs.vo.TzbVO">
        select tzb.money,tzb.cpname,tzb.nprofit,tzb.time,
-        ba.baid as baid,ba.sid as sid,ba.lxid as lxid,
+        ba.baid as baid,ba.sid as sid,ba.lxid as lxid,ba.state as state,
         ba.term as term,s.way as way,jk.lxname as lxname,u.rname as rname
         <include refid="tzb_query_common" />
         <include refid="tzb_query_criteria" />
@@ -51,6 +48,10 @@
     </insert>
     <select id="getTzb" resultType="com.gs.bean.Tzb">
         select * from t_tzb where uid = #{uid} and baid = #{baid};
+    </select>
+    <select id="list" resultType="com.gs.bean.Tzb">
+        select tzb.money,tzb.baid from t_tzb tzb,t_borrowapply ba
+        where tzb.baid = ba.baid and tzb.uid = #{query.uid} and ba.state = #{query.state}
     </select>
 
     <update id="update" parameterType="tzb">

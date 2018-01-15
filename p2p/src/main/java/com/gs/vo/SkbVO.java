@@ -1,15 +1,17 @@
-package com.gs.bean;
+package com.gs.vo;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-//还款表
-public class Skb {
+/**
+ * 创建类名：SkbVO
+ * 创建时间：2018/1/11 14:38
+ *
+ * @author 温宁宁
+ * @version 1.0
+ */
+public class SkbVO {
     private Long skid;
-
-    private Long uid;//用户id
-
-    private Long juid;//借款人id
 
     private BigDecimal ybx;//应收本息
 
@@ -23,24 +25,21 @@ public class Skb {
 
     private BigDecimal rbj;//已收本金
 
-    private Integer rnum;//已还期数
-
     private Integer tnum;//总期数
 
     private Date hkdate;//日期
 
-    private Long baid;//借款人id
+    private Long baid;//借款id
 
     private BigDecimal tzmoney;//投资金额
 
-    private Byte state;//收款状态(1，可收款2，未还款，3已收款)
+    private Byte state;//收款状态(1，未还款2，可收款，3已收款)
 
-    private Integer djq;//第几期
+    private String cpname;//标名
 
+    private BigDecimal nprofit;//年利率
 
-    public Skb() {
-        super();
-    }
+    private String way;//借款类型
 
     public Long getSkid() {
         return skid;
@@ -48,22 +47,6 @@ public class Skb {
 
     public void setSkid(Long skid) {
         this.skid = skid;
-    }
-
-    public Long getUid() {
-        return uid;
-    }
-
-    public void setUid(Long uid) {
-        this.uid = uid;
-    }
-
-    public Long getJuid() {
-        return juid;
-    }
-
-    public void setJuid(Long juid) {
-        this.juid = juid;
     }
 
     public BigDecimal getYbx() {
@@ -114,14 +97,6 @@ public class Skb {
         this.rbj = rbj;
     }
 
-    public Integer getRnum() {
-        return rnum;
-    }
-
-    public void setRnum(Integer rnum) {
-        this.rnum = rnum;
-    }
-
     public Integer getTnum() {
         return tnum;
     }
@@ -162,11 +137,27 @@ public class Skb {
         this.state = state;
     }
 
-    public Integer getDjq() {
-        return djq;
+    public String getCpname() {
+        return cpname;
     }
 
-    public void setDjq(Integer djq) {
-        this.djq = djq;
+    public void setCpname(String cpname) {
+        this.cpname = cpname;
+    }
+
+    public BigDecimal getNprofit() {
+        return nprofit;
+    }
+
+    public void setNprofit(BigDecimal nprofit) {
+        this.nprofit = nprofit;
+    }
+
+    public String getWay() {
+        return way;
+    }
+
+    public void setWay(String way) {
+        this.way = way;
     }
 }

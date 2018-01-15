@@ -25,7 +25,6 @@
             <div class="account-right-nav">
                 <div class="sub-a-nav">
                     <a href="javascript:void(0);" class="all-a active">账户总览</a>
-                    <a href="javascript:void(0);" class="slb-a">生利宝</a>
                 </div>
                 <em class="em-line" style="left:0px;"></em>
             </div>
@@ -87,64 +86,6 @@
                     </div>
                 </div>
                 <div id="huifuHtml"></div>
-                <!-- 生利宝管理   -->
-                <div class="slb-view" style="display: none;">
-                    <div class="slb-all">
-                        <div class="slb-left">
-                            <p><span id="slbSum">0.00</span>元</p>
-                            <h1>总金额</h1>
-                            <a href="javascript:slbaoTrading();">转入/转出</a>
-                        </div>
-                        <ul class="slb-right">
-                            <li>
-                                <h2><span id="annuRate">0.000</span>%</h2>
-                                <p>最近7日年化收益率</p>
-                            </li>
-                            <li>
-                                <h2><span id="prdRate">0.000</span>%</h2>
-                                <p>最新收益率</p>
-                            </li>
-                            <li>
-                                <h2><span id="totalProfit">0.00</span>元</h2>
-                                <p>生利宝历史累计收益</p>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="slb-govern">
-                        <div class="sub-a-nav">
-                            <a href="javascript:void(0);" class="active slb-to" id="to">转入</a>
-                            <a href="javascript:void(0);" class="slb-go" id="go">转出</a>
-                            <a href="javascript:void(0);" class="slb-sy" id="earn">收益</a>
-                            <em class="em-list"></em>
-                            <div class="account-form cl">
-                                <input type="date" class="date icon icon-date" id="startDate">
-                                <p class="text">至</p>
-                                <input type="date" class="date icon icon-date" id="endDate">
-                                <button type="button" class="search" id="slbSearch">搜索</button>
-                            </div>
-                        </div>
-                        <div class="govern-list list-a">
-                            <ul class="govern-list-box list-box">
-                                <li class="title">
-                                    <div class="children0">日期</div>
-                                    <div class="children1">金额（元）</div>
-                                    <div class="children2">生利宝余额（元）</div>
-                                    <div class="children3">订单号</div>
-                                    <div class="children4">信息</div>
-                                </li>
-                            </ul>
-                            <ul class="govern-list-box listData">
-
-                            </ul>
-                            <ul class="paging" style="width:340px;margin:30px auto 0;">
-
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
             <div class="popup regist-box">
                 <p class="title left">注册汇付天下</p>
@@ -161,22 +102,6 @@
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script>
     $(function(){
-        $(".all-a").bind("click",function(){
-            $(".slb-a").removeClass("active");
-            $(this).addClass("active");
-            $(".em-line").css("left",'0px');
-            $(".slb-view").hide();
-            $(".all-view").show();
-        });
-
-        $(".slb-a").bind("click",function(){
-            $(".all-a").removeClass("active");
-            $(this).addClass("active");
-            $(".em-line").css("left",'120px');
-            $(".all-view").hide();
-            $(".slb-view").show();
-
-        });
 
         $(".luckyLink").mouseover(function (){
             $(".luckyDetails").show();

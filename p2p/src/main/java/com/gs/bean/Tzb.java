@@ -25,18 +25,7 @@ public class Tzb {
 
     private String str1;
 
-    public Tzb(Long tzid, Long uid, Long juid, BigDecimal money, Date time, Float nprofit, String cpname, Long baid, Long int1, String str1) {
-        this.tzid = tzid;
-        this.uid = uid;
-        this.juid = juid;
-        this.money = money;
-        this.time = time;
-        this.nprofit = nprofit;
-        this.cpname = cpname;
-        this.baid = baid;
-        this.int1 = int1;
-        this.str1 = str1;
-    }
+
 
     public Tzb() {
         super();

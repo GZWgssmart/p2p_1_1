@@ -117,17 +117,115 @@ function addElementImg3(obj) {
 }
 
 function save(url, formId) {
-    $.post(basePath + url,
-        $("#" + formId).serialize(),
-        function (data) {
-            if (data.result === "ok") {
-                $("#baid").val(data.code);
-                swal(data.code, data.message, "success");
-                $("#btn_upate").click();
-            } else {
-                swal("申请失败！", 请稍后再试, "error");
-            }
-        },
-        'json'
-    );
+    var money = $("#money").val();
+    var bzid = $("#bzid").val();
+    var lxid = $("#lxid").val();
+    var sid = $("#sid").val();
+    var term = $("#term").val();
+    var fpic = $("#fpic").val();
+    var ypic = $("#ypic").val();
+    var qpic = $("#qpic").val();
+    var tpic = $("#tpic").val();
+    var mpurpose = $("#mpurpose").val();
+    var hksource = $("#hksource").val();
+    var nprofit = $("#nprofit").val();
+    var suggest = $("#suggest").val();
+    var xmdescrip = $("#xmdescrip").val();
+    var guarantee = $("#guarantee").val();
+    if (money == ''){
+        alert("请输入申请金额");
+        $('#money').focus();
+        return;
+    }else if(isNaN(money)){
+        alert('金额格式不正确');
+        $('#money').focus();
+        return;
+    }else if(money < 10000){
+        alert("申请金额必须在10000元以上");
+        $('#money').focus();
+        return;
+    }else if(bzid == ''){
+        alert("请选择借款标种");
+        $('#bzid').focus();
+        return;
+    }else if(lxid == ''){
+        alert("请选择借款类型");
+        $('#lxid').focus();
+        return;
+    }else if(sid == ''){
+        alert("请选择收益方式");
+        $('#sid').focus();
+        return;
+    }else if(term == ''){
+        alert("请输入借款期限");
+        $('#term').focus();
+        return;
+    }else if(term < 1 || term >24){
+        alert("期限必须在1到24个月之内");
+        $('#term').focus();
+        return;
+    }else if(fpic == ''){
+        alert("请上传法人身份证");
+        $('#faren').focus();
+        return;
+    }else if(ypic == ''){
+        alert("请上传营业执照副本");
+        $('#yingye').focus();
+        return;
+    }else if(qpic == ''){
+        alert("请上传企业银行账号");
+        $('#qiye').focus();
+        return;
+    }else if(tpic == ''){
+        alert("请上传其他资料");
+        $('#ziliao').focus();
+        return;
+    }else if(mpurpose == ''){
+        alert("请输入资金用途");
+        $('#mpurpose').focus();
+        return;
+    }else if(hksource == ''){
+        alert("请输入还款来源");
+        $('#hksource').focus();
+        return;
+    }else if(nprofit == ''){
+        alert("请输入年化收益");
+        $('#nprofit').focus();
+        return;
+    }else if(nprofit < 1 || nprofit > 50){
+        alert("年化收益必须在1%到50%之间");
+        $('#nprofit').focus();
+        return;
+    }else if(isNaN(nprofit)){
+        alert('年化收益格式不正确');
+        $('#nprofit').focus();
+        return;
+    }else if(suggest == ''){
+        alert("请输入借款人介绍");
+        $('#suggest').focus();
+        return;
+    }else if(xmdescrip == ''){
+        alert("请输入项目描述");
+        $('#xmdescrip').focus();
+        return;
+    }else if(guarantee == ''){
+        alert("请输入保障措施");
+        $('#guarantee').focus();
+        return;
+    }else{
+        $.post(basePath + url,
+            $("#" + formId).serialize(),
+            function (data) {
+                if (data.result === "ok") {
+                    $("#baid").val(data.code);
+                    alert(data.message);
+                    $("#btn_upate").click();
+                } else {
+                    swal("申请失败！", 请稍后再试, "error");
+                }
+            },
+            'json'
+        );
+    }
+
 }

@@ -89,7 +89,11 @@ public enum ControllerStatusEnum {
     TZB_SAVE_SUCCESS(1806,"ok", "投资成功"),
     TZB_SAVE_OR(1807,"or", "你已经投资过该产品,现已经为你增加投资金额！"),
     TZB_SAVE_FAIL(1808,"fail", "投资失败！不能给自己投资"),
-    TZB_SAVE_ERROR(1809,"error", "投资失败！请先登录");
+    TZB_SAVE_ERROR(1809,"error", "投资失败！请先登录"),
+
+    HKB_UPDATE_FAIL(1810,"fail", "还款失败！余额不足"),
+    HKB_UPDATE_SUCCESS(1811,"success", "还款成功！"),
+    SKB_UPDATE_SUCCESS(1812,"success", "还款成功！");
 
 
 

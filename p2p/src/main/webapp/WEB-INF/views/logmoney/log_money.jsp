@@ -43,7 +43,8 @@
                     <li id="type4" class="active"><a href="javascript:void(0);">全部</a></li>
                     <li id="type0"><a href="javascript:void(0);">充值</a></li>
                     <li id="type1"><a href="javascript:void(0);">提现</a></li>
-                    <li id="type2"><a href="javascript:void(0);">回款</a></li>
+                    <li id="type2"><a href="javascript:void(0);">还款</a></li>
+                    <li id="type6"><a href="javascript:void(0);">收款</a></li>
                     <li id="type5"><a href="javascript:void(0);">投资</a></li>
                     <li id="type3"><a href="javascript:void(0);">系统金额</a></li>
                 </ul>
@@ -56,6 +57,7 @@
                 <input type="hidden" id="type" readonly="readonly">
                 <!-- <input type="text" placeholder="请输入关键字搜索" class="search icon icon-search" /> -->
                 <button type="button" class="search" id="loanSearch">搜索</button>
+                <button type="button" class="search" id="clean_date">清空</button>
             </div>
             <div class="account-list">
                 <ul class="fund-list-box list-box">
@@ -67,7 +69,7 @@
                         <div class="children4">操作</div>
                     </li>
                 </ul>
-                <ul class="loanData listData"></ul>
+                <ul class="fund-list-box listData"></ul>
                 <ul class="paging"></ul>
             </div>
         </div>

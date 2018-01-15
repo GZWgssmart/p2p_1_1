@@ -1,23 +1,20 @@
 package com.gs.query;
 
-import java.math.BigDecimal;
-
 /**
- * 创建类名：TzbQuery
- * 创建时间：2018/1/3 10:59
+ * 创建类名：SkbQuery
+ * 创建时间：2018/1/11 14:42
  *
  * @author 温宁宁
  * @version 1.0
  */
-public class TzbQuery {
+public class SkbQuery {
     private Long uid;
     private Byte state;
     private String startTime;
     private String endTime;
     private Long baid;
-    private int curPage;
     private Integer djq;
-    private BigDecimal money;
+    private int curPage;
 
     public Long getUid() {
         return uid;
@@ -51,14 +48,6 @@ public class TzbQuery {
         this.endTime = endTime;
     }
 
-    public int getCurPage() {
-        return curPage;
-    }
-
-    public void setCurPage(int curPage) {
-        this.curPage = curPage;
-    }
-
     public Long getBaid() {
         return baid;
     }
@@ -67,19 +56,19 @@ public class TzbQuery {
         this.baid = baid;
     }
 
+    public int getCurPage() {
+        return curPage;
+    }
+
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
+    }
+
     public Integer getDjq() {
         return djq;
     }
 
     public void setDjq(Integer djq) {
         this.djq = djq;
-    }
-
-    public BigDecimal getMoney() {
-        return money;
-    }
-
-    public void setMoney(BigDecimal money) {
-        this.money = money;
     }
 }

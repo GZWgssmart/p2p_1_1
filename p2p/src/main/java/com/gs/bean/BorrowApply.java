@@ -32,6 +32,7 @@ public class BorrowApply {
 
     private Long sid; //还款方式id
 
+    private Date mbtime;//满标时间
 
     public Long getBaid() {
         return baid;
@@ -135,5 +136,13 @@ public class BorrowApply {
 
     public void setSid(Long sid) {
         this.sid = sid;
+    }
+
+    public Date getMbtime() {
+        return mbtime;
+    }
+
+    public void setMbtime(Date mbtime) {
+        this.mbtime = mbtime;
     }
 }

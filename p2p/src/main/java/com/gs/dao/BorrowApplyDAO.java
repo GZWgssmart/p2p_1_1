@@ -21,4 +21,5 @@ public interface BorrowApplyDAO extends BaseDAO{
     @Override
     Long countCriteria(@Param("query") Object obj);
     void updateState(Object obj);
+    void updateState2(Object obj);
 }

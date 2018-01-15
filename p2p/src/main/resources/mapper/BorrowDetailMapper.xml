@@ -108,7 +108,7 @@
     </select>
     <select id="getById" parameterType="long" resultType="com.gs.vo.BorrowDetailVO">
         select bd.ytmoney,bd.baid,bd.nprofit,bd.cpname,ba.money as money,ba.state as state,ba.huid as huid,
-        ba.term as term,ba.bzid as bzid,bz.bzname as bzname,ba.rname as rname,s.way as way
+        ba.term as term,ba.uid as uid,ba.mbtime as mbtime,ba.bzid as bzid,bz.bzname as bzname,ba.rname as rname,s.way as way
          from t_borrowdetail bd,t_borrowapply ba,t_sway s,t_bz bz
          where bd.baid = ba.baid and ba.sid = s.sid and ba.bzid = bz.bzid and bd.baid = #{baid}
     </select>

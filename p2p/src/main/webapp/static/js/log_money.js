@@ -15,33 +15,42 @@ $(function(){
         $("#type").val(1);
         $(".cl li").removeClass("active");
         $(this).addClass("active");
-        initIpayData('','',$("#type").val());
+        initIpayData($("#startDate").val(),$("#endDate").val(),$("#type").val());
     });
     $("#type1").bind("click",function(){
         $("#type").val(2);
         $(".cl li").removeClass("active");
         $(this).addClass("active");
-        initIpayData('','',$("#type").val());
+        initIpayData($("#startDate").val(),$("#endDate").val(),$("#type").val());
     });
     $("#type2").bind("click",function(){
         $("#type").val(3);
         $(".cl li").removeClass("active");
         $(this).addClass("active");
-        initIpayData('','',$("#type").val());
+        initIpayData($("#startDate").val(),$("#endDate").val(),$("#type").val());
     });
     $("#type3").bind("click",function(){
         $("#type").val(5);
         $(".cl li").removeClass("active");
         $(this).addClass("active");
-        initIpayData('','',$("#type").val());
+        initIpayData($("#startDate").val(),$("#endDate").val(),$("#type").val());
     });
     $("#type5").bind("click",function(){
         $("#type").val(4);
         $(".cl li").removeClass("active");
         $(this).addClass("active");
-        initIpayData('','',$("#type").val());
+        initIpayData($("#startDate").val(),$("#endDate").val(),$("#type").val());
     });
-
+    $("#type6").bind("click",function(){
+        $("#type").val(6);
+        $(".cl li").removeClass("active");
+        $(this).addClass("active");
+        initIpayData($("#startDate").val(),$("#endDate").val(),$("#type").val());
+    });
+    $("#clean_date").click(function(){
+        $("#startDate").val('');
+        $("#endDate").val('');
+    })
 
 })
 
@@ -55,11 +64,6 @@ function initIpayData(startDate,endDate,type){
             }
         },
         {
-            key:'sad',resolve:function(val){
-                return '';
-            }
-        },
-        {
             key:'type',resolve:function(val){
             var str ='';
             if(val == '1'){
@@ -67,29 +71,21 @@ function initIpayData(startDate,endDate,type){
             }else if(val == '2'){
                 str = '<p><span class="">提现</span></p>';
             }else if(val == '3'){
-                str = '<p><span class="">回款</span></p>';
+                str = '<p><span class="">还款</span></p>';
             }else if(val == '4'){
                 str = '<p><span class="">投资</span></p>';
             }else if(val == '5'){
                 str = '<p><span class="">系统金额</span></p>';
+            }else if(val == '6'){
+                str = '<p><span class="">收款</span></p>';
             }
             return str;
             }
         },
         {
-            key:'sad',resolve:function(val){
-            return '';
-        }
-        },
-        {
             key:'in',resolve:function(val){
             return '<span class="black">'+val+'元</span>';
             }
-        },
-        {
-            key:'sad',resolve:function(val){
-            return '';
-        }
         },
         {
             key:'out',resolve:function(val){

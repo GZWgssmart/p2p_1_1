@@ -1,6 +1,7 @@
 package com.gs.dao;
 
 import com.gs.common.Pager;
+import com.gs.vo.ControllerStatusVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +22,9 @@ public interface HkbDAO extends BaseDAO {
 
     @Override
     Long countCriteria(@Param("query") Object obj);
+
+    List<Object> list(@Param("pager") Pager pager, @Param("query") Object obj);
+    Long count(@Param("query") Object obj);
+    List<Object> listByBaid(@Param("query") Object object);
+    ControllerStatusVO update_hkb(Object object);
 }

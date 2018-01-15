@@ -19,11 +19,10 @@ import java.util.List;
 public interface TzbDAO extends BaseDAO {
     @Override
     List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
-
     @Override
     Long countCriteria(@Param("query") Object obj);
     Object getTzb(@Param("uid") Long uid,@Param("baid") Long baid);
     ControllerStatusVO add(Object obj);
-
+    List<Object> list(@Param("query") Object object);
 
 }

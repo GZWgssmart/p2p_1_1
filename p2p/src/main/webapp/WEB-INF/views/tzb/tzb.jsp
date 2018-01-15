@@ -41,46 +41,32 @@
             <a href="javascript:;" class="active" id="invest-s1">成功借出</a>
             <a href="javascript:;" id="invest-s2">招标中的借款</a>
             <a href="javascript:;" id="invest-s3">回款中的借款</a>
+            <a href="javascript:;" id="invest-s4">已回收的借款</a>
         </div>
         <div class="account-form cl">
+            <lable class="lable-long">投资时间：</lable>
             <input type="text" class="date icon icon-date" id="invest-startDate" readonly="readonly">
             <p class="text">至</p>
             <input type="text" class="date icon icon-date" id="invest-endDate" readonly="readonly">
             <input type="hidden" id="state">
             <!-- <input type="text" placeholder="请输入关键字搜索" class="search icon icon-search" /> -->
             <button type="button" class="search" id="investSearch">搜索</button>
+            <button type="button" class="search" id="clean_date1">清空</button>
         </div>
         <div class="invest-listData invest-listData1">
             <ul class="investData list-box">
                 <li class="title">
                     <div class="children0">标题</div>
-                    <div class="children1">类型</div>
+                    <div class="children1">投资金额</div>
                     <div class="children2">年利率</div>
                     <div class="children3">期限(个月)</div>
                     <div class="children4">还款方式</div>
-                    <div class="children5">投资金额</div>
-                    <div class="children6">投资时间</div>
+                    <div class="children5">投资时间</div>
+                    <div class="children6">操 作</div>
                 </li>
             </ul>
             <ul class="investData listData"></ul>
             <ul class="paging"></ul>
-        </div>
-        <div class="invest-listData invest-listData3">
-            <ul class="investData list-box">
-                <li class="title">
-                    <div class="children0">标题</div>
-                    <div class="children1">类型</div>
-                    <div class="children2">年利率</div>
-                    <div class="children3">期限(个月)</div>
-                    <div class="children4">投资金额</div>
-                    <div class="children5">已收金额</div>
-                    <div class="children6">还款时间</div>
-                </li>
-            </ul>
-            <ul class="investData listData">
-            </ul>
-            <ul class="paging">
-            </ul>
         </div>
     </div>
     <div class="account-content" id="payment" style="display: none;">
@@ -108,11 +94,13 @@
             </div>
         </div>
         <div class="account-form cl">
+            <lable class="lable-long">还款时间：</lable>
             <input type="text" class="date icon icon-date" id="payment-startDate" readonly="readonly">
             <p class="text">至</p>
             <input type="text" class="date icon icon-date" id="payment-endDate" readonly="readonly">
             <!-- <input type="text" placeholder="请输入关键字搜索" class="search icon icon-search" /> -->
             <button type="button" class="search" id="invest-detailSearch">搜索</button>
+            <button type="button" class="search" id="clean_date2">清空</button>
         </div>
         <div class="invest-detailTable">
             <ul class="list-box">
@@ -120,14 +108,51 @@
                     <div class="children0">标题</div>
                     <div class="children1">类型</div>
                     <div class="children2">年利率</div>
-                    <div class="children3">期限(个月)</div>
-                    <div class="children4">投资金额</div>
-                    <div class="children5">已收金额</div>
-                    <div class="children6">发布时间</div>
+                    <div class="children3">投资金额</div>
+                    <div class="children4">可收金额</div>
+                    <div class="children5">还款日期</div>
+                    <div class="children6">状 态</div>
+                    <div class="children7">操 作</div>
                 </li>
             </ul>
             <ul class="detailData listData"></ul>
             <ul class="paging detailPaging"></ul>
+        </div>
+    </div>
+    <div class="popup repay-from">
+        <p class="title left">收款</p>
+        <a href="javascript:void(0);" class="close icon icon-close"></a>
+        <div class="popup-from">
+            <input type="text" style="display: none" id="skid">
+            <div class="label cl">
+                <label class="long">应收本息：</label><p class="text" id="skb-ybx">--</p>
+            </div>
+            <div class="label cl">
+                <label class="long">已收本息：</label><p class="text" id="skb-rbx">--</p>
+            </div>
+            <div class="label cl">
+                <label class="long">应收利息：</label><p class="text" id="skb-ylx">--</p>
+            </div>
+            <div class="label cl">
+                <label class="long">已收利息：</label><p class="text" id="skb-rlx">--</p>
+            </div>
+            <div class="label cl">
+                <label class="long">应收本金：</label><p class="text" id="skb-ybj">--</p>
+            </div>
+            <div class="label cl">
+                <label class="long">已收本金：</label><p class="text" id="skb-rbj">--</p>
+            </div>
+            <div class="label cl">
+                <label class="long">已还期数：</label><p class="text" id="skb-rnum">--</p>
+            </div>
+            <div class="label cl">
+                <label class="long">总期数：</label><p class="text" id="skb-tnum">--</p>
+            </div>
+            <div class="label cl">
+                <label class="long">还款日期：</label><p class="text" id="skb-hkdate">--</p>
+            </div>
+            <button type="button" class="btn" id="repay-submit" style="display: none">收款</button>
+            <button type="button" class="btn" id="repay-ok" style="display: none">确定</button>
         </div>
     </div>
 

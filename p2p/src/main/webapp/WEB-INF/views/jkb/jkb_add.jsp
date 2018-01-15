@@ -81,7 +81,7 @@
                 </div>
                 <div class="label cl">
                     <label class="long">法人身份证：</label>
-                    <input type="text" placeholder="选择法人身份证图片" readonly="readonly" onclick="F_Open_dialog()">
+                    <input type="text" placeholder="选择法人身份证图片" id="faren" readonly="readonly" onclick="F_Open_dialog()">
                 </div>
                 <div class="label cl" style="display: none" id="addpshow1">
                     <label class="long"></label>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="label cl">
                     <label class="long">营业执照副本:</label>
-                    <input type="text" placeholder="选择营业执照副本" readonly="readonly" onclick="F_Open_dialog1()">
+                    <input type="text" placeholder="选择营业执照副本" id="yingye" readonly="readonly" onclick="F_Open_dialog1()">
                 </div>
                 <div class="label cl" style="display: none" id="addpshow2">
                     <label class="long"></label>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="label cl">
                     <label class="long">企业银行账号:</label>
-                    <input type="text" placeholder="选择企业银行账号" readonly="readonly" onclick="F_Open_dialog2()">
+                    <input type="text" placeholder="选择企业银行账号" id="qiye" readonly="readonly" onclick="F_Open_dialog2()">
                 </div>
                 <div class="label cl" style="display: none" id="addpshow3">
                     <label class="long"></label>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="label cl">
                     <label class="long">其他资料：</label>
-                    <input type="text" placeholder="选择其他资料" readonly="readonly" onclick="F_Open_dialog3()">
+                    <input type="text" placeholder="选择其他资料" id="ziliao" readonly="readonly" onclick="F_Open_dialog3()">
                 </div>
                 <div class="label cl">
                     <label class="long">资金用途：</label>

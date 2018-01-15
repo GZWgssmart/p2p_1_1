@@ -117,7 +117,6 @@ public class JkbController {
         }
         borrowDetail.setBaid(baid);
         if (!fpic.equals("") || !ypic.equals("") || !qpic.equals("") || !tpic.equals("")) {
-            System.out.println("ok");
             borrowDetailService.updatePic(borrowDetail);
         }
         return "redirect:/jkb/update_page/"+baid;
@@ -183,9 +182,22 @@ public class JkbController {
     @RequestMapping("/jkb_list")
     @ResponseBody
     public Pager jkbList(int page, int rows, JkbQuery jkbQuery) {
-        System.out.println("page="+page+";rows="+rows+";jkb"+jkbQuery);
         jkbQuery.setState((byte)1);
         return borrowApplyService.listPagerCriteria(page, rows, jkbQuery);
+    }
+    //借款
+    @RequestMapping("/shenhe")
+    @ResponseBody
+    public ControllerStatusVO shenhe(HttpSession session,BorrowApply borrowApply) {
+        ControllerStatusVO statusVO = null;
+        HUser hUser = (HUser) session.getAttribute(Constants.HUSER_IN_SESSION);
+        borrowApply.setHuid(hUser.getHuid());
+        Calendar cal = Calendar.getInstance();
+        Date date = new Timestamp(cal.getTime().getTime());
+        borrowApply.setTime(date);
+        borrowApplyService.updateState2(borrowApply);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_ADUIT_SUCCESS);
+        return statusVO;
     }
     //进入计算器页面
     @RequestMapping("/calc")

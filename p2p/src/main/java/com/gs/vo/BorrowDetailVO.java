@@ -1,6 +1,7 @@
 package com.gs.vo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 创建类名：BorrowDetailVO
@@ -23,6 +24,8 @@ public class BorrowDetailVO {
     private String bzname;//标种名称
     private String cpname;//产品名称
     private String rname;//真实姓名
+    private Date mbtime;//满标时间
+    private Long uid;//借款人id
 
     public Long getBaid() {
         return baid;
@@ -126,5 +129,21 @@ public class BorrowDetailVO {
 
     public void setRname(String rname) {
         this.rname = rname;
+    }
+
+    public Date getMbtime() {
+        return mbtime;
+    }
+
+    public void setMbtime(Date mbtime) {
+        this.mbtime = mbtime;
+    }
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 }

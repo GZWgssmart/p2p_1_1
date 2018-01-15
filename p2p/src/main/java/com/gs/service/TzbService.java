@@ -1,7 +1,8 @@
 package com.gs.service;
 
-import com.gs.bean.Tzb;
 import com.gs.vo.ControllerStatusVO;
+
+import java.util.List;
 
 /**
  * TzbService接口，实现CRUD
@@ -13,4 +14,5 @@ import com.gs.vo.ControllerStatusVO;
 public interface TzbService extends BaseService {
     Object getTzb(Long uid,Long baid);
     ControllerStatusVO add(Object obj);
+    List<Object> list(Object object);
 }

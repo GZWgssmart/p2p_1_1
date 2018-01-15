@@ -28,4 +28,9 @@ public class BorrowApplyServiceImpl extends AbstractBaseService implements Borro
     public void updateState(Object obj) {
         borrowApplyDAO.updateState(obj);
     }
+
+    @Override
+    public void updateState2(Object obj) {
+        borrowApplyDAO.updateState2(obj);
+    }
 }

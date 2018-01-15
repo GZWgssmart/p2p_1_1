@@ -138,18 +138,18 @@ public class TzbServiceImpl extends AbstractBaseService implements TzbService {
         juserMoney.setZmoney(juserMoney.getZmoney().add(money));
         juserMoney.setUid(tzb.getJuid());
         if(borrowDetail.getYtmoney().compareTo(borrowDetailVO.getMoney())==0){
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(Calendar.getInstance().getTime());
             BorrowApply borrowApply = new BorrowApply();
             borrowApply.setBaid(borrowDetailVO.getBaid());
             borrowApply.setState((byte)4);
-            System.out.println("baid="+borrowDetailVO.getBaid());
+            borrowApply.setMbtime(calendar.getTime());
             borrowApplyDAO.updateState(borrowApply);
             //满标时将借款人的冻结金额变成可用余额
             juserMoney.setDjmoney(juserMoney.getDjmoney().add(money).subtract(borrowDetailVO.getMoney()));
             juserMoney.setKymoney(juserMoney.getZmoney().add(borrowDetailVO.getMoney()));
             Long huid = borrowDetailVO.getHuid();
             //一次还清的还款清单
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(Calendar.getInstance().getTime());
             if(borrowDetailVO.getWay().equals("一次性还本付息")) {
                 Hkb hkb = new Hkb();
                 hkb.setBzname(borrowDetailVO.getBzname());
@@ -231,6 +231,11 @@ public class TzbServiceImpl extends AbstractBaseService implements TzbService {
         logMoney.setUid(tzb.getUid());
         logMoneyDAO.save(logMoney);
         return statusVO;
+    }
+
+    @Override
+    public List<Object> list(Object object) {
+        return tzbDAO.list(object);
     }
 
 }
