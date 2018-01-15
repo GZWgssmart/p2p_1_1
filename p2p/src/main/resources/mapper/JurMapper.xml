@@ -19,7 +19,7 @@
     <delete id="removeById" parameterType="long">
         <![CDATA[
            delete from t_jur where jid = #{jid}
-        <!--]]>
+        ]]>
     </delete>
 
     <select id="listJurs" parameterType="string" resultType="String">

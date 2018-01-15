@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%
@@ -31,7 +32,9 @@
 </table>
 
 <div id="tb" style="height: auto">
-    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" onclick="deleteWin('list');">删除</a>
+    <shiro:hasPermission name="dxModel:delete">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" onclick="deleteWin('list');">删除</a>
+    </shiro:hasPermission>
 </div>
 
 

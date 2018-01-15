@@ -5,6 +5,7 @@ import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.JklxService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,11 +28,15 @@ public class JklxController {
         return jklxService.listPager(page, rows);
     }
 
+    //shiro权限注解
+    @RequiresPermissions("jklx:jklx")
     @RequestMapping("jklx")
     public String jklx() {
         return "jklxType/jklx";
     }
 
+
+    @RequiresPermissions("jklx:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(Jklx jklx){
@@ -45,6 +50,8 @@ public class JklxController {
         return statusVO;
     }
 
+
+    @RequiresPermissions("jklx:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(Jklx jklx){
@@ -58,6 +65,7 @@ public class JklxController {
         return statusVO;
     }
 
+    @RequiresPermissions("jklx:delete")
     @RequestMapping("delete")
     @ResponseBody
     public ControllerStatusVO delete(Long id){

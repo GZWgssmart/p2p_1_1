@@ -31,6 +31,8 @@ public class RecommendController {
     @Autowired
     private RecommendService recommendService;
 
+    //shiro权限注解
+    @RequiresPermissions("recommend:page")
     @RequestMapping("page")
     public String page() {
         return "recommend/recommend";
@@ -50,7 +52,10 @@ public class RecommendController {
         return recommendService.listPagerCriteria(page, rows, param);
     }
 
+
     //删除单个
+    //shiro权限注解
+    @RequiresPermissions("recommend/remove")
     @RequestMapping("remove")
     @ResponseBody
     public ControllerStatusVO remove(long id) {
@@ -80,6 +85,8 @@ public class RecommendController {
         return statusVO;
     }
 
+    //shiro权限注解
+    @RequiresPermissions("recommend:export")
     @RequestMapping("export")
     public void exportExcel(HttpServletResponse response, RecommendVO recommendVO) {
         Workbook workbook = recommendService.export(recommendVO);

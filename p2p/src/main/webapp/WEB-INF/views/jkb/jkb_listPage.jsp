@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -35,7 +36,9 @@
 
 <div id="tb" style="height: auto">
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="openLookWin('lookWin', 'list', 'lookForm')">查看详情</a>
-    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="openEditwin('shenhe', 'list', 'shenheId')">审 核</a>
+    <shiro:hasPermission name="jkb:shenhe">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="openEditwin('shenhe', 'list', 'shenheId')">审 核</a>
+    </shiro:hasPermission>
     <div>
         <form id="searchForm">
             <input class="easyui-numberbox easyui-validatebox" data-options="prompt:'请输入最大金额',

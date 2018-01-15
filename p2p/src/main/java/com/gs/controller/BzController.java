@@ -5,6 +5,7 @@ import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.BzService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,17 +23,21 @@ public class BzController {
     @Autowired
     private BzService bzService;
 
+
     @RequestMapping("pager")
     @ResponseBody
     public Pager Pager(int page, int rows) {
         return bzService.listPager(page, rows);
     }
 
+    //shiro权限注解
+    @RequiresPermissions("bz:bz")
     @RequestMapping("bz")
     public String bz() {
         return "bzType/bz";
     }
 
+    @RequiresPermissions("bz:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(Bz bz) {
@@ -46,6 +51,7 @@ public class BzController {
         return statusVO;
     }
 
+    @RequiresPermissions("bz:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(Bz bz) {
@@ -59,6 +65,7 @@ public class BzController {
         return statusVO;
     }
 
+    @RequiresPermissions("bz:delete")
     @RequestMapping("delete")
     @ResponseBody
     public ControllerStatusVO delete(Long id) {

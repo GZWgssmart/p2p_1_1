@@ -5,6 +5,7 @@ import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.TicketService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ public class TicketController {
         return "ticket/myTicket";
     }
 
+    //shiro权限注解
+    @RequiresPermissions("ticket:page")
     @RequestMapping("page")
     public String page(){
         return "ticket/ticket";
@@ -43,6 +46,8 @@ public class TicketController {
         return ticketService.listPagerCriteria(page,rows,ticket);
     }
 
+    //shiro权限注解
+    @RequiresPermissions("ticket:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(Ticket ticket){
@@ -56,6 +61,8 @@ public class TicketController {
         return statusVO;
     }
 
+    //shiro权限注解
+    @RequiresPermissions("ticket:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(Ticket ticket){

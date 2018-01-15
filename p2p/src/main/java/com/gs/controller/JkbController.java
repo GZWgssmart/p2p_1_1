@@ -9,6 +9,7 @@ import com.gs.query.JkbQuery;
 import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.JkbVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -174,6 +175,8 @@ public class JkbController {
         return statusVO;
     }
     //进入后台借款审核页面
+    //shiro权限注解
+    @RequiresPermissions("jkb:jkb_listPage")
     @RequestMapping("/jkb_listPage")
     public String jkbListPage(HttpSession session, HttpServletRequest request){
         return "jkb/jkb_listPage";
@@ -186,6 +189,7 @@ public class JkbController {
         return borrowApplyService.listPagerCriteria(page, rows, jkbQuery);
     }
     //借款
+    @RequiresPermissions("jkb:shenhe")
     @RequestMapping("/shenhe")
     @ResponseBody
     public ControllerStatusVO shenhe(HttpSession session,BorrowApply borrowApply) {

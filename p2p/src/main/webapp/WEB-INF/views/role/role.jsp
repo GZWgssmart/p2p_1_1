@@ -174,17 +174,17 @@
                 for (var i=0; i<data.length;i++){
                     if(i<20){
                         input+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
-                        if(i % 3 == 0){
+                        if(i % 3 == 0 && i != 0){
                             input +="<br/>";
                         }
                     }else if(i>=20 && i<40){
                         input1+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
-                        if(i % 3 == 0){
-                            input +="<br/>";
+                        if(i % 3 == 0 && i != 0){
+                            input1 +="<br/>";
                         }
                     }else{
                         input2+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
-                        if(i % 3 == 0){
+                        if(i % 3 == 0 && i != 0){
                             input2 +="<br/>";
                         }
                     }
@@ -225,17 +225,17 @@
                     for (var i=0; i<data.length;i++){
                         if(i<20){
                             input+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
-                            if(i % 3 == 0){
+                            if(i % 3 == 0 && i != 0){
                                 input +="<br/>";
                             }
                         }else if(i>=20 && i<40){
                             input1+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
-                            if(i % 3 == 0){
-                                input +="<br/>";
+                            if(i % 3 == 0 && i != 0){
+                                input1 +="<br/>";
                             }
                         }else{
                             input2+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
-                            if(i % 3 == 0){
+                            if(i % 3 == 0 && i != 0){
                                 input2 +="<br/>";
                             }
                         }

@@ -15,6 +15,7 @@ import com.gs.service.UserService;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.SearchVo;
 import com.gs.vo.TxInItPage;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -122,6 +123,8 @@ public class LogTxController {
         return statusVO;
     }
 
+    //shiro权限注解
+    @RequiresPermissions("logtx:backtxsh")
     @RequestMapping("backtxsh")
     public String ShowBackTxshPage() {
         return "/backpage/txList";

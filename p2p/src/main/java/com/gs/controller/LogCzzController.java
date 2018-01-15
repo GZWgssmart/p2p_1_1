@@ -9,6 +9,7 @@ import com.gs.service.LogCzzService;
 import com.gs.service.UserMoneyService;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.SearchVo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +77,8 @@ public class LogCzzController {
         return pager;
     }
 
+    //shiro权限注解
+    @RequiresPermissions("logczz:backcz")
     @RequestMapping("backcz")
     public String ShowBackTxshPage() {
         return "/backpage/czList";
