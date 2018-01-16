@@ -3,7 +3,6 @@ package com.gs.controller;
 import com.gs.bean.BankCard;
 import com.gs.bean.User;
 import com.gs.common.Constants;
-import com.gs.common.HttpUtils;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.BankCardService;
 import com.gs.vo.ControllerStatusVO;
