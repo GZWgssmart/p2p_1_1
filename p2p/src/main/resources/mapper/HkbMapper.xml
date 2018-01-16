@@ -54,8 +54,8 @@
 
     <select id="list" resultType="com.gs.vo.HkbVO">
         <![CDATA[
-		select h.hkid,h.baid,h.cpname,h.bzname,h.ytime,h.rtime,h.ybx,h.rbx,h.ylx,h.yfx,h.yucount,h.huid,h.djq,h.state,
-		 hu.rname as rname,bd.ytmoney as ytmoney,bd.nprofit as nprofit
+		select h.hkid,h.baid,h.cpname,h.bzname,h.rname,h.ytime,h.rtime,h.ybx,h.rbx,h.ylx,h.yfx,h.yucount,h.huid,h.djq,h.state,
+		 hu.rname as hname,bd.ytmoney as ytmoney,bd.nprofit as nprofit
 		 from t_hkb h,t_borrowdetail bd,t_huser hu
 		where h.baid = bd.baid
 		]]>

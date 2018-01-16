@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Explore
-@zhongsangyang
-Sign out
-Watch 1
-Star 0  Fork 0 GZWgssmart/p2p_1_1
-Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
-Branch: master Find file Copy pathp2p_1_1/p2p/src/main/webapp/WEB-INF/views/backpage/index.jsp
-e73a379  an hour ago
-QiuZhiCai 提交ticket文件夹及以下文件
-1 contributor
-RawBlameHistory
-150 lines (145 sloc)  6.54 KB
 <%@ page language="java" contentType="text/html; charset=utf-8"
 		 pageEncoding="utf-8"%>
 <%
@@ -56,12 +38,10 @@ RawBlameHistory
 		</div>
 		<div title="资金管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
+				<li><a href="javascript:void(0);" src="<%=path%>/userMoney/page"
 					   class="site-navi-tab">用户资金管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
+				<li><a href="javascript:void(0);" src="<%=path%>/tzb/htzb"
 					   class="site-navi-tab">用户投资管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">用户借款管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>"
 					   class="site-navi-tab">银行卡管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logczz/backcz"
@@ -76,16 +56,12 @@ RawBlameHistory
 		</div>
 		<div title="借贷管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>"
+				<li><a href="javascript:void(0);" src="<%=path%>/"
 					   class="site-navi-tab">全部借款</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">债权转让</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">收款还款</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
+				<li><a href="javascript:void(0);" src="<%=path%>/hkb/hhkb"
+					   class="site-navi-tab">全部还款</a></li>
+				<li><a href="javascript:void(0);" src="<%=path%>/hkb/hhkb_state"
 					   class="site-navi-tab">逾期借款</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">借款额度</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>"
 					   class="site-navi-tab">还款方式</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>"
@@ -119,10 +95,8 @@ RawBlameHistory
 
 		<div title="审核管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>" class="site-navi-tab">发标审核</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>" class="site-navi-tab">借款审核</a></li>
+				<li><a href="javascript:void(0);" src="<%=path%>/jkb/jkb_listPage" class="site-navi-tab">借款审核</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh" class="site-navi-tab">提现审核</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh" class="site-navi-tab">额度申请</a></li>
 			</ul>
 		</div>
 		<div title="认证管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">

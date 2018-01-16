@@ -243,7 +243,7 @@ function detailLinkInit(){
         }
         },
         {
-            key:'rname',resolve:function(val){
+            key:'hname',resolve:function(val){
             return val;
         }
         },
@@ -298,7 +298,7 @@ function detailLinkInit(){
         }
         },
         {
-            key:'rname',resolve:function(val){
+            key:'hname',resolve:function(val){
             return val;
         }
         },

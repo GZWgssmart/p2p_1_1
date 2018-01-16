@@ -69,28 +69,28 @@
                     <td>法人身份证：</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <img src="<%=path %>/static/upload/${fpic}" style="width: 400px;height: 80px;"/>
+                        <img src="" id="fpic" style="width: 430px;height:300px"/>
                     </td>
                 </tr>
                 <tr>
                     <td>营业执照副本：</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <img src="<%=path %>/static/upload/${ypic}" style="width: 400px;height: 80px;"/>
+                        <img src="" id="ypic" style="width: 430px;height:300px"/>
                     </td>
                 </tr>
                 <tr>
                     <td>企业银行账户:</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <img src="<%=path %>/static/upload/${qbic}" style="width: 400px;height: 80px;"/>
+                        <img src="" id="qpic" style="width: 430px;height:300px"/>
                     </td>
                 </tr>
                 <tr>
                     <td>其他资料:</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <img src="<%=path %>/static/upload/${tpic}" style="width: 400px;height: 80px;"/>
+                        <img src="" id="tpic" style="width: 430px;height:300px"/>
                     </td>
                 </tr>
                 <tr>
@@ -180,6 +180,14 @@
         var row = $("#" + listId).datagrid("getSelected");
         if (row) {
             $("#" + formId).form("load", row); // 考虑时间字符串
+            var fpic = document.getElementById("fpic");
+            fpic.src = "../static/upload/"+row.fpic;
+            var ypic = document.getElementById("ypic");
+            ypic.src = "../static/upload/"+row.ypic;
+            var qpic = document.getElementById("qpic");
+            qpic.src = "../static/upload/"+row.qpic;
+            var tpic = document.getElementById("tpic");
+            tpic.src = "../static/upload/"+row.tpic;
             openWin(winId);
         } else {
             showInfoAlert("请选择需要查看的数据");

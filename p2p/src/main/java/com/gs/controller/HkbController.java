@@ -5,6 +5,7 @@ import com.gs.bean.User;
 import com.gs.common.Constants;
 import com.gs.common.Pager;
 import com.gs.query.HkbQuery;
+import com.gs.query.TzbQuery;
 import com.gs.service.HkbService;
 import com.gs.vo.ControllerStatusVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,32 @@ public class HkbController {
     @ResponseBody
     public ControllerStatusVO UpdateSkb(Hkb hkb) {
         return hkbService.update_hkb(hkb);
+    }
+    //后台还款列表
+    @RequestMapping("/hhkb")
+    public String Hhkb(){
+        return "hkb/hhkb";
+    }
 
+    @RequestMapping("/hlist")
+    @ResponseBody
+    public Pager HList(int page, int rows, HkbQuery hkbQuery){
+        Pager pager = new Pager();
+        pager =  hkbService.list(page,rows,hkbQuery);
+        return pager;
+    }
+    //后台逾期还款列表
+    @RequestMapping("/hhkb_state")
+    public String HhkbState(){
+        return "hkb/hhkb_state";
+    }
+
+    @RequestMapping("/hlist_state")
+    @ResponseBody
+    public Pager HListState(int page, int rows, HkbQuery hkbQuery){
+        Pager pager = new Pager();
+        hkbQuery.setState((byte)3);
+        pager =  hkbService.list(page,rows,hkbQuery);
+        return pager;
     }
 }
