@@ -68,16 +68,21 @@
 		<div id="returnHtml"></div>
 	</div>
 	</div>
+			<input type="hidden" id="msg" value="${msg}"/>
 		</div>
-</body>
+
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/account.js"></script>
 
 <script>
     $(function(){
+        if($('#msg').val() == 1) {
+            alert("您还未添加银行卡，请先添加银行卡！");
+		}
 
     })
 </script>
+</body>
 </html>
 
 
