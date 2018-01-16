@@ -1,63 +1,64 @@
-var isPhoneRegist, isUserRegist, isCodeRight;
+var isPhoneRegist, isUserRegist, isSend = false;
 var localObj = window.location;
 var basePath = localObj.protocol + "//" + localObj.host;
 $(function(){
-		utils.initInput();
-		if(utils.getUrlParam('useCode')){
-			$('.from-ext').attr('class','from fadeOutUpBig');
-			$('#useCode').val(utils.getUrlParam('useCode')).attr('disabled',true);
-		};
-		var phone;
-		$('.code').one('click',function(){
-			$('.from-ext').attr('class','from fadeOutUpBig');
+	/*
+	utils.initInput();
+	if(utils.getUrlParam('useCode')){
+		$('.from-ext').attr('class','from fadeOutUpBig');
+		$('#useCode').val(utils.getUrlParam('useCode')).attr('disabled',true);
+	};
+	var phone;
+	$('.code').one('click',function(){
+		$('.from-ext').attr('class','from fadeOutUpBig');
+	});
+	//极验
+	var handlerPopup = function (captchaObj) {
+		$(".btn").bind('click',function () {
+			if($(this).hasClass('disabled'))return;
+			regist(captchaObj);
 		});
-		//极验
-		var handlerPopup = function (captchaObj) {
-		    $(".btn").bind('click',function () {
-		    	if($(this).hasClass('disabled'))return;
-		    	regist(captchaObj);
-		    });
-		    // 将验证码加到id为captcha的元素里
-		    captchaObj.appendTo("#popup-captcha");
-		    // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
-		};
-		// 验证开始需要向网站主后台获取id，challenge，success（是否启用failback）
-		var url = " " + (new Date()).getTime();
-		$.ajax({
-		    url: url, // 加随机数防止缓存
-		    type: "get",
-		    dataType: "json",
-		    success: function (data) {
-		        // 使用initGeetest接口
-		        // 参数1：配置参数
-		        // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
-		        initGeetest({
-		            gt: data.gt,
-		            challenge: data.challenge,
-		            product: "popup", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
-		            offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
-		            // 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
-		        }, handlerPopup);
-		    }
-		});
-		
-		//获取验证码
-		$('#getMsgCode').click(function(){
-			phone = $('#phone').val();
-			if(phone==''){
-				showError('请输入手机号',$('#phone'));
-				return;
-			};
-			addAssignmentDebt(phone);
-		});
-		
+		// 将验证码加到id为captcha的元素里
+		captchaObj.appendTo("#popup-captcha");
+		// 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
+	};
+	// 验证开始需要向网站主后台获取id，challenge，success（是否启用failback）
+	var url = " " + (new Date()).getTime();
+	$.ajax({
+		url: url, // 加随机数防止缓存
+		type: "get",
+		dataType: "json",
+		success: function (data) {
+			// 使用initGeetest接口
+			// 参数1：配置参数
+			// 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+			initGeetest({
+				gt: data.gt,
+				challenge: data.challenge,
+				product: "popup", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+				offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+				// 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
+			}, handlerPopup);
+		}
+	});
+*/
+	//获取验证码
+	$('#getMsgCode').click(function(){
+		phone = $('#phone').val();
+		if(phone==''){
+			showError('请输入手机号',$('#phone'));
+			return;
+		} else if(utils.isPhone(phone)){
+            showError('请输入正确手机号',$('#phone'));
+            return;
+        };
+		addAssignmentDebt(phone);
 	});
 
-function getCode(){
-	var timenow = new Date(); 
-	$("#imgCode").attr("src"," "+timenow);
-}
+});
 
+
+//验证码
 function addAssignmentDebt(phone){
 	utils.Dialog(true);
 	$('.claimm-from').show();
@@ -71,25 +72,28 @@ function addAssignmentDebt(phone){
 		if (code == '') {
 			utils.alert('请输入图中验证码');
 			return;
-		}
-		var param = {code:code,type:"reg_checkCode"};
-		utils.ajax({
-			url:' ',
-			data:JSON.stringify(param),
-			dataType:'json',
-			success:function(data){
-				utils.Dialog();
-				$('.claimm-from').hide();
-				if(data.error=='0'){
-					utils.getSmsCode($('#getMsgCode'),phone,'regist');
-				}else{
-					utils.alert(data.msg);
-				}
-			}
-		})
+		} else {
+			$.post(basePath + '/user/checkCode',
+				{code:code},
+				function(data){
+					utils.Dialog();
+					$('.claimm-from').hide();
+					if(data.result == 'ok'){
+					    isSend = true;
+                        $('#getMsgCode').attr("disabled", true);
+                        // console.log($('#getMsgCode'));
+                        utils.getSmsCode($('#getMsgCode'), phone);
+					}else{
+						utils.alert('验证码错误！');
+					}
+				},
+				"json"
+			)
+        }
 	})
 }
 
+//进行注册
 function regist(){
     var phone = $('#phone').val();
     var username = $('#username').val();
@@ -97,64 +101,84 @@ function regist(){
     var msgCode = $('#msgcode').val();
     var userCode = $('#userCode').val();
     if(username==''){
-        showError('请输入用户名',$('#username'));
+        showError('请输入用户名', $('#username'));
         return;
     };
     if(phone==''){
-        showError('请输入手机号',$('#phone'));
+        showError('请输入手机号', $('#phone'));
         return;
     };
     if(utils.isPhone(phone)){
-        showError('请输入正确手机号',$('#phone'));
+        showError('请输入正确的手机号码', $('#phone'));
         return;
     };
     if(pwd==''){
-        showError('请输入登录密码',$('#pwd'));
+        showError('请输入登录密码', $("#pwd"));
+        return;
+    } else if (pwd.length<6) {
+        showError("密码为6-18个字符！",$("#pwd"));
         return;
     };
-    // if(msgCode==''){
-    // 	showError('请输入短信验证码',$('#msgcode'));
-    // 	return;
-    // };
-    // if(!$('#getMsgCode').data('randomCode')){
-    // 	utils.alert('请获取短信验证码！');
-    // 	return;
-    // };
-    if(!$('#agree').is(':checked')){
-        utils.alert('请勾选服务协议');
-        return;
-    }
-    $('.btn').text('注册中...').addClass('disabled');
-    var param={
-        uname:username,
-        upwd:pwd,
-        phone:phone,
-        // code:msgCode,
-		 // randomCode:$('#getMsgCode').data('randomCode'),
-		 // recivePhone:$('#getMsgCode').data('recivePhone'),
-        tzm:userCode
+    if(msgCode==''){
+    	showError('请先输入短信验证码',$("#msgcode"));
+    	return;
+    } else {
+        if (!isSend) {
+            utils.alert('请获取短信验证码!');
+            return;
+        } else {
+            $.post(
+                basePath + "/user/checkmsgCode",
+                {
+                    smsCode:msgCode
+                },
+                function(data){
+                    if (data.result === 'ok') {
+                        if(!$('#agree').is(':checked')){
+                            utils.alert('请勾选服务协议!');
+                            return;
+                        }
+                        $('.btn').text('注册中...').addClass('disabled');
+                        var param={
+                            uname:username,
+                            upwd:pwd,
+                            phone:phone,
+                            tzm:userCode
+                        };
+                        $.post(
+                            basePath + "/user/save",
+                            param,
+                            function (data) {
+                                if (data.result === 'ok') {
+                                    utils.alert('注册成功！',function(){
+                                        window.location.href= basePath + '/user/login_page';
+                                    })
+                                }
+                                $('.btn').text('注册').removeClass('disabled');
+                            },
+                            "json"
+                        );
+                    } else {
+                        utils.alert("验证码错误，请重新输入！");
+                        return;
+                    }
+                },
+                "json"
+            );
+        }
     };
-    $.post(
-        basePath + "/user/save",
-        param,
-        function (data) {
-            if (data.result === 'ok') {
-                utils.alert('注册成功！',function(){
-                    window.location.href= basePath + '/user/login_page';
-                })
-                $('.btn').text('注册').removeClass('disabled');
-            }
-        },
-        "json"
-    );
 }
+
 //验证手机号是否注册
 function chosePhone(obj){
 	var phone = $(obj).val();
 	if(phone == ''){
 		showError("请输入手机号码",$(obj));
 		return;
-	};
+	} else if (utils.isPhone(phone)) {
+        showError("请输入正确的手机号码",$(obj));
+        return;
+    };
     var url = basePath + "/user/isPhoneExist";
     $.post(
         url,
@@ -182,46 +206,14 @@ function choseUser(obj){
 function chosePwd(obj){
     var pwd = $(obj).val();
     if(pwd == ''){
-        showError("请输入密码！",$(obj));return;
-    };
-    var param={pwd:pwd};
-    utils.ajax({
-        url:'',
-        data:JSON.stringify(param),
-        dataType:'json',
-        success: function(data){
-            if(data.error =='0'){
-                showError('密码...!',$(obj));
-            }else{
-                utils.alert(data.msg);
-            }
-        }
-    });
+        showError("请输入密码！",$(obj));
+        return;
+    } else if (pwd.length<6) {
+        showError("密码为6-18为字符！",$(obj));
+        return;
+	};
 }
-//验证码是否正确
-/**
-function choseCode(obj){
-    isCodeRight = false;
-    var code = $(obj).val();
-    if(code == ''){
-        showError("请输入验证码",$(obj));return;
-    };
-    var param={msgCode:code};
-    utils.ajax({
-        url:' ',
-        data:JSON.stringify(param),
-        dataType:'json',
-        success: function(data){
-            if (data.error =='0') {
-                showError('验证码.....!',$(obj));
-                isCodeRight = true;
-            } else {
-                utils.alert(data.msg);
-            }
-        }
-    });
-}
- **/
+
 //验证推荐码是否存在
 // function choseUserCode(obj){
 //     var userCode = $(obj).val();

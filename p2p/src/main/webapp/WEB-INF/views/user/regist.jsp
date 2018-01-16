@@ -43,7 +43,7 @@
 			</div>
 			<div class="from from-msg">
 				<label for="msgcode" class="icon icon-msg"></label>
-				<input type="text" name="msgcode" id="msgcode" onblur="choseCode(this)"maxlength="6" placeholder="输入短信验证码"/>
+				<input type="text" name="msgcode" id="msgcode" maxlength="6" placeholder="输入短信验证码"/>
 				<div class="msg-btn">
 					<button type="button" id="getMsgCode">获取验证码</button>
 				</div>
@@ -65,7 +65,7 @@
 		<a href="javascript:void(0);" class="close icon icon-close"></a>
 		<div class="popup-from">
 			<center>
-				<img id="imgCode" title="点击换个验证码" src="imageCode.do-pageId=reg" tppabs="http://www.pujinziben.com/imageCode.do?pageId=reg" width="120px" style="clear: both;" onClick="getCode()">
+				<img id="imgCode" title="点击换个验证码" src="<%=path%>/code" width="120px" style="clear: both;" onclick="this.src='<%=path%>/code?r=' + new Date();"/>
 			</center>
 			<div class="label cl">
 				<label class="long">验证码：</label><input type="text" autocomplete="off" maxlength="16"  id="claimm-price" placeholder="输入图形验证码"/>
@@ -89,7 +89,7 @@
 	</div>
 	<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/jquery.js" ></script>
 	<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/gt.js" ></script>
-	<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js" ></script>
 	<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/regist.js" ></script>
+	<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js" ></script>
 </body>
 </html>

@@ -22,4 +22,6 @@ public interface BorrowApplyDAO extends BaseDAO{
     Long countCriteria(@Param("query") Object obj);
     void updateState(Object obj);
     void updateState2(Object obj);
+    void updateLiubiao();
+    List<Object> listByBzid(@Param("bzid") Long bzid);
 }

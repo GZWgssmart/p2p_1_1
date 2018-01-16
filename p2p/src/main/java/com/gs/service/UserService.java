@@ -13,5 +13,5 @@ public interface UserService extends BaseService {
 
     User getByUserCode(String tzm);
 
-    String getByIdPassword(Long id);
+    User getByIdPassword(Long id);
 }

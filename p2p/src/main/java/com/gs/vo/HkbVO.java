@@ -23,9 +23,10 @@ public class HkbVO {
     private BigDecimal yfx;//应还罚息
     private Integer yucount;//逾期次数
     private Long huid;//贷后负责人id
-    private String rname;//贷后负责人姓名
+    private String hname;//贷后负责人姓名
     private Integer djq;//第几期
     private Byte state;//还款状态（1还款中，2已还款，3已逾期）
+    private String rname;//借款人姓名
 
     private BigDecimal ytmoney;//已投资金额
     private BigDecimal nprofit;//年化收益
@@ -164,5 +165,13 @@ public class HkbVO {
 
     public void setNprofit(BigDecimal nprofit) {
         this.nprofit = nprofit;
+    }
+
+    public String getHname() {
+        return hname;
+    }
+
+    public void setHname(String hname) {
+        this.hname = hname;
     }
 }

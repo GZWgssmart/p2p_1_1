@@ -48,21 +48,7 @@ public class DxModelController {
         return "dxModelType/dxModel";
     }
 
-    @RequestMapping("save")
-    @ResponseBody
-    public ControllerStatusVO save(String phone){
-        ControllerStatusVO statusVO = null;
-        try {
-            DxModel dxModel=new DxModel();
-            String content=SendCode.sendsms(phone)+"";
-            dxModel.setContent(content);
-            dxModelService.save(dxModel);
-        } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_SUCCESS);
-        return statusVO;
-    }
+
 
     @RequestMapping("update")
     @ResponseBody

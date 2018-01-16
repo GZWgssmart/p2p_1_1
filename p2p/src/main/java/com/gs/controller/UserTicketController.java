@@ -10,6 +10,7 @@ import com.gs.query.UserTicketQuery;
 import com.gs.service.UserTicketService;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.UserTicketVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,8 @@ public class UserTicketController {
     @Autowired
     private UserTicketService userTicketService;
 
+    //shiro权限注解
+    @RequiresPermissions("uticket:page")
     @RequestMapping("page")
     public String page(){
         return "ticket/userTicket";

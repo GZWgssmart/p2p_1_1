@@ -6,6 +6,8 @@ import com.gs.service.BorrowApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 创建类名：BorrowApplyServiceImpl
  * 创建时间：2017/12/26 15:12
@@ -32,5 +34,15 @@ public class BorrowApplyServiceImpl extends AbstractBaseService implements Borro
     @Override
     public void updateState2(Object obj) {
         borrowApplyDAO.updateState2(obj);
+    }
+
+    @Override
+    public void updateLiubiao() {
+
+    }
+
+    @Override
+    public List<Object> listByBzid(Long bzid) {
+        return borrowApplyDAO.listByBzid(bzid);
     }
 }

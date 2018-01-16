@@ -33,4 +33,9 @@ public class BankCardServiceImpl extends AbstractBaseService implements BankCard
     public Long countCriteria(Object obj) {
         return bankCardDAO.countCriteria(obj);
     }
+
+    @Override
+    public Long countBank(Long id) {
+        return bankCardDAO.countBank(id);
+    }
 }

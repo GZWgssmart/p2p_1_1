@@ -145,7 +145,7 @@ function schedules(record) {
 	if(record.ytmoney == 0) {
 		return 0;
 	}else {
-		return (record.ytmoney/record.money)*100
+		return ((record.ytmoney/record.money)*100).toFixed(2);
 	}
 }
 

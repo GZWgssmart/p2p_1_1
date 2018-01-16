@@ -5,6 +5,7 @@ import com.gs.bean.User;
 import com.gs.common.Constants;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
+import com.gs.service.BankCardService;
 import com.gs.service.LogCzzService;
 import com.gs.service.UserMoneyService;
 import com.gs.vo.ControllerStatusVO;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
@@ -28,10 +30,20 @@ public class LogCzzController {
     private LogCzzService logCzzService;
     @Autowired
     private UserMoneyService userMoneyService;
+    @Autowired
+    private BankCardService bankCardService;
 
     @RequestMapping("page")
-    public String showPage() {
-        return "deposit/recharge";
+    public ModelAndView showPage(HttpSession session) {
+        ModelAndView mav = new ModelAndView("deposit/recharge");
+        User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+        if(user != null) {
+            if(bankCardService.countBank(user.getUid()) == 0) {
+                ModelAndView mavs = new ModelAndView("deposit/bindingbank");
+                return  mavs.addObject("msg",1);
+            }
+        }
+        return mav;
     }
 
     @RequestMapping("add")

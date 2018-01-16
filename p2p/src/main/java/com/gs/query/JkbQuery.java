@@ -1,6 +1,7 @@
 package com.gs.query;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 创建类名：JkbQuery
@@ -19,6 +20,8 @@ public class JkbQuery {
     private String startTime;
     private String endTime;
     private int curPage;
+    private BigDecimal money;
+    private String deadline;
 
     public Long getUid() {
         return uid;
@@ -90,5 +93,21 @@ public class JkbQuery {
 
     public void setState(Byte state) {
         this.state = state;
+    }
+
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 }

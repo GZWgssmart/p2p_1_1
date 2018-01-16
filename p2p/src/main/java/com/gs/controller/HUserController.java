@@ -84,8 +84,7 @@ public class HUserController {
 
     @RequestMapping("home")
     public String home() {
-        return "home";
-    }
+        return "backpage/index";    }
 
     @RequestMapping("down")
     public String loginout() {

@@ -33,11 +33,11 @@
             <p class="error-msg icon icon-error"></p>
             <div class="from">
                 <label for="phone" class="icon icon-user"></label>
-                <input type="text" name="phone" id="phone" autocomplete="off" placeholder="输入手机号码"/>
+                <input type="text" name="phone" id="phone" autocomplete="off" placeholder="输入手机号码" maxlength="11"/>
             </div>
             <div class="from">
                 <label for="password" class="icon icon-pwd"></label>
-                <input type="password" name=""  id="password" autocomplete="new-password" placeholder="输入登录密码"/>
+                <input type="password" name="password"  id="password" autocomplete="new-password" placeholder="输入登录密码" maxlength="18"/>
             </div>
             <div class="from">
                 <div class="pull-box">
@@ -48,7 +48,7 @@
             </div>
             <button class="btn"  type="button">登录</button>
             <div class="forget">
-                <a href="recoverpwd.html">忘记密码</a>
+                <a href="javascript:;">忘记密码</a>
             </div>
         </div>
     </div>
@@ -56,8 +56,8 @@
 <div class="login-footer">
     <p>版权所有 © 普金资本运营（赣州）有限公司 All rights reserved 备案确认书：赣ICP备16004010号</p>
 </div>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/jquery.js" tppabs="http://www.pujinziben.com/resources/front/v01/src/libs/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js" tppabs="http://www.pujinziben.com/resources/front/v01/src/libs/public.js"></script>
-<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/login.js" tppabs="http://www.pujinziben.com/resources/front/v01/scripts/login.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/jquery.js" ></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/login.js" ></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js"></script>
 </body>
 </html>

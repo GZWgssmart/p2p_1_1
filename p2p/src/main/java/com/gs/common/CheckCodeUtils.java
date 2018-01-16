@@ -35,9 +35,9 @@ public class CheckCodeUtils {
     public static BufferedImage generateImage(String code) {
         BufferedImage image = new BufferedImage(IMAGE_WIDTH, IMAGE_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics graphics = image.getGraphics();
-        graphics.setColor(Color.YELLOW);
+        graphics.setColor(Color.white);
         graphics.fillRect(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
-        graphics.setColor(Color.BLUE);
+        graphics.setColor(Color.black);
         graphics.setFont(new Font("宋体", Font.BOLD, 16));
         graphics.drawString(code, 15, 18);
         for (int i = 0; i < LINE_COUNT; i++) {
