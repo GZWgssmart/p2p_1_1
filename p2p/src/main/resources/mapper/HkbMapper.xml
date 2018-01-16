@@ -8,6 +8,9 @@
         <if test="query != null and query.state != null">
             and h.state = #{query.state}
         </if>
+        <if test="query != null and query.baid != null">
+            and h.baid = #{query.baid}
+        </if>
         <if test="query != null and query.uid != null">
             and h.uid = #{query.uid}
         </if>

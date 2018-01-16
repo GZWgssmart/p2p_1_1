@@ -71,6 +71,8 @@ public class JkbVO {
 
     private Long uid;//借款人id
 
+    private Date mbtime;
+
     public Long getBaid() {
         return baid;
     }
@@ -303,5 +305,11 @@ public class JkbVO {
         this.uid = uid;
     }
 
+    public Date getMbtime() {
+        return mbtime;
+    }
 
+    public void setMbtime(Date mbtime) {
+        this.mbtime = mbtime;
+    }
 }

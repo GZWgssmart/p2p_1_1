@@ -5,6 +5,7 @@ import com.gs.bean.Bz;
 import com.gs.common.Combobox;
 import com.gs.common.Pager;
 import com.gs.query.BorrowapplyQuery;
+import com.gs.query.JkbQuery;
 import com.gs.service.BorrowApplyService;
 import com.gs.service.BzService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -50,5 +51,15 @@ public class BorrowapplyController {
             comboboxList.add(new Combobox(bz.getBzid()+"",bz.getBzname(),false));
         }
         return comboboxList;
+    }
+    @RequestMapping("/hhkb_list")
+    public String Hhkb(){
+        return "hkb/hhkb_list";
+    }
+    @RequestMapping("/jkb_list")
+    @ResponseBody
+    public Pager jkbList(int page, int rows, JkbQuery jkbQuery) {
+        jkbQuery.setState((byte)4);
+        return borrowApplyService.listPagerCriteria(page, rows, jkbQuery);
     }
 }

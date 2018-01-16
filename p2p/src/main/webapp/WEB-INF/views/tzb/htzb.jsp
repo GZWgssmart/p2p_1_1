@@ -32,8 +32,17 @@
     </tr>
     </thead>
 </table>
-
-
+<div id="tb" style="height: auto">
+    <form id="searchForm">
+        <input class="easyui-datetimebox" name="startTime"
+               data-options="prompt:'请选择最小投资时间',required:false,novalidate:true,showSeconds:true"/>
+        <input class="easyui-datetimebox" name="endTime"
+               data-options="prompt:'请选择最大投资时间',required:false,novalidate:true,showSeconds:true"/>
+        <br />
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch('list', 'searchForm');">搜索</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchAll('list', 'searchForm');">搜索所有</a>
+    </form>
+</div>
 </body>
 <%@include file="../master/easyui/footer.jsp" %>
 

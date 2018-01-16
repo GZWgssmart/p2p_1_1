@@ -60,7 +60,7 @@
     </select>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.JkbVO">
-        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.time,ba.deadline,
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.time,ba.deadline,ba.mbtime,
         bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
         bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,bd.ytmoney as ytmoney,
         bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,

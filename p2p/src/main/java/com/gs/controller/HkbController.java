@@ -10,9 +10,11 @@ import com.gs.service.HkbService;
 import com.gs.vo.ControllerStatusVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -65,15 +67,17 @@ public class HkbController {
         return hkbService.update_hkb(hkb);
     }
     //后台还款列表
-    @RequestMapping("/hhkb")
-    public String Hhkb(){
+    @RequestMapping("/hhkb/{baid}")
+    public String Hhkb(HttpServletRequest request,@PathVariable("baid") Long baid){
+        request.setAttribute("baid",baid);
         return "hkb/hhkb";
     }
 
-    @RequestMapping("/hlist")
+    @RequestMapping("/hlist/{baid}")
     @ResponseBody
-    public Pager HList(int page, int rows, HkbQuery hkbQuery){
+    public Pager HList(int page, int rows, HkbQuery hkbQuery,@PathVariable("baid") Long baid){
         Pager pager = new Pager();
+        hkbQuery.setBaid(baid);
         pager =  hkbService.list(page,rows,hkbQuery);
         return pager;
     }

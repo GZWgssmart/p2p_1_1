@@ -107,7 +107,7 @@
                 <li class="active"><a href="<%=path %>/user/user_money" target="mainFrame">账户总览</a></li>
                 <li><a href="<%=path %>/logczz/page" target="mainFrame">充值</a></li>
                 <li><a href="<%=path %>/logtx/page" target="mainFrame">提现</a></li>
-                <li><a id="myCoupon" href="<%=path %>/ticket/myTicket" target="mainFrame"><i id="couponCount">我的赠券</i></a></li>
+                <li><a id="myCoupon" href="<%=path %>/ticket/myTicket" target="mainFrame">我的赠券</a></li>
 
                 <li><a href="<%=path %>/log_money/mylog_money" target="mainFrame">资金记录</a></li>
             </ul>
