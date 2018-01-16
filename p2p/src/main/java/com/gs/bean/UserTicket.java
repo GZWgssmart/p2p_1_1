@@ -12,11 +12,22 @@ public class UserTicket {
 
     private Date tktime;//领劵时间
 
-    public UserTicket(Long ukid, Long uid, Long kid, Date tktime) {
+    private Integer status; //状态
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public UserTicket(Long ukid, Long uid, Long kid, Date tktime, Integer status) {
         this.ukid = ukid;
         this.uid = uid;
         this.kid = kid;
         this.tktime = tktime;
+        this.status = status;
     }
 
     public UserTicket() {

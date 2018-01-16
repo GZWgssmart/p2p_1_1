@@ -29,6 +29,9 @@
         <if test="query != null and query.yxtime != '' and  query.yxtime != null">
             and t.tktime <![CDATA[<=]]> #{query.yxtime}
         </if>
+        <if test="query != null and query.status != '' and  query.status != null">
+            and ut.status = #{query.status}
+        </if>
     </sql>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.UserTicketVO">

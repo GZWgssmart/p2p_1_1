@@ -14,6 +14,26 @@ public class UserTicketQuery {
     private Integer type;
     private BigDecimal tkmoney;
     private Date yxtime;
+    private Integer status;
+
+    private Long uid;
+    private int curPage;
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
+
+    public int getCurPage() {
+        return curPage;
+    }
+
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
+    }
 
     public Date getTktime() {
         return tktime;
@@ -61,5 +81,13 @@ public class UserTicketQuery {
 
     public void setYxtime(Date yxtime) {
         this.yxtime = yxtime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

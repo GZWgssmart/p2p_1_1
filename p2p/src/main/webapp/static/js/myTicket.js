@@ -113,7 +113,7 @@ function dtasteData(){
         couponType:"" ,//代金券， 3 加息券， 2 现金券
         useType: "",// 未使用， 2已使用， 3已过期
     };
-    var dtastePage = new Page(contextPath + '/uticket/select',params,$('.dtaste-listData1 .nouse'),$('.dtaste-listData1 .paging'),dtasteData1,function(){});
+    var dtastePage = new Page(contextPath + '/uticket/select/1/0',params,$('.dtaste-listData1 .nouse'),$('.dtaste-listData1 .paging'),dtasteData1,function(){});
     $('#Dunused').unbind('click').click(function(){
         if($(this).hasClass('active')){
             return;
@@ -125,7 +125,7 @@ function dtasteData(){
         };
         $('.dtaste-listData1').show().siblings('div.dtaste-listData').hide();
 
-        dtastePage = new Page('/uticket/select',params,$('.dtaste-listData1 .nouse'),$('.dtaste-listData1 .paging'),dtasteData1,function(){});
+        dtastePage = new Page('/uticket/select/1/0',params,$('.dtaste-listData1 .nouse'),$('.dtaste-listData1 .paging'),dtasteData1,function(){});
     });
 
     $('#Dused').unbind('click').click(function(){
@@ -155,6 +155,104 @@ function dtasteData(){
     });
 }
 
+
+//现金券
+function xtasteData(){
+    var canSend;
+    $('#dtaste').hide();$('#jtaste').hide();$('#xtaste').show();$('#ttaste').hide();
+    var xtasteData1 =[
+        {
+            key:'id',resolve:function(val,userTicketVO){
+            var xtastHtml = '<div class="xj-nouse">'+
+                '<div class="taste-bg-l">'+
+                '<p class="money">¥<span>'+userTicketVO.tkmoney+'</span></p>'+
+                '</div>'+
+                '<div class="text"><p class="date">1有效期至'+formatDate(userTicketVO.tktime)+'</p></div>'+
+                '<div class="taste-bg-r">'+
+                '<button type="submit" onclick="useCard('+record.id+',this)" class="nouse-btn'+record.id+'">立即使用</button>'+
+                '</div>'+
+                '</div>'
+            return xtastHtml;
+        }
+        }
+    ]
+    var xtasteData2 =[
+        {
+            key:'id',resolve:function(val,userTicketVO){
+            var xtastHtml = '<div class="xj-use">'+
+                '<div class="taste-bg-l">'+
+                '<p class="money">¥<span>'+userTicketVO.tkmoney+'</span></p>'+
+                '</div>'+
+                '<div class="text"><p class="date">2使用时间:'+formatDate(userTicketVO.tktime)+'</p></div>'+
+                '<div class="taste-bg-r">'+
+                '<a href="javascript:;" class="taste-btn"></a>'+
+                '</div>'+
+                '</div>'
+            return xtastHtml;
+        }
+        }
+    ]
+    var xtasteData3 =[
+        {
+            key:'id',resolve:function(val,userTicketVO){
+            var xtastHtml = '<div class="xj-date">'+
+                '<div class="taste-bg-l">'+
+                '<p class="money">¥<span>'+userTicketVO.tkmoney+'</span></p>'+
+                '</div>'+
+                '<div class="text"><p class="date">3有效期至'+formatDate(userTicketVO.tktime)+'</p></div>'+
+                '<div class="taste-bg-r">'+
+                '<a href="javascript:;" class="taste-btn"></a>'+
+                '</div>'+
+                '</div>'
+            return xtastHtml;
+        }
+        }
+    ]
+    var params = {
+        couponType:"2" ,//代金券， 3 加息券， 2 现金券
+        useType: "1",// 未使用， 2已使用， 3已过期
+    };
+    var XtastePage = new Page('/uticket/select',params,$('.xtaste-listData1 .nouse'),$('.xtaste-listData1 .paging'),xtasteData1,function(){});
+    $('#Xunused').unbind('click').click(function(){
+        if($(this).hasClass('active')){
+            return;
+        }
+        $(this).addClass('active').siblings('a').removeClass('active');
+        var params = {
+            couponType: 2 ,//代金券， 3 加息券， 2 现金券
+            useType: 1,// 未使用， 2已使用， 3已过期
+        };
+        $('.xtaste-listData1').show().siblings('div.xtaste-listData').hide();
+
+        XtastePage = new Page('/uticket/select',params,$('.xtaste-listData1 .nouse'),$('.xtaste-listData1 .paging'),xtasteData1,function(){});
+    });
+    $('#Xused').unbind('click').click(function(){
+        if($(this).hasClass('active')){
+            return;
+        }
+        $(this).addClass('active').siblings('a').removeClass('active');
+        var params = {
+            couponType: 2 ,//代金券， 3 加息券， 2 现金券
+            useType: 2,// 未使用， 2已使用， 3已过期
+        };
+        $('.xtaste-listData2').show().siblings('div.xtaste-listData').hide();
+
+        XtastePage = new Page('front/queryCoupon.do',params,$('.xtaste-listData2 .use'),$('.xtaste-listData2 .paging'),xtasteData2,function(){});
+    });
+    $('#Xexpired').unbind('click').click(function(){
+        if($(this).hasClass('active')){
+            return;
+        }
+        $(this).addClass('active').siblings('a').removeClass('active');
+        var params = {
+            couponType:2 ,//代金券， 3 加息券， 2 现金券
+            useType: 3,// 未使用， 2已使用， 3已过期
+        };
+        $('.xtaste-listData3').show().siblings('div.xtaste-listData').hide();
+
+        XtastePage = new Page('front/queryCoupon.do',params,$('.xtaste-listData3 .overdue'),$('.xtaste-listData3 .paging'),xtasteData3,function(){});
+    });
+}
 
 
 
