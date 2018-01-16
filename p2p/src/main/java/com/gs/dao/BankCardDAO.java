@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface BankCardDAO extends BaseDAO {
     List<BankCard> getBylistAll(Long id);
+    Long countBank(Long id);
 }

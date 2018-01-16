@@ -1,17 +1,11 @@
 package com.gs.controller;
 
-import com.gs.bean.LogTx;
-import com.gs.bean.TxCheck;
-import com.gs.bean.User;
-import com.gs.bean.UserMoney;
+import com.gs.bean.*;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
-import com.gs.service.LogTxService;
-import com.gs.service.TxCheckService;
-import com.gs.service.UserMoneyService;
-import com.gs.service.UserService;
+import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.SearchVo;
 import com.gs.vo.TxInItPage;
@@ -39,9 +33,12 @@ public class LogTxController {
     private UserMoneyService userMoneyService;
     @Autowired
     private TxCheckService txCheckService;
-
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BankCardService bankCardService;
+
 
     @RequestMapping("page")
     @ResponseBody
@@ -49,12 +46,17 @@ public class LogTxController {
         ModelAndView mav = new ModelAndView("deposit/deposit");
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null) {
-            UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(1L);
-            TxInItPage inItPage = new TxInItPage(user.getUid(),"温宁宁","1456456456",userMoney.getKymoney());
-            mav.addObject("inItPage",inItPage);
-        }
+            if(bankCardService.countBank(user.getUid()) != 0) {
+                UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(1L);
+                TxInItPage inItPage = new TxInItPage(user.getUid(),user.getRname(),user.getPhone(),userMoney.getKymoney());
+                return  mav.addObject("inItPage",inItPage);
+            }else{
+                ModelAndView mavs = new ModelAndView("deposit/bindingbank");
+                return  mavs.addObject("msg",1);
+            }
 
-        return mav;
+        }
+        return null;
     }
     @RequestMapping("add")
     @ResponseBody
@@ -150,9 +152,4 @@ public class LogTxController {
         return statusVO;
     }
 
-    @RequestMapping("aduitse")
-    @ResponseBody
-    public String auditTxError(Long id) {
-        return "";
-    }
 }
