@@ -30,10 +30,14 @@
 					   class="site-navi-tab">用户基本信息管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/test/testca"
 					   class="site-navi-tab">用户列表</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/recommend/page"
-					   class="site-navi-tab">推荐人管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/option/page"
-					   class="site-navi-tab">用户反馈</a></li>
+				<shiro:hasPermission name="recommend:page">
+					<li><a href="javascript:void(0);" src="<%=path%>/recommend/page"
+						   class="site-navi-tab">推荐人管理</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="option:page">
+					<li><a href="javascript:void(0);" src="<%=path%>/option/page"
+						   class="site-navi-tab">用户反馈</a></li>
+				</shiro:hasPermission>
 			</ul>
 		</div>
 		<div title="资金管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
@@ -44,28 +48,44 @@
 					   class="site-navi-tab">用户投资管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>"
 					   class="site-navi-tab">银行卡管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logczz/backcz"
-					   class="site-navi-tab">充值记录</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/ticket/page"
-					   class="site-navi-tab">优惠券管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/uticket/page"
-					   class="site-navi-tab">用户领券管理</a></li>
+				<shiro:hasPermission name="logczz:backcz">
+					<li><a href="javascript:void(0);" src="<%=path%>/logczz/backcz"
+						   class="site-navi-tab">充值记录</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="ticket:page">
+					<li><a href="javascript:void(0);" src="<%=path%>/ticket/page"
+						   class="site-navi-tab">优惠券管理</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="uticket:page">
+					<li><a href="javascript:void(0);" src="<%=path%>/uticket/page"
+						   class="site-navi-tab">用户领券管理</a></li>
+				</shiro:hasPermission>
 				<li><a href="javascript:void(0);" src="<%=path%>"
 					   class="site-navi-tab">充值提现每日任务明细</a></li>
 			</ul>
 		</div>
 		<div title="借贷管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>/"
-					   class="site-navi-tab">全部借款</a></li>
+				<shiro:hasPermission name="borrowApply:page">
+					<li><a href="javascript:void(0);" src="<%=path%>/borrowApply/page"
+						   class="site-navi-tab">全部借款</a></li>
+				</shiro:hasPermission>
 				<li><a href="javascript:void(0);" src="<%=path%>/hkb/hhkb"
 					   class="site-navi-tab">全部还款</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/hkb/hhkb_state"
 					   class="site-navi-tab">逾期借款</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">还款方式</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">标种类型</a></li>
+				<shiro:hasPermission name="sway:sway">
+					<li><a href="javascript:void(0);" src="<%=path%>/sway/sway"
+						   class="site-navi-tab">还款方式</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="bz:bz">
+					<li><a href="javascript:void(0);" src="<%=path%>/bz/bz"
+						   class="site-navi-tab">标种类型</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="jklx:jklx">
+					<li><a href="javascript:void(0);" src="<%=path%>/jklx/jklx"
+						   class="site-navi-tab">借款类型</a></li>
+				</shiro:hasPermission>
 			</ul>
 		</div>
 		<div title="宣传管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
@@ -74,8 +94,10 @@
 					   class="site-navi-tab">公司动态</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>"
 					   class="site-navi-tab">媒体报道</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">短信模板管理</a></li>
+				<shiro:hasPermission name="dxModel:dxModel">
+					<li><a href="javascript:void(0);" src="<%=path%>/dxModel/dxModel"
+						   class="site-navi-tab">短信模板管理</a></li>
+				</shiro:hasPermission>
 				<li><a href="javascript:void(0);" src="<%=path%>/notice/page"
 					   class="site-navi-tab">公告管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/friend/page"
@@ -95,8 +117,14 @@
 
 		<div title="审核管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>/jkb/jkb_listPage" class="site-navi-tab">借款审核</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh" class="site-navi-tab">提现审核</a></li>
+				<shiro:hasPermission name="jkb:jkb_listPage">
+					<li><a href="javascript:void(0);" src="<%=path%>/jkb/jkb_listPage"
+						   class="site-navi-tab">借款审核</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="logtx:backtxsh">
+					<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh"
+						   class="site-navi-tab">提现审核</a></li>
+				</shiro:hasPermission>
 			</ul>
 		</div>
 		<div title="认证管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
@@ -108,14 +136,35 @@
 
 			</ul>
 		</div>
-		<div title="管理员管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
-			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">管理员列表</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">员工列表</a></li>
-			</ul>
-		</div>
+		<shiro:hasRole name="超级管理员">
+			<div title="管理员管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
+				<ul>
+					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+						   class="site-navi-tab">管理员列表</a></li>
+					<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+						   class="site-navi-tab">员工列表</a></li>
+				</ul>
+			</div>
+		</shiro:hasRole>
+
+		<shiro:hasAnyRoles name="超级管理员,普通管理员">
+			<div title="权限管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
+				<ul>
+					<shiro:hasPermission name="jur:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/jur/page"
+							   class="site-navi-tab">权限列表</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="role:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/role/page"
+							   class="site-navi-tab">角色列表</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="roleUser:page">
+						<li><a href="javascript:void(0);" src="<%=path%>/roleUser/page"
+							   class="site-navi-tab">用户角色</a></li>
+					</shiro:hasPermission>
+				</ul>
+			</div>
+		</shiro:hasAnyRoles>
 	</div>
 </div>
 <div id="tabs" class="easyui-tabs" data-options="region:'center'">
