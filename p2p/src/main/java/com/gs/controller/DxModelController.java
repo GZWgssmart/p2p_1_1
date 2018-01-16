@@ -48,11 +48,6 @@ public class DxModelController {
         return "dxModelType/dxModel";
     }
 
-    @RequiresPermissions("dxModel:dxModel")
-    @RequestMapping("dxModel")
-    public String DxModel() {
-        return "dxModelType/dxModel";
-    }
 
 
     @RequestMapping("update")
