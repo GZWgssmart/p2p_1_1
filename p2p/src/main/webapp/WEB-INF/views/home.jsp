@@ -69,7 +69,7 @@
 		</div>
 		<div title="借贷管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<shiro:hasPermission name="brorrowApply:page">
+				<shiro:hasPermission name="borrowApply:page">
 					<li><a href="javascript:void(0);" src="<%=path%>/borrowApply/page"
 						   class="site-navi-tab">全部借款</a></li>
 				</shiro:hasPermission>

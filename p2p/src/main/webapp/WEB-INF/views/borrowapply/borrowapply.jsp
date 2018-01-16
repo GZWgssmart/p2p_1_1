@@ -1,4 +1,3 @@
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -44,9 +43,7 @@
 
 <div id="tb" style="height: auto">
     <div>
-        <shiro:hasPermission name="brorrowApply:page">
-            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="openEditWin('editWin', 'list', 'editForm')">借款详情</a>
-        </shiro:hasPermission>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="openEditWin('editWin', 'list', 'editForm')">借款详情</a>
         <form id="searchForm">
             <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入最大借款金额',
 						required:false,
@@ -100,42 +97,42 @@
                     <td>资金用途:</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <input class="easyui-textbox easyui-validatebox" name="mpurpose" style="width: 400px;height: 32px;">
+                        <input class="easyui-textbox easyui-validatebox" name="mpurpose" readonly="readonly" style="width: 400px;height: 32px;">
                     </td>
                 </tr>
                 <tr>
                     <td>还款来源:</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <input class="easyui-textbox easyui-validatebox" name="hksource" style="width: 400px;height: 32px;">
+                        <input class="easyui-textbox easyui-validatebox" name="hksource" readonly="readonly" style="width: 400px;height: 32px;">
                     </td>
                 </tr>
                 <tr>
                     <td>年化收益:</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <input class="easyui-textbox easyui-validatebox" name="nprofit" style="width: 400px;height: 32px;">
+                        <input class="easyui-textbox easyui-validatebox" name="nprofit" readonly="readonly" style="width: 400px;height: 32px;">
                     </td>
                 </tr>
                 <tr>
                     <td>收益方式:</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <input class="easyui-textbox easyui-validatebox" name="way" style="width: 400px;height: 32px;">
+                        <input class="easyui-textbox easyui-validatebox" readonly="readonly" name="way" style="width: 400px;height: 32px;">
                     </td>
                 </tr>
                 <tr>
                     <td>借款人介绍：</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <input class="easyui-textbox" data-options="multiline:true" name="suggest" style="width:400px;height:150px;">
+                        <input class="easyui-textbox" data-options="multiline:true" readonly="readonly" name="suggest" style="width:400px;height:150px;">
                     </td>
                 </tr>
                 <tr>
                     <td>项目描述：</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <input class="easyui-textbox" data-options="multiline:true" name="xmdescrip" style="width:400px;height:150px;">
+                        <input class="easyui-textbox" data-options="multiline:true" readonly="readonly" name="xmdescrip" style="width:400px;height:150px;">
                     </td>
                 </tr>
 
@@ -143,7 +140,7 @@
                     <td>保障措施：</td>
                     <td>
                         <div style="margin:10px 0;"></div>
-                        <input class="easyui-textbox" data-options="multiline:true" name="guarantee" style="width:400px;height:150px;">
+                        <input class="easyui-textbox" data-options="multiline:true" readonly="readonly" name="guarantee" style="width:400px;height:150px;">
                     </td>
                 </tr>
 
@@ -164,7 +161,7 @@
             valueField:"id",
             valueText:"text"
         }
-    )
+    );
     //（1表示为审核，2表示已审核,3表示为招标中，4表示为成功借款与正在还款，5还款成功）
     function formatterState(value,row,index){
         if(row.state==1){
