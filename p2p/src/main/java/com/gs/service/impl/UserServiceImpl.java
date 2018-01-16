@@ -36,7 +36,7 @@ public class UserServiceImpl extends AbstractBaseService implements UserService 
     }
 
     @Override
-    public String getByIdPassword(Long id) {
+    public User getByIdPassword(Long id) {
         return userDAO.getByIdPassword(id);
     }
 

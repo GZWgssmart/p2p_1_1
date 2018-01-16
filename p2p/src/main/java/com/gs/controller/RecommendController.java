@@ -43,10 +43,10 @@ public class RecommendController {
     public Pager pagerCriteria(HttpSession session, Integer page, Integer rows, RecommendVO param) {
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null){
-            if(param.getCurPage() != 0){
-                param.setUid(user.getUid());
-                return recommendService.listPagerCriteria(param.getCurPage(), 8, param);
-            }
+//            if(param.getCurPage() != 0){
+//                param.setUid(user.getUid());
+//                return recommendService.listPagerCriteria(param.getCurPage(), 8, param);
+//            }
         }
 
         return recommendService.listPagerCriteria(page, rows, param);

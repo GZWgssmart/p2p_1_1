@@ -1,4 +1,7 @@
 var contentType = "application/x-www-form-urlencoded; charset=utf-8";
+var localObj = window.location;
+var contextPath = localObj.pathname.split("/")[1];
+var basePath = localObj.protocol + "//" + localObj.host + "/"+ contextPath;
 var oPage;
 /*
 $(function(){
@@ -3920,7 +3923,8 @@ function initSafe(){
 */
 
 //邮箱绑定
-function bindEmail(){
+/*
+$('#email').text('进行绑定').click(function(){
 	utils.Dialog(true);
 	$('.bind-email').fadeIn();
 	$('.bind-email .close').click(function(){
@@ -3938,14 +3942,11 @@ function bindEmail(){
 			utils.toast('请输入正确邮箱');
 			return;
 		}
-		var param = {
-				email:email
-		};
-		utils.ajax({
-			url:'front/sendEmailForUserSet.do',
-			data:JSON.stringify(param),
-			dataType:'json',
-			success:function(data){
+		$.post(basePath + '/changeEmail',
+			{
+                email:email
+			},
+			function(data){
 				if(data.mailAddress=='0'){
 		             utils.alert("邮箱不能为空");
 		        }else if(data.mailAddress=='1'){
@@ -3959,11 +3960,18 @@ function bindEmail(){
 			    }else{
 			    	utils.alert("邮件已经发送到你的邮箱,请<a href=http://"+data.mailAddress+"  target='_blank'><font color='green'> 登录</font></a>到你的邮箱验证");
 		        }
-			}
-		})
+			},
+			"json"
+		);
 	});
-	
-};
+});
+*/
+
+//认证页面跳转
+function registpay() {
+    window.location.href=basePath + "/registpay";
+}
+
 //修改绑定手机号
 function changePhone(phone){
 	utils.Dialog(true);
@@ -4069,100 +4077,92 @@ function changePhoneStepTwo(){
 }
 //登录密码
 $('#password-btn').click(function(){
-	alert('......');
     // changePwd('login');
-
 //修改登录交易密码
 // function changePwd(type){
-	utils.Dialog(true);
-	$('.change-pwd').fadeIn();
-	$('.change-pwd .close').click(function(){
-		$('.change-pwd').hide();
-		utils.Dialog();
-	});
-	$('#oldPassword').val("");
-	$('#newPassword').val("");
-	$('#confirmPassword').val("");
-	//修改登录密码
-	$('#pwd-submit').unbind('click').click(function(){
-		changePwdSubmit(type);
-	});
+    utils.Dialog(true);
+    $('.change-pwd').fadeIn();
+    $('.change-pwd .close').click(function(){
+        $('.change-pwd').hide();
+        utils.Dialog();
+    });
+    $('#oldPassword').val("");
+    $('#newPassword').val("");
+    $('#confirmPassword').val("");
+    //修改登录密码
+    $('#pwd-submit').unbind('click').click(function(){
+        changePwdSubmit();
+    });
 // }
-
 })
-function changePwdSubmit(type){
-	var oldPassword = $('#oldPassword').val();
-	var newPassword = $('#newPassword').val();
-	var confirmPassword = $('#confirmPassword').val();
-	if(oldPassword == ''){
-		utils.toast('原始密码不能为空');
-		return;
-	}
-	if(newPassword == '' || newPassword.length<6){
-		utils.toast('密码长度必须为6-20个字符');
-		return;
-	}
-	if(confirmPassword == ''){
-		utils.toast('确认密码不能为空');
-		return;
-	}
-	if(oldPassword == newPassword){
-		utils.toast('新密码与原始密码一致');
-		return;
-	}
-	if(newPassword != confirmPassword){
-		utils.toast('两次密码输入不一致');
-		return;
-	}
-	var param = {
-			oldPassword:oldPassword,
-			newPassword:newPassword,
-			confirmPassword:confirmPassword,
-			type:type
-	};
-	$('#pwd-submit').addClass('disabled').text('提交中...').unbind('click');
-	//修改登录密码
-	utils.ajax({
-		url:'front/changeLoginPassword.do',
-		data:JSON.stringify(param),
-		dataType:'json',
-		success:function(data){
-			$('#pwd-submit').removeClass('disabled').text('确认').bind('click',function(){
-				changePwdSubmit(type);
-			});
-			if (data == 1) {
-				utils.alert("两次密码输入不一致");
-				return;
-			} else if (data == 2) {
+
+function changePwdSubmit(){
+    var oldPassword = $('#oldPassword').val();
+    var newPassword = $('#newPassword').val();
+    var confirmPassword = $('#confirmPassword').val();
+    if(oldPassword == ''){
+        utils.toast('原始密码不能为空');
+        return;
+    }
+    if(newPassword.length>20 || newPassword.length<6){
+        utils.toast('密码长度必须为6-20个字符');
+        return;
+    }
+    if(confirmPassword == ''){
+        utils.toast('确认密码不能为空');
+        return;
+    }
+    if(oldPassword == newPassword){
+        utils.toast('新密码与原始密码一致');
+        return;
+    }
+    if(newPassword != confirmPassword){
+        utils.toast('两次密码输入不一致');
+        return;
+    }
+    //修改登录密码
+    $('#pwd-submit').addClass('disabled').text('提交中...').unbind('click');
+    $.post(basePath + '/changePwd',
+		{
+            oldPassword:oldPassword,
+            newPassword:newPassword
+		},
+        function(data){
+            $('#pwd-submit').removeClass('disabled').text('确认').bind('click',function(){
+                changePwdSubmit();
+            });
+			if (data.result == 'error') {
 				utils.alert("旧密码错误");
 				return;
-			} else if (data == 3) {
-				utils.alert("新密码修改失败");
+			} else if (data.result == 'pwdequal') {
+				utils.alert("新旧密码不得一致");
 				return;
-			} else if (data == 4) {
-				utils.alert("密码长度输入错误,密码长度范围为6-20");
-				return;
-			} else if (data == 5) {
-				utils.alert("*修改失败！你的账号出现异常，请速与管理员联系！");
-				return;
-			} else if (data == 6) {
-				utils.alert("登录密码不能和交易密码一样！");
-				return;
-			} else if (data == 7) {
-				utils.alert("交易密码不能和登录密码一样！");
-				return;
-			} else if (data == 8) {
-				utils.alert("修改登录密码异常，请与客服联系解决！");
-				return;
-			} else {
+			}
+			// else if (data == 3) {
+			//     utils.alert("新密码修改失败");
+			//     return;
+			// } else if (data == 4) {
+			//     utils.alert("密码长度输入错误,密码长度范围为6-20");
+			//     return;
+			// } else if (data == 5) {
+			//     utils.alert("*修改失败！你的账号出现异常，请速与管理员联系！");
+			//     return;
+			// } else if (data == 6) {
+			//     utils.alert("登录密码不能和交易密码一样！");
+			//     return;
+			// } else if (data == 8) {
+			//     utils.alert("修改登录密码异常，请与客服联系解决！");
+			//     return;
+			// }
+			else {
 				$('.change-pwd .popup-from').hide().siblings('.popup-result').show();
 				$('#submit-success').click(function(){
 					window.location.reload();
 				})
 			}
-		}
-	})	
-
+        },
+		"json"
+    );
 }
 //我的银行卡
 function initMyDebitCard() {

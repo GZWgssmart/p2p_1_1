@@ -3,22 +3,23 @@
  * Date   2016/11/12
  * auther shulin.wu@pjzb.com
  */
-window.__uri = function(str){
-	return str;
-}
+//
+// window.__uri = function(str){
+// 	return str;
+// }
 var utils = window.utils = {};
 utils.time = null;
 utils.Dialog = function(flag){
-	if(flag){
-		if($('.overlay').is(':visible'))
-			return;
-		var dialog = $('<div class="overlay"></div>').click(function(){
-			//$(this).addClass('fadeOut').fadeOut();
-		});
-		dialog.appendTo($('body')).delay(100).fadeIn().css('filter','alpha(opacity=70)');
-	}else{
-		$('.overlay').fadeOut().remove();
-	}
+    if(flag){
+        if($('.overlay').is(':visible'))
+            return;
+        var dialog = $('<div class="overlay"></div>').click(function(){
+//                $(this).addClass('fadeOut').fadeOut();
+        });
+        dialog.appendTo($('body')).delay(100).fadeIn().css('filter','alpha(opacity=70)');
+    }else{
+        $('.overlay').fadeOut().remove();
+    }
 }
 
 /*toast提示框
@@ -183,9 +184,12 @@ utils.initLoginData = function(){
 	}
 };
 */
-if(window.top!=window.self){
-	window.top.location = window.self.location;
-};
+/**
+ * 左侧菜单栏页面跳转
+ */
+// if(window.top!=window.self){
+// 	window.top.location = window.self.location;
+// };
 var isWuHeng = isLocalStorageSupported();
 var AmtRegExp =/^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/,
 mobilePhone = /^(13[0-9]|14[7-9]|15[0-9]|18[0-9]|17[0-9])[0-9]{8}$/,
@@ -428,7 +432,8 @@ utils.confirm = function(text,fn){
 /*获取URL后的传递参数
  * @param key 参数的传递字段
  * @auth wsl
- */ 
+ */
+
 utils.getUrlParam=function(key){
     var href = window.location.href;
     var param = href.substr(href.indexOf('?')+1).split('&'),obj={};
@@ -438,7 +443,8 @@ utils.getUrlParam=function(key){
     }
     return obj[key];
 };
-/*
+
+
 function Dialog(text,flag,fn){
     if(flag){
         this.Dom = ['<div class="ui-dialog">',
@@ -470,7 +476,7 @@ function Dialog(text,flag,fn){
     this.text = text;
     this.init();
 }
-*/
+
 Dialog.prototype.init = function(){
     this.initDom();
     this.initEvent();
@@ -517,6 +523,7 @@ Dialog.prototype.initEvent = function(){
         })
     }
 };
+
 Dialog.prototype.showDom = function(){
 	var _this = this;
     document.body.appendChild(this.dom);
@@ -539,32 +546,28 @@ Dialog.prototype.hideDom = function(flag){
 /*发送短信验证码
  * @param obj获取验证码按钮$对象
  * @param phone 获取验证码手机号
- * @param name 获取验证码类型
- * @auth wsl
+ * @auth lsh
  */ 
-utils.getSmsCode = function(obj,phone,name){
-	if(obj.hasClass('disabled')){return;};
-	if(!phone || phone == ''){
-		utils.toast('请填写手机号');
-		return;
-	};
-	obj.addClass('disabled'); 
-	var param={
-			cellPhone:phone,
-			smsType:name
-	}; 
-	utils.ajax({
-        url:'front/sendSMS.do',
-        data:JSON.stringify(param),
-        dataType:'json',
-        success: function(data){
-        	if(data.error =='0'){
+utils.getSmsCode = function(obj, phone){
+	// if(obj.hasClass('disabled')){return;};
+	// obj.addClass('disabled');
+
+    // obj.attr("disabled", true);
+    $.post(
+        basePath + '/user/savemsgCode',
+        {
+            phone:phone
+        },
+        function(data){
+        	if(data.result == 'ok'){
+        		utils.alert("验证码已发送至您的手机，请查收！")
         		var i = 60;
         		utils.time = setInterval(function(){
         			i--;
         			obj.text(i+'s');
         			if(i == 0){
-        				obj.removeClass('disabled').text('获取验证码');
+                        obj.attr("disabled", false).text('获取验证码');
+                        // console.log($('#getMsgCode'));
         				clearInterval(utils.time);
         			}
         		},1000);
@@ -574,9 +577,11 @@ utils.getSmsCode = function(obj,phone,name){
         		utils.alert(data.msg);
         		obj.removeClass('disabled');
         		obj.data('error',data.msg);
+
         	}
-        }
-    });
+        },
+		"json"
+    );
 };
 /*前台数据分页
  * @param url 请求的url

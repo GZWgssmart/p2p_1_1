@@ -19,7 +19,7 @@
 </head>
 <link rel="icon" href="<%=path%>/static/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon" />
 <body>
-<div class="account-right">
+<div class="account-right" style="height: 950px;">
     <div class="account-right-nav">
         <div class="sub-a-nav">
             <a href="javascript:void(0);" class="active">安全中心</a>
@@ -30,8 +30,8 @@
         <div class="safe">
             <div class="safe-top">
                 <p class="safe-t-text">您的资料完善度</p>
-                <p class="safe-t-line"><em style="width: 30%;"></em></p>
-                <p class="safe-t-r">低</p>
+                <p class="safe-t-line"><em style="width: 50%;"></em></p>
+                <p class="safe-t-r">中</p>
             </div>
             <div class="safe-content">
                 <ul class="safe-list">
@@ -39,29 +39,53 @@
                         <div class="safe-list-1">
                             <p class="icon icon-true" id="cellPhone-icon">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机</p>
                         </div>
-                        <div class="safe-list-2" id="cellPhone-text">1817****439</div>
+                        <div class="safe-list-2" id="cellPhone-text">${user.getPhone().substring(0, 3)}****${user.getPhone().substring(7, 11)}</div>
                         <div class="safe-list-3">
-                            <a href="javascript:;" id="cellPhone" class="on">已绑定</a>
+                            <a id="cellPhone" class="on">已绑定</a>
                             <a href="javascript:;" id="changePhone">修改</a>
                         </div>
                     </li>
                     <li>
-                        <div class="safe-list-1">
-                            <p class="icon icon-wrong" id="email-icon">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
-                        </div>
-                        <div class="safe-list-2" id="email-text">获取最新的投资讯息和账户信息变动通知</div>
-                        <div class="safe-list-3">
-                            <a href="javascript:;" id="email">进行绑定</a>
-                        </div>
+                        <c:if test="${user.getEmail() == null}">
+                            <div class="safe-list-1">
+                                <p class="icon icon-wrong">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
+                            </div>
+                            <div class="safe-list-2" id="email-text">获取最新的投资讯息和账户信息变动通知！</div>
+                            <div class="safe-list-3">
+                                <a href="javascript:;" id="email">进行绑定</a>
+                            </div>
+                        </c:if>
+                        <c:if test="${user.getEmail() != null}">
+                            <div class="safe-list-1">
+                                <p class="icon icon-true">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
+                            </div>
+                            <div class="safe-list-2" id="email-text">${user.getEmail().substring(0, 2)}***${user.getEmail().substring(user.getEmail().indexOf("@", 5)-2)}</div>
+                            <div class="safe-list-3">
+                                <a class="on">已绑定</a>
+                                <a href="javascript:;" id="email">修改</a>
+                            </div>
+                        </c:if>
                     </li>
                     <li>
-                        <div class="safe-list-1">
-                            <p class="icon icon-wrong" id="realName-icon">身份认证</p>
-                        </div>
-                        <div class="safe-list-2" id="realName-text">一旦实名认证通过将不能修改</div>
-                        <div class="safe-list-3">
-                            <a href="javascript:;" id="realName">去认证</a>
-                        </div>
+                        <c:if test="${user.getRname() == null && user.getIdno() == null}">
+                            <div class="safe-list-1">
+                                <p class="icon icon-wrong">身份认证</p>
+                            </div>
+                            <div class="safe-list-2">一旦实名认证通过不能修改！</div>
+                            <div class="safe-list-3">
+                                <a href="javascript:;" id="realName" onclick="registpay();" target="allpage">去认证</a>
+                            </div>
+                        </c:if>
+                        <c:if test="${user.getRname() != null && user.getIdno() != null}">
+                            <div class="safe-list-1">
+                                <p class="icon icon-true">身份认证</p>
+                            </div>
+                            <div class="safe-list-2" id="realName-text">${user.getRname().substring(0, 1)}**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user.getIdno().substring(0, 4)}
+                                ******${user.getIdno().substring(user.getIdno().length()-6)}</div>
+                            <div class="safe-list-3">
+                                <a href="javascript:;" class="on" target="_blank">已认证</a>
+                            </div>
+                        </c:if>
                     </li>
                     <li>
                         <div class="safe-list-1">
@@ -74,7 +98,7 @@
                             <a href="javascript:;" id="password-btn">修改</a>
                         </div>
                     </li>
-                    <!-- <li>
+                    <li>
                         <div class="safe-list-1">
                             <p class="icon icon-true">交易密码</p>
                         </div>
@@ -82,15 +106,15 @@
                             ******
                         </div>
                         <div class="safe-list-3">
-                            <a href="javascript:;"  id="dealpwd"></a>
-                            <a href="recoverpwd.html#deal"  id="forgetpwd">忘记密码</a>
+                            <%--<a href="javascript:;"  id="dealpwd">修改密码</a>--%>
+                            <a href="javascript:;"  id="forgetpwd">忘记密码</a>
                         </div>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="popup bind-email">
+    <div class="popup bind-email" style="display: none;">
         <p class="title left">绑定邮箱</p>
         <a href="javascript:void(0);" class="close icon icon-close"></a>
         <div class="popup-from">
@@ -100,7 +124,7 @@
             <button type="button" class="btn" id="email-submit">添加邮箱</button>
         </div>
     </div>
-    <div class="popup change-phone">
+    <div class="popup change-phone" style="display: none;">
         <p class="title left">修改手机号</p>
         <a href="javascript:void(0);" class="close icon icon-close"></a>
         <div class="popup-from step1">
@@ -158,5 +182,9 @@
     </div>
 </div>
 </body>
-
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/chart.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js"></script>
+<script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/account.js"></script>
 </html>

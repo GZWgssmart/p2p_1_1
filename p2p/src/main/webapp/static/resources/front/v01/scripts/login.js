@@ -65,7 +65,10 @@ function submit(){
 	if(phone==''){
 		showError('请输入手机号码',$('#phone'));
         return;
-	};
+	} else if (utils.isPhone(phone)) {
+        showError("请输入正确的手机号码",$('#phone'));
+        return;
+    };
 	if(password==''){
 		showError('请输入密码',$('#password'));
 		return;
@@ -74,7 +77,6 @@ function submit(){
 		utils.toast('请拖动验证码到正确位置');
 		return;
 	};
-
     $('.btn').addClass('disabled').text('登录中...').unbind('click');
     var url =basePath + "/login";
     $.post(url,

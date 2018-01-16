@@ -1,11 +1,14 @@
 package com.gs.controller;
 
+import com.gs.bean.DxModel;
 import com.gs.bean.User;
 import com.gs.bean.UserMoney;
 import com.gs.common.CheckCodeUtils;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
+import com.gs.common.SendCode;
 import com.gs.enums.ControllerStatusEnum;
+import com.gs.service.DxModelService;
 import com.gs.service.RecommendService;
 import com.gs.service.UserMoneyService;
 import com.gs.service.UserService;
@@ -29,7 +32,6 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user")
 public class UserController {
 
-
     @Autowired
     private UserMoneyService userMoneyService;
 
@@ -37,7 +39,12 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private DxModelService dxModelService;
+
+    @Autowired
     private RecommendService recommendService;
+
+    public String msgCode;
 
     @RequestMapping("/login_page")
     public String login_page(){
@@ -55,6 +62,11 @@ public class UserController {
     @RequestMapping("/user_home")
     public String user_home(){
         return "user/user_home";
+    }
+
+    @RequestMapping("/registpay")
+    public String registpay(){
+        return "user/registpay";
     }
 
     @RequestMapping("/user_safe")
@@ -87,6 +99,47 @@ public class UserController {
         }
     }
 
+
+    /**
+     * 发送验证码
+     * @param phone
+     * @return
+     */
+    @RequestMapping("savemsgCode")
+    @ResponseBody
+    public ControllerStatusVO save(String phone){
+        ControllerStatusVO statusVO = null;
+        try {
+            DxModel dxModel=new DxModel();
+//            String content= SendCode.sendsms(phone)+"";
+            String content = "000000";
+            dxModel.setContent(content);
+            msgCode = content;
+            dxModelService.save(dxModel);
+        } catch (RuntimeException e) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
+        }
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_SUCCESS);
+        return statusVO;
+    }
+
+    /**
+     * 验证短信验证码
+     * @param smsCode
+     * @return
+     */
+    @RequestMapping("checkmsgCode")
+    @ResponseBody
+    public ControllerStatusVO checkmsgCode(String smsCode){
+        ControllerStatusVO statusVO = null;
+        if (smsCode.equals(msgCode)) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_SUCCESS);
+        } else {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
+        }
+        return statusVO;
+    }
+
     /**
      * 注册
      * @param uname
@@ -97,7 +150,6 @@ public class UserController {
     @RequestMapping("/save")
     @ResponseBody
     public ControllerStatusVO save(String uname, String phone, String upwd, String tzm) {
-        RecommendController recommendController = new RecommendController();
         ControllerStatusVO statusVO = null;
         User user = new User();
         user.setUname(uname);
@@ -159,6 +211,66 @@ public class UserController {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.PHONE_UNEXIST);
             return statusVO;
         }
+    }
+
+    /**
+     * 修改密码
+     * @param session
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    @RequestMapping("/changePwd")
+    @ResponseBody
+    public ControllerStatusVO changePwd(HttpSession session, String oldPassword, String newPassword) {
+        ControllerStatusVO statusVO = null;
+//        获取session中用户的ID
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+//        通过用户ID获取密码
+        User user1  = userService.getByIdPassword(user.getUid());
+        if (user1 != null) {
+            if (user1.getUpwd().equals(EncryptUtils.md5(oldPassword))) {
+                user.setUpwd(EncryptUtils.md5(newPassword));
+                userService.update(user);
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.PHONE_EXIST);
+                return statusVO;
+            } else {
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_PASS_FAIL);
+                return statusVO;
+            }
+        }
+        return statusVO;
+    }
+/*
+    @RequestMapping("/changeEmail")
+    @ResponseBody
+    public ControllerStatusVO changeEmail(HttpSession session, String email) {
+        ControllerStatusVO statusVO = null;
+//        获取session中用户的ID
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        if (user != null) {
+            user.setEmail(email);
+            userService.update(user);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.PHONE_EXIST);
+        }
+        return statusVO;
+    }
+*/
+
+    @RequestMapping("/checkCode")
+    @ResponseBody
+    public ControllerStatusVO checkCode(HttpSession session, String code) {
+        Object obj = session.getAttribute(Constants.CODE_IN_SESSION);
+        ControllerStatusVO statusVO = null;
+        if (obj != null) {
+            String checkCode = (String) obj;
+            if (checkCode.equalsIgnoreCase(code)) {
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
+            } else {
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_ERROR_CODE);
+            }
+        }
+        return statusVO;
     }
 
     @RequestMapping("/user_money")
