@@ -48,7 +48,6 @@
                         <li><a href="<%=path %>#004">普金保</a></li>
                         <li><a href="<%=path %>#005">恒金保</a></li>
                         <li><a href="<%=path %>#006">新手标</a></li>
-                        <li><a href="https://www.pujinziben.com/creditorlist.html">债权转让</a></li>
                     </ul>
                 </div>
             </div>

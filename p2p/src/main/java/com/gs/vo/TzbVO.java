@@ -11,7 +11,9 @@ import java.util.Date;
  * @version 1.0
  */
 public class TzbVO {
+    private Long tzid;
     private BigDecimal money;//投资金额
+    private Long uid;
     private Date time;//投资时间
     private Float nprofit;//利率
     private String cpname;//产品名称
@@ -24,6 +26,21 @@ public class TzbVO {
     private String rname;//投资人姓名
     private Byte state;//状态
 
+    public Long getTzid() {
+        return tzid;
+    }
+
+    public void setTzid(Long tzid) {
+        this.tzid = tzid;
+    }
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
 
     public BigDecimal getMoney() {
         return money;

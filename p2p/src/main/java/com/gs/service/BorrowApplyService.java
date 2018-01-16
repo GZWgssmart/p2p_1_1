@@ -1,5 +1,7 @@
 package com.gs.service;
 
+import java.util.List;
+
 /**
  * BorrowApplyService接口，实现CRUD
  * 创建时间：2017/12/26 15:12
@@ -10,4 +12,6 @@ package com.gs.service;
 public interface BorrowApplyService extends BaseService {
     void updateState(Object obj);
     void updateState2(Object obj);
+    void updateLiubiao();
+    List<Object> listByBzid(Long bzid);
 }

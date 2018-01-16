@@ -10,6 +10,7 @@ import com.gs.service.HkbService;
 import com.gs.service.TzbService;
 import com.gs.vo.BorrowDetailVO;
 import com.gs.vo.ControllerStatusVO;
+import com.gs.vo.JkbVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -100,8 +101,9 @@ public class HkbServiceImpl extends AbstractBaseService implements HkbService {
         hkb.setRbj(hkb.getYbj());
         hkb.setState((byte)2);
         hkbDAO.update(hkb);
-        BorrowApply borrowApply = (BorrowApply) borrowApplyDAO.getById(hkb.getBaid());
-        if (borrowApply.getTerm() == hkb.getDjq()){
+        JkbVO jkb = (JkbVO) borrowApplyDAO.getById(hkb.getBaid());
+        if (jkb.getTerm() == hkb.getDjq()){
+            BorrowApply borrowApply = new BorrowApply();
             borrowApply.setBaid(hkb.getBaid());
             borrowApply.setState((byte)5);
             borrowApplyDAO.updateState(borrowApply);

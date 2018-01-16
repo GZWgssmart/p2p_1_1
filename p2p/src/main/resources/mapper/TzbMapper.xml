@@ -27,7 +27,7 @@
     </sql>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.TzbVO">
-       select tzb.money,tzb.cpname,tzb.nprofit,tzb.time,
+       select tzb.tzid,tzb.money,tzb.cpname,tzb.nprofit,tzb.time,
         ba.baid as baid,ba.sid as sid,ba.lxid as lxid,ba.state as state,
         ba.term as term,s.way as way,jk.lxname as lxname,u.rname as rname
         <include refid="tzb_query_common" />

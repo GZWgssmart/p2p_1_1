@@ -115,7 +115,11 @@
         <![CDATA[
          update t_borrowapply set huid = #{huid},state = #{state},excuse = #{excuse},`time` = CURRENT_TIMESTAMP where baid = #{baid}
          ]]>
-
-
     </update>
+
+    <select id="listByBzid" resultType="com.gs.vo.investBorrowVo">
+        select ba.baid,ba.money,ba.term,ba.state,
+        bd.nprofit as nprofit,bd.ytmoney as ytmoney,bd.cpname as cpname
+        from t_borrowapply ba, t_borrowdetail bd where ba.baid = bd.baid and ba.state<![CDATA[>]]>2 and ba.state !=6 and ba.bzid = #{bzid} order by ba.state;
+    </select>
 </mapper>

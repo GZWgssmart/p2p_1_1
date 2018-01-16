@@ -99,5 +99,17 @@ public class TzbController {
         return ControllerStatusVO.status(ControllerStatusEnum.TZB_SAVE_ERROR);
 
     }
+    //后台投资列表
+    @RequestMapping("/htzb")
+    public String HTzb(){
+        return "tzb/htzb";
+    }
 
+    @RequestMapping("/hlist")
+    @ResponseBody
+    public Pager HList(int page, int rows, TzbQuery tzbQuery){
+        Pager pager = new Pager();
+        pager =  tzbService.listPagerCriteria(page,rows,tzbQuery);
+        return pager;
+    }
 }

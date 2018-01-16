@@ -43,12 +43,10 @@
 		</div>
 		<div title="资金管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
+				<li><a href="javascript:void(0);" src="<%=path%>/userMoney/page"
 					   class="site-navi-tab">用户资金管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
+				<li><a href="javascript:void(0);" src="<%=path%>/tzb/htzb"
 					   class="site-navi-tab">用户投资管理</a></li>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-					   class="site-navi-tab">用户借款管理</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/cash/cash_pageto"
 					   class="site-navi-tab">银行卡管理</a></li>
 				<shiro:hasPermission name="logczz:backcz">
@@ -73,8 +71,6 @@
 					<li><a href="javascript:void(0);" src="<%=path%>/borrowApply/page"
 						   class="site-navi-tab">全部借款</a></li>
 				</shiro:hasPermission>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-					   class="site-navi-tab">债权转让</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
 					   class="site-navi-tab">收款还款</a></li>
 				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
@@ -124,8 +120,6 @@
 
 		<div title="审核管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-					   class="site-navi-tab">发标审核</a></li>
 				<shiro:hasPermission name="jkb:jkb_listPage">
 					<li><a href="javascript:void(0);" src="<%=path%>/jkb/jkb_listPage"
 						   class="site-navi-tab">借款审核</a></li>
@@ -134,8 +128,6 @@
 					<li><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh"
 						   class="site-navi-tab">提现审核</a></li>
 				</shiro:hasPermission>
-				<li><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-					   class="site-navi-tab">额度申请</a></li>
 			</ul>
 		</div>
 		<div title="认证管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">

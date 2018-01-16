@@ -1,9 +1,11 @@
 package com.gs.dao;
 
+import com.gs.common.Pager;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * UserMoneyDAO接口，实现CRUD
@@ -17,5 +19,7 @@ public interface UserMoneyDAO extends BaseDAO{
     Object getByUserId(Long id);
     void updateById(@Param("id") Long id,@Param("money") BigDecimal money);
     void updateByIdMaoll(@Param("id") Long id,@Param("money") BigDecimal money);
+    @Override
+    List<Object> listPager(@Param("pager") Pager pager);
 
 }
