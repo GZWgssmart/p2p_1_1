@@ -6,6 +6,7 @@ import com.gs.common.SendCode;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.DxModelService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,9 @@ public class DxModelController {
     public String SendDxModel() {
         return "reAndLo";
     }
+
+    //shiro权限注解
+    @RequiresPermissions("dxModel:dxModel")
     @RequestMapping("dxModel")
     public String DxModel() {
         return "dxModelType/dxModel";
@@ -72,7 +76,8 @@ public class DxModelController {
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_UPDATE_SUCCESS);
         return statusVO;
     }
-
+    //shiro权限注解
+    @RequiresPermissions("dxModel:delete")
     @RequestMapping("delete")
     @ResponseBody
     public ControllerStatusVO delete(Long id){

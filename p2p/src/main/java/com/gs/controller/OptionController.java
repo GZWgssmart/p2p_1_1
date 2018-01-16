@@ -5,6 +5,7 @@ import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.OptionService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ public class OptionController {
     @Autowired
     private OptionService optionService;
 
+    //shiro权限注解
+    @RequiresPermissions("option:page")
     @RequestMapping("page")
     public String page(){
         return "option/option";
@@ -50,6 +53,7 @@ public class OptionController {
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.OPTION_SAVE_SUCCESS);
         return statusVO;
     }
+
 
     @RequestMapping("remove")
     @ResponseBody

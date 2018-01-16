@@ -31,6 +31,8 @@ public class JkbVO {
 
     private String way;//还款方式
 
+    private Date time;//审核时间
+
     private Byte state;//审核状态（1表示为审核，2表示已审核）
 
     private String excuse;//审核理由
@@ -139,6 +141,14 @@ public class JkbVO {
 
     public void setWay(String way) {
         this.way = way;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public Byte getState() {

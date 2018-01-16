@@ -19,6 +19,12 @@
         <if test="query != null and query.uid != null">
             and ba.uid = #{query.uid}
         </if>
+        <if test="query != null and query.money != null and query.money != ''">
+            and ba.money <![CDATA[<=]]> #{query.money}
+        </if>
+        <if test="query != null and query.deadline != null and query.deadline != ''">
+            and ba.deadline <![CDATA[<=]]> #{query.deadline}
+        </if>
         <if test="query != null and query.bzid != null">
             and bz.bzid = #{query.bzid}
         </if>
@@ -54,7 +60,7 @@
     </select>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.JkbVO">
-        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.time,ba.deadline,
         bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
         bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,bd.ytmoney as ytmoney,
         bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,
@@ -69,7 +75,7 @@
         <include refid="jkb_query_criteria"/>
     </select>
     <select id="getById" parameterType="long" resultType="com.gs.vo.JkbVO">
-        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.deadline,ba.uid,
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.deadline,ba.uid,ba.time,ba.deadline,
         bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
         bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,bd.ytmoney as ytmoney,
         bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,

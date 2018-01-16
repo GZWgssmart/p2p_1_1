@@ -5,6 +5,7 @@ import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.SwayService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +28,15 @@ public class SwayController {
         return swayService.listPager(page, rows);
     }
 
+    //shiro权限注解
+    @RequiresPermissions("sway:sway")
     @RequestMapping("sway")
     public String sway() {
         return "swayType/sway";
     }
 
+    //shiro权限注解
+    @RequiresPermissions("sway:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(Sway sway){
@@ -45,6 +50,8 @@ public class SwayController {
         return statusVO;
     }
 
+    //shiro权限注解
+    @RequiresPermissions("sway:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(Sway sway){
@@ -58,6 +65,8 @@ public class SwayController {
         return statusVO;
     }
 
+    //shiro权限注解
+    @RequiresPermissions("sway:delete")
     @RequestMapping("delete")
     @ResponseBody
     public ControllerStatusVO delete(Long id){
