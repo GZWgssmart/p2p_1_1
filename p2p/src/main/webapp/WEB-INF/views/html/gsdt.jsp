@@ -16,12 +16,12 @@
 	<em class="em-line"></em>
 </div>
 <div class="about-content">
-	<div id="gd1">
-		<ul class="news-list listData">
+		<div id="gd1">
+			<ul class="news-list listData">
 
-		</ul>
-		<ul class="paging"></ul>
-	</div>
+			</ul>
+			<ul class="paging"></ul>
+		</div>
 	<div id="xy">
 		<ul class="news-list listData">
 

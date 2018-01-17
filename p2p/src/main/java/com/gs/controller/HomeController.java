@@ -1,0 +1,121 @@
+package com.gs.controller;
+
+import com.gs.bean.Dynamic;
+import com.gs.bean.Home;
+import com.gs.common.FileUpload;
+import com.gs.common.Pager;
+import com.gs.enums.ControllerStatusEnum;
+import com.gs.service.DynamicService;
+import com.gs.service.HomeService;
+import com.gs.vo.ControllerStatusVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Calendar;
+
+@Controller
+@RequestMapping("/home")
+public class HomeController {
+
+    @Autowired
+    private HomeService homeService;
+
+    @RequestMapping("page")
+    public String page() {
+        return "home/home";
+    }
+    @RequestMapping("pager_criteria")
+    @ResponseBody
+    public Pager pagerCriteria(int page, int rows, Home home){
+       return homeService.listPagerCriteria(page, rows, home);
+    }
+    @RequestMapping("save")
+    @ResponseBody
+    public ControllerStatusVO save(HttpServletRequest request, Home home,
+                                   @RequestParam MultipartFile file1,
+                                   @RequestParam MultipartFile file2,
+                                   @RequestParam MultipartFile file3,
+                                   @RequestParam MultipartFile file4){
+        ControllerStatusVO statusVO = null;
+        try {
+            if (file1 != null){
+                    String pic1img = FileUpload.uploadFile(request,file1);
+                    home.setPic1(pic1img);
+            }
+            if (file2 != null){
+                    String pic2img = FileUpload.uploadFile(request,file2);
+                    home.setPic2(pic2img);
+            }
+            if (file3 != null){
+                    String pic3img = FileUpload.uploadFile(request,file3);
+                    home.setPic3(pic3img);
+            }
+            if (file4 != null){
+                String ewm = FileUpload.uploadFile(request,file4);
+                home.setEwm(ewm);
+            }
+            homeService.save(home);
+        } catch (Exception e) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_FAIL) ;
+        }
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS) ;
+        return statusVO;
+    }
+    @RequestMapping("update")
+    @ResponseBody
+    public ControllerStatusVO update(HttpServletRequest request, Home home,
+                                   @RequestParam MultipartFile file1,
+                                   @RequestParam MultipartFile file2,
+                                   @RequestParam MultipartFile file3,
+                                     @RequestParam MultipartFile file4 ){
+        ControllerStatusVO statusVO = null;
+        try {
+            if (file1 != null){
+                    String pic1img = FileUpload.uploadFile(request,file1);
+                    home.setPic1(pic1img);
+            }
+            if (file2 != null){
+                    String pic2img = FileUpload.uploadFile(request,file2);
+                    home.setPic2(pic2img);
+            }
+            if (file3 != null){
+                    String pic3img = FileUpload.uploadFile(request,file2);
+                    home.setPic3(pic3img);
+            }
+            if (file4 != null){
+                String ewm = FileUpload.uploadFile(request,file4);
+                home.setEwm(ewm);
+            }
+            homeService.update(home);
+        } catch (Exception e) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL) ;
+        }
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS) ;
+        return statusVO;
+    }
+    @RequestMapping("homeppt")
+    @ResponseBody
+    public String  homeppt(Long hid,HttpServletRequest request){
+        Home home = new Home();
+        ControllerStatusVO statusVO = null;
+        if (hid != null){
+            homeService.getById(hid);
+            request.setAttribute("pic1",home.getPic1());
+            request.setAttribute("pic2",home.getPic2());
+            request.setAttribute("pic3",home.getPic3());
+        }else{
+        }
+        return "";
+    }
+
+
+
+
+
+
+}

@@ -1,6 +1,7 @@
 var contentType = "application/x-www-form-urlencoded; charset=utf-8";
 var localObj = window.location;
 var contextPath = localObj.protocol + "//" + localObj.host;
+var path = "http://"+window.location.host+"/static/upload/picimg/";
 var oPage;
 var isClick = false;
 $(function(){
@@ -540,8 +541,8 @@ function initGsd(){
 	    		$('.em-line').animate({'left':'120px'},500);
 	    		initXyxw();
 	    	});
-	    	
-	    	if(utils.getUrlParam('type')){
+
+	    	if(getUrlParam("type")){
 	    		initXyxw();
 	    		$('#xyxw').addClass('active').siblings('a').removeClass('active');
 	    		$('.em-line').animate({'left':'120px'},500);
@@ -560,16 +561,16 @@ function initGsdt(){
 	var dataList = [
 	                {
 	                	key:'',resolve:function(val,record){
-	                		var oDiv = '<img class="news-img" src="'+record.imgPath+'" width="200" height="120" />'+
+	                		var oDiv = '<img class="news-img" src="'+path+record.pic+'" width="200" height="120" />'+
 	                				'<div class="news-content">'+
-	                					'<a href="news.html?id='+record.id+'" class="news-title">'+record.title+'</a>'+
+	                					'<a href="/dynamic/nopage?dyid='+record.dyid+'" class="news-title">'+record.title+'</a>'+
 	                					'<p class="news-about">'+strChina(record.content)+'</p>'+
-	                					'<p class="news-time">'+strTime(record.publishTime)+'</p></div>';
+	                					'<p class="news-time">'+formatDate(record.date)+'</p></div>';
 	                		return oDiv;
 	                	}
 	                }
 	                ]
-	var oPage = new Page('front/getMediaReport.do',{},$('#gd1 .listData'),$('#gd1 .paging'),dataList,function(){});
+	var oPage = new Page('/dynamic/select',{},$('#gd1 .listData'),$('#gd1 .paging'),dataList,function(){});
 }
 //媒体报道
 function  initXyxw(){
@@ -578,18 +579,27 @@ function  initXyxw(){
 	var dataList = [
 	                {
 	                	key:'',resolve:function(val,record){
-	                		var oDiv = '<img class="news-img" src="'+record.imgPath+'" width="200" height="120" />'+
+	                		var oDiv = '<img class="news-img" src="'+path+record.pic+'" width="200" height="120" />'+
 	                				'<div class="news-content">'+
-	                					'<a href="news.html?id='+record.id+'&type=1" class="news-title">'+record.title+'</a>'+
+	                					'<a href="/media/nopage?mid='+record.mid+'&type=1" class="news-title">'+record.title+'</a>'+
 	                					'<p class="news-about">'+strChina(record.content)+'</p>'+
-	                					'<p class="news-time">'+strTime(record.publishTime)+'</p></div>';
+	                					'<p class="news-time">'+formatDate(record.date)+'</p></div>';
 	                		return oDiv;
 	                	}
 	                }
 	                ]
-	var oPage = new Page('front/getIndustryNews.do',{},$('#xy .listData'),$('#xy .paging'),dataList,function(){});
+	var oPage = new Page('/media/select',{},$('#xy .listData'),$('#xy .paging'),dataList,function(){});
 }
 
+function getUrlParam(key){
+    var href = window.location.href;
+    var param = href.substr(href.indexOf('?')+1).split('&'),obj={};
+    for(var i=0;i<param.length;i++){
+        var arr = param[i].split('=');
+        obj[arr[0]] = arr[1];
+    }
+    return obj[key];
+};
 
 //平台公告
 function initPtgg(){

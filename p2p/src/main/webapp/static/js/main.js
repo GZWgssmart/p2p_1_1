@@ -620,6 +620,266 @@ function previewImages(file) {
         div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
     }
 }
+//轮播图一
+var MAXWIDTH = 300;
+var MAXHEIGHT = 90;
+var img = '';
+function previewImage1(file) {
+
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=img1 onclick=$("#previewImg1").click()>';
+        img = document.getElementById('img1');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=img1>';
+        var img = document.getElementById('img1');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+function previewImages1(file) {
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=imgs1 onclick=$("#previewImgs1").click()>';
+        img = document.getElementById('imgs1');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=imgs1>';
+        var img = document.getElementById('imgs1');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+//轮播图二
+var MAXWIDTH = 300;
+var MAXHEIGHT = 90;
+var img = '';
+function previewImage2(file) {
+
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=img2 onclick=$("#previewImg2").click()>';
+        img = document.getElementById('img2');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=img2>';
+        var img = document.getElementById('img2');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+function previewImages2(file) {
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=imgs2 onclick=$("#previewImgs2").click()>';
+        img = document.getElementById('imgs2');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=imgs2>';
+        var img = document.getElementById('imgs2');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+//轮播图三
+var MAXWIDTH = 300;
+var MAXHEIGHT = 90;
+var img = '';
+function previewImage3(file) {
+
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=img3 onclick=$("#previewImg3").click()>';
+        img = document.getElementById('img3');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=img3>';
+        var img = document.getElementById('img3');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+function previewImages3(file) {
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=imgs3 onclick=$("#previewImgs3").click()>';
+        img = document.getElementById('imgs3');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=imgs3>';
+        var img = document.getElementById('imgs3');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+//二维码
+var MAXWIDTH = 100;
+var MAXHEIGHT = 90;
+var img = '';
+function previewImage4(file) {
+
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=img4 onclick=$("#previewImg4").click()>';
+        img = document.getElementById('img4');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=img4>';
+        var img = document.getElementById('img4');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
+function previewImages4(file) {
+    var div = $('.preview');
+    if (file.files && file.files[0]) {
+        div.innerHTML = '<img id=imgs4 onclick=$("#previewImgs4").click()>';
+        img = document.getElementById('imgs4');
+        img.onload = function() {
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            img.width = rect.width;
+            img.height = rect.height;
+            //                 img.style.marginLeft = rect.left+'px';
+            img.style.marginTop = rect.top + 'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            img.src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else //兼容IE
+    {
+        var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=imgs4>';
+        var img = document.getElementById('imgs4');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+        div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+    }
+}
 function clacImgZoomParam(maxWidth, maxHeight, width, height) {
     var param = {
         top: 0,

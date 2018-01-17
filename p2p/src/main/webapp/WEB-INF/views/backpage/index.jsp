@@ -94,10 +94,12 @@
 		</div>
 		<div title="宣传管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
+				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/dynamic/page"
 					   class="site-navi-tab">公司动态</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
+				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/media/page"
 					   class="site-navi-tab">媒体报道</a></li>
+				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/home/page"
+					   class="site-navi-tab">首页信息管理</a></li>
 				<shiro:hasPermission name="dxModel:dxModel">
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/dxModel/dxModel"
 						   class="site-navi-tab">短信模板管理</a></li>

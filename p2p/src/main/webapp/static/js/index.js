@@ -1,4 +1,4 @@
-var path = "http://"+window.location.host+"/upload/";
+var path = "http://"+window.location.host+"/static/upload/picimg/";
 
 $(function (){
 
@@ -49,6 +49,39 @@ $(function (){
     "json"
     );
 
+   $.post("/media/listAll",
+       function (data) {
+           if (data != undefined){
+               for(var i=0;i<data.length;i++){
+                   var obj = data[i];
+                   var mediaLi =
+                       $('<li><a href="/media/nopage?mid='+obj.mid+'" target="_blank" class="news-main-content-left">'+
+                           '<img src="'+path+obj.pic+'" alt="'+obj.title+'" width="210" height="140"></a>'+
+                           '<a href="/media/nopage?mid='+obj.mid+'" target="_blank" class="list-title">'+obj.title+'</a>'+
+                           '<a href="/media/nopage?mid='+obj.mid+'" target="_blank" class="list-main">'+streplace(obj.content)+'</a></li>')
+                   mediaLi.appendTo($('#media .news-main-list'));
+               };
+           }
+       },
+       "json"
+   );
+
+    $.post('/dynamic/listAll',
+        function(data) {
+            if(data != undefined){
+                var newsContent = $('#news-part');
+                for(var i = 0;i<data.length;i++){
+                    var obj = data[i];
+                    var newsLi = $('<li><a href="/dynamic/nopage?dyid='+obj.dyid+'" target="_blank">'+obj.title+'</a><span>'+formatDate(obj.date).substring(0,10)+'</span></li>');
+                    newsLi.appendTo(newsContent);
+                }
+            }
+        },
+        "json"
+    );
+
+
+
 });
 
 function start(){
@@ -83,4 +116,46 @@ function noticeSlide(obj){
     }, function(){
         oTimer=setTimeout(start, 3000);
     });
+}
+
+//内容裁剪
+function streplace(str){
+    var oStr = str.replace(/<[^>]+>|\n+\s&nbsp;/g,"");
+    if(oStr.length>60){
+        return oStr.substring(0,60)+'...';
+    }else{
+        return oStr;
+    }
+
+}
+
+//时间格式化
+function formatDate(value) {
+    if (value == undefined || value == null || value == '') {
+        return "";
+    } else {
+        var date = new Date(value); // 获取js的Date对象
+        var year = date.getFullYear().toString();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate().toString();
+        var hour = date.getHours().toString();
+        var minutes = date.getMinutes().toString();
+        var seconds = date.getSeconds().toString();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+    }
 }
