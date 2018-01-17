@@ -16,6 +16,8 @@ public class Recommend {
 
     private Date date;//推荐时间
 
+    private String tzm;
+
     public Recommend(Long id, Long tid, String tname, Long uid, String rname, Date date) {
         this.id = id;
         this.tid = tid;
@@ -75,5 +77,13 @@ public class Recommend {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getTzm() {
+        return tzm;
+    }
+
+    public void setTzm(String tzm) {
+        this.tzm = tzm;
     }
 }
