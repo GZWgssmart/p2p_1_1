@@ -286,4 +286,14 @@ public class UserController {
         session.removeAttribute(Constants.USER_IN_SESSION);
         return "/user/login";
     }
+
+    @RequestMapping("userbyid")
+    @ResponseBody
+    public User getByUserId(Long uid) {
+        if(uid != null) {
+            User user = (User) userService.getById(uid);
+            return user;
+        }
+        return null;
+    }
 }

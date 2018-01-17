@@ -21,6 +21,9 @@ public class BankCard {
 
     private Date date;//绑卡时间
 
+    private String startTime;
+    private String endTime;
+
     public BankCard(Long bcid, Long uid, String cardno, String rname, String idno, String type, Byte state, Date date) {
         this.bcid = bcid;
         this.uid = uid;
@@ -98,5 +101,21 @@ public class BankCard {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

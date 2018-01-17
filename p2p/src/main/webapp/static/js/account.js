@@ -111,13 +111,16 @@ function addCard(){
     window.location.href="/bank/bindingpage";
 }
 function deleteCardy(bcid) {
+
     $.post("/bank/delbyid",
             {
-            cardno:bcid
+                bcid:bcid
         },
             function (data){
-                if(data.result == "ok") {
+                if(data.code == "2000") {
                     window.location.href="/bank/page";
+                    alert(data.message);
+                }else{
                     alert(data.message);
                 }
             },
@@ -128,7 +131,8 @@ function deleteCardy(bcid) {
 function bindingcode(){
     var uid = $('#uid').val();
     var type = $('#type').val();
-
+    var rname = $('#realName').text();
+    var idno = $('#idno').text();
     var cardno = $.trim($('#cardno').val());
     if(cardno == "") {
         $("#banknoInfo").html("请填写银行卡号");
@@ -151,15 +155,15 @@ function bindingcode(){
         return false;
     }
 
-    var bankCard={uid:uid,cardno:cardno,type:type};
+    var bankCard={uid:uid,cardno:cardno,type:type,rname:rname,idno:idno};
     $.post(contextPath+'/bank/add',
         bankCard,
         function(data){
-            if(data.result == "ok"){
-                alert(data.message);
+            if(data.code == "1000"){
+                alert("恭喜您哦！"+data.message);
                 window.location.href=contextPath + "/bank/page";
             }else{
-                alert(data.message);
+                alert("对不起！"+data.message);
             }
         },
     "json"
@@ -187,10 +191,10 @@ function initrecharge() {
         $.post(contextPath + "/logczz/add",
             logCzz,
             function (data) {
-                if (data.result === "ok") {
-                    alert("充值成功");
+                if (data.code === "3000") {
+                    alert(data.message);
                 } else {
-                    alert("充值失败");
+                    alert(data.message);
                 }
 
             },

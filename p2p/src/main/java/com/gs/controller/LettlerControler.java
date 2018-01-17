@@ -57,10 +57,12 @@ public class LettlerControler {
     public ControllerStatusVO LetterRemove(Long lid,String ids) {
         ControllerStatusVO statusVO = new ControllerStatusVO();
             if(lid != null || ids != null) {
-                String strArrray[] = ids.split(",");
-                for(int i=0; i<strArrray.length;i++) {
-                    Long id = Long.valueOf(strArrray[i]);
-                    letterService.removeById(id);
+                if(ids != null) {
+                    String strArrray[] = ids.split(",");
+                    for(int i=0; i<strArrray.length;i++) {
+                        Long id = Long.valueOf(strArrray[i]);
+                        letterService.removeById(id);
+                    }
                 }
                 letterService.removeById(lid);
                 statusVO = ControllerStatusVO.status(ControllerStatusEnum.RECOMMEND_DELETE_SUCCESS);

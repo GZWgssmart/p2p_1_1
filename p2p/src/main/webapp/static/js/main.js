@@ -230,9 +230,8 @@ function getStatus(borrow){
 
 function Mack(){
 
-    var str = '<button class="button button1" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',2);">审核成功</button>';
-    str += '<button class="button button2" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',4);">转账</button>';
-    str += '<button class="button button3" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',5);">审核失败</button>';
+    var str = '<button class="button button1" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',2);">审核通过</button>';
+    str += '<button class="button button3" onclick="return openEditwin('+"'addWin'"+','+"'list'"+',5);">拒绝</button>';
     return str;
 }
 
@@ -286,25 +285,34 @@ function openEditWinpreLetter (winId, listId, formId) {
     var row = $("#" + listId).datagrid("getSelected");
     if (row) {
         $("#" + formId).form("load", row);
-        var objs = document.getElementById('select-phones');
+       /* var objs = document.getElementById('select-phones');
         if(row.uid === 1 || row.uid == null) {
             objs.style.display='block';
             document.getElementById('selects').selectedIndex = 1;
         }else{
             objs.style.display='none';
-        }
+        }*/
         openWin(winId);
     } else {
         showInfoAlert("请选择需要修改的数据");
     }
 }
 
-function formatterPhone(value) {
+/*function formatterPhone(value) {
     return value == null || value.length == 0 ? '公共消息' : value;
-}
+}*/
 
 function formatterStart(value) {
     return value == 0 ? '群发' : '单发';
+}
+
+function formtterBankStart(value){
+    return value == 0 ? '激活' :'冻结';
+}
+
+function encodeBank(bank){
+    var bank = bank+'';
+    return bank.substring(0,4)+' ******** '+bank.substring(bank.length-4,bank.length);
 }
 
 function deleteWinprefix(urlId,listId) {

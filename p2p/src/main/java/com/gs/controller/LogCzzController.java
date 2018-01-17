@@ -1,14 +1,18 @@
 package com.gs.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.gs.bean.LogCzz;
 import com.gs.bean.User;
+import com.gs.common.BankAPIUtil;
 import com.gs.common.Constants;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.BankCardService;
 import com.gs.service.LogCzzService;
 import com.gs.service.UserMoneyService;
+import com.gs.service.UserService;
 import com.gs.vo.ControllerStatusVO;
+import com.gs.vo.LogCzzVo;
 import com.gs.vo.SearchVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +36,10 @@ public class LogCzzController {
     private UserMoneyService userMoneyService;
     @Autowired
     private BankCardService bankCardService;
+    @Autowired
+    private UserService userService;
+
+
 
     @RequestMapping("page")
     public ModelAndView showPage(HttpSession session) {
@@ -48,34 +56,36 @@ public class LogCzzController {
 
     @RequestMapping("add")
     @ResponseBody
-    public ControllerStatusVO addLogCzz(HttpSession session , LogCzz logCzz) {
+    public JSONObject addLogCzz(HttpSession session , LogCzz logCzz) {
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         ControllerStatusVO statusVO = new ControllerStatusVO();
         if(user != null) {
-            try{
-                logCzz.setUid(user.getUid());
-                logCzz.setDate(Calendar.getInstance().getTime());
-                logCzz.setState(Byte.valueOf("1"));
-                logCzzService.save(logCzz);
-                userMoneyService.updateById(user.getUid(),logCzz.getMoney());
-                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_RECHARGE_SUCCESS);
-            }catch(Exception e) {
-                e.printStackTrace();
-                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_RECHARGE_FAIL);
-            }
+            user = (User) userService.getById(user.getUid());
+            String param = "realName="+user.getRname()+"&bank="+logCzz.getBanktype()+"&bankCardNo="+logCzz.getBankcard()+"&phone="+user.getPhone()+"&money="+logCzz.getMoney();
+            JSONObject jsonObject = BankAPIUtil.SendjsonObject("http://localhost:8888/bank/recharge",param);
+               if(jsonObject.getString("code").equals("3000")) {
+                   logCzz.setUid(user.getUid());
+                   logCzz.setDate(Calendar.getInstance().getTime());
+                   logCzz.setState(Byte.valueOf("1"));
+                   logCzzService.save(logCzz);
+                   userMoneyService.updateById(user.getUid(),logCzz.getMoney());
+                   return jsonObject;
+               }
+               return jsonObject;
+
           }
-        return statusVO;
+        return null;
     }
 
     @RequestMapping("select")
     @ResponseBody
-    public Pager selectLogCzzPage(HttpSession session, SearchVo param,Integer page, Integer rows) {
+    public Pager selectLogCzzPage(HttpSession session, SearchVo param, Integer page, Integer rows) {
         Pager pager = new Pager();
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
 
             try {
                 if(page != null && rows != null) {
-                    pager = logCzzService.listPagerCriteria(page,rows,null);
+                    pager = logCzzService.listPagerCriteria(page,rows,param);
                     return pager;
                 }else {
                     if(user != null) {

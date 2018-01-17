@@ -1,10 +1,16 @@
 package com.gs.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.gs.bean.BankCard;
 import com.gs.bean.User;
+import com.gs.common.BankAPIUtil;
 import com.gs.common.Constants;
+import com.gs.common.HttpUtils;
+import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.BankCardService;
+import com.gs.service.UserService;
 import com.gs.vo.ControllerStatusVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +32,9 @@ public class BankCardController {
     @Autowired
     private BankCardService bankCardService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("page")
     public String showPage() {
         return "deposit/bank";
@@ -37,22 +46,18 @@ public class BankCardController {
 
     @RequestMapping("add")
     @ResponseBody
-    public ControllerStatusVO SaveBankCard(HttpSession session , BankCard bankCard) {
+    public JSONObject SaveBankCard(HttpSession session , BankCard bankCard) {
         User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
-        ControllerStatusVO statusVO = new ControllerStatusVO();
         if(user != null) {
-            //String param = "realName="+user.getRname()+"&bank="+bankCard.getType()+"&bankCardNo="+bankCard.getCardno()+"&phone="+user.getPhone();
-           // HttpUtils.sendPost("http://localhost:8080/bank/bind",param);
-
-           if(bankCardService.countCriteria(bankCard.getCardno()) == 0){
-               bankCard.setState(Byte.valueOf("1"));
+            String param = "realName="+bankCard.getRname()+"&bank="+bankCard.getType()+"&bankCardNo="+bankCard.getCardno()+"&phone="+user.getPhone();
+            JSONObject jsonObject = BankAPIUtil.SendjsonObject("http://localhost:8888/bank/bind",param);
+            if(bankCardService.countCriteria(bankCard) == 0 && jsonObject.getString("code").equals("1000")){
+               bankCard.setState(Byte.valueOf("0"));
                bankCard.setDate(Calendar.getInstance().getTime());
-               bankCard.setRname(user.getRname());
-               bankCard.setIdno(user.getIdno());
                bankCardService.save(bankCard);
-               return statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
+               return jsonObject;
            }
-            return statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_BANK_FAIL);
+            return jsonObject;
         }
         return null;
     }
@@ -67,7 +72,7 @@ public class BankCardController {
 
     @RequestMapping("select")
     @ResponseBody
-    public List<BankCard> SelectBankCard(HttpSession session) {
+    public List<BankCard> SelectBankCard(HttpSession session,Integer page, Integer rows) {
         List<BankCard> bankCards = new ArrayList<>();
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null) {
@@ -76,14 +81,43 @@ public class BankCardController {
         return bankCards;
     }
 
+    @RequestMapping("selectpage")
+    @ResponseBody
+    public Pager SelectBankCardPage(Integer page, Integer rows,BankCard bankCard) {
+        Pager pager = new Pager();
+        if(rows != null && page != null) {
+            try{
+                pager = bankCardService.listPagerCriteria(page,rows,bankCard);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return pager;
+    }
+
+    @RequestMapping("huserpage")
+    public String UsershowPage() {
+        return "backpage/bank";
+    }
+
     @RequestMapping("delbyid")
     @ResponseBody
-    public ControllerStatusVO deleteByBankCard(BankCard bankCard) {
-        System.out.println("backcard:"+bankCard);
-        ControllerStatusVO statusVO = new ControllerStatusVO();
+    public JSONObject deleteByBankCard(HttpSession session,BankCard bankCard) {
         if(bankCard != null) {
-            bankCardService.remove(bankCard);
-            return statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_BANK_DELETE);
+            User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+            if(user != null) {
+                try{
+                    bankCard = (BankCard) bankCardService.getById(bankCard.getBcid());
+                    String param = "realName="+bankCard.getRname()+"&bank="+bankCard.getType()+"&bankCardNo="+bankCard.getCardno()+"&phone="+user.getPhone();
+                    JSONObject jsonObject = BankAPIUtil.SendjsonObject("http://localhost:8888/bank/unbind",param);
+                    bankCardService.remove(bankCard);
+                    return jsonObject;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
         }
             return null;
     }

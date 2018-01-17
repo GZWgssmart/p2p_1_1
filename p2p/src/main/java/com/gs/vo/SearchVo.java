@@ -1,5 +1,7 @@
 package com.gs.vo;
 
+import java.math.BigDecimal;
+
 /**
  * Created by Administrator on 2017/12/27.
  */
@@ -11,6 +13,9 @@ public class SearchVo {
     private String rname;
     private String phone;
     private Byte state;
+
+    private String bankcard;//银行卡号
+    private String banktype;//所属银行
 
     public String getStartTime() {
         return startTime;
@@ -66,5 +71,21 @@ public class SearchVo {
 
     public void setState(Byte state) {
         this.state = state;
+    }
+
+    public String getBankcard() {
+        return bankcard;
+    }
+
+    public void setBankcard(String bankcard) {
+        this.bankcard = bankcard;
+    }
+
+    public String getBanktype() {
+        return banktype;
+    }
+
+    public void setBanktype(String banktype) {
+        this.banktype = banktype;
     }
 }

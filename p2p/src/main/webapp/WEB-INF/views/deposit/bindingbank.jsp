@@ -41,10 +41,10 @@
 		<div class="pay-from">
 			<div class="label cl">
 				<input type="hidden" id="uid" value="${sessionScope.user.uid }"/>
-				<label class="long">真实姓名：</label><p class="text" id="realName">${sessionScope.user.rname }</p>
+				<label class="long">真实姓名：</label><p class="text" id="realName"></p>
 			</div>
 			<div class="label cl">
-				<label class="long">身份证：</label><p class="text" id="idno">${sessionScope.user.idno }</p>
+				<label class="long">身份证：</label><p class="text" id="idno"></p>
 			</div>
 			<div class="label cl">
 				<label class="long">卡号：</label><input type="text"  id="cardno" placeholder="请输入卡号">
@@ -79,6 +79,16 @@
         if($('#msg').val() == 1) {
             alert("您还未添加银行卡，请先添加银行卡！");
 		}
+		var uid = $('#uid').val();
+		$.post("/user/userbyid",
+			{uid:uid},
+			function (data){
+		    	if(data != null) {
+		    	    $('#realName').text(data.rname);
+                    $('#idno').text(data.idno);
+				}
+			},"json"
+		);
 
     })
 </script>

@@ -27,7 +27,7 @@
 			<tr>
 				<th data-options="field:'lid',width:40,checkbox:true">编号</th>
 				<th data-options="field:'hid',width:90">发送人编号</th>
-				<th data-options="field:'phone',width:170,formatter:formatterPhone">接收人账户</th>
+				<th data-options="field:'phone',width:170">接收人账户</th>
 				<th data-options="field:'uid',width:170,formatter:formatterStart">发送类型</th>
 				<th data-options="field:'title',width:150">标题</th>
 				<th data-options="field:'content',width:300">内容</th>
@@ -63,11 +63,8 @@
 				<input class="easyui-textbox" name="title" style="width:100%" data-options="label:'标题:',required:true">
 			</div>
 			<div style="margin-bottom:20px">
-				<label class="textbox-label textbox-label-before" style="text-align: left; height: 26px; line-height: 26px;">发送类型:</label>
-				<select class="selects" name="uid"  style="width:451px;height: 30px;border: 1px solid;">
-					<option value="0">群发</option>
-					<option value="1">单发</option>
-				</select>
+				<input class="easyui-textbox" name="type" style="width:100%" value="单发" data-options="label:'发送类型:',required:true">
+				<input type="hidden" name="uid" value="1"/>
 			</div>
 			<div id="select-phone" style="margin-bottom:20px">
 				<input class="easyui-textbox phone" name="phone" style="width:100%" data-options="label:'接收人账户:',required:false">
@@ -94,11 +91,13 @@
 			<input class="easyui-textbox" name="title" style="width:100%" data-options="label:'标题:',required:true">
 		</div>
 		<div style="margin-bottom:20px">
-			<label class="textbox-label textbox-label-before" style="text-align: left; height: 26px; line-height: 26px;">发送类型:</label>
+			<input class="easyui-textbox" name="type" style="width:100%" value="单发" data-options="label:'发送类型:',required:true">
+			<input type="hidden" name="uid" value="1"/>
+			<%--<label class="textbox-label textbox-label-before" style="text-align: left; height: 26px; line-height: 26px;">发送类型:</label>
 			<select class="selects" id="selects" name="uid"  style="width:451px;height: 30px;border: 1px solid;">
 				<option value="0">群发</option>
 				<option value="1">单发</option>
-			</select>
+			</select>--%>
 		</div>
 		<div id="select-phones" style="margin-bottom:20px">
 			<input class="easyui-textbox phone"  name="phone" style="width:100%" data-options="label:'接收人账户:',required:false">
@@ -121,7 +120,7 @@
 <script>
 	$(function() {
         hashChange();
-        var obj = document.getElementById('select-phone');
+       /* var obj = document.getElementById('select-phone');
         var objs = document.getElementById('select-phones');
         obj.style.display='none';
         $(".selects").bind("change",function(){
@@ -133,7 +132,7 @@
                 obj.style.display='none';
                 objs.style.display='none';
 			}
-		})
+		})*/
 	});
 
     function clearForm(){

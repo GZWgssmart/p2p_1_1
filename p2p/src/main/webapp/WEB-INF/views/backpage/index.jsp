@@ -52,7 +52,7 @@
 					   class="site-navi-tab">用户资金管理</a></li>
 				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/tzb/htzb"
 					   class="site-navi-tab">用户投资管理</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
+				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/bank/huserpage"
 					   class="site-navi-tab">银行卡管理</a></li>
 				<shiro:hasPermission name="logczz:backcz">
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/logczz/backcz"

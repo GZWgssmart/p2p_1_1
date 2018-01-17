@@ -27,46 +27,41 @@
 				<th data-options="field:'id',width:80,checkbox:true">编号</th>
 				<th data-options="field:'rname',width:100">账户名</th>
 				<th data-options="field:'phone',width:100">手机号码</th>
-				<th data-options="field:'money',width:80">提现金额</th>
+				<th data-options="field:'money',width:80">充值金额</th>
 				<th data-options="field:'bankcard',width:180">充值账号</th>
 				<th data-options="field:'banktype',width:80">银行类型</th>
-				<th data-options="field:'date',width:180,formatter:formatDate">提现时间</th>
+				<th data-options="field:'date',width:180,formatter:formatDate">充值时间</th>
 				<th data-options="field:'state',width:90,formatter:getCzStatus">状态</th>
 			</tr>
 		</thead>
 	</table>
 	
 	<div id="tb" style="height: auto">
-		<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="derivationExcle('/cash/export', 'searchForm');">导出Excle</a>
 		<div>
 			<form id="searchForm">
-				<input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入搜索条件',
+				<input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入搜索账户名',
 						required:false,
-						novalidate:true" name="money"/>
-				<input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入搜索条件',
+						novalidate:true" name="rname"/>
+				<input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入搜索手机号码',
 						required:false,
-						novalidate:true" name="cashCustomer"/>
-				<input class="easyui-combobox easyui-validatebox cashtype" data-options="prompt:'请输入收入或支出',
+						novalidate:true" name="phone"/>
+				<input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入充值账号',
 						required:false,
-						validType:['length[2,20]'],
-						novalidate:true" name="pid"/>
-				<input class="easyui-combobox easyui-validatebox cashtypeson" data-options="prompt:'请输入收入或支出子分类',
+						novalidate:true" name="bankcard"/>
+				<input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入银行类型',
 						required:false,
-						validType:['length[2,20]'],
-						novalidate:true" name="cashType"/>
-				<input class="easyui-combobox easyui-validatebox paytype" data-options="prompt:'请输入支付方式',
-						required:false,
-						validType:['length[2,20]'],
-						novalidate:true" name="payType"/>
-				<input class="easyui-datetimebox easyui-validatebox "data-options="prompt:'请选择最大支付时间',
+						novalidate:true" name="banktype"/>
+				<input class="easyui-datetimebox easyui-validatebox "data-options="prompt:'请选择最小充值时间',
 						required:false,
 						novalidate:true,
 						showSeconds:true" name="cashTime"/>
-				<input class="easyui-datetimebox easyui-validatebox " data-options="prompt:'请选择最大创建时间',
+				<input class="easyui-datetimebox easyui-validatebox " data-options="prompt:'请选择最大充值时间',
 						required:false,
 						novalidate:true,
 						showSeconds:true" name="createTime"/>
 				<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch('list', 'searchForm');">搜索</a>
+				<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchAll('list', 'searchForm');">搜索所有</a>
+
 			</form>
 		</div>
 	</div>

@@ -1,6 +1,8 @@
 package com.gs.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.gs.bean.*;
+import com.gs.common.BankAPIUtil;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
 import com.gs.common.Pager;
@@ -46,6 +48,7 @@ public class LogTxController {
         ModelAndView mav = new ModelAndView("deposit/deposit");
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null) {
+            user = (User) userService.getById(user.getUid());
             if(bankCardService.countBank(user.getUid()) != 0) {
                 UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(1L);
                 TxInItPage inItPage = new TxInItPage(user.getUid(),user.getRname(),user.getPhone(),userMoney.getKymoney());
@@ -64,18 +67,22 @@ public class LogTxController {
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         ControllerStatusVO statusVO = new ControllerStatusVO();
         if(user != null) {
+            user = (User) userService.getById(user.getUid());
             try{
-                if(userService.getByIdPassword(user.getUid()).equals(EncryptUtils.md5(logTx.getPassword()))) {
-                    logTx.setUid(user.getUid());
-                    logTx.setDate(Calendar.getInstance().getTime());
-                    logTx.setState(Byte.valueOf("1"));
-                    logTxService.save(logTx);
-                    userMoneyService.updateByIdMaoll(user.getUid(),logTx.getMoney());
-                    statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_DEPOSIT_SUCCESS);
+                if(user.getZpwd().equals(logTx.getPassword())) {
+                    String param = "realName="+user.getRname()+"&bank="+logTx.getBanktype()+"&bankCardNo="+logTx.getBankcard()+"&phone="+user.getPhone()+"&money="+logTx.getMoney();
+                    JSONObject jsonObject = BankAPIUtil.SendjsonObject("http://localhost:8888/bank/mention",param);
+                    if(jsonObject.getString("code").equals("4000")) {
+                        logTx.setUid(user.getUid());
+                        logTx.setDate(Calendar.getInstance().getTime());
+                        logTx.setState(Byte.valueOf("1"));
+                        logTxService.save(logTx);
+                        userMoneyService.updateByIdMaoll(user.getUid(),logTx.getMoney());
+                        statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_DEPOSIT_SUCCESS);
+                    }
                 }else{
                     statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_PASS_FAIL);
                 }
-
             }catch (Exception e){
                 statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_DEPOSIT_FAIL);
             }

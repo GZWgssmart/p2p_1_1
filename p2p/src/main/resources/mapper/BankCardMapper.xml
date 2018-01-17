@@ -12,16 +12,37 @@
         ]]>
     </insert>
 
-    <select id="getById" resultType="long">
+    <select id="getById" resultType="com.gs.bean.BankCard">
         <![CDATA[
 		select * from t_bankcard where bcid=#{id}
 		]]>
     </select>
+    <sql id="com_where">
+        <if test="obj.rname != null and obj.rname != ''">
+            and rname = #{obj.rname}
+        </if>
+
+        <if test="obj.type != null and obj.type != ''">
+            and type = #{obj.type}
+        </if>
+
+        <if test="obj.cardno != null and obj.cardno != ''">
+            and cardno = #{obj.cardno}
+        </if>
+
+        <if test="obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
+            and date between #{obj.startTime} and #{obj.endTime}
+        </if>
+
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.bean.BankCard">
+        select * from t_bankcard where 1=1 <include refid="com_where"/>
+        limit  #{pager.beginIndex}, #{pager.pageSize};
+    </select>
 
     <select id="countCriteria" resultType="long">
-        <![CDATA[
-		select count(bcid) from t_bankcard where cardno=#{cardno}
-		]]>
+		select count(bcid) from t_bankcard where 1=1 <include refid="com_where"/>
     </select>
 
     <select id="countBank" resultType="long">
@@ -39,7 +60,7 @@
 
     <delete id="remove" parameterType="bankCard">
         <![CDATA[
-          delete from t_bankcard where bcid=#{cardno}
+          delete from t_bankcard where bcid=#{bcid}
         ]]>
     </delete>
 

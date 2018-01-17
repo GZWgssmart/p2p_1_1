@@ -18,6 +18,10 @@
         ]]>
     </select>
 
+    <select id="getById" resultType="com.gs.bean.User">
+        select * from t_user where uid =#{id}
+    </select>
+
     <!--修改信息-->
     <update id="update" parameterType="com.gs.bean.User">
         <![CDATA[

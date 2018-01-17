@@ -16,6 +16,7 @@ public class LogCzzVo {
     private Date date;
     private Byte state;
 
+
     public Long getId() {
         return id;
     }
@@ -23,6 +24,7 @@ public class LogCzzVo {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getRname() {
         return rname;
@@ -79,4 +81,6 @@ public class LogCzzVo {
     public void setState(Byte state) {
         this.state = state;
     }
+
+
 }

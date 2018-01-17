@@ -6,6 +6,21 @@
 
 
     <sql id="common_where">
+        <if test="obj.rname != null and obj.rname != ''">
+            and u.rname = #{obj.rname}
+        </if>
+
+        <if test="obj.phone != null and obj.phone != ''">
+            and u.phone = #{obj.phone}
+        </if>
+
+        <if test="obj.bankcard != null and obj.bankcard != ''">
+            and l.bankcard = #{obj.bankcard}
+        </if>
+
+        <if test="obj.banktype != null and obj.banktype != ''">
+            and l.banktype = #{obj.banktype}
+        </if>
 
         <if test="obj != null and obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
             and l.date between #{obj.startTime} and #{obj.endTime}
