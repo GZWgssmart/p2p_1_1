@@ -30,8 +30,8 @@
     <thead>
     <tr>
         <th data-options="field:'rid',width:80,checkbox:true">编号</th>
-        <th data-options="field:'rname',width:100">角色名称</th>
-        <th data-options="field:'content',width:150">角色描述</th>
+        <th data-options="field:'rname',width:250">角色名称</th>
+        <th data-options="field:'content',width:250">角色描述</th>
     </tr>
     </thead>
 </table>

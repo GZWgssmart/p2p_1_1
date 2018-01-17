@@ -29,8 +29,8 @@
     <thead>
     <tr>
         <th data-options="field:'jid',width:80,checkbox:true">编号</th>
-        <th data-options="field:'jurl',width:100">权限url</th>
-        <th data-options="field:'content',width:150">权限描述</th>
+        <th data-options="field:'jurl',width:250">权限url</th>
+        <th data-options="field:'content',width:250">权限描述</th>
     </tr>
     </thead>
 </table>

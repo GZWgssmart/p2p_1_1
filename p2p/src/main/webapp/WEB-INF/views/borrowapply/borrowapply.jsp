@@ -51,6 +51,9 @@
             <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入借款期限',
 						required:false,
 						novalidate:true" name="term"/>
+            <input class="easyui-combobox easyui-validatebox state" data-options="prompt:'请选择审核状态',
+						required:false,
+						novalidate:true" name="state"/>
             <input class="easyui-combobox easyui-validatebox bzid" data-options="prompt:'请选择标种',
 						required:false,
 						novalidate:true" name="bzid"/>
@@ -162,6 +165,13 @@
             valueText:"text"
         }
     );
+    $(".state").combobox(
+        {
+            url:contextPath +'/borrowApply/state',
+            valueField:"id",
+            valueText:"text"
+        }
+    );
     //（1表示为审核，2表示已审核,3表示为招标中，4表示为成功借款与正在还款，5还款成功）
     function formatterState(value,row,index){
         if(row.state==1){
@@ -171,7 +181,7 @@
         }else if(row.state==3){
             return "招标中"
         }else if(row.state==4){
-            return "成功借款"
+            return "还款中"
         }else{
             return "还款成功"
         }

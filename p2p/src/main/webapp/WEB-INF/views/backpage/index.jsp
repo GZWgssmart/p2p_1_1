@@ -130,9 +130,9 @@
 				<shiro:hasPermission name="logtx:backtxsh">
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh"
 						   class="site-navi-tab">提现审核</a></li>
-					<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
-						   class="site-navi-tab">用户认证审核</a></li>
 				</shiro:hasPermission>
+				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
+								   class="site-navi-tab">用户认证审核</a></li>
 			</ul>
 		</div>
 		<shiro:hasRole name="超级管理员">

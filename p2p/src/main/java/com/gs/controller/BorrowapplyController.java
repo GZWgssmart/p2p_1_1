@@ -52,6 +52,18 @@ public class BorrowapplyController {
         }
         return comboboxList;
     }
+    @RequestMapping("state")
+    @ResponseBody
+    public List<Combobox> stateList(){
+        List<Combobox> comboboxList = new ArrayList<>();
+        comboboxList.add(new Combobox((byte)1+"","未审核",false));
+        comboboxList.add(new Combobox((byte)2+"","已审核",false));
+        comboboxList.add(new Combobox((byte)3+"","招标中",false));
+        comboboxList.add(new Combobox((byte)4+"","还款中",false));
+        comboboxList.add(new Combobox((byte)5+"","还款成功",false));
+        return comboboxList;
+    }
+
     @RequestMapping("/hhkb_list")
     public String Hhkb(){
         return "hkb/hhkb_list";
