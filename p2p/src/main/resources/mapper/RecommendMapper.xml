@@ -16,28 +16,28 @@
     </insert>
     <sql id="cash_query_criteria">
         <if test="query != null and query.uid != null and query.uid!=''">
-            and uid = #{query.uid}
+            and r.uid = #{query.uid}
         </if>
         <if test="query != null and query.tname != null and query.tname!=''">
-            and tname like concat('%', #{query.tname}, '%')
+            and r.tname like concat('%', #{query.tname}, '%')
         </if>
         <if test="query != null and query.rname != null and query.rname!=''">
-            and rname like concat('%', #{query.rname}, '%')
+            and r.rname like concat('%', #{query.rname}, '%')
         </if>
         <if test="query != null and query.startTime != null and query.startTime != ''">
-            and `date` <![CDATA[>=]]> #{query.startTime}
+            and r.`date` <![CDATA[>=]]> #{query.startTime}
         </if>
         <if test="query != null and query.endTime != null and query.endTime != ''">
-            and `date`<![CDATA[<=]]> #{query.endTime}
+            and r.`date`<![CDATA[<=]]> #{query.endTime}
         </if>
     </sql>
     <select id="listPagerCriteria" resultType="recommend">
-        select id,tid,tname,uid,rname,`date` from t_recommend where 1=1
+        select r.id,r.tid,r.tname,r.uid,r.rname,r.`date`,u.tzm from t_recommend r ,t_user u where 1=1 and r.uid=u.uid
         <include refid="cash_query_criteria"/>
         order by `date` desc limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
     <select id="countCriteria" resultType="long">
-        select count(id) from t_recommend where 1=1
+        select count(id) from t_recommend r ,t_user u where 1=1 and r.uid=u.uid
         <include refid="cash_query_criteria"/>
     </select>
     <delete id="remove" parameterType="recommend">

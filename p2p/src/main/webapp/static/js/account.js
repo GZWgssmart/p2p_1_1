@@ -590,15 +590,10 @@ function tuiJianList(){
                 return formatDate(val);
             }
         }, {
-            key:'rewardMoney',resolve:function(val, record){
-                if (val == null) {
-                    return '<span class="black">0元</span>';
-                } else {
-                    return '<span class="black">'+val+'元</span>';
-                }
-
+            key:'tname',resolve:function(val, record){
+                return val;
             }
-        }, {
+        }, /*{
             key:'',resolve:function(val, record){
                 if (isEmployeeReferral != 2){
                     return "- -";
@@ -615,7 +610,7 @@ function tuiJianList(){
                 });
                 return a;
             }
-        }
+        }*/
     ];
     var param={'startTime':begin,'endTime':end};
     oPage = null;

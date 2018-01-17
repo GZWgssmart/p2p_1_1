@@ -30,7 +30,7 @@
 <div class="account-content">
 	<div class="tuiJianShow" style="display: block;">
 		<img src="<%=path %>/static/images/banner_t.png" width="896" height="260">
-		<p class="tj-tips">尊敬的用户,您的推荐号为：<span id="uid">${sessionScope.user.tzm}</span></p>
+		<p class="tj-tips">尊敬的用户,您的推荐号为：<span id="uid">${tzm}</span></p>
 		<p class="tj-text">活动时间：<span>2017年12月15日—2018年1月15日；</span></p>
 		<p class="tj-text">活动对象：活动期间新注册用户的推荐人；</p>
 		<p class="tj-text">活动说明：1.	活动期间邀请好友注册并累计投资满10000元，得50元现金券奖励；</p>
@@ -38,7 +38,7 @@
 		<p class="tj-text" style="padding-left: 70px;">(满足活动条件的用户在活动结束后3个工作日内奖励将以现金券的形式发放至用户账户)</p>
 		<p class="tj-text"><span>注：</span>需将自己的邀请链接地址或推荐号发给您的好友，这样您才能成为他的邀请者。</p>
 		<div class="tj-clip" id="tj-clip">
-			<p class="tj-clip-text" id="tj-clip-text">https://localhost:8080/user/regist_page?tzm=${sessionScope.user.tzm}</p>
+			<p class="tj-clip-text" id="tj-clip-text">https://localhost:8080/user/regist_page?tzm=${tzm}</p>
 			<button type="button" class="tj-clip-btn" id="tj-clip-btn">复制链接</button>
 		</div>
 		<div class="tj-icon">
@@ -87,8 +87,8 @@
 				<li class="title">
 					<div class="children01">用户名</div>
 					<div class="children02">用户创建时间</div>
-					<div class="children03">奖励金额</div>
-					<div class="children04">操作</div>
+					<div class="children03">被推荐用户</div>
+					<%--<div class="children04">操作</div>--%>
 				</li>
 			</ul>
 			<ul class="tuijian-list listData" style="display: none;">

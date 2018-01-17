@@ -2,6 +2,7 @@ package com.gs.controller;
 
 import com.gs.common.Constants;
 import com.gs.enums.ControllerStatusEnum;
+import com.gs.service.UserService;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.gs.common.Pager;
 import com.gs.service.RecommendService;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.RecommendVO;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,6 +33,9 @@ public class RecommendController {
     @Autowired
     private RecommendService recommendService;
 
+    @Autowired
+    private UserService userService;
+
     //shiro权限注解
     @RequiresPermissions("recommend:page")
     @RequestMapping("page")
@@ -43,13 +48,15 @@ public class RecommendController {
     public Pager pagerCriteria(HttpSession session, Integer page, Integer rows, RecommendVO param) {
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null){
-//            if(param.getCurPage() != 0){
-//                param.setUid(user.getUid());
-//                return recommendService.listPagerCriteria(param.getCurPage(), 8, param);
-//            }
+            if(param.getCurPage() != 0){
+                param.setUid(user.getUid());
+                return recommendService.listPagerCriteria(param.getCurPage(), 8, param);
+            }else if(page != null && rows != null) {
+                return recommendService.listPagerCriteria(page, rows, param);
+            }
         }
 
-        return recommendService.listPagerCriteria(page, rows, param);
+        return null;
     }
 
 
@@ -103,8 +110,14 @@ public class RecommendController {
     }
 
     @RequestMapping("handpage")
-    public String showRecommendPage() {
-        return "recommend/recopage";
+    public ModelAndView showRecommendPage(HttpSession session) {
+        ModelAndView mve = new ModelAndView("recommend/recopage");
+        User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+        if(user!=null ) {
+            user = (User)userService.getById(user.getUid());
+            mve.addObject("tzm",user.getTzm());
+        }
+        return mve;
     }
 
 }
