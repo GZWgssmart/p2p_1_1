@@ -139,16 +139,16 @@
     }
 
     function qtype(value,row,index) {
-        if(value == 0){
-            return '现金券';
-		}else if(value == 1){
+        if(value == 1){
             return '代金券';
-		}else if(value == 2){
-		    return '加息券';
-		}else if(value == 3) {
+        }else if(value == 2){
+            return '现金券';
+        }else if(value == 3){
+            return '加息券';
+        }else if(value == 4) {
             return '体验金';
         }
-		return value;
+        return value;
     }
 </script>
 </html>

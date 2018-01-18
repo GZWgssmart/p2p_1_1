@@ -36,7 +36,7 @@
             <a href="javascript:void(0);" class="active" id="dLink">代金券<i id="dCount"></i></a>
             <a href="javascript:void(0);"  id="jLink">加息券<i id="jCount"></i></a>
             <a href="javascript:void(0);"  id="xLink">现金券<i id="xCount"></i></a>
-            <a href="javascript:void(0);"  id="tLink">体验金<i id=""></i></a>
+           <!-- <a href="javascript:void(0);"  id="tLink">体验金<i id=""></i></a>  -->
         </div>
         <em class="em-line"></em>
     </div>
@@ -139,7 +139,7 @@
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/publlic.js"></script>
 <script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="https://www.pujinziben.com/resources/front/v01/scripts/account.js"></script>
+<script src="<%=path%>/static/js/myTicket.js"></script>
 <script>
 
 </script>

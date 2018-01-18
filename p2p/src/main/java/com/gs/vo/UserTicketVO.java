@@ -18,6 +18,25 @@ public class UserTicketVO {
     private BigDecimal tkmoney;
     private Timestamp yxtime;
 
+    private Long dCount;
+    private Long xCount;   //券数量
+
+    public Long getdCount() {
+        return dCount;
+    }
+
+    public void setdCount(Long dCount) {
+        this.dCount = dCount;
+    }
+
+    public Long getxCount() {
+        return xCount;
+    }
+
+    public void setxCount(Long xCount) {
+        this.xCount = xCount;
+    }
+
     public Long getUkid() {
         return ukid;
     }

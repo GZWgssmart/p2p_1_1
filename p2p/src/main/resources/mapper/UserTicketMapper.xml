@@ -11,6 +11,9 @@
     </sql>
 
     <sql id="uTicket_query_criteria">
+        <if test="query != null and query.uid != '' and  query.uid != null">
+            and u.uid = #{query.uid}
+        </if>
         <if test="query != null and query.type != '' and  query.type != null">
             and t.type = #{query.type}
         </if>
@@ -29,7 +32,7 @@
         <if test="query != null and query.yxtime != '' and  query.yxtime != null">
             and t.tktime <![CDATA[<=]]> #{query.yxtime}
         </if>
-        <if test="query != null and query.status != '' and  query.status != null">
+        <if test="query != null and query.status != '' and query.status != null">
             and ut.status = #{query.status}
         </if>
     </sql>
@@ -47,10 +50,24 @@
         <include refid="uTicket_query_criteria"/>
     </select>
 
+    <select id="getCount" resultType="long">
+        select count(ut.ukid)
+        <include refid="uTicket_query_common"/>
+        and u.uid = #{uid}
+        and t.type = #{type}
+    </select>
+
+    <select id="getTicket" resultType="com.gs.vo.UserTicketVO">
+        select ut.ukid, t.type, t.tkmoney
+        <include refid="uTicket_query_common"/>
+        and u.uid = #{uid}
+        and ut.status = #{status}
+    </select>
+
     <insert id="save" parameterType="userTicket">
         <![CDATA[
-            insert into t_userticket(uid, kid, tktime)
-            values(#{uid}, #{kid}, #{tktime})
+            insert into t_userticket(uid, kid, tktime, status)
+            values(#{uid}, #{kid}, #{tktime}, #{status})
         ]]>
     </insert>
 

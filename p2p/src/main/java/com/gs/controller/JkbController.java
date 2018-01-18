@@ -6,9 +6,11 @@ import com.gs.common.Pager;
 import com.gs.common.PathUtils;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.query.JkbQuery;
+import com.gs.query.UserTicketQuery;
 import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
 import com.gs.vo.JkbVO;
+import com.gs.vo.UserTicketVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,6 +52,8 @@ public class JkbController {
     private JklxService jklxService;
     @Autowired
     private SwayService swayService;
+    @Autowired
+    private UserTicketService userTicketService;
 
     //进入申请借款页面
     @RequestMapping("/jkb_page")
@@ -218,6 +222,11 @@ public class JkbController {
             UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(user.getUid());
             request.setAttribute("userMoney",userMoney);
             request.setAttribute("pwd",user.getZpwd());
+
+            UserTicketVO userTicketVO = new UserTicketVO();
+            List<UserTicketVO> userTicketVOList = userTicketService.getTicket(user.getUid(),1L);
+            System.out.println(userTicketVOList.get(0).getType());
+            request.setAttribute("userTicketVOList",userTicketVOList);
         }
         request.setAttribute("jkb",jkb);
         return "jkb/jkb_look";

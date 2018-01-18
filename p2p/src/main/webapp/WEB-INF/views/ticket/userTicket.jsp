@@ -28,8 +28,8 @@
         <th data-options="field:'phone',width:100">用户手机号</th>
         <th data-options="field:'type',formatter:qtype,width:100">优惠券类型</th>
         <th data-options="field:'tkmoney',width:100">优惠金额</th>
-        <th data-options="field:'tktime',width:150,formatter:formatDate">领券时间</th>
-        <th data-options="field:'yxtime',width:150,formatter:formatDate">券有效期</th>
+        <th data-options="field:'yxtime',width:150,formatter:formatDate">领券时间</th>
+        <th data-options="field:'tktime',width:150,formatter:formatDate">券有效期</th>
     </tr>
     </thead>
 </table>
@@ -75,11 +75,13 @@
     });
 
     function qtype(value,row,index) {
-        if(value == 0){
-            return '现金券';
-        }else if(value == 1){
+        if(value == 1){
             return '代金券';
         }else if(value == 2){
+            return '现金券';
+        }else if(value == 3){
+            return '加息券';
+        }else if(value == 4) {
             return '体验金';
         }
         return value;

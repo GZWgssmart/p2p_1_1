@@ -131,7 +131,22 @@
             </div>
             <div class="quan">
                 <select id="selectQuan">
-                    <option value="0">当前没有可用的优惠券</option>
+                    <c:if test="${userTicketVOList==null}">
+                        <option value="0">当前没有可用的优惠券</option>
+                    </c:if>
+                    <c:if test="${userTicketVOList != null}">
+                        <c:forEach items="${userTicketVOList}" var="utl">
+                            <c:if test="${utl.type==1}">
+                                <option value="${utl.type}">代金券</option>
+                            </c:if>
+                            <c:if test="${utl.type==2}">
+                                <option value="${utl.type}">现金券</option>
+                            </c:if>
+                            <c:if test="${utl.type==3}">
+                                <option value="${utl.type}">加息券</option>
+                            </c:if>
+                        </c:forEach>
+                    </c:if>
                 </select>
                 <a href="<%=path%>/jkb/calc" class="icon icon-cal" id="calculator">详细收益明细</a>
             </div>

@@ -3,16 +3,15 @@ package com.gs.controller;
 import com.gs.bean.DxModel;
 import com.gs.bean.User;
 import com.gs.bean.UserMoney;
+import com.gs.bean.UserTicket;
 import com.gs.common.CheckCodeUtils;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
 import com.gs.common.SendCode;
 import com.gs.enums.ControllerStatusEnum;
-import com.gs.service.DxModelService;
-import com.gs.service.RecommendService;
-import com.gs.service.UserMoneyService;
-import com.gs.service.UserService;
+import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
+import com.gs.vo.UserTicketVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 创建类名：UserController
@@ -43,6 +45,9 @@ public class UserController {
 
     @Autowired
     private RecommendService recommendService;
+
+    @Autowired
+    private UserTicketService userTicketService;
 
     public String msgCode;
 
@@ -172,6 +177,16 @@ public class UserController {
         UserMoney userMoney = new UserMoney();
         userMoney.setUid(user.getUid());
         userMoneyService.save(userMoney);
+
+        UserTicket userTicket = new UserTicket();  //注册时送券
+        userTicket.setUid(user.getUid());
+        userTicket.setKid(1L);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Calendar.getInstance().getTime());
+        userTicket.setTktime(calendar.getTime());
+        userTicket.setStatus(1);
+        userTicketService.save(userTicket);
+
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_SAVE_SUCCESS);
         return statusVO;
     }
@@ -278,6 +293,14 @@ public class UserController {
         User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
         UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(user.getUid());
         request.setAttribute("userMoney",userMoney);
+
+        Long dCount = userTicketService.getCount(user.getUid(),1L);
+        Long xCount = userTicketService.getCount(user.getUid(),2L);
+        UserTicketVO ut = new UserTicketVO();
+        ut.setdCount(dCount);
+        ut.setxCount(xCount);
+        request.setAttribute("ut",ut);
+
         return "user/user_money";
     }
 

@@ -92,7 +92,7 @@ public class UserTicketController {
             userTicketQuery.setUid(user.getUid());
             userTicketQuery.setType(type);
             userTicketQuery.setStatus(status);
-            pager =  userTicketService.listPagerCriteria(userTicketQuery.getCurPage(),4,userTicketQuery);
+            pager = userTicketService.listPagerCriteria(userTicketQuery.getCurPage(),4,userTicketQuery);
         }catch (Exception e){
             e.printStackTrace();
         }
