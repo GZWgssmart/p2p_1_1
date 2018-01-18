@@ -54,6 +54,10 @@ public class JkbController {
     private SwayService swayService;
     @Autowired
     private UserTicketService userTicketService;
+    @Autowired
+    private LetterService letterService;
+    @Autowired
+    private UserService userService;
 
     //进入申请借款页面
     @RequestMapping("/jkb_page")
@@ -185,14 +189,14 @@ public class JkbController {
     public String jkbListPage(HttpSession session, HttpServletRequest request){
         return "jkb/jkb_listPage";
     }
-    //后台借款审核
+    //后台借款审核页面
     @RequestMapping("/jkb_list")
     @ResponseBody
-    public Pager jkbList(int page, int rows, JkbQuery jkbQuery) {
+    public Pager jkbList(HttpSession session,int page, int rows, JkbQuery jkbQuery) {
         jkbQuery.setState((byte)1);
         return borrowApplyService.listPagerCriteria(page, rows, jkbQuery);
     }
-    //借款
+    //借款审核
     @RequiresPermissions("jkb:shenhe")
     @RequestMapping("/shenhe")
     @ResponseBody
@@ -204,6 +208,17 @@ public class JkbController {
         Date date = new Timestamp(cal.getTime().getTime());
         borrowApply.setTime(date);
         borrowApplyService.updateState2(borrowApply);
+        Letter letter = new Letter();
+        if(hUser != null) {
+            letter.setHid(hUser.getHuid());
+            letter.setState(Byte.valueOf("0"));
+            User user =  (User) userService.getById(borrowApply.getUid());
+            letter.setPhone(user.getPhone());
+            letter.setContent("恭喜您！您此次借款金额为："+borrowApply.getMoney()+"元，已审核成功！");
+            letter.setTitle("借款成功！");
+            letter.setDate(Calendar.getInstance().getTime().toString());
+            letterService.save(letter);
+        }
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_ADUIT_SUCCESS);
         return statusVO;
     }

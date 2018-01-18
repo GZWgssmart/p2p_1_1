@@ -118,8 +118,9 @@ public class UserController {
             DxModel dxModel=new DxModel();
 //            String content= SendCode.sendsms(phone)+"";
             String content = "000000";
-            dxModel.setContent(content);
-            msgCode = content;
+            String content1="您的验证码是：" + content + "。请不要把验证码泄露给其他人。";
+            dxModel.setContent(content1);
+            msgCode = content1;
             dxModelService.save(dxModel);
         } catch (RuntimeException e) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
@@ -136,8 +137,9 @@ public class UserController {
     @RequestMapping("checkmsgCode")
     @ResponseBody
     public ControllerStatusVO checkmsgCode(String smsCode){
+        String content1="您的验证码是：" + smsCode + "。请不要把验证码泄露给其他人。";
         ControllerStatusVO statusVO = null;
-        if (smsCode.equals(msgCode)) {
+        if (content1.equals(msgCode)) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_SUCCESS);
         } else {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
