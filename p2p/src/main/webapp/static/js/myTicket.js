@@ -157,7 +157,7 @@ function xtasteData(){
                 '</div>'+
                 '<div class="text"><p class="date">有效期至'+formatDate(userTicketVO.tktime)+'</p></div>'+
                 '<div class="taste-bg-r">'+
-                '<a href="investlist.html" class="taste-btn">立即使用</a>'+
+                '<a target="_blank" href="/detail/page" class="taste-btn">立即使用</a>'+
                 '</div>'+
                 '</div>'
             return xtastHtml;
@@ -257,7 +257,7 @@ function jtasteData(){
                 '<p>有效期至'+formatDate(userTicketVO.tktime)+'</p>'+
                 '</div>'+
                 '<div class="taste-bg-r">'+
-                '<a href="investlist.html" class="taste-btn">立即使用</a>'+
+                '<a target="_blank" href="/detail/page" class="taste-btn">立即使用</a>'+
                 '</div></div>'
             return jtastHtml;
         }

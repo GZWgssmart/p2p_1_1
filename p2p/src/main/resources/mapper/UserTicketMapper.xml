@@ -58,7 +58,7 @@
     </select>
 
     <select id="getTicket" resultType="com.gs.vo.UserTicketVO">
-        select ut.ukid, t.type, t.tkmoney
+        select ut.ukid, t.kid, t.type, t.tkmoney
         <include refid="uTicket_query_common"/>
         and u.uid = #{uid}
         and ut.status = #{status}
