@@ -51,9 +51,9 @@ public class RecommendController {
             if(param.getCurPage() != 0){
                 param.setUid(user.getUid());
                 return recommendService.listPagerCriteria(param.getCurPage(), 8, param);
-            }else if(page != null && rows != null) {
-                return recommendService.listPagerCriteria(page, rows, param);
             }
+        }else if(page != null && rows != null) {
+            return recommendService.listPagerCriteria(page, rows, param);
         }
 
         return null;
