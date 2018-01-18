@@ -55,7 +55,6 @@ public class LettlerControler {
         return statusVO;
     }
 
-    @RequiresPermissions("letter:delete")
     @RequestMapping("delete")
     @ResponseBody
     public ControllerStatusVO LetterRemove(Long lid,String ids) {
@@ -75,7 +74,6 @@ public class LettlerControler {
     }
 
 
-    @RequiresPermissions("letter:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO LetterUpdate(Letter letter,String ids,Byte state) {

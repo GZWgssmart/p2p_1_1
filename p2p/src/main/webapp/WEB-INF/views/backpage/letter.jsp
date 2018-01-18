@@ -33,7 +33,9 @@
 				<th data-options="field:'title',width:150">标题</th>
 				<th data-options="field:'content',width:300">内容</th>
 				<th data-options="field:'date',width:200,formatter:formatDate">时间</th>
-				<th data-options="field:'make',width:200,formatter:LetterMack">操作</th>
+				<shiro:hasPermission name="letter:update,letter:delete">
+					<th data-options="field:'make',width:200,formatter:LetterMack">操作</th>
+				</shiro:hasPermission>
 			</tr>
 		</thead>
 	</table>

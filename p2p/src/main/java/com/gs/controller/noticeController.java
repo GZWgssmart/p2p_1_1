@@ -68,7 +68,6 @@ public class noticeController {
         return statusVO;
     }
 
-    @RequiresPermissions("notice:delete")
     @RequestMapping("delete")
     @ResponseBody
     public ControllerStatusVO NoticeDeletePage(Long nid) {
@@ -80,7 +79,6 @@ public class noticeController {
         return statusVO;
     }
 
-    @RequiresPermissions("notice:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO NoticeUpdatePage(Notice notice) {
