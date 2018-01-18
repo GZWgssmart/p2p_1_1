@@ -48,12 +48,18 @@
 		</div>
 		<div title="资金管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/userMoney/page"
-					   class="site-navi-tab">用户资金管理</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/tzb/htzb"
-					   class="site-navi-tab">用户投资管理</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/bank/huserpage"
-					   class="site-navi-tab">银行卡管理</a></li>
+				<shiro:hasPermission name="userMoney:page">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/userMoney/page"
+									   class="site-navi-tab">用户资金管理</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="tzb:htzb">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/tzb/htzb"
+									   class="site-navi-tab">用户投资管理</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="bank:huserpage">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/bank/huserpage"
+									   class="site-navi-tab">银行卡管理</a></li>
+				</shiro:hasPermission>
 				<shiro:hasPermission name="logczz:backcz">
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/logczz/backcz"
 						   class="site-navi-tab">充值记录</a></li>
@@ -74,10 +80,14 @@
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/borrowApply/page"
 						   class="site-navi-tab">全部借款</a></li>
 				</shiro:hasPermission>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/borrowApply/hhkb_list"
-					   class="site-navi-tab">全部还款</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/hkb/hhkb_state"
-					   class="site-navi-tab">逾期借款</a></li>
+				<shiro:hasPermission name="borrowApply:hhkb_list">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/borrowApply/hhkb_list"
+									   class="site-navi-tab">全部还款</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="hkb:hkb_state">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/hkb/hhkb_state"
+									   class="site-navi-tab">逾期借款</a></li>
+				</shiro:hasPermission>
 				<shiro:hasPermission name="sway:sway">
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/sway/sway"
 						   class="site-navi-tab">还款方式</a></li>
@@ -94,26 +104,34 @@
 		</div>
 		<div title="宣传管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/dynamic/page"
-					   class="site-navi-tab">公司动态</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/media/page"
-					   class="site-navi-tab">媒体报道</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/home/page"
-					   class="site-navi-tab">首页信息管理</a></li>
+				<shiro:hasPermission name="dynamic:page">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/dynamic/page"
+									   class="site-navi-tab">公司动态</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="media:page">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/media/page"
+									   class="site-navi-tab">媒体报道</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="home:page">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/home/page"
+									   class="site-navi-tab">首页信息管理</a></li>
+				</shiro:hasPermission>
 				<shiro:hasPermission name="dxModel:dxModel">
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/dxModel/dxModel"
 						   class="site-navi-tab">短信模板管理</a></li>
 				</shiro:hasPermission>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/notice/page"
-					   class="site-navi-tab">公告管理</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/friend/page"
-					   class="site-navi-tab">合作伙伴</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">友情链接</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/letter/page"
-					   class="site-navi-tab">站内信管理</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">轮播图管理</a></li>
+				<shiro:hasPermission name="notice:page">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/notice/page"
+									   class="site-navi-tab">公告管理</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="friend:page">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/friend/page"
+									   class="site-navi-tab">合作伙伴</a></li>
+				</shiro:hasPermission>
+				<shiro:hasPermission name="letter:page">
+					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/letter/page"
+									   class="site-navi-tab">站内信管理</a></li>
+				</shiro:hasPermission>
 				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
 					   class="site-navi-tab">活动管理</a></li>
 				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
@@ -135,7 +153,7 @@
 								   class="site-navi-tab">用户认证审核</a></li>
 			</ul>
 		</div>
-		<shiro:hasRole name="超级管理员">
+		<shiro:hasAnyRoles name="超级管理员,普通管理员">
 			<div title="管理员管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
@@ -144,7 +162,7 @@
 						   class="site-navi-tab">员工列表</a></li>
 				</ul>
 			</div>
-		</shiro:hasRole>
+		</shiro:hasAnyRoles>
 
 		<shiro:hasAnyRoles name="超级管理员,普通管理员">
 			<div title="权限管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">

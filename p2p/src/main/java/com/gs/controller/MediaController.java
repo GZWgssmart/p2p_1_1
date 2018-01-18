@@ -6,6 +6,7 @@ import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.MediaService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ public class MediaController {
     @Autowired
     private MediaService mediaService;
 
+    //shiro权限注解
+    @RequiresPermissions("media:page")
     @RequestMapping("page")
     public String page() {
         return "media/media";
@@ -35,6 +38,8 @@ public class MediaController {
     public Pager pagerCriteria(int page, int rows, Media media){
         return mediaService.listPagerCriteria(page, rows, media);
     }
+
+    @RequiresPermissions("media:save")
     @RequestMapping(value="save")
     @ResponseBody
     public ControllerStatusVO save(HttpServletRequest request, Media media, MultipartFile file) {
@@ -50,6 +55,8 @@ public class MediaController {
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS) ;
         return statusVO;
     }
+
+    @RequiresPermissions("media:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(Media media,HttpServletRequest request,MultipartFile file1){

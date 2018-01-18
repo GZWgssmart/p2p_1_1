@@ -5,6 +5,7 @@ import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.noticeService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ public class noticeController {
     @Autowired
     private noticeService noticeService;
 
+    //shiro权限注解
+    @RequiresPermissions("notice:page")
     @RequestMapping("page")
     public String showNoticePage() {
         return "backpage/notice";
@@ -48,6 +51,7 @@ public class noticeController {
         return pager;
     }
 
+    @RequiresPermissions("notice:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO NoticeSavePage(Notice notice) {
@@ -64,6 +68,7 @@ public class noticeController {
         return statusVO;
     }
 
+    @RequiresPermissions("notice:delete")
     @RequestMapping("delete")
     @ResponseBody
     public ControllerStatusVO NoticeDeletePage(Long nid) {
@@ -75,6 +80,7 @@ public class noticeController {
         return statusVO;
     }
 
+    @RequiresPermissions("notice:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO NoticeUpdatePage(Notice notice) {

@@ -12,6 +12,7 @@ import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.BankCardService;
 import com.gs.service.UserService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ public class BankCardController {
 
     @Autowired
     private UserService userService;
+
 
     @RequestMapping("page")
     public String showPage() {
@@ -94,9 +96,10 @@ public class BankCardController {
             }
         }
         return pager;
-
     }
 
+    //shiro权限注解
+    @RequiresPermissions("bank:huserpage")
     @RequestMapping("huserpage")
     public String UsershowPage() {
         return "backpage/bank";

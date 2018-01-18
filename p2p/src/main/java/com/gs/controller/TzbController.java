@@ -10,6 +10,7 @@ import com.gs.service.LogMoneyService;
 import com.gs.service.TzbService;
 import com.gs.service.UserMoneyService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -100,6 +101,8 @@ public class TzbController {
 
     }
     //后台投资列表
+    //shiro权限注解
+    @RequiresPermissions("tzb:htzb")
     @RequestMapping("/htzb")
     public String HTzb(){
         return "tzb/htzb";

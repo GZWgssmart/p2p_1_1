@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 		 pageEncoding="utf-8"%>
 <%
@@ -35,13 +36,17 @@
 		<th data-options="field:'title',width:150">标题</th>
 		<th data-options="field:'content',width:550">内容</th>
 		<th data-options="field:'date',width:150,formatter:formatDate">时间</th>
-		<th data-options="field:'make',width:350,formatter:NoMack">操作</th>
+		<shiro:hasPermission name="notice:update,notice:del">
+			<th data-options="field:'make',width:350,formatter:NoMack">操作</th>
+		</shiro:hasPermission>
 	</tr>
 	</thead>
 </table>
 
 <div id="tb" style="height: auto">
-	<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">添加</a>
+	<shiro:hasPermission name="notice:save">
+		<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">添加</a>
+	</shiro:hasPermission>
 	<div>
 		<form id="searchForm">
 			<input class="easyui-textbox" name="title"

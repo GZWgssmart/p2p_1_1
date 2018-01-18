@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%
@@ -39,8 +40,12 @@
 	</table>
 	
 	<div id="tb" style="height: auto">
-		<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">添加</a>
-		<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditWin('editWin','list','editForm',prefix)">修改</a>
+		<shiro:hasPermission name="dynamic:save">
+			<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">添加</a>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="dynamic:update">
+			<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditWin('editWin','list','editForm',prefix)">修改</a>
+		</shiro:hasPermission>
 		<div>
 			<form id="searchForm">
 				<input class="easyui-datetimebox" name="createTime"

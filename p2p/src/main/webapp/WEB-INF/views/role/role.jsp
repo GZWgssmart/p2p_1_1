@@ -73,7 +73,7 @@
                     <td>
                         <input style="width:360px;" class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入角色描述',
                                required:true,
-                               validType:['length[2,20]'],
+                               validType:['length[2,25]'],
                         novalidate:true" name="content"/>
                     </td>
                 </tr>
@@ -118,7 +118,7 @@
                     <td>
                         <input style="width:360px;" class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入角色名称',
 						required:true,
-						validType:['length[2,20]'],
+						validType:['length[2,30]'],
 						novalidate:true" name="rname"/>
                     </td>
                 </tr>
@@ -127,7 +127,7 @@
                     <td>
                         <input style="width:360px;" class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入角色描述',
                                required:true,
-                               validType:['length[2,20]'],
+                               validType:['length[2,30]'],
                         novalidate:true" name="content"/>
                     </td>
                 </tr>

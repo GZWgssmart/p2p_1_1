@@ -8,6 +8,7 @@ import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.DynamicService;
 import com.gs.service.HomeService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,8 @@ public class HomeController {
     @Autowired
     private HomeService homeService;
 
+    //shiro权限注解
+    @RequiresPermissions("home:page")
     @RequestMapping("page")
     public String page() {
         return "home/home";
@@ -34,6 +37,8 @@ public class HomeController {
     public Pager pagerCriteria(int page, int rows, Home home){
        return homeService.listPagerCriteria(page, rows, home);
     }
+
+    @RequiresPermissions("home:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(HttpServletRequest request, Home home,
@@ -66,6 +71,8 @@ public class HomeController {
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS) ;
         return statusVO;
     }
+
+    @RequiresPermissions("home:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(HttpServletRequest request, Home home,

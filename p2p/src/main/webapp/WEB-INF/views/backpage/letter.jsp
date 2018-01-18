@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%
@@ -38,7 +39,9 @@
 	</table>
 	
 	<div id="tb" style="height: auto">
-		<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">添加</a>
+		<shiro:hasPermission name="letter:save">
+			<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">添加</a>
+		</shiro:hasPermission>
 		<div>
 			<form id="searchForm">
 				<input class="easyui-textbox" name="title"

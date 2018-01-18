@@ -10,6 +10,7 @@ import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.LetterService;
 import com.gs.service.noticeService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,8 @@ public class LettlerControler {
     @Autowired
     private LetterService letterService;
 
+    //shiro权限注解
+    @RequiresPermissions("letter:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO LetterSave(Letter letter, HttpSession session) {
@@ -52,6 +55,7 @@ public class LettlerControler {
         return statusVO;
     }
 
+    @RequiresPermissions("letter:delete")
     @RequestMapping("delete")
     @ResponseBody
     public ControllerStatusVO LetterRemove(Long lid,String ids) {
@@ -71,6 +75,7 @@ public class LettlerControler {
     }
 
 
+    @RequiresPermissions("letter:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO LetterUpdate(Letter letter,String ids,Byte state) {
@@ -123,6 +128,7 @@ public class LettlerControler {
         return null;
     }
 
+    @RequiresPermissions("letter:page")
     @RequestMapping("page")
     public String LetterSelectShowPage() {
         return "backpage/letter";

@@ -6,6 +6,7 @@ import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.DynamicService;
 import com.gs.vo.ControllerStatusVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ public class DynamicController {
     @Autowired
     private DynamicService dynamicService;
 
+    //shiro权限注解
+    @RequiresPermissions("dynamic:page")
     @RequestMapping("page")
     public String page() {
         return "dynamic/dynamic";
@@ -44,6 +47,7 @@ public class DynamicController {
         return "dynamic/page";
     }
 
+    @RequiresPermissions("dynamic:save")
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(HttpServletRequest request, Dynamic dynamic, MultipartFile file){
@@ -60,6 +64,7 @@ public class DynamicController {
         return statusVO;
     }
 
+    @RequiresPermissions("dynamic:update")
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(Dynamic dynamic,HttpServletRequest request,MultipartFile file1){

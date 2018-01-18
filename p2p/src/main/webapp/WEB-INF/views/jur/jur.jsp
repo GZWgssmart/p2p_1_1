@@ -70,7 +70,7 @@
                     <td>
                         <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入权限url',
 						required:true,
-						validType:['length[2,20]'],
+						validType:['length[2,30]'],
 						novalidate:true" name="jurl"/>
                     </td>
                 </tr>
@@ -79,7 +79,7 @@
                     <td>
                         <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入权限描述',
                                required:true,
-                               validType:['length[2,20]'],
+                               validType:['length[2,30]'],
                         novalidate:true" name="content"/>
                     </td>
                 </tr>
