@@ -137,13 +137,13 @@
                     <c:if test="${userTicketVOList.size() != 0}">
                         <c:forEach items="${userTicketVOList}" var="utl">
                             <c:if test="${utl.type==1}">
-                                <option value="${utl.type}">代金券</option>
+                                <option value="${utl.tkmoney}">代金券-${utl.tkmoney}元</option>
                             </c:if>
                             <c:if test="${utl.type==2}">
-                                <option value="${utl.type}">现金券</option>
+                                <option value="${utl.tkmoney}">现金券-${utl.tkmoney}元</option>
                             </c:if>
                             <c:if test="${utl.type==3}">
-                                <option value="${utl.type}">加息券</option>
+                                <option value="${utl.tkmoney}">加息券-${utl.tkmoney}元</option>
                             </c:if>
                         </c:forEach>
                     </c:if>
