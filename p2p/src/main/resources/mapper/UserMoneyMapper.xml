@@ -57,7 +57,7 @@
     </insert>
 
     <select id="listPager" resultType="com.gs.vo.UserMoneyVO">
-        select um.*,u.rname as rname from t_usermoney um, t_user u where um.uid = u.uid limit #{pager.beginIndex}, #{pager.pageSize}
+        select um.*,u.uname as uname from t_usermoney um, t_user u where um.uid = u.uid limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="count" resultType="long">

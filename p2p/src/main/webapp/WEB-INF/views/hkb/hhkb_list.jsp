@@ -61,14 +61,6 @@
     var contextPath = localObj.pathname.split("/")[1];
     $(function() {
         setPagination("list");
-        $("#state").bind("change",function(){
-            if($("#state").val()==2){
-                $("#asdf").show();
-            }else{
-                $("#asdf").hide();
-            }
-        })
-
     });
     function caozuo() {
         var str = '<a href="javascript:void(0);" src="'+contextPath+'/hkb/hhkb" class="site-navi-tab">查看还款</a>';

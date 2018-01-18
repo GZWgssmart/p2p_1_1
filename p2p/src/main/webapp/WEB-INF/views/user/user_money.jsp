@@ -39,10 +39,9 @@
                             <p class="name">${user.phone}</p>
                             <p class="safety">安全等级： <span id="safeLevel">高</span></p>
                             <p class="center-icon">
-                                <a href="#safe" class="icon icon-c-phone"></a>
-                                <a href="#safe" class="icon icon-c-mail"></a>
+                                <a href="<%=path %>/user/user_safe" class="icon icon-c-phone"></a>
+                                <a href="<%=path %>/user/user_safe" class="icon icon-c-mail"></a>
                             </p>
-                            <p id="registpay"><a href="javascript:;">登录汇付</a></p>
                             <p id="reset"></p>
                         </div>
                         <div class="center-user">
