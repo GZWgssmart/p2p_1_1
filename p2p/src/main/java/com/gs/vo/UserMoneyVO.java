@@ -28,7 +28,7 @@ public class UserMoneyVO {
 
     private BigDecimal jlmoney;//奖励金额
 
-    private String rname;
+    private String uname;
 
     public Long getUmid() {
         return umid;
@@ -102,11 +102,11 @@ public class UserMoneyVO {
         this.jlmoney = jlmoney;
     }
 
-    public String getRname() {
-        return rname;
+    public String getUname() {
+        return uname;
     }
 
-    public void setRname(String rname) {
-        this.rname = rname;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 }

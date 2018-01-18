@@ -22,7 +22,7 @@
     <thead>
     <tr>
         <th data-options="field:'umid',width:80,checkbox:true">编号</th>
-        <th data-options="field:'rname',width:100">用户昵称</th>
+        <th data-options="field:'uname',width:100">用户昵称</th>
         <th data-options="field:'zmoney',width:100">总资产</th>
         <th data-options="field:'kymoney',width:100">可用余额</th>
         <th data-options="field:'symoney',width:100">收益总额</th>

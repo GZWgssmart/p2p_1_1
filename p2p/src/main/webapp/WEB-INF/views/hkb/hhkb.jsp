@@ -44,13 +44,6 @@
 <script>
     $(function() {
         setPagination("list");
-        $("#state").bind("change",function(){
-            if($("#state").val()==2){
-                $("#asdf").show();
-            }else{
-                $("#asdf").hide();
-            }
-        })
 
     });
     function getstate(state) {
