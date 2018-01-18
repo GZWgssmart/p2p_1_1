@@ -131,10 +131,10 @@
             </div>
             <div class="quan">
                 <select id="selectQuan">
-                    <c:if test="${userTicketVOList==null}">
+                    <c:if test="${userTicketVOList.size() == 0}">
                         <option value="0">当前没有可用的优惠券</option>
                     </c:if>
-                    <c:if test="${userTicketVOList != null}">
+                    <c:if test="${userTicketVOList.size() != 0}">
                         <c:forEach items="${userTicketVOList}" var="utl">
                             <c:if test="${utl.type==1}">
                                 <option value="${utl.type}">代金券</option>

@@ -225,7 +225,6 @@ public class JkbController {
 
             UserTicketVO userTicketVO = new UserTicketVO();
             List<UserTicketVO> userTicketVOList = userTicketService.getTicket(user.getUid(),1L);
-            System.out.println(userTicketVOList.get(0).getType());
             request.setAttribute("userTicketVOList",userTicketVOList);
         }
         request.setAttribute("jkb",jkb);
