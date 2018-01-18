@@ -38,6 +38,8 @@
        iconCls="icon-remove" plain="true">删除</a>
     -->
     <div>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search"
+           onclick="openEditWin('editWin', 'list', 'editForm')">反馈详情</a>
         <form id="searchForm">
             <input class="easyui-textbox easyui-validatebox"
                    data-options="prompt:'请输入内容关键字',
@@ -49,6 +51,23 @@
                iconCls="icon-search" id="search" onclick="doSearch('list', 'searchForm');">搜索</a>
         </form>
     </div>
+
+    <div id="editWin" class="easyui-window large_win" data-options="title:'查看用户反馈详情', closed:true">
+        <form id="editForm">
+            <table>
+                <tr>
+                    <td>反馈内容：</td>
+                    <td>
+                        <div style="margin:10px 0;"></div>
+                        <input class="easyui-textbox" data-options="multiline:true"
+                               readonly="readonly" name="content" style="width:400px;height:150px;">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+
 </div>
 
 </body>
@@ -57,6 +76,18 @@
     $(function (){
         setPagination("list");
     });
+
+    function openEditWin(winId, listId, formId) {
+        var row = $("#" + listId).datagrid("getSelected");
+        if (row) {
+            row.tktime = formatDate(row.tktime);
+            $("#" + formId).form("load", row);
+            openWin(winId);
+        } else {
+            showInfoAlert("请选择需要查看的数据！");
+        }
+    }
+
 
     function deleteOption() {
         var selectedRows = $('#list').datagrid('getSelections');
