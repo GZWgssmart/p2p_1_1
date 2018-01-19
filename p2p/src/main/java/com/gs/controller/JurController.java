@@ -107,8 +107,12 @@ public class JurController {
     @ResponseBody
     public ControllerStatusVO removeById(@PathVariable("jid") Long jid){
         ControllerStatusVO statusVO = null;
-        jurService.removeById(jid);
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.ROLE_USER_DEL_SUCCESS);
+        try{
+            jurService.removeById(jid);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.JUR_DEL_SUCCESS);
+        }catch(RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.JUR_DEL_FAIL);
+        }
         return statusVO;
     }
 }

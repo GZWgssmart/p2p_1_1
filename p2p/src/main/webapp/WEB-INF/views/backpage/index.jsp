@@ -22,6 +22,7 @@
 <div data-options="region:'north'" style="height: 60px;">
 	<div id="logo"><img src="<%=path %>/static/images/logo.png" /></div>
 	<div id="wel_msg">欢迎您：${huser.phone}&nbsp;&nbsp;
+		<a href="javascript:void(0);" onclick="openWin('updatepwdWin')">修改密码</a>&nbsp;&nbsp;
 		<a href="<%=path %>/huser/down">安全退出</a>
 	</div>
 	<p class="clear"></p>
@@ -156,11 +157,15 @@
 		<shiro:hasAnyRoles name="超级管理员,普通管理员">
 			<div title="管理员管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 				<ul>
-					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-						   class="site-navi-tab">管理员列表</a></li>
-					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/logger/logger_page"
-						   class="site-navi-tab">员工列表</a></li>
-				</ul>
+					<shiro:hasRole name="超级管理员">
+							<li class="asd"><a href="javascript:void(0);" src="<%=path%>/huser/page"
+								class="site-navi-tab">管理员列表</a></li>
+					</shiro:hasRole>
+					<shiro:hasAnyRoles name="超级管理员,普通管理员">
+						<li class="asd"><a href="javascript:void(0);" src="<%=path%>/huser/page1"
+										   class="site-navi-tab">员工列表</a></li>
+					</shiro:hasAnyRoles>
+					</ul>
 			</div>
 		</shiro:hasAnyRoles>
 
@@ -193,6 +198,40 @@
 			待办任务
 		</div>
 	</div>
+</div>
+
+<div id="updatepwdWin" class="easyui-window normal_win" data-options="title:'用户修改密码', closed:true">
+	<form id="updatepwdForm">
+		<table>
+			<tr>
+				<td>旧密码:</td>
+				<td>
+					<input name="oldpwd" type="password" class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入旧密码',
+                               required:true,
+                        novalidate:true" id="oldpwd"/>
+				</td>
+			</tr>
+			<tr>
+				<td>新密码:</td>
+				<td>
+					<input name="newpwd" type="password" class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入新密码',
+                                   required:true,
+                            novalidate:true" id="newpwd"/>
+				</td>
+			</tr>
+			<tr>
+				<td>确认密码:</td>
+				<td>
+					<input name="newpwd1" type="password" class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入确认密码',
+                               required:true,
+                        novalidate:true" id="newpwd1"/>
+				</td>
+			</tr>
+			<tr>
+				<td><a class="easyui-linkbutton" onclick="updatepwd()">确认</a></td>
+			</tr>
+		</table>
+	</form>
 </div>
 
 <div id="mm" class="easyui-menu">

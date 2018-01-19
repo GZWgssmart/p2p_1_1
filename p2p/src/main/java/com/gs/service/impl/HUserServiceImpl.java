@@ -28,4 +28,14 @@ public class HUserServiceImpl extends AbstractBaseService implements HUserServic
     public HUser getByPhonePwd(String phone, String pwd) {
         return hUserDAO.getByPhonePwd(phone, pwd);
     }
+
+    //查询员工
+    @Override
+    public Pager listPagerCriteriaE(int pageNo,int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(hUserDAO.listPagerCriteriaE(pager, obj));
+        pager.setTotal(hUserDAO.countCriteriaE(obj));
+        return pager;
+    }
+
 }

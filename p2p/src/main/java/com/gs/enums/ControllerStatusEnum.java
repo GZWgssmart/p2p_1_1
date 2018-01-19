@@ -1,5 +1,7 @@
 package com.gs.enums;
 
+import com.gs.bean.HUser;
+
 /**
  * Created by Administrator on 2017/11/23.
  */
@@ -51,6 +53,17 @@ public enum ControllerStatusEnum {
     ROLE_USER_UPDATE_FAIL(213,"fail","角色用户修改失败"),
     ROLE_USER_DEL_SUCCESS(214,"ok","角色用户删除成功"),
     HUSER_LOGIN_UNAUTH(215,"fail","用户登录未授权"),
+
+    HUSER_SAVE_SUCCESS(216,"ok","后台用户新增成功,密码默认为123456！"),
+    HUSER_SAVE_FAIL(217,"fail","后台用户新增失败！"),
+    HUSER_UPDATE_SUCCESS(218,"ok","后台用户信息修改成功！"),
+    HUSER_UPDATE_FAIL(219,"fail","后台用户信息修改失败！"),
+    HUSER_DEL_SUCCESS(220,"ok","后台用户删除成功！"),
+    HUSER_DEL_FAIL(221,"fail","后台用户删除失败！"),
+    JUR_DEL_FAIL(224,"fail","权限删除失败！"),
+    HUSER_UPDATEPWD_SUCCESS(225,"ok","后台用户修改密码成功"),
+    HUSER_UPDATEPWD_FAIL(226,"fail","后台用户修改密码失败"),
+    HUSER_UPDATEPWD(227,"fail","旧密码输入错误，请重新输入"),
 
     BZ_SAVE_FAIL(1501, "error", "保存失败"),
     BZ_SAVE_SUCCESS(1502, "ok", "保存成功"),

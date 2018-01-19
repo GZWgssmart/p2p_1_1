@@ -904,4 +904,25 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
     return param;
 }
 
+function updatepwd(){
+    $(function(){
+        if($("#oldpwd").val()==""){
+            showInfoAlert("旧密码不能为空");
+            return false;
+        }else if($("#newpwd").val()==""){
+            showInfoAlert("新密码不能为空");
+            return false;
+        }else if($("#newpwd1").val()==""){
+            showInfoAlert("确认密码不能为空");
+            return false;
+        }else if($("#newpwd").val()!=$("#newpwd1").val()){
+            showInfoAlert("新密码与确认密码不一致")
+            return false;
+        }else{
+            edit('/huser/updatepwd', 'updatepwdForm', 'updatepwdWin', 'list');
+        }
+
+    });
+}
+
 

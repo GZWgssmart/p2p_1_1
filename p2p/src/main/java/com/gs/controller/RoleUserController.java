@@ -41,20 +41,6 @@ public class RoleUserController {
         return roleUserService.listPagerCriteria(page, rows, roleUserQuery);
     }
 
-    @RequiresPermissions("roleUser:save")
-    @RequestMapping("save")
-    @ResponseBody
-    public ControllerStatusVO save(RoleUser roleUser){
-        ControllerStatusVO statusVO = null;
-        try{
-            roleUserService.save(roleUser);
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.ROLE_USER_SAVE_SUCCESS);
-        }catch(RuntimeException e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.ROLE_USER_SAVE_FAIL);
-        }
-        return statusVO;
-    }
-
     @RequiresPermissions("roleUser:update")
     @RequestMapping("update")
     @ResponseBody
@@ -68,16 +54,5 @@ public class RoleUserController {
         }
         return statusVO;
     }
-
-    @RequiresPermissions("roleUser:remove")
-    @RequestMapping("remove/{ruid}")
-    @ResponseBody
-    public ControllerStatusVO removeById(@PathVariable("ruid") Long ruid){
-        ControllerStatusVO statusVO = null;
-        roleUserService.removeById(ruid);
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.JUR_DEL_SUCCESS);
-        return statusVO;
-    }
-
 
 }

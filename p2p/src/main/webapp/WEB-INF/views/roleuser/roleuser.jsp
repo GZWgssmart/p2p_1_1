@@ -29,12 +29,10 @@
     <thead>
     <tr>
         <th data-options="field:'ruid',width:80,checkbox:true">编号</th>
-        <th data-options="field:'rid',width:100">角色编号</th>
         <th data-options="field:'rname',width:100">角色名称</th>
-        <th data-options="field:'content',width:150">角色描述</th>
-        <th data-options="field:'huid',width:100">后台用户编号</th>
-        <th data-options="field:'phone',width:100">电话</th>
-        <th data-options="field:'huname',width:150">后台用户名</th>
+        <th data-options="field:'content',width:200">角色描述</th>
+        <th data-options="field:'phone',width:150">电话</th>
+        <th data-options="field:'huname',width:150">后台昵称</th>
         <th data-options="field:'email',width:150">邮箱地址</th>
     </tr>
     </thead>
@@ -42,14 +40,8 @@
 
 <div id="tb" style="height: auto">
     <div>
-        <shiro:hasPermission name="roleUser:save">
-            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin')">新增</a>
-        </shiro:hasPermission>
         <shiro:hasPermission name="roleUser:update">
             <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditWin('editWin', 'list', 'editForm')">修改</a>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="roleUser:remove">
-            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" onclick="del('list')">删除</a>
         </shiro:hasPermission>
         <form id="searchForm">
             <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入角色名',
@@ -63,32 +55,6 @@
         </form>
     </div>
 
-    <div id="addWin" class="easyui-window normal_win" data-options="title:'新增用户角色', closed:true">
-        <form id="addForm" enctype="multipart/form-data">
-            <table>
-                <tr>
-                    <td>角色名称:</td>
-                    <td>
-                        <input id="rid" class="easyui-combobox easyui-validatebox rid" data-options="prompt:'请选择角色',
-						required:true,
-						novalidate:true" name="rid"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>后台用户:</td>
-                    <td>
-                        <input id="huid" class="easyui-combobox easyui-validatebox huid" data-options="prompt:'请选择后台用户',
-                               required:true,
-                        novalidate:true" name="huid"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><a class="easyui-linkbutton" onclick="save('/roleUser/save', 'addForm', 'addWin', 'list');">确认</a></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-
     <div id="editWin" class="easyui-window normal_win" data-options="title:'编辑用户角色', closed:true">
         <form id="editForm">
             <input type="hidden" name="ruid" />
@@ -96,7 +62,7 @@
                 <tr>
                     <td>角色名称:</td>
                     <td>
-                        <input class="easyui-combobox easyui-validatebox rid" data-options="prompt:'请输入角色名称',
+                        <input class="easyui-combobox easyui-validatebox rid" data-options="prompt:'请选择角色名称',
 						required:true,
 						novalidate:true" name="rid"/>
                     </td>
@@ -104,7 +70,7 @@
                 <tr>
                     <td>后台用户:</td>
                     <td>
-                        <input class="easyui-combobox easyui-validatebox huid" data-options="prompt:'请输入角色描述',
+                        <input class="easyui-combobox easyui-validatebox huid" data-options="prompt:'请选择后台用户',
                                required:true,
                         novalidate:true" name="huid"/>
                     </td>
@@ -147,28 +113,6 @@
             openWin(winId);
         } else {
             showInfoAlert("请选择需要修改的数据");
-        }
-    }
-    function del(listId){
-        var rows = $("#" + listId).datagrid("getSelected");
-        if(rows){
-            if(confirm("你确定要删除此用户角色")){
-                $.post(
-                    "<%= path%>/roleUser/remove/"+ rows.ruid,
-                    function (data) {
-                        if(data.result==='ok'){
-                            window.location.href = contextPath + "/roleUser/page";
-                        }else{
-                            showInfoAlert("删除失败！");
-                        }
-                    },
-                    "json"
-                );
-            }else{
-                return false;
-            }
-        }else{
-            showInfoAlert("请选择你要删除的角色用户！")
         }
 
     }

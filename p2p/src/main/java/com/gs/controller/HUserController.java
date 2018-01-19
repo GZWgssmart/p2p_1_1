@@ -1,25 +1,34 @@
 package com.gs.controller;
 
 import com.gs.bean.HUser;
+import com.gs.bean.Role;
+import com.gs.bean.RoleUser;
 import com.gs.common.Combobox;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
+import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
+import com.gs.query.HUserQuery;
 import com.gs.service.HUserService;
+import com.gs.service.RoleUserService;
 import com.gs.vo.ControllerStatusVO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.net.www.http.Hurryable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -31,6 +40,10 @@ public class HUserController {
 
     @Autowired
     private HUserService hUserService;
+    @Autowired
+    private RoleUserService roleUserService;
+
+
 
     @RequestMapping("/login_page")
     public String login_page(){
@@ -107,5 +120,90 @@ public class HUserController {
         return comboboxList;
     }
 
+    //普通管理员查询
+    @RequestMapping("page")
+    public String Page(){
+        return "huser/huser";
+    }
 
+    @RequestMapping("pager_criteria")
+    @ResponseBody
+    public Pager pagerCriteria(int page, int rows, HUserQuery hUserQuery){
+        return hUserService.listPagerCriteria(page,rows,hUserQuery);
+    }
+
+    //后台员工查询
+    @RequestMapping("page1")
+    public String Page1(){
+        return "huser/huser1";
+    }
+
+    @RequestMapping("pager_criteria1")
+    @ResponseBody
+    public Pager pagerCriteria1(int page, int rows,HUserQuery hUserQuery){
+        return hUserService.listPagerCriteriaE(page,rows,hUserQuery);
+    }
+
+    @RequiresPermissions("roleUser:save")
+    @RequestMapping("save")
+    @ResponseBody
+    public ControllerStatusVO save(HUserQuery hUserQuery){
+        ControllerStatusVO statusVO = null;
+        try{
+            hUserQuery.setPwd(EncryptUtils.md5("123456"));
+            hUserService.save(hUserQuery);
+            roleUserService.save(hUserQuery);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_SAVE_SUCCESS);
+        }catch (RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_SAVE_FAIL);
+        }
+        return statusVO;
+    }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public ControllerStatusVO update(HUserQuery hUserQuery){
+        ControllerStatusVO statusVO = null;
+        try{
+            hUserService.update(hUserQuery);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_UPDATE_SUCCESS);
+        }catch(RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_UPDATE_FAIL);
+        }
+        return statusVO;
+    }
+
+    @RequiresPermissions("roleUser:del")
+    @RequestMapping("remove/{huid}")
+    @ResponseBody
+    public ControllerStatusVO removeById(@PathVariable("huid") Long huid){
+        ControllerStatusVO statusVO = null;
+        try{
+            roleUserService.removeById(huid);
+            hUserService.removeById(huid);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_DEL_SUCCESS);
+        }catch(RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_DEL_FAIL);
+        }
+        return statusVO;
+    }
+
+    @RequestMapping("updatepwd")
+    @ResponseBody
+    public ControllerStatusVO updatepwd(HttpSession session,String oldpwd,String newpwd){
+        ControllerStatusVO statusVO = null;
+        try{
+            HUser hUser = (HUser)session.getAttribute(Constants.HUSER_IN_SESSION);
+            if(EncryptUtils.md5(oldpwd) == hUser.getPwd() || EncryptUtils.md5(oldpwd).equals(hUser.getPwd())){
+                hUser.setPwd(EncryptUtils.md5(newpwd));
+                hUserService.update(hUser);
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_UPDATEPWD_SUCCESS);
+            }else{
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_UPDATEPWD);
+            }
+        }catch (RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HUSER_UPDATEPWD_FAIL);
+        }
+        return statusVO;
+    }
 }

@@ -16,7 +16,7 @@
 
     <delete id="removeById" parameterType="long">
         <![CDATA[
-        delete from t_roleuser where ruid = #{ruid}
+        delete from t_roleuser where huid = #{huid}
         ]]>
     </delete>
 
