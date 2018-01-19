@@ -5,10 +5,7 @@ import com.gs.common.Constants;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.query.TzbQuery;
-import com.gs.service.BorrowDetailService;
-import com.gs.service.LogMoneyService;
-import com.gs.service.TzbService;
-import com.gs.service.UserMoneyService;
+import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -33,6 +32,8 @@ public class TzbController {
 
     @Autowired
     private TzbService tzbService;
+    @Autowired
+    private LetterService letterService;
 
     @RequestMapping("/myTzb")
     public String myTzb(){
@@ -94,6 +95,16 @@ public class TzbController {
                 statusVO = ControllerStatusVO.status(ControllerStatusEnum.TZB_SAVE_FAIL);
                 return statusVO;
             }
+            Letter letter = new Letter();
+            letter.setHid(1L);
+            letter.setState(Byte.valueOf("0"));
+            letter.setPhone(user.getPhone());
+            letter.setContent("恭喜您！您投资的产品名为"+tzb.getCpname()+",此次投资金额为："+tzb.getMoney()+"元，请等待收益！");
+            letter.setTitle("投资成功！");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date = format.format(Calendar.getInstance().getTime());
+            letter.setDate(date);
+            letterService.save(letter);
             return tzbService.add(tzb);
         }
 

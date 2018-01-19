@@ -7,25 +7,9 @@
 
 
     <insert id="save" parameterType="letter">
-            insert into t_letter
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="uid != null">
-                uid,
-            </if>
-            <if test="phone != null and phone != ''">
-              phone,
-            </if>
-             hid, title, content, date, state
-        </trim>
-        <trim prefix=" values (" suffix=")" suffixOverrides=",">
-            <if test="uid != null">
-                #{uid},
-            </if>
-            <if test="phone != null and phone != ''">
-                #{phone},
-            </if>
-             #{hid},#{title},#{content},#{date},#{state}
-        </trim>
+            insert into t_letter (uid, phone, hid, title, content, date, state) values
+            (#{uid},#{phone},#{hid},#{title},#{content},#{date},#{state})
+
 
 </insert>
 

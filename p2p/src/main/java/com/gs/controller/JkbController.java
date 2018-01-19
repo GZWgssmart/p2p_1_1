@@ -214,9 +214,16 @@ public class JkbController {
             letter.setState(Byte.valueOf("0"));
             User user =  (User) userService.getById(borrowApply.getUid());
             letter.setPhone(user.getPhone());
-            letter.setContent("恭喜您！您此次借款金额为："+borrowApply.getMoney()+"元，已审核成功！");
-            letter.setTitle("借款成功！");
-            letter.setDate(Calendar.getInstance().getTime().toString());
+            if(borrowApply.getState() == 3) {
+                letter.setContent("恭喜您！您此次借款金额为："+borrowApply.getMoney()+"元，已审核成功！");
+                letter.setTitle("借款成功！");
+            }else if(borrowApply.getState() == 2) {
+                letter.setContent("对不起！您此次借款金额为："+borrowApply.getMoney()+"元，已审核但审核失败！");
+                letter.setTitle("借款失败！");
+            }
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dates = format.format(Calendar.getInstance().getTime());
+            letter.setDate(dates);
             letterService.save(letter);
         }
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_ADUIT_SUCCESS);
