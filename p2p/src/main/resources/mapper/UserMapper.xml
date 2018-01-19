@@ -7,14 +7,21 @@
     <!--登录验证-->
     <select id="getByPhonePwd" resultType="com.gs.bean.User">
         <![CDATA[
-        select uid, uname, upwd, phone from t_user where phone = #{phone} and upwd = #{upwd}
+        select uid, upwd, phone from t_user where phone = #{phone} and upwd = #{upwd}
         ]]>
     </select>
 
     <!--验证密码-->
     <select id="getByIdPassword" resultType="com.gs.bean.User">
         <![CDATA[
-        select upwd from t_user where uid = #{id}
+        select upwd, zpwd from t_user where uid = #{id}
+        ]]>
+    </select>
+
+    <!--获取用户信息-->
+    <select id="getUserById" resultType="com.gs.bean.User">
+        <![CDATA[
+          select uid, phone, upwd, uname, rname, email, idno, zpwd, isvip from t_user where uid = #{id}
         ]]>
     </select>
 
@@ -28,17 +35,26 @@
 			update t_user
 		]]>
         <set>
+            <if test="uname != null">
+                uname = #{uname},
+            </if>
             <if test="upwd != null and upwd != ''">
                 upwd = #{upwd},
             </if>
             <if test="phone != null">
                 phone = #{phone},
             </if>
+            <if test="idno != null">
+                idno = #{idno},
+            </if>
             <if test="zpwd != null">
                 zpwd = #{zpwd},
             </if>
             <if test="email != null">
                 email = #{email},
+            </if>
+            <if test="rname != null">
+                rname = #{rname},
             </if>
             <if test="face != null">
                 face = #{face},

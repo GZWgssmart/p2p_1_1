@@ -56,6 +56,11 @@
 <div class="login-footer">
     <p>版权所有 © 普金资本运营（赣州）有限公司 All rights reserved 备案确认书：赣ICP备16004010号</p>
 </div>
+<script>
+    if (window != top){
+        top.location.href = location.href;
+    }
+</script>
 <script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/jquery.js" ></script>
 <script type="text/javascript" src="<%=path%>/static/resources/front/v01/scripts/login.js" ></script>
 <script type="text/javascript" src="<%=path%>/static/resources/front/v01/src/libs/public.js"></script>

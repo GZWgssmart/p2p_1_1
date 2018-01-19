@@ -8,7 +8,7 @@ public class RzVip {
 
     private String xl;//学历
 
-    private Byte ism;//婚否（0已婚，1未婚，2单身）
+    private Byte ism;//婚否（1未婚, 2已婚，）
 
     private String bschool;//毕业学校
 
@@ -18,11 +18,13 @@ public class RzVip {
 
     private Integer age;//年龄
 
+    private byte ispass;//是否审核通过，1不通过，2通过
+
     private Long int1;
 
     private String str1;
 
-    public RzVip(Long rid, Long uid, String xl, Byte ism, String bschool, String addr, String work, Integer age, Long int1, String str1) {
+    public RzVip(Long rid, Long uid, String xl, Byte ism, String bschool, String addr, String work, Integer age, Byte ispass, Long int1, String str1) {
         this.rid = rid;
         this.uid = uid;
         this.xl = xl;
@@ -31,6 +33,7 @@ public class RzVip {
         this.addr = addr;
         this.work = work;
         this.age = age;
+        this.ispass = ispass;
         this.int1 = int1;
         this.str1 = str1;
     }
@@ -117,5 +120,13 @@ public class RzVip {
 
     public void setStr1(String str1) {
         this.str1 = str1 == null ? null : str1.trim();
+    }
+
+    public byte getIspass() {
+        return ispass;
+    }
+
+    public void setIspass(byte ispass) {
+        this.ispass = ispass;
     }
 }

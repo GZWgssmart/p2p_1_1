@@ -1,8 +1,8 @@
 var contentType = "application/x-www-form-urlencoded; charset=utf-8";
 var localObj = window.location;
 var contextPath = localObj.pathname.split("/")[1];
-var basePath = localObj.protocol + "//" + localObj.host + "/"+ contextPath;
-var oPage;
+var basePath = localObj.protocol + "//" + localObj.host;
+var oPage, isSend = false;
 /*
 $(function(){
 		//初始化footer
@@ -3967,9 +3967,9 @@ $('#email').text('进行绑定').click(function(){
 });
 */
 
-//认证页面跳转
+//身份认证页面跳转
 function registpay() {
-    window.location.href=basePath + "/registpay";
+    window.location.href=basePath + "/user/registpay";
 }
 
 //修改绑定手机号
@@ -3981,105 +3981,118 @@ function changePhone(phone){
 		utils.Dialog();
 	});
 	$('.change-phone .step1').show().siblings('.step2').hide();
-	$('#oldPhoneNum').text(phone.substring(0,3)+'****'+phone.substring(7,11));
-	$('#oldMobliePhoneCode').val('');
+	$('#oldMobilePhoneCode').val('');
 	clearInterval(utils.time);
 	//获取原手机短信验证码
-	$('#getMsgCodeOld').removeClass('disabled').text('获取验证码').unbind('click').click(function(){
-		utils.getSmsCode($(this),phone,'oldMobileCode');
+	$('#getMsgCodeOld').unbind('click').click(function(){
+		isSend = true;
+        $('#getMsgCodeOld').attr("disabled", true);
+		utils.getSmsCode($('#getMsgCodeOld'),phone);
 	});
 	//验证原手机号码
 	$('#phone-submit-one').unbind('click').click(function(){
-		var oldMobileCode = $('#oldMobliePhoneCode').val();
-		if($('#getMsgCodeOld').data('error')){
-			utils.alert($('#getMsgCodeOld').data('error'));
-			return;
-		};
-		if(!$('#getMsgCodeOld').data('randomCode')){
+		var oldMobileCode = $('#oldMobilePhoneCode').val();
+		if(!isSend){
 			utils.alert('请先获取原手机短信验证码！');
 			return;
 		};
 		if(oldMobileCode == ''){
 			utils.toast('原手机短信验证码不能为空');
 			return;
-		}
-		var param = {
-				code:oldMobileCode,
-				type:'oldMobileCode'
-		}
-		utils.ajax({
-			url:'checkMobilePhoneCode.do',
-			data:JSON.stringify(param),
-			success:function(data){
-				if(data.error == '0'){
-					$('.change-phone .step1').hide().siblings('.step2').show();
-					changePhoneStepTwo();
-				}else{
-					utils.alert(data.msg);
-				}
-			}
-		})
+		};
+        $.post(
+            basePath + "/user/checkmsgCode",
+            {
+                smsCode:oldMobileCode
+            },
+            function(data){
+                if (data.result === 'ok') {
+                	isSend = false;
+                    $('.change-phone .step1').hide().siblings('.step2').show();
+                    changePhoneStepTwo();
+                } else {
+                    utils.alert("验证码错误，请重新输入！");
+                    return;
+                }
+            },
+            "json"
+        );
 	})
 }
 //修改手机第二步
 function changePhoneStepTwo(){
 	clearInterval(utils.time);
 	//获取短信验证码
-	$('#getMsgCode').removeClass('disabled').text('获取验证码').unbind('click').click(function(){
-		utils.getSmsCode($(this),$('#newMobliePhone').val(),'updateMobileCode');
-	})
+	$('#getMsgCode').unbind('click').click(function(){
+        var mobile = $('#newMobilePhone').val();
+        if(mobile == ''){
+            utils.toast('新手机号码不能为空');
+            return;
+        };
+        if(utils.isPhone(mobile)){
+            utils.toast('请填写正确的手机号码');
+            return;
+        };
+        isSend = true;
+        $('#getMsgCode').attr("disabled", true);
+		utils.getSmsCode($(this),mobile);
+	});
 	$('#phone-submit').unbind('click').click(function(){
-		var mobile = $('#newMobliePhone').val();
-		var updateMobileCode = $('#newMobliePhoneCode').val();
-		
+		var mobile = $('#newMobilePhone').val();
+        var updateMobileCode = $('#newMobilePhoneCode').val();
 		if(mobile == ''){
 			utils.toast('新手机号码不能为空');
 			return;
-		}
+		};
 		if(utils.isPhone(mobile)){
 			utils.toast('请填写正确的手机号码');
 			return;
-		}
-		if($('#getMsgCode').data('error')){
-			utils.alert($('#getMsgCode').data('error'));
-			return;
 		};
-		if(!$('#getMsgCode').data('randomCode')){
+		if(!isSend){
 			utils.alert('请获取新手机短信验证码！');
 			return;
 		};
 		if(updateMobileCode == ''){
 			utils.toast('新手机短信验证码不能为空');
 			return;
-		}
-		var param = {
-				mobile:mobile,
-				updateMobileCode:updateMobileCode
-		}
-		utils.ajax({
-			url:'front/updateBindingMobile.do',
-			data:JSON.stringify(param),
-			dataType:'json',
-			success:function(data){
-				if(data.error == '0'){
-					$('.change-phone .popup-from').hide().siblings('.popup-result').show();
-					$('#phone-submit-success').click(function(){
-						utils.Storage.clear();
-						window.location.href='login.html';
-					})
+		};
+		$.post(
+			basePath + '/user/checkmsgCode',
+			{
+                smsCode:updateMobileCode
+			},
+			function(data){
+				if(data.result === 'ok'){
+                    $.post(
+                        basePath + '/user/updateMobile',
+                        {
+                        	phone:mobile
+                        },
+                        function(data){
+                            $('.change-phone .icon-close').hide();
+							$('.change-phone .popup-from').hide().siblings('.popup-result').show();
+							$('#phone-submit-success').click(function () {
+								utils.Storage.clear();
+                                if (top.location !== self.location) {
+                                	top.location = basePath + '/user/login_page';
+                                }
+							})
+                        },
+                        "json"
+                    );
+                    isSend = false;
 				}else{
-					utils.alert(data.msg);
+                    utils.alert("验证码错误，请重新输入！");
+                    return;
 				}
-				
-			}
-		});
-	})
+			},
+			"json"
+		);
+	});
 }
-//登录密码
-$('#password-btn').click(function(){
-    // changePwd('login');
-//修改登录交易密码
-// function changePwd(type){
+
+//修改登录密码
+function changePwd(){
     utils.Dialog(true);
     $('.change-pwd').fadeIn();
     $('.change-pwd .close').click(function(){
@@ -4093,8 +4106,7 @@ $('#password-btn').click(function(){
     $('#pwd-submit').unbind('click').click(function(){
         changePwdSubmit();
     });
-// }
-})
+}
 
 function changePwdSubmit(){
     var oldPassword = $('#oldPassword').val();
@@ -4104,8 +4116,8 @@ function changePwdSubmit(){
         utils.toast('原始密码不能为空');
         return;
     }
-    if(newPassword.length>20 || newPassword.length<6){
-        utils.toast('密码长度必须为6-20个字符');
+    if(newPassword.length>18 || newPassword.length<6){
+        utils.toast('密码长度必须为6-18个字符');
         return;
     }
     if(confirmPassword == ''){
@@ -4122,7 +4134,7 @@ function changePwdSubmit(){
     }
     //修改登录密码
     $('#pwd-submit').addClass('disabled').text('提交中...').unbind('click');
-    $.post(basePath + '/changePwd',
+    $.post(basePath + '/user/changePwd',
 		{
             oldPassword:oldPassword,
             newPassword:newPassword
@@ -4137,24 +4149,8 @@ function changePwdSubmit(){
 			} else if (data.result == 'pwdequal') {
 				utils.alert("新旧密码不得一致");
 				return;
-			}
-			// else if (data == 3) {
-			//     utils.alert("新密码修改失败");
-			//     return;
-			// } else if (data == 4) {
-			//     utils.alert("密码长度输入错误,密码长度范围为6-20");
-			//     return;
-			// } else if (data == 5) {
-			//     utils.alert("*修改失败！你的账号出现异常，请速与管理员联系！");
-			//     return;
-			// } else if (data == 6) {
-			//     utils.alert("登录密码不能和交易密码一样！");
-			//     return;
-			// } else if (data == 8) {
-			//     utils.alert("修改登录密码异常，请与客服联系解决！");
-			//     return;
-			// }
-			else {
+			} else {
+                $('.change-pwd .icon-close').hide();
 				$('.change-pwd .popup-from').hide().siblings('.popup-result').show();
 				$('#submit-success').click(function(){
 					window.location.reload();
@@ -4164,6 +4160,186 @@ function changePwdSubmit(){
 		"json"
     );
 }
+
+//设置交易密码
+function savePwd(){
+	var oldMobileCode = $('#oldMobileCode').val();
+	var oldPhone = $('#oldPhone').val();
+    utils.Dialog(true);
+    $('.change-zpwd').fadeIn();
+    $('.change-zpwd .close').click(function(){
+        $('.change-zpwd').hide();
+        utils.Dialog();
+    });
+    //获取短信验证码
+    $('#getpwdMsgCode').unbind('click').click(function(){
+        isSend = true;
+        $('#getpwdMsgCode').attr("disabled", true);
+        utils.getSmsCode($('#getpwdMsgCode'),oldPhone);
+    });
+    $('#zpwd-submit').unbind('click').click(function(){
+        changedealPwdSubmit();
+    });
+}
+
+function changedealPwdSubmit(){
+    var dealPassword = $('#dealPassword').val();
+    var confirmdealPassword = $('#confirmdealPassword').val();
+    var oldMobileCode = $('#oldMobileCode').val();
+    if(dealPassword == ''){
+        utils.toast('交易密码不能为空');
+        return;
+    }
+    if(dealPassword.length != 6 || isNaN(dealPassword)){
+        utils.toast('交易密码为6位纯数字');
+        return;
+    }
+    if(confirmdealPassword == ''){
+        utils.toast('确认密码不能为空');
+        return;
+    }
+    if(dealPassword != confirmdealPassword){
+        utils.toast('两次密码输入不一致');
+        return;
+    }
+    if(!isSend){
+        utils.toast('请获取新手机短信验证码！');
+        return;
+    }
+    if(oldMobileCode == ''){
+        utils.toast('验证码不能为空');
+        return;
+    }
+    $.post(
+        basePath + '/user/checkmsgCode',
+        {
+            smsCode:oldMobileCode
+        },
+        function(data){
+            if(data.result === 'ok'){
+                $('#zpwd-submit').addClass('disabled').text('设置中...').unbind('click');
+                $.post(basePath + '/user/updateMobile',
+                    {
+                        zpwd:dealPassword
+                    },
+                    function(data){
+                        $('.change-zpwd .icon-close').hide();
+                        $('#zpwd-submit').removeClass('disabled').text('确认').bind('click');
+						$('.change-zpwd .popup-from').hide().siblings('.popup-result').show();
+						$('#changezpwd-success').click(function(){
+							window.location.reload();
+						});
+                    },
+                    "json"
+                );
+                isSend = false;
+            }else{
+                utils.alert("验证码错误，请重新输入！");
+                return;
+            }
+        },
+        "json"
+    );
+}
+
+//修改交易密码
+function changedealPwd(){
+    utils.Dialog(true);
+    $('.change-pwd').fadeIn();
+    $('.change-pwd .close').click(function(){
+        $('.change-pwd').hide();
+        utils.Dialog();
+    });
+    $('#oldPassword').val("");
+    $('#newPassword').val("");
+    $('#confirmPassword').val("");
+    //修改登录密码
+    $('#pwd-submit').unbind('click').click(function(){
+        changedealPwdSubmit();
+    });
+}
+
+function changedealPwdSubmit(){
+    var oldPassword = $('#oldPassword').val();
+    var newPassword = $('#newPassword').val();
+    var confirmPassword = $('#confirmPassword').val();
+    if(oldPassword == ''){
+        utils.toast('原始密码不能为空');
+        return;
+    }
+    if(newPassword.length != 6 || isNaN(newPassword)){
+        utils.toast('交易密码为6位纯数字');
+        return;
+    }
+    if(confirmPassword == ''){
+        utils.toast('确认密码不能为空');
+        return;
+    }
+    if(oldPassword == newPassword){
+        utils.toast('新密码与原始密码一致');
+        return;
+    }
+    if(newPassword != confirmPassword){
+        utils.toast('两次密码输入不一致');
+        return;
+    }
+    //修改登录密码
+    $('#pwd-submit').addClass('disabled').text('提交中...').unbind('click');
+    $.post(basePath + '/user/changedealPwd',
+        {
+            oldPassword:oldPassword,
+            newPassword:newPassword
+        },
+        function(data){
+            $('#pwd-submit').removeClass('disabled').text('确认').bind('click',function(){
+                changedealPwdSubmit();
+            });
+            if (data.result == 'error') {
+                utils.alert("旧密码错误");
+                return;
+            } else if (data.result == 'pwdequal') {
+                utils.alert("新旧密码不得一致");
+                return;
+            } else {
+                $('.change-pwd .icon-close').hide();
+                $('.change-pwd .popup-from').hide().siblings('.popup-result').show();
+                $('#submit-success').click(function(){
+                    window.location.reload();
+                })
+            }
+        },
+        "json"
+    );
+}
+
+//忘记交易密码
+function forgetpwd(){
+	var hiddenphone = $('#hiddenphone').val();
+	var hiddenSmscode = $('#hiddenSmscode').val();
+    utils.Dialog(true);
+    $('.forget-zpwd').fadeIn();
+    $('.forget-zpwd .close').click(function(){
+        $('.forget-zpwd').hide();
+        utils.Dialog();
+    });
+    $('#forgetzPwd-submit').click(function(){
+		utils.getSmsCode($("#hiddenphone"),hiddenphone);
+		$.post(
+            basePath + '/user/checkmsgCode',
+            {
+                smsCode:hiddenSmscode
+            },
+			function(data) {
+				// utils.alert("初始密码已发送至您的手机，请注意查收！");
+				if (data.result === 'ok') {
+                    window.location.reload();
+                }
+			},
+			'json'
+		)
+    });
+}
+
 //我的银行卡
 function initMyDebitCard() {
 	$.ajax({

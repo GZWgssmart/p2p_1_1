@@ -25,7 +25,8 @@
                             <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入手机号',
 						required:true,
 						validType:['length[11,11]'],
-						novalidate:true" name="phone"/>
+						novalidate:true" name="phone"
+                            maxlength="11"/>
                         </td>
                     </tr>
                     <tr>

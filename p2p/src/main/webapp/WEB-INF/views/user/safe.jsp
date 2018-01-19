@@ -1,4 +1,4 @@
-<%@ page import="com.gs.bean.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/29
@@ -39,14 +39,14 @@
                         <div class="safe-list-1">
                             <p class="icon icon-true" id="cellPhone-icon">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机</p>
                         </div>
-                        <div class="safe-list-2" id="cellPhone-text">${user.getPhone().substring(0, 3)}****${user.getPhone().substring(7, 11)}</div>
+                        <div class="safe-list-2" id="cellPhone-text">${user1.phone.substring(0, 3)}****${user1.phone.substring(7, 11)}</div>
                         <div class="safe-list-3">
                             <a id="cellPhone" class="on">已绑定</a>
-                            <a href="javascript:;" id="changePhone">修改</a>
+                            <a href="javascript:;" id="changePhone" onclick="changePhone(${user1.phone})">修改</a>
                         </div>
                     </li>
                     <li>
-                        <c:if test="${user.getEmail() == null}">
+                        <c:if test="${user1.email == null}">
                             <div class="safe-list-1">
                                 <p class="icon icon-wrong">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
                             </div>
@@ -55,11 +55,11 @@
                                 <a href="javascript:;" id="email">进行绑定</a>
                             </div>
                         </c:if>
-                        <c:if test="${user.getEmail() != null}">
+                        <c:if test="${user1.email != null}">
                             <div class="safe-list-1">
                                 <p class="icon icon-true">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
                             </div>
-                            <div class="safe-list-2" id="email-text">${user.getEmail().substring(0, 2)}***${user.getEmail().substring(user.getEmail().indexOf("@", 5)-2)}</div>
+                            <div class="safe-list-2" id="email-text">${user1.email.substring(0, 2)}***${user1.email.substring(user1.email.indexOf("@", 5)-2)}</div>
                             <div class="safe-list-3">
                                 <a class="on">已绑定</a>
                                 <a href="javascript:;" id="email">修改</a>
@@ -67,7 +67,7 @@
                         </c:if>
                     </li>
                     <li>
-                        <c:if test="${user.getRname() == null && user.getIdno() == null}">
+                        <c:if test="${rzVip.ispass == 1}">
                             <div class="safe-list-1">
                                 <p class="icon icon-wrong">身份认证</p>
                             </div>
@@ -76,14 +76,14 @@
                                 <a href="javascript:;" id="realName" onclick="registpay();" target="allpage">去认证</a>
                             </div>
                         </c:if>
-                        <c:if test="${user.getRname() != null && user.getIdno() != null}">
+                        <c:if test="${rzVip.ispass == 2}">
                             <div class="safe-list-1">
                                 <p class="icon icon-true">身份认证</p>
                             </div>
-                            <div class="safe-list-2" id="realName-text">${user.getRname().substring(0, 1)}**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user.getIdno().substring(0, 4)}
-                                ******${user.getIdno().substring(user.getIdno().length()-6)}</div>
+                            <div class="safe-list-2" id="realName-text">${user1.rname.substring(0, 1)}**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user1.idno.substring(0, 4)}
+                                ******${user1.idno.substring(user1.idno.length()-6)}</div>
                             <div class="safe-list-3">
-                                <a href="javascript:;" class="on" target="_blank">已认证</a>
+                                <a href="javascript:;" class="on" >已认证</a>
                             </div>
                         </c:if>
                     </li>
@@ -95,20 +95,29 @@
                             ******
                         </div>
                         <div class="safe-list-3">
-                            <a href="javascript:;" id="password-btn">修改</a>
+                            <a href="javascript:;" id="password-btn" onclick="changePwd();">修改密码</a>
                         </div>
                     </li>
                     <li>
-                        <div class="safe-list-1">
-                            <p class="icon icon-true">交易密码</p>
-                        </div>
-                        <div class="safe-list-2">
-                            ******
-                        </div>
-                        <div class="safe-list-3">
-                            <%--<a href="javascript:;"  id="dealpwd">修改密码</a>--%>
-                            <a href="javascript:;"  id="forgetpwd">忘记密码</a>
-                        </div>
+                        <c:if test="${user1.zpwd == null }">
+                            <div class="safe-list-1">
+                                <p class="icon icon-wrong">交易密码</p>
+                            </div>
+                            <div class="safe-list-2" id="zpwd-text">请设置交易密码！</div>
+                            <div class="safe-list-3">
+                                <a href="javascript:;" id="dealpwd" onclick="savePwd();">设置</a>
+                            </div>
+                        </c:if>
+                        <c:if test="${user1.zpwd != null}">
+                            <div class="safe-list-1">
+                                <p class="icon icon-true">交易密码</p>
+                            </div>
+                            <div class="safe-list-2" id="zpwd-text">******</div>
+                            <div class="safe-list-3">
+                                <a href="javascript:void(0);"  id="changedealPwd" onclick="changedealPwd();">修改 </a>
+                                <a href="javascript:;"  id="forgetpwd" onclick="forgetpwd();">忘记密码</a>
+                            </div>
+                        </c:if>
                     </li>
                 </ul>
             </div>
@@ -130,11 +139,11 @@
         <div class="popup-from step1">
             <div class="label cl">
                 <label>原手机号</label>
-                <p class="text" id="oldPhoneNum"></p>
+                <p class="text" id="oldPhoneNum">${user1.phone.substring(0, 3)}****${user1.phone.substring(7, 11)}</p>
             </div>
             <div class="label label-msg cl">
                 <label>验证码</label>
-                <input type="text" id="oldMobliePhoneCode" maxlength="6" placeholder="输入您短信验证码">
+                <input type="text" id="oldMobilePhoneCode" maxlength="6" placeholder="输入您短信验证码">
                 <button type="button" id="getMsgCodeOld">获取验证码</button>
             </div>
             <button type="button" class="btn" id="phone-submit-one">验证</button>
@@ -142,11 +151,11 @@
         <div class="popup-from step2">
             <div class="label cl">
                 <label>新手机号</label>
-                <input type="text" id="newMobliePhone" maxlength="11" placeholder="输入您的新手机号码">
+                <input type="text" id="newMobilePhone" maxlength="11" placeholder="输入您的新手机号码">
             </div>
             <div class="label label-msg cl">
                 <label>验证码</label>
-                <input type="text" id="newMobliePhoneCode" maxlength="6" placeholder="输入您短信验证码">
+                <input type="text" id="newMobilePhoneCode" maxlength="6" placeholder="输入您的短信验证码">
                 <button type="button" id="getMsgCode">获取验证码</button>
             </div>
             <button type="button" class="btn" id="phone-submit">修改</button>
@@ -163,13 +172,16 @@
         <a href="javascript:void(0);" class="close icon icon-close"></a>
         <div class="popup-from">
             <div class="label cl">
-                <label>原始密码</label><input type="password" id="oldPassword" maxlength="18" autocomplete="new-password" placeholder="输入原始密码">
+                <label>原始密码</label>
+                <input type="password" id="oldPassword" maxlength="18" autocomplete="new-password" placeholder="输入原始密码">
             </div>
             <div class="label cl">
-                <label>新密码</label><input type="password" id="newPassword" maxlength="18" autocomplete="new-password" placeholder="输入新密码">
+                <label>新密码</label>
+                <input type="password" id="newPassword" maxlength="18" autocomplete="new-password" placeholder="输入新密码">
             </div>
             <div class="label cl">
-                <label>确认密码</label><input type="password" id="confirmPassword" maxlength="18" autocomplete="new-password" placeholder="再次输入新密码">
+                <label>确认密码</label>
+                <input type="password" id="confirmPassword" maxlength="18" autocomplete="new-password" placeholder="再次输入新密码">
             </div>
             <button type="button" class="btn" id="pwd-submit">确定</button>
         </div>
@@ -177,6 +189,47 @@
             <div class="success">
                 <p>密码修改成功!</p>
                 <button type="button" class="btn" id="submit-success">确定</button>
+            </div>
+        </div>
+    </div>
+    <div class="popup change-zpwd" style="display: none;">
+        <p class="title left">设置交易密码</p>
+        <a href="javascript:void(0);" class="close icon icon-close"></a>
+        <div class="popup-from">
+            <div class="label cl">
+                <label>手机号</label>
+                <p class="text" id="oldPhone">${user1.phone.substring(0, 3)}****${user1.phone.substring(7, 11)}</p>
+            </div>
+            <div class="label cl">
+                <label>设置密码</label>
+                <input type="password" id="dealPassword" maxlength="6" autocomplete="new-zpassword" placeholder="设置交易密码">
+            </div>
+            <div class="label cl">
+                <label>确认密码</label>
+                <input type="password" id="confirmdealPassword" maxlength="6" autocomplete="new-zpassword" placeholder="再次输入密码">
+            </div>
+            <div class="label label-msg cl">
+                <label>验证码</label>
+                <input type="text" id="oldMobileCode" maxlength="6" placeholder="输入您验证码进行验证">
+                <button type="button" id="getpwdMsgCode">获取验证码</button>
+            </div>
+            <button type="button" class="btn" id="zpwd-submit">确定</button>
+        </div>
+        <div class="popup-result">
+            <div class="success">
+                <p>交易密码设置成功!</p>
+                <button type="button" class="btn" id="changezpwd-success">确定</button>
+            </div>
+        </div>
+    </div>
+    <div class="popup forget-zpwd" style="display: none;">
+        <p class="title left">忘记密码</p>
+        <a href="javascript:void(0);" class="close icon icon-close"></a>
+        <div class="popup-from">
+            <div style="display: none"><p id="hiddenphone">${user1.phone}</p><p id="hiddenSmscode"></p></div>
+            <div class="fail">
+                <p>确认忘记密码将把初始密码发送至您的手机！</p>
+                <button type="button" class="btn" id="forgetzPwd-submit">确定</button>
             </div>
         </div>
     </div>

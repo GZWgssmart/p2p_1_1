@@ -6,7 +6,6 @@ import com.gs.bean.BankCard;
 import com.gs.bean.User;
 import com.gs.common.BankAPIUtil;
 import com.gs.common.Constants;
-import com.gs.common.HttpUtils;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.BankCardService;
@@ -98,7 +97,7 @@ public class BankCardController {
         return pager;
     }
 
-    //shiroæƒé™æ³¨è§£
+    //shiroÈ¨ÏŞ×¢½â
     @RequiresPermissions("bank:huserpage")
     @RequestMapping("huserpage")
     public String UsershowPage() {

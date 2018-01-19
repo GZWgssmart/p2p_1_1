@@ -787,7 +787,7 @@
 }
 .textbox {
   position: relative;
-  border: 1px solid #95B8E7;
+  /*border: 1px solid #95B8E7;*/
   background-color: #fff;
   vertical-align: middle;
   display: inline-block;
@@ -974,7 +974,7 @@
   background-color: #ffffff;
 }
 .combo-arrow {
-  background-color: #E0ECFF;
+  /*background-color: #E0ECFF;*/
 }
 .combo-arrow-hover {
   background-color: #eaf2ff;

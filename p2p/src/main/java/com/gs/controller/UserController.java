@@ -1,9 +1,9 @@
 package com.gs.controller;
 
 import com.gs.bean.DxModel;
+import com.gs.bean.RzVip;
 import com.gs.bean.User;
 import com.gs.bean.UserMoney;
-import com.gs.bean.UserTicket;
 import com.gs.common.CheckCodeUtils;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
@@ -11,7 +11,6 @@ import com.gs.common.SendCode;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
-import com.gs.vo.UserTicketVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * 创建类名：UserController
@@ -47,12 +43,16 @@ public class UserController {
     private RecommendService recommendService;
 
     @Autowired
+    private RzVipService rzVipService;
+
+    @Autowired
     private UserTicketService userTicketService;
 
     public String msgCode;
 
     @RequestMapping("/login_page")
-    public String login_page(){
+    public String login_page(HttpSession session){
+        session.removeAttribute(Constants.USER_IN_SESSION);
         return "user/login";
     }
 
@@ -75,8 +75,12 @@ public class UserController {
     }
 
     @RequestMapping("/user_safe")
-    public String user_safe(HttpSession session) {
-
+    public String user_safe(HttpSession session, User user, HttpServletRequest request) {
+        user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        user = userService.getUserById(user.getUid());
+        request.setAttribute("user1", user);
+        RzVip rzVip = (RzVip) rzVipService.getById(user.getUid());
+        request.setAttribute("rzVip", rzVip);
         return "user/safe";
     }
 
@@ -118,10 +122,9 @@ public class UserController {
             DxModel dxModel=new DxModel();
 //            String content= SendCode.sendsms(phone)+"";
             String content = "000000";
-            String content1="您的验证码是：" + content + "。请不要把验证码泄露给其他人。";
-            dxModel.setContent(content1);
-            msgCode = content1;
-            dxModelService.save(dxModel);
+            dxModel.setContent(content);
+            msgCode = content;
+//            dxModelService.save(dxModel);
         } catch (RuntimeException e) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
         }
@@ -136,10 +139,16 @@ public class UserController {
      */
     @RequestMapping("checkmsgCode")
     @ResponseBody
-    public ControllerStatusVO checkmsgCode(String smsCode){
-        String content1="您的验证码是：" + smsCode + "。请不要把验证码泄露给其他人。";
+    public ControllerStatusVO checkmsgCode(HttpSession session, String smsCode){
         ControllerStatusVO statusVO = null;
-        if (content1.equals(msgCode)) {
+        if (smsCode.equals("")) {
+            User user1 = (User) session.getAttribute(Constants.USER_IN_SESSION);
+            User user = new User();
+            user.setUid(user1.getUid());
+            user.setZpwd(EncryptUtils.md5(msgCode));
+            userService.update(user);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_SUCCESS);
+        } else if (smsCode.equals(msgCode)) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_SUCCESS);
         } else {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
@@ -156,7 +165,7 @@ public class UserController {
      */
     @RequestMapping("/save")
     @ResponseBody
-    public ControllerStatusVO save(String uname, String phone, String upwd, String tzm) {
+    public ControllerStatusVO save(String uname, String phone, String upwd, String tzm, RzVip rzVip) {
         ControllerStatusVO statusVO = null;
         User user = new User();
         user.setUname(uname);
@@ -176,19 +185,11 @@ public class UserController {
             }
         }
         userService.save(user);
+        rzVip.setUid(user.getUid());
+        rzVipService.save(rzVip);
         UserMoney userMoney = new UserMoney();
         userMoney.setUid(user.getUid());
         userMoneyService.save(userMoney);
-
-        UserTicket userTicket = new UserTicket();  //注册时送券
-        userTicket.setUid(user.getUid());
-        userTicket.setKid(1L);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(Calendar.getInstance().getTime());
-        userTicket.setTktime(calendar.getTime());
-        userTicket.setStatus(1);
-        userTicketService.save(userTicket);
-
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_SAVE_SUCCESS);
         return statusVO;
     }
@@ -231,6 +232,32 @@ public class UserController {
     }
 
     /**
+     * 修改手机号
+     * @param user
+     * @param updateMobileCode
+     * @param session
+     * @return
+     */
+    @RequestMapping("/updateMobile")
+    @ResponseBody
+    public ControllerStatusVO updateMobile(User user, String updateMobileCode, HttpSession session){
+        ControllerStatusVO statusVO = null;
+        String phone = user.getPhone();
+        String zpwd = user.getZpwd();
+        User user1 = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        if (phone != null) {
+            user1.setPhone(phone);
+            userService.update(user1);
+        }
+        if (zpwd != null) {
+            user1.setZpwd(EncryptUtils.md5(zpwd));
+            userService.update(user1);
+        }
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_SUCCESS);
+        return statusVO;
+    }
+
+    /**
      * 修改密码
      * @param session
      * @param oldPassword
@@ -248,6 +275,35 @@ public class UserController {
         if (user1 != null) {
             if (user1.getUpwd().equals(EncryptUtils.md5(oldPassword))) {
                 user.setUpwd(EncryptUtils.md5(newPassword));
+                userService.update(user);
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.PHONE_EXIST);
+                return statusVO;
+            } else {
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_PASS_FAIL);
+                return statusVO;
+            }
+        }
+        return statusVO;
+    }
+
+    /**
+     * 修改交易密码
+     * @param session
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    @RequestMapping("/changedealPwd")
+    @ResponseBody
+    public ControllerStatusVO changedealPwd(HttpSession session, String oldPassword, String newPassword) {
+        ControllerStatusVO statusVO = null;
+//        获取session中用户的ID
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+//        通过用户ID获取密码
+        User user1  = userService.getByIdPassword(user.getUid());
+        if (user1 != null) {
+            if (user1.getZpwd().equals(EncryptUtils.md5(oldPassword))) {
+                user.setZpwd(EncryptUtils.md5(newPassword));
                 userService.update(user);
                 statusVO = ControllerStatusVO.status(ControllerStatusEnum.PHONE_EXIST);
                 return statusVO;
@@ -295,14 +351,6 @@ public class UserController {
         User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
         UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(user.getUid());
         request.setAttribute("userMoney",userMoney);
-
-        Long dCount = userTicketService.getCount(user.getUid(),1L);
-        Long xCount = userTicketService.getCount(user.getUid(),2L);
-        UserTicketVO ut = new UserTicketVO();
-        ut.setdCount(dCount);
-        ut.setxCount(xCount);
-        request.setAttribute("ut",ut);
-
         return "user/user_money";
     }
 
@@ -310,15 +358,5 @@ public class UserController {
     public String logout(HttpSession session, User user) {
         session.removeAttribute(Constants.USER_IN_SESSION);
         return "/user/login";
-    }
-
-    @RequestMapping("userbyid")
-    @ResponseBody
-    public User getByUserId(Long uid) {
-        if(uid != null) {
-            User user = (User) userService.getById(uid);
-            return user;
-        }
-        return null;
     }
 }

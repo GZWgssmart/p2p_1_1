@@ -48,8 +48,6 @@ public class DxModelController {
         return "dxModelType/dxModel";
     }
 
-
-
     @RequestMapping("update")
     @ResponseBody
     public ControllerStatusVO update(DxModel dxModel){

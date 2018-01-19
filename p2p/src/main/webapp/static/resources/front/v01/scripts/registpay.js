@@ -3,9 +3,10 @@
  * date 11/26
  */
 var phone;
+var localObj = window.location;
+var basePath = localObj.protocol + "//" + localObj.host;
 $(function(){
-	utils.initPage();
-	utils.initInput();
+	/*
 	utils.ajax({
         url:'front/regIpayPersonal.do',
         data:{},
@@ -20,9 +21,10 @@ $(function(){
         	$('.regist-box').show();
         }
     });
+
 	$('#getMsgCode').click(function(){
 		utils.getSmsCode($(this),$('#phone').val(),'huifuRegist');
-	});
+	});*/
 	$('.btn').click(function(){
 		submit();
 	})
@@ -31,9 +33,12 @@ $(function(){
 function submit(){
 	var Name = $('#Name').val();
 	var idCard = $('#idCard').val();
-//	var phone = $('#phone').val();
-//	var email = $('#email').val();
-//	var msgcode = $('#msgcode').val();
+	var Age = $('#Age').val();
+	var Marriage = $('#Marriage').val();
+	var bschool = $('#School').val();
+    var Address = $('#Address').val();
+    var Job = $('#Job').val();;
+    var eduBack = $('#eduBack').val();
 	if(Name==''){
 		showError('请输入真实姓名',$('#Name'));
 		return;
@@ -42,39 +47,38 @@ function submit(){
 		showError('请输入身份证号',$('#idCard'));
 		return;
 	};
-//	if(!utils.isIdCard(idCard)){
-//		showError('请输入正确的身份证号',$('#idCard'));
-//		return;
-//	};
-//	if(phone==''){
-//		showError('请输入手机号码',$('#phone'));
-//		return;
-//	};
-//	if(msgcode==''){
-//		showError('请输入短信验证码',$('#msgcode'));
-//		return;
-//	};
-//	if(!$('#getMsgCode').data('randomCode')){
-//		utils.alert('请获取短信验证码！');
-//		return;
-//	};
-	$('.btn').addClass('disabled').text('注册中...').unbind('click');
-	var param={uid:utils.Storage.getItem('uid'),realName:encodeURI(Name),idNo:idCard,cellphone:phone};
-	utils.ajax({
-        url:'front/createIpsAcctApp.do',
-        data:JSON.stringify(param),
-        dataType:'json',
-        success: function(data){
-        	if(data.error==0){
-        		$('#registPay').html(data.html);
-        	}else{
-        		utils.alert(data.msg);
-        		$('.btn').removeClass('disabled').text('注册').bind('click',function(){
-        			submit();
-        		});
+	if(!utils.isIdCard(idCard)){
+		showError('请输入正确的身份证号',$('#idCard'));
+		return;
+	};
+	if(Age==''){
+		showError('请输入手机号码',$('#phone'));
+		return;
+	};
+	if(School==''){
+		showError('请输入毕业院校',$('#School'));
+		return;
+	};
+	if(Address==''){
+        showError('请输入居住地址',$('#Address'));
+        return;
+    };
+    if(Job==''){
+        showError('请输入当前职业',$('#Job'));
+        return;
+    };
+	$('.btn').addClass('disabled').text('认证中...').unbind('click');
+	$.post(
+        basePath + '/rzvip/save',
+        $("#form1").serialize(),
+        function(data){
+        	// utils.alert("身份认证已提交，请等待审核！");
+        	if(data.result === 'ok'){
+                window.location.href=basePath + '/user/user_safe';
         	}
-        }
-    });
+		},
+		"json"
+    );
 }
 //错误提示
 function showError(msg,obj){

@@ -137,7 +137,6 @@
     <!-- center_right end -->
 </div>
 <!-- center end -->
-
 <!-- foot -->
 <div id="ajaxFooter">
     <div class="mod-sidebar">

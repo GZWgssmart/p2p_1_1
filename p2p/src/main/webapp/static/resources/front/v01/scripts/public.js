@@ -52,7 +52,8 @@ utils.Loading = function(m){
 };
 /*页面格式化，顶部跟底部
  * @auth wsl
- */ 
+ */
+/*
 utils.initPage = function(){
 	//底部初始化
 	$.ajax({
@@ -155,6 +156,7 @@ utils.initPage = function(){
 		$(this).children('.sub-nav').removeClass('show');
 	})
 };
+*/
 //初始化登录状态
 utils.initLoginData = function(){
 	if(utils.Storage.getItem('uid')){
@@ -260,62 +262,6 @@ function clearCookie(){
     for(var key in cookies){
         document.cookie = key + '=; max-age=0';
     }
-};
-/*重新封装ajax
- * @param $.ajax上送参数
- * @auth wsl
- */
-utils.ajax = function(opt){
-	var _this = this;
-//	var DateTime = new Date().getTime();
-//	if(utils.Storage.getItem('username') && (DateTime - utils.Storage.getItem('time'))>1800000){
-//		utils.Storage.clear();
-//		utils.alert('您的登录已经超时，请重新登录！',function(){
-//			window.location.href="login.html";
-//		});
-//	}else{
-		//不对返回数据做缓存
-		opt.type = 'POST';
-		//备份opt中error和success方法
-		var fn = {
-			error:function(XMLHttpRequest, textStatus, errorThrown){},
-			success:function(data, textStatus){}
-		}
-		//重写jquery ajax方法
-		if(opt.success){
-			fn.success = opt.success;
-		}
-		if(opt.error){
-			fn.success = opt.error;
-		}
-		opt.success = function(result, textStatus){
-			if(result.error == '9999'){
-				utils.Storage.clear();
-				utils.alert('您还未登录，请先登录',function(){
-					window.location.href=utils.getBasePath()+"login.html";
-				});
-			}else if(result.error == '8888'){
-				utils.Storage.clear();
-				window.location.href="front/closeWeb.do";
-			}else{
-				fn.success(result, textStatus);
-			}
-		}
-		var _data = opt.data;
-		var _opt = $.extend({
-			error:function(XMLHttpRequest, textStatus, errorThrown){
-				//Alert("通讯失败,请检查网络连接状况！");
-			},
-			beforeSend:function(){
-				//ajax发送之前
-			},
-			complete:function(){
-				//ajax完成之后
-			},
-			data:_data,
-		},opt);
-		return $.ajax(_opt);
-	//}
 };
 /*给表单添加状态
  * @auth wsl
@@ -529,48 +475,6 @@ Dialog.prototype.hideDom = function(flag){
     }else{
         document.body.removeChild(this.dom);
     }
-};
-/*发送短信验证码
- * @param obj获取验证码按钮$对象
- * @param phone 获取验证码手机号
- * @param name 获取验证码类型
- * @auth wsl
- */ 
-utils.getSmsCode = function(obj,phone,name){
-	if(obj.hasClass('disabled')){return;};
-	if(!phone || phone == ''){
-		utils.toast('请填写手机号');
-		return;
-	};
-	obj.addClass('disabled'); 
-	var param={
-			cellPhone:phone,
-			smsType:name
-	}; 
-	utils.ajax({
-        url:'front/sendSMS.do',
-        data:JSON.stringify(param),
-        dataType:'json',
-        success: function(data){
-        	if(data.error =='0'){
-        		var i = 60;
-        		utils.time = setInterval(function(){
-        			i--;
-        			obj.text(i+'s');
-        			if(i == 0){
-        				obj.removeClass('disabled').text('获取验证码');
-        				clearInterval(utils.time);
-        			}
-        		},1000);
-        		obj.data('recivePhone',data.recivePhone);
-        		obj.data('randomCode',data.randomCode);
-        	}else{
-        		utils.alert(data.msg);
-        		obj.removeClass('disabled');
-        		obj.data('error',data.msg);
-        	}
-        }
-    });
 };
 /*前台数据分页
  * @param url 请求的url

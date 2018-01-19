@@ -17,4 +17,6 @@ public interface UserDAO extends BaseDAO {
     User getByUserCode(@Param("tzm") String tzm);
 
     User getByIdPassword(@Param("id") Long id);
+
+    User getUserById(@Param("id") Long id);
 }

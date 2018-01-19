@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.RzVipDAO">
+
+   <select id="getById" resultType="com.gs.bean.RzVip">
+       <![CDATA[
+          select rid, uid, xl, ism, bschool, addr, work, age, ispass from t_rzvip where uid = #{uid};
+       ]]>
+   </select>
+<!--, u.uname, u.phone, u.idno, u.email, u.rname, u.sex-->
+
+    <!--新增信息-->
+    <insert id="save" parameterType="com.gs.bean.RzVip">
+        <![CDATA[
+          insert into t_rzvip(uid) values(#{uid});
+        ]]>
+    </insert>
+
+    <!--修改信息-->
+    <update id="update" parameterType="com.gs.bean.RzVip">
+        <![CDATA[
+			update t_rzvip
+		]]>
+        <set>
+            <if test="xl != null">
+                xl = #{xl},
+            </if>
+            <if test="ism != null">
+                ism = #{ism},
+            </if>
+            <if test="bschool != null">
+                bschool = #{bschool},
+            </if>
+            <if test="addr != null">
+                addr = #{addr},
+            </if>
+            <if test="work != null">
+                work = #{work},
+            </if>
+            <if test="age != null">
+                age = #{age}
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
+
+</mapper>

@@ -549,10 +549,6 @@ Dialog.prototype.hideDom = function(flag){
  * @auth lsh
  */ 
 utils.getSmsCode = function(obj, phone){
-	// if(obj.hasClass('disabled')){return;};
-	// obj.addClass('disabled');
-
-    // obj.attr("disabled", true);
     $.post(
         basePath + '/user/savemsgCode',
         {
@@ -560,13 +556,12 @@ utils.getSmsCode = function(obj, phone){
         },
         function(data){
         	if(data.result == 'ok'){
-        		utils.alert("验证码已发送至您的手机，请查收！")
         		var i = 60;
         		utils.time = setInterval(function(){
         			i--;
         			obj.text(i+'s');
         			if(i == 0){
-                        obj.attr("disabled", false).text('获取验证码');
+						obj.attr("disabled", false).text('获取验证码');
                         // console.log($('#getMsgCode'));
         				clearInterval(utils.time);
         			}
@@ -830,7 +825,5 @@ function preloadImages(arr){
 		$("<img />").attr('src', arr[i]);
 		}
 };
-utils.getBasePath = function(){
-	return "https://www.pujinziben.com/";
-}
+
 

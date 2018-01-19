@@ -2,6 +2,7 @@ var contextPath = "http://localhost:8080";
 var contentType = "application/x-www-form-urlencoded; charset=utf-8";
 var oPage;
 function hashChange(){
+
     var hash =  window.location.pathname;
     /*$('.sub-nav li').removeClass('active');
     $('a[href="#'+hash+'"]').parent('li').addClass('active');*/

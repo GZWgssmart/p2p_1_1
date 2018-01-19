@@ -26,9 +26,9 @@ public class User {
 
     private String face;//头像
 
-    private Byte sex;//性别0男，1女
+    private Byte sex;//性别1男，2女
 
-    private Byte isvip;//是否为VIP用户0是，1否
+    private Byte isvip;//是否为VIP用户，,1否，2是
 
     private Long int1;
 

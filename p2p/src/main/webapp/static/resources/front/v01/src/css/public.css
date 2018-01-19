@@ -91,7 +91,7 @@ select,
 textarea {
     font-family: "Microsoft Yahei", "Hiragino Sans GB", "Helvetica Neue", Helvetica, tahoma, arial, Verdana, sans-serif, "WenQuanYi Micro Hei", "\5B8B\4F53";
     font-size: 14px;
-    color: #333;
+    color: #999999;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased
 }
@@ -269,7 +269,8 @@ color: #999;
     height: 100%;
     top: 0;
     left: 0;
-    background: url("../images/loading.gif"/*tpa=http://www.pujinziben.com/resources/front/v01/src/images/loading.gif*/) no-repeat center center;
+    background: url("../images/loading.gif") no-repeat center center;
+    /*tpa=http://www.pujinziben.com/resources/front/v01/src/images/loading.gif*/
 }
 
 .error-msg {
@@ -424,7 +425,7 @@ color: #999;
 /*icon*/
 
 .icon {
-    background-image: url("../images/icon.png"/*tpa=http://www.pujinziben.com/resources/front/v01/src/images/icon.png*/);
+    background-image: url("../images/icon.png");/*tpa=http://www.pujinziben.com/resources/front/v01/src/images/icon.png*/
     background-repeat: no-repeat;
 }
 
@@ -953,7 +954,7 @@ color: #999;
 	width:110px;
 	height:26px;
 	position:absolute;
-	right:100px;
+	right:105px;
 	top:10px;
 	color: #319bff;
     border-left: 1px solid #d9d9d9;
@@ -996,6 +997,21 @@ color: #999;
     line-height: 24px;
     text-align: center;
     margin-bottom: 60px;
+}
+
+.popup-from .fail {
+    width: 300px;
+    height: 0;
+    margin: -40px auto;
+    padding-top: 150px;
+    background: url("../images/fail.png")center 35px no-repeat;
+}
+
+.popup-from .fail p {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 
