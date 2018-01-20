@@ -83,6 +83,13 @@
         ]]>
     </delete>
 
+    <select id="getByukid" resultType="com.gs.vo.UserTicketVO">
+        select ut.*,t.tkmoney as tkmoney,t.type as type from t_userticket ut,t_ticket t where ut.kid= t.kid and ut.ukid = #{ukid};
+    </select>
+
+    <update id="update" parameterType="userTicket">
+        update t_userticket set status = #{status} where ukid = #{ukid};
+    </update>
 
 </mapper>
 

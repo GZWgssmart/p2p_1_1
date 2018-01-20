@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface TzbService extends BaseService {
     Object getTzb(Long uid,Long baid);
-    ControllerStatusVO add(Object obj);
+    ControllerStatusVO add(Object obj,Object obj2);
     List<Object> list(Object object);
 }

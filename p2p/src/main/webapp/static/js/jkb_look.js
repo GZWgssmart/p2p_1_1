@@ -93,10 +93,12 @@ function ajaxSubmit(){
     var cpname =$("#cpname").val();
     var nprofit =$("#nprofit").val();
     var ytmoney =$("#ytmoney").val();
+    var ticket = $("#selectQuan").val();
     $("#canUseSum").html(kymoney - parseFloat(amount));
     var url =contextPath + "/tzb/tz_save";
     $.post(url,
         {
+            ukid:ticket,
             money:amount,
             juid:uid,
             baid:baid,

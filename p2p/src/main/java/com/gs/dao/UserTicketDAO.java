@@ -25,4 +25,6 @@ public interface UserTicketDAO extends BaseDAO {
 
     //获取投标时可使用的优惠券
     List<UserTicketVO> getTicket(@Param("uid") Long uid, @Param("status") Long status);
+
+    Object getByukid(@Param("ukid") Long ukid);
 }

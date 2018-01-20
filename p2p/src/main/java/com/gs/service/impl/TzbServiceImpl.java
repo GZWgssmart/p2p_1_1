@@ -12,6 +12,7 @@ import com.gs.service.AbstractBaseService;
 import com.gs.service.TzbService;
 import com.gs.vo.BorrowDetailVO;
 import com.gs.vo.ControllerStatusVO;
+import com.gs.vo.UserTicketVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +44,7 @@ public class TzbServiceImpl extends AbstractBaseService implements TzbService {
 
     private HkbDAO hkbDAO;
 
-    private SkbDAO skbDAO;
+    private UserTicketDAO userTicketDAO;
 
     @Autowired
     public void setTzbDAO(TzbDAO tzbDAO) {
@@ -71,9 +72,10 @@ public class TzbServiceImpl extends AbstractBaseService implements TzbService {
         this.hkbDAO = hkbDAO;
     }
     @Autowired
-    public void setSkbDAO(SkbDAO skbDAO) {
-        this.skbDAO = skbDAO;
+    public void setUserTicketDAO(UserTicketDAO userTicketDAO) {
+        this.userTicketDAO = userTicketDAO;
     }
+
 
     @Override
     public Object getTzb(Long uid, Long baid) {
@@ -82,10 +84,25 @@ public class TzbServiceImpl extends AbstractBaseService implements TzbService {
 
     @Transactional
     @Override
-    public ControllerStatusVO add(Object obj) {
-        Tzb tzb = (Tzb)obj;
+    public ControllerStatusVO add(Object obj,Object obj2) {
         ControllerStatusVO statusVO = null;
+        Tzb tzb = (Tzb)obj;
         BigDecimal money = tzb.getMoney();
+        BigDecimal money2 = BigDecimal.valueOf(0);
+        UserTicket userTicket = (UserTicket) obj2;
+        if (userTicket.getUkid() != 0){
+            UserTicketVO userTicket1 = (UserTicketVO) userTicketDAO.getByukid(userTicket.getUkid());
+            if (userTicket1.getType() == 1){
+                if(tzb.getMoney().compareTo(new BigDecimal(1000))<0){
+                    return ControllerStatusVO.status(ControllerStatusEnum.TZB_SAVE_NO);
+                }
+            }else{
+                userTicket.setKid(userTicket1.getUkid());
+                userTicket.setStatus(2);
+                userTicketDAO.update(userTicket);
+                money2 = userTicket1.getTkmoney();
+            }
+        }
         //判断是否已经投过这个标
         Tzb tzb1 = (Tzb) tzbDAO.getTzb(tzb.getUid(),tzb.getBaid());
         if (tzb1 == null){
@@ -98,8 +115,8 @@ public class TzbServiceImpl extends AbstractBaseService implements TzbService {
         }
         //修改自己的资产
         UserMoney userMoney = (UserMoney) userMoneyDAO.getByUserId(tzb.getUid());
-        userMoney.setKymoney(userMoney.getKymoney().subtract(money));
-        userMoney.setZmoney(userMoney.getZmoney().subtract(money));
+        userMoney.setKymoney(userMoney.getKymoney().subtract(money).subtract(money2));
+        userMoney.setZmoney(userMoney.getZmoney().subtract(money).subtract(money2));
         userMoney.setTzmoney(userMoney.getTzmoney().add(money));
         userMoney.setUid(tzb.getUid());
         //判断该标是否满标，如未满标则修改已投金额

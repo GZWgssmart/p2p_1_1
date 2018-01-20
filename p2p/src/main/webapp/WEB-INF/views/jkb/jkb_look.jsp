@@ -137,7 +137,7 @@
                     <c:if test="${userTicketVOList.size() != 0}">
                         <c:forEach items="${userTicketVOList}" var="utl">
                             <c:if test="${utl.type==1}">
-                                <option value="${utl.kid}">代金券-${utl.tkmoney}元</option>
+                                <option value="${utl.kid}">代金券-满1000元抵${utl.tkmoney}元</option>
                             </c:if>
                             <c:if test="${utl.type==2}">
                                 <option value="${utl.kid}">现金券-${utl.tkmoney}元</option>

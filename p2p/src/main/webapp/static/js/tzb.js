@@ -261,12 +261,14 @@ function sumDate(){
         function (data) {
             if(data.money1 == null){
                 data.money1 = 0;
-            }else if(data.money2 == null){
+            }
+            if(data.money2 == null){
                 data.money2 = 0;
-            }else if(data.money3 == null){
+            }
+            if(data.money3 == null){
                 data.money3 = 0;
-            }else if(data.money4 == null){
-
+            }
+            if(data.money4 == null){
                 data.money4 = 0;
             }
             $('#allForPIOneMonth').text(data.money1);

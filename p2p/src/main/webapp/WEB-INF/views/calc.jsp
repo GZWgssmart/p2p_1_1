@@ -2,6 +2,7 @@
 <%
 	String path = request.getContextPath();
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- saved from url=(0044)https://www.pujinziben.com/account.html#cash -->
 <html lang="en">

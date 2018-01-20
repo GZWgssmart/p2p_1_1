@@ -16,7 +16,7 @@
         <ul>
             <li><a target="_blank" href="tencent://message/?uin=3036302675&amp;Site=&amp;Menu=yes" class="sidebar-qq"></a></li>
             <li><a href="javascript:;" class="sidebar-wx"></a></li>
-            <li><a href="https://www.pujinziben.com/calculator.html" class="sidebar-cl"></a></li>
+            <li><a href="<%=path%>/jkb/calc" class="sidebar-cl"></a></li>
             <li><a href="javascript:;" class="wenquan" title="填写即送5元代金券"></a></li>
             <li><a href="javascript:void(0);" onclick="gotop();" class="sidebar-top"></a></li>
             <span style="display: none"><a href="#top" id="go_top"></a></span>

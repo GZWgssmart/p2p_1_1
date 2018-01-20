@@ -85,7 +85,7 @@ public class TzbController {
     //投资
     @RequestMapping("/tz_save")
     @ResponseBody
-    public ControllerStatusVO tzSave(HttpSession session,Tzb tzb) {
+    public ControllerStatusVO tzSave(HttpSession session,Tzb tzb,UserTicket userTicket) {
         ControllerStatusVO statusVO = null;
         User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
         if(user != null){
@@ -105,7 +105,7 @@ public class TzbController {
             String date = format.format(Calendar.getInstance().getTime());
             letter.setDate(date);
             letterService.save(letter);
-            return tzbService.add(tzb);
+            return tzbService.add(tzb,userTicket);
         }
 
         return ControllerStatusVO.status(ControllerStatusEnum.TZB_SAVE_ERROR);

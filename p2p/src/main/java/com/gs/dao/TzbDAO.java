@@ -22,7 +22,7 @@ public interface TzbDAO extends BaseDAO {
     @Override
     Long countCriteria(@Param("query") Object obj);
     Object getTzb(@Param("uid") Long uid,@Param("baid") Long baid);
-    ControllerStatusVO add(Object obj);
+    ControllerStatusVO add(Object obj,Object obj2);
     List<Object> list(@Param("query") Object object);
 
 }
