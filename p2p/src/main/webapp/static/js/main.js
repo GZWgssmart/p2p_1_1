@@ -533,6 +533,7 @@ function saveOrUpdate(url, formId, winId, listId) {
             $("#" + formId).serialize(),
             function (data) {
                 if (data.result === "ok") {
+                    $('#'+formId).form('clear');
                     closeWin(winId);
                     showInfoAlert(data.message);
                     $("#" + listId).datagrid("reload");

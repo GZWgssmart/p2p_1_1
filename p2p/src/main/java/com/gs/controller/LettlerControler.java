@@ -121,6 +121,8 @@ public class LettlerControler {
     public Letter letterPartidPage(Long lid) {
         if(lid != null) {
             Letter letter = (Letter) letterService.getById(lid);
+            letter.setState(Byte.valueOf("1"));
+            letterService.update(letter);
             return letter;
         }
         return null;

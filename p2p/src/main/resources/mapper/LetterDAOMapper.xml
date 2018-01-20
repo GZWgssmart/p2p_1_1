@@ -62,13 +62,13 @@
 
     <select id="listPagerCriteria" resultType="letter">
         select * from t_letter where 1=1
-        <include refid="common_where"/>
+        <include refid="common_where"/> ORDER BY state asc,date desc
         limit  #{pager.beginIndex}, #{pager.pageSize};
     </select>
 
     <select id="countCriteria" resultType="long">
         select count(lid) from t_letter where 1=1
-        <include refid="common_where"/>
+        <include refid="common_where"/> ORDER BY state asc,date desc
     </select>
 
     <select id="getById" parameterType="long" resultType="letter">

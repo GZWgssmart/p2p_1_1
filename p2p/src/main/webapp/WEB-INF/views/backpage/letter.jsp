@@ -72,13 +72,13 @@
 				<input type="hidden" name="uid" value="1"/>
 			</div>
 			<div id="select-phone" style="margin-bottom:20px">
-				<input class="easyui-textbox phone" name="phone" style="width:100%" data-options="label:'接收人账户:',required:false">
+				<input class="easyui-textbox phone " name="phone" style="width:100%" data-options="label:'接收人账户:',required:true,validType:'length[11,11]'">
 			</div>
 			<div style="margin-bottom:20px">
-				<input class="easyui-textbox" name="content" style="width:100%;height:60px" data-options="label:'内容:',multiline:true">
+				<input class="easyui-textbox" name="content" style="width:100%;height:60px" data-options="label:'内容:',multiline:true,required:true">
 			</div>
 			<div style="margin-bottom:20px">
-				<input class="easyui-datetimebox" name="date" style="width:100%" data-options="label:'时间:',formatter:formatDate">
+				<input class="easyui-datetimebox" name="date" style="width:100%" data-options="label:'时间:',formatter:formatDate,required:true">
 			</div>
 			<div style="position: absolute;top:80%;left: 35%;margin-top: -20px;margin-left: -20px;">
 				<a type="submit" class="easyui-linkbutton c1" onclick="save('/letter/save', 'addForm', 'addWin', 'list')"  style="width:120px">发送</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -105,13 +105,13 @@
 			</select>--%>
 		</div>
 		<div id="select-phones" style="margin-bottom:20px">
-			<input class="easyui-textbox phone"  name="phone" style="width:100%" data-options="label:'接收人账户:',required:false">
+			<input class="easyui-textbox phone"  name="phone" style="width:100%" data-options="label:'接收人账户:',required:true">
 		</div>
 		<div style="margin-bottom:20px">
 			<input class="easyui-textbox" name="content" style="width:100%;height:60px" data-options="label:'内容:',multiline:true">
 		</div>
 		<div style="margin-bottom:20px">
-			<input class="easyui-datetimebox" name="date" style="width:100%" data-options="label:'时间:',formatter:formatDate">
+			<input class="easyui-datetimebox" name="date" style="width:100%" data-options="label:'时间:',formatter:formatDate,required:true">
 		</div>
 		<div style="position: absolute;top:80%;left: 35%;margin-top: -20px;margin-left: -20px;">
 			<a href="#" class="easyui-linkbutton c1" onclick="edit('/letter/update', 'editForm', 'editWin', 'list')"  style="width:120px">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -141,7 +141,7 @@
 	});
 
     function clearForm(){
-        $('#addWin').form('clear');
+        $('#addForm').form('clear');
     }
 
 </script>
