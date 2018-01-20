@@ -115,7 +115,7 @@
 
     <div id="editWin" class="easyui-window normal_win" data-options="title:'编辑用户角色', closed:true">
         <form id="editForm">
-            <input type="hidden" name="ruid" />
+            <input type="hidden" name="huid" />
             <table>
                 <tr>
                     <td>真实姓名:</td>

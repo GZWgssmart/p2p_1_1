@@ -173,7 +173,7 @@ public class HUserController {
         return statusVO;
     }
 
-    @RequiresPermissions("roleUser:del")
+    @RequiresPermissions("roleUser:remove")
     @RequestMapping("remove/{huid}")
     @ResponseBody
     public ControllerStatusVO removeById(@PathVariable("huid") Long huid){
