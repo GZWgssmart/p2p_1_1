@@ -51,7 +51,7 @@
 			<div class="from-text">
 				<p class="code icon icon-bottom">推荐码(选填)</p>
 			</div>
-			<div class="from from-ext">
+			<div class="from from-ext" id="asda">
 				<label for="useCode" class="icon icon-ext"></label>
 				<input type="text" name="tzm" id="useCode" placeholder="输入邀请码" value="${requestScope.tzm}"/>
 			</div>

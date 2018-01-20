@@ -2,12 +2,16 @@ var isPhoneRegist, isUserRegist, isSend = false;
 var localObj = window.location;
 var basePath = localObj.protocol + "//" + localObj.host;
 $(function(){
-	/*
+	var useCode = $("#useCode").val();
+	if(useCode !=''){
+		$("#asda").show();
+		$("#useCode").attr("readOnly","true");
+	}
+	$(".icon-bottom").click(function(){
+        $("#asda").show();
+	})
 	utils.initInput();
-	if(utils.getUrlParam('useCode')){
-		$('.from-ext').attr('class','from fadeOutUpBig');
-		$('#useCode').val(utils.getUrlParam('useCode')).attr('disabled',true);
-	};
+	/*
 	var phone;
 	$('.code').one('click',function(){
 		$('.from-ext').attr('class','from fadeOutUpBig');
