@@ -32,27 +32,10 @@
 <%@include file="./master/head.jsp" %>
 <!-- banner -->
 <div class="ppt">
-    <div class=".benn">
-        <a href="javascript:void(0);" target="_blank" class="nivo-imageLink" style="display: none;">
-            <img src="<%=path %>/static/p2p/20171214165234484.jpg">
-        </a>
-        <a href="javascript:void(0);" target="_blank" class="nivo-imageLink" style="display: none;">
-            <img src="<%=path %>/static/p2p/20171214165137984.jpg">
-        </a>
-        <a href="javascript:void(0);" target="_blank" class="nivo-imageLink" style="display: none;">
-            <img src="<%=path %>/static/p2p/20171018160753035.jpg">
-        </a>
-        <a href="javascript:void(0);" target="_blank" class="nivo-imageLink" style="display: none;">
-            <img src="<%=path %>/static/p2p/201707101417398884.jpg">
-        </a>
-        <a href="javascript:void(0);" target="_blank" class="nivo-imageLink" style="display: block;">
-            <img src="<%=path %>/static/p2p/201704281355082037.jpg">
-        </a>
+    <div class=".benn" id="home_pic">
 
     </div>
     <div class="pptNum">
-        <span class="normal">5</span>
-        <span class="normal">4</span>
         <span class="normal">3</span>
         <span class="normal">2</span>
         <span class="cur normal">1</span>

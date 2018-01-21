@@ -33,11 +33,11 @@ public class MediaController {
     public String page() {
         return "media/media";
     }
-    @RequestMapping("pager_criteria")
+    /*@RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int page, int rows, Media media){
         return mediaService.listPagerCriteria(page, rows, media);
-    }
+    }*/
 
     @RequiresPermissions("media:save")
     @RequestMapping(value="save")
@@ -49,10 +49,10 @@ public class MediaController {
             media.setPic(fillimg);
             media.setDate(Calendar.getInstance().getTime());
             mediaService.save(media);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS) ;
         } catch (Exception e) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_FAIL) ;
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS) ;
         return statusVO;
     }
 
@@ -65,17 +65,21 @@ public class MediaController {
             String pic = FileUpload.uploadFile(request,file1);
             media.setPic(pic);
             mediaService.update(media);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS) ;
         } catch (Exception e) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL) ;
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS) ;
         return statusVO;
     }
-    @RequestMapping("listAll")
+    @RequestMapping("listall")
     @ResponseBody
-    private List<Media> listAll() {
+    public List<Media> listAlls() {
         List<Media> mediaList = new ArrayList<>();
-        mediaList = mediaService.mediaPage(Calendar.getInstance().getTime());
+        try{
+            mediaList = mediaService.mediaPage(Calendar.getInstance().getTime());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return mediaList;
     }
     @RequestMapping("nopage")

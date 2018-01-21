@@ -34,7 +34,7 @@ public class HomeController {
     }
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, Home home){
+    public Pager pagerCriteria(Integer page, Integer rows, Home home){
        return homeService.listPagerCriteria(page, rows, home);
     }
 
@@ -99,27 +99,30 @@ public class HomeController {
                 home.setEwm(ewm);
             }
             homeService.update(home);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS) ;
         } catch (Exception e) {
+            e.printStackTrace();
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL) ;
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS) ;
         return statusVO;
     }
     @RequestMapping("homeppt")
     @ResponseBody
-    public String  homeppt(Long hid,HttpServletRequest request){
-        Home home = new Home();
-        ControllerStatusVO statusVO = null;
-        if (hid != null){
-            homeService.getById(hid);
-            request.setAttribute("pic1",home.getPic1());
-            request.setAttribute("pic2",home.getPic2());
-            request.setAttribute("pic3",home.getPic3());
-        }else{
-        }
-        return "";
+    public Home  homeppt(){
+        return homeService.homeppt();
     }
-
+    @RequestMapping("remove")
+    @ResponseBody
+    public ControllerStatusVO  remove(Long hid){
+        ControllerStatusVO statusVO = null;
+        if(hid != null){
+            homeService.removeById(hid);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_DELETE_SUCCESS);
+        }else{
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.BZ_DELETE_FAIL);
+        }
+        return statusVO;
+    }
 
 
 

@@ -22,4 +22,8 @@ public class HomeServiceImpl extends AbstractBaseService implements HomeService{
     }
 
 
+    @Override
+    public Home homeppt() {
+        return homeDAO.homeppt();
+    }
 }

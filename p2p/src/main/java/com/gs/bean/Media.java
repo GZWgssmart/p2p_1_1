@@ -16,6 +16,8 @@ public class Media {
 
     private String url;//报道的URL地址
 
+    private String starttime;
+
     public Media(Long mid, String title, String content, String pic, Date date, String url) {
         this.mid = mid;
         this.title = title;
@@ -75,5 +77,13 @@ public class Media {
 
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
+    }
+
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
     }
 }

@@ -49,7 +49,7 @@ $(function (){
     "json"
     );
 
-   $.post("/media/listAll",
+   $.post("/media/listall",
        function (data) {
            if (data != undefined){
                for(var i=0;i<data.length;i++){
@@ -66,6 +66,7 @@ $(function (){
        "json"
    );
 
+
     $.post('/dynamic/listAll',
         function(data) {
             if(data != undefined){
@@ -80,7 +81,22 @@ $(function (){
         "json"
     );
 
-
+    $.post("/home/homeppt",
+        function (data) {
+            if (data != undefined){
+                var newsContent = $('#home_pic');
+                var mediaLi =
+                    $('<a href="'+data.l1+'" target="_blank" class="nivo-imageLink" style="display: none;">'+
+                        '<img src="'+path+data.pic1+'"></a>'+
+                        '<a href="'+data.l2+'" target="_blank" class="nivo-imageLink" style="display: none;">'+
+                        '<img src="'+path+data.pic2+'"></a>'+
+                        '<a href="'+data.l3+'" target="_blank" class="nivo-imageLink" style="display: none;">'+
+                        '<img src="'+path+data.pic3+'"></a>')
+                mediaLi.appendTo(newsContent);
+            };
+        },
+        "json"
+    );
 
 });
 

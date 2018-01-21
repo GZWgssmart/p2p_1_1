@@ -13,4 +13,5 @@ public interface HomeDAO extends BaseDAO {
     List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object object);
     @Override
     Long countCriteria(@Param("query") Object object);
+    Home homeppt();
 }

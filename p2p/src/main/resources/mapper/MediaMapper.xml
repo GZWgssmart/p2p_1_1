@@ -10,6 +10,17 @@
 			values(#{title},#{content},#{pic},#{date},#{url})
 		]]>
     </insert>
+
+    <sql id="common_where">
+        <if test="query.title != null and query.title != ''">
+            and title like concat('%', #{query.title}, '%')
+        </if>
+
+        <if test="query.starttime != null and query.starttime != ''">
+            and date  <![CDATA[ <= ]]> #{query.starttime}
+        </if>
+    </sql>
+
     <update id="update" parameterType="object">
         update t_media
         <set>
@@ -38,7 +49,7 @@
     </select>
     <select id="mediaPage" parameterType="date" resultType="com.gs.bean.Media">
         <![CDATA[
-          select *,max(date) from t_media where date<=#{date} group by mid  limit 0,3;
+          select *,max(date) from t_media where date<=#{date}  group by mid  limit 0,3;
         ]]>
     </select>
     <select id="getById" parameterType="long"  resultType="com.gs.bean.Media">
@@ -47,11 +58,11 @@
 		]]>
     </select>
     <select id="listPagerCriteria" resultType="com.gs.bean.Media">
-        select * from t_media order by date desc
+        select * from t_media where 1=1 <include refid="common_where"/> order by date desc
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
     <select id="countCriteria" resultType="long">
         select count(mid)
-        from t_media ;
+        from t_media where 1=1 <include refid="common_where"/>;
     </select>
 </mapper>

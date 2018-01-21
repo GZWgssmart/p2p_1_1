@@ -13,6 +13,8 @@ public class Dynamic {
 
     private String pic;//封面图片
 
+    private String starttime;
+
     public Dynamic(Long dyid, String title, Date date, String content, String pic) {
         this.dyid = dyid;
         this.title = title;
@@ -63,5 +65,13 @@ public class Dynamic {
 
     public void setPic(String pic) {
         this.pic = pic == null ? null : pic.trim();
+    }
+
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
     }
 }

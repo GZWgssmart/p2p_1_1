@@ -24,15 +24,16 @@
 			method:'post'">
     <thead>
     <tr>
-        <th data-options="field:'hid',checkbox:true">编号</th>
-        <th data-options="field:'pic1',width:100,formatter:pic1Img">轮播图一</th>
-        <th data-options="field:'pic2',width:100,formatter:pic2Img">轮播图二</th>
-        <th data-options="field:'pic3',width:100,formatter:pic3Img">轮播图三</th>
-        <th data-options="field:'l1',width:100">链接一</th>
-        <th data-options="field:'l2',width:100">链接二</th>
-        <th data-options="field:'l3',width:100">链接三</th>
-        <th data-options="field:'phone',width:100">电话</th>
-        <th data-options="field:'ewm',width:100,formatter:ewmimg">二维码</th>
+        <th data-options="field:'hid',width:80,checkbox:true">编号</th>
+        <th data-options="field:'pic1',width:160,formatter:pic1Img">轮播图一</th>
+        <th data-options="field:'pic2',width:160,formatter:pic2Img">轮播图二</th>
+        <th data-options="field:'pic3',width:160,formatter:pic3Img">轮播图三</th>
+        <th data-options="field:'l1',width:90">链接一</th>
+        <th data-options="field:'l2',width:90">链接二</th>
+        <th data-options="field:'l3',width:90">链接三</th>
+        <th data-options="field:'phone',width:70">电话</th>
+        <th data-options="field:'ewm',width:90,formatter:ewmimg">二维码</th>
+        <th data-options="field:'make',width:100,formatter:operation">操作</th>
     </tr>
     </thead>
 </table>
@@ -41,17 +42,7 @@
     <shiro:hasPermission name="home:save">
         <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openWin('addWin');">添加</a>
     </shiro:hasPermission>
-    <shiro:hasPermission name="home:update">
-        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditHomeWin('editWin', 'list', 'editForm')">修改</a>
-    </shiro:hasPermission>
-    <div>
-        <form id="searchForm">
-            <input class="easyui-datetimebox" name="createTime"
-                   data-options="prompt:'请选择最大创建时间',required:false,novalidate:true,showSeconds:true"/>
-            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch('list', 'searchForm');">搜索</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchAll('list', 'searchForm');">搜索所有</a>
-        </form>
-    </div>
+
 </div>
 
 <div id="addWin" style="width:900px;height:550px;" class="easyui-window normal_win" data-options="title:'新增首页信息', closed:true">
@@ -103,14 +94,14 @@
             <tr>
                 <td style="width:7%;">链接二</td>
                 <td>
-                    <input class="easyui-textbox easyui-validatebox" style="width:97%;"  data-options="prompt:'请输入轮播图链接',
+                    <input class="easyui-textbox " style="width:97%;"  data-options="prompt:'请输入轮播图链接',
 							required:true,novalidate:true" name="l2"/>
                 </td>
             </tr>
             <tr>
                 <td style="width:7%;">链接三</td>
                 <td>
-                    <input class="easyui-textbox easyui-validatebox" style="width:97%;"  data-options="prompt:'请输入轮播图链接',
+                    <input class="easyui-textbox " style="width:97%;"  data-options="prompt:'请输入轮播图链接',
 							required:true,novalidate:true" name="l3"/>
                 </td>
             </tr>
@@ -210,10 +201,79 @@
 
 </body>
 <%@include file="../master/easyui/footer.jsp" %>
-<script type="text/javascript" src="<%=path%>/static/js/dynamic_media_home.js"/>
 <script>
     $(function() {
         setPagination("list");
     });
+    function savehome(formId,winId,listId,url) {
+        var param = document.getElementById(formId);
+        var formData = new FormData(param);
+        $.ajax({
+            url : contextPath + url,
+            type : "post",
+            data :formData,
+            processData : false,
+            contentType : false,
+            success : function(data) {
+                if (data.result === 'ok') {
+                    closeWin(winId);
+                    showInfoAlert(data.message);
+                    $("#" + listId).datagrid("reload");
+                } else {
+                    showInfoAlert("添加失败！");
+                }
+            },
+            error : function(e) {
+                showInfoAlert("出错了、请稍后重试！！");
+            }
+        });
+    };
+
+    function openEditHomeWin(winId, listId, formId) {
+        var row = $("#" + listId).datagrid("getSelected");
+        if (row) {
+            $("#" + formId).form("load", row);
+            $('#imgs1').attr("src","<%=path%>/static/upload/picimg/"+row.pic1);
+            $('#imgs2').attr("src","<%=path%>/static/upload/picimg/"+row.pic2);
+            $('#imgs3').attr("src","<%=path%>/static/upload/picimg/"+row.pic3);
+            $('#imgs4').attr("src","<%=path%>/static/upload/picimg/"+row.ewm);
+            openWin(winId);
+        } else {
+            showInfoAlert("请选择需要修改的数据");
+        }
+    };
+    //删除
+    function removeById(listId,url) {
+        var row = $("#" + listId).datagrid("getSelected");
+        $.post(url,
+            {hid:row.hid},
+            function (data) {
+                if(data.result == "ok") {
+                    showInfoAlert(data.message);
+                    $("#" + listId).datagrid("reload");
+                }
+            },
+            'json'
+        );
+    };
+    //操作
+    function operation() {
+        var str = '<button class="button button1" onclick="return openEditHomeWin('+"'editWin'"+','+"'list'"+','+"'editForm'"+');">修改</button>';
+        str += '<button class="button button3" onclick="return removeById('+"'list'"+','+"'/home/remove'"+');">删除</button>';
+        return str;
+    };
+
+    function pic1Img(value, row, index){
+        return "<img  style='width: 150px; height: 70px;' src='<%=path%>/static/upload/picimg/"+row.pic1+"'>";
+    };
+    function pic2Img(value, row, index){
+        return "<img  style='width: 150px; height: 70px;' src='<%=path%>/static/upload/picimg/"+row.pic2+"'>";
+    };
+    function pic3Img(value, row, index){
+        return "<img  style='width: 150px; height: 70px;' src='<%=path%>/static/upload/picimg/"+row.pic3+"'>";
+    };
+    function ewmimg(value, row, index){
+        return "<img  style='width: 150px; height: 70px;' src='<%=path%>/static/upload/picimg/"+row.ewm+"'>";
+    };
 </script>
 </html>

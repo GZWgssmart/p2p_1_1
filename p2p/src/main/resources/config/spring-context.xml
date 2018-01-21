@@ -4,7 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-       <context:component-scan base-package="com.gs"/>
+       <context:component-scan base-package="com.gs" />
 
        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
               <property name="maxUploadSize" value="1048576000"/>

@@ -41,6 +41,14 @@
 		select * from t_home;
 		]]>
     </select>
+    <select id="homeppt" resultType="com.gs.bean.Home">
+        select pic1,pic2,pic3,l1,l2,l3 from t_home order by hid desc limit 1;
+    </select>
+    <delete id="removeById" parameterType="com.gs.bean.Home">
+        <![CDATA[
+        delete from t_home where hid=#{hid};
+        ]]>
+    </delete>
     <select id="getById" resultType="com.gs.bean.Home">
         <![CDATA[
 		select * from t_home where hid=#{hid};

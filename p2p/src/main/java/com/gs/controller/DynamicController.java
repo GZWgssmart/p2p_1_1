@@ -82,7 +82,7 @@ public class DynamicController {
 
     @RequestMapping("listAll")
     @ResponseBody
-    private List<Dynamic> listAll() {
+    public List<Dynamic> listAll() {
         List<Dynamic> mediaList = new ArrayList<>();
         mediaList = dynamicService.dynamicPage(Calendar.getInstance().getTime());
         return mediaList;
@@ -107,13 +107,14 @@ public class DynamicController {
     public Pager DynamicSelectPage(Integer page, Integer rows,Dynamic dynamic,Integer curPage) {
         Pager pager = new Pager();
         if(rows != null && page != null) {
-            return pager = dynamicService.listPagerCriteria(page,rows,dynamic);
-        }else if(curPage != null){
             try{
-                return pager = dynamicService.listPagerCriteria(curPage,8,null);
+            return pager = dynamicService.listPagerCriteria(page,rows,dynamic);
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }else if(curPage != null){
+                return pager = dynamicService.listPagerCriteria(curPage,8,null);
+
         }
         return pager;
     }
