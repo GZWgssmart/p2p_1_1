@@ -45,4 +45,9 @@ public class BorrowApplyServiceImpl extends AbstractBaseService implements Borro
     public List<Object> listByBzid(Long bzid) {
         return borrowApplyDAO.listByBzid(bzid);
     }
+
+    @Override
+    public List<Object> listByUid(Long uid) {
+        return borrowApplyDAO.listByUid(uid);
+    }
 }

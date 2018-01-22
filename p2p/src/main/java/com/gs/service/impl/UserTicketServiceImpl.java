@@ -47,7 +47,7 @@ public class UserTicketServiceImpl implements UserTicketService {
 
     @Override
     public List<Object> listAll() {
-        return null;
+        return userTicketDAO.listAll();
     }
 
     @Override

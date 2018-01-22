@@ -14,4 +14,5 @@ public interface BorrowApplyService extends BaseService {
     void updateState2(Object obj);
     void updateLiubiao();
     List<Object> listByBzid(Long bzid);
+    List<Object> listByUid(Long uid);
 }

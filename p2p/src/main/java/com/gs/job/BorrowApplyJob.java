@@ -20,11 +20,11 @@ import java.util.List;
  */
 
 public class BorrowApplyJob implements Job {
-    @Autowired
     private BorrowApplyService borrowApplyService;
 
-    public void execute(JobExecutionContext arg0) throws JobExecutionException {
-        borrowApplyService.updateLiubiao();
+    @Override
+    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        borrowApplyService = (BorrowApplyService) jobExecutionContext.getJobDetail().getJobDataMap().get("borrowApplyService");
     }
 
 }

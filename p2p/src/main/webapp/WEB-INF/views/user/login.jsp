@@ -19,8 +19,8 @@
 <body>
 <div class="nav-out">
     <div class="wrap cl">
-        <div class="logo"><a href="javascript:void(0);"><img src="<%=path%>/static/resources/front/v01/src/images/logo.png" tppabs="http://www.pujinziben.com/resources/front/v01/src/images/logo.png" alt="普金资本"></a></div>
-        <p class="index"><a href="javascript:void(0);" class="icon icon-home">普金资本首页</a></p>
+        <div class="logo"><a href="<%=path%>/"><img src="<%=path%>/static/resources/front/v01/src/images/logo.png" alt="普金资本"></a></div>
+        <p class="index"><a href="<%=path%>/" class="icon icon-home">普金资本首页</a></p>
     </div>
 </div>
 <div class="login-content">

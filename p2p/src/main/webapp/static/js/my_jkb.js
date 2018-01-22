@@ -564,7 +564,40 @@ $('#detailSearchClean').unbind('click').click(function () {
     $('#d-startDate').val('');
     $('#d_endDate').val('');
 });
+function autoRepaymentInit() {
+    $.post(contextPath + '/hkb/tzb_zdhk',
+        '',
+        function (data) {
+            if (data!= null) {
+                $("#payment_state").text(data.iszd == 2 ? '已开启' : '已关闭');
+                $("#payment_btn").text(data.iszd == 1 ? '开启' : '关闭');
+                $('#repayEdit').show();
+            } else {
+                alert("您还没有借款");
+            }
 
+            $('#payment_btn').unbind('click').click(function(){
+                var state;
+                if (data.iszd == 1) {
+                    state = 2;
+                } else if (data.iszd == 2) {
+                    state = 1;
+                }
+                $.post(contextPath + '/hkb/zdhk',
+                    {
+                        iszd:state
+                    },
+                    function (data) {
+                        alert(data.message);
+                        autoRepaymentInit();
+                    },
+                    "json"
+                );
+            });
+        },
+        'json'
+    );
+}
 //时间格式化到秒
 function formatDate(value) {
     if (value == undefined || value == null || value == '') {

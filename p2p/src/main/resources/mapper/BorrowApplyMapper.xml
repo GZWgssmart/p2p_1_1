@@ -122,4 +122,7 @@
         bd.nprofit as nprofit,bd.ytmoney as ytmoney,bd.cpname as cpname
         from t_borrowapply ba, t_borrowdetail bd where ba.baid = bd.baid and ba.state<![CDATA[>]]>2 and ba.state !=6 and ba.bzid = #{bzid} order by ba.state;
     </select>
+    <select id="listByUid" resultType="borrowApply">
+        select baid from t_borrowapply where uid = #{uid} and state !=5;
+    </select>
 </mapper>

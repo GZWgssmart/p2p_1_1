@@ -158,6 +158,13 @@
 </div>
 <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/jkb_add.js"></script>
-
+<c:if test="${msg!=null}">
+    <script type="text/javascript">
+        $(function(){
+            alert("${msg}");
+            window.location.href = '/user/user_home';
+        })
+    </script>
+</c:if>
 </body>
 </html>

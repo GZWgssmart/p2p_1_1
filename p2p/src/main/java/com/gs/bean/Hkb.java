@@ -51,12 +51,7 @@ public class Hkb {
 
     private Integer djq;//第几期
 
-    private String str1;
-
-
-    public Hkb() {
-        super();
-    }
+    private Byte iszd;//自动还款 1为不自动，2为自动
 
     public Long getHkid() {
         return hkid;
@@ -242,11 +237,11 @@ public class Hkb {
         this.djq = djq;
     }
 
-    public String getStr1() {
-        return str1;
+    public Byte getIszd() {
+        return iszd;
     }
 
-    public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
+    public void setIszd(Byte iszd) {
+        this.iszd = iszd;
     }
 }

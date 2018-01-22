@@ -62,12 +62,17 @@ public class JkbController {
     //进入申请借款页面
     @RequestMapping("/jkb_page")
     public String jkb_page(HttpSession session, HttpServletRequest request){
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
         List<Bz> bzList = (List)bzService.listAll();
         List<Jklx> jklxList = (List)jklxService.listAll();
         List<Sway> swayList = (List)swayService.listAll();
         request.setAttribute("bzList",bzList);
         request.setAttribute("jklxList",jklxList);
         request.setAttribute("swayList",swayList);
+        List<BorrowApply> borrowApplyList = (List)borrowApplyService.listByUid(user.getUid());
+        if (borrowApplyList.size() != 0){
+            request.setAttribute("msg","你已经存在其他接款，请先完成该借款再来申请借款！");
+        }
         return "jkb/jkb_add";
     }
     //申请借款
@@ -252,6 +257,7 @@ public class JkbController {
         request.setAttribute("jkb",jkb);
         return "jkb/jkb_look";
     }
+
 
 
 

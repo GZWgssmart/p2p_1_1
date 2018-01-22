@@ -4,6 +4,7 @@ import com.gs.bean.Hkb;
 import com.gs.bean.User;
 import com.gs.common.Constants;
 import com.gs.common.Pager;
+import com.gs.enums.ControllerStatusEnum;
 import com.gs.query.HkbQuery;
 import com.gs.query.TzbQuery;
 import com.gs.service.HkbService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * 创建类名：HkbController
@@ -94,5 +96,27 @@ public class HkbController {
         hkbQuery.setState((byte)3);
         pager =  hkbService.list(page,rows,hkbQuery);
         return pager;
+    }
+    //进入设置自动还款页面
+    @RequestMapping("/tzb_zdhk")
+    @ResponseBody
+    public Hkb tzbZdhk(HttpSession session,HkbQuery hkbQuery) {
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        hkbQuery.setUid(user.getUid());
+        List<Hkb> hkbs = (List) hkbService.listByBaid(hkbQuery);
+        Hkb hkb = hkbs.get(0);
+        return hkb;
+    }
+
+    //进入设置自动还款页面
+    @RequestMapping("/zdhk")
+    @ResponseBody
+    public ControllerStatusVO Zdhk(HttpSession session,Hkb hkb) {
+        ControllerStatusVO statusVO = null;
+        User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        hkb.setUid(user.getUid());
+        hkbService.update(hkb);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_UPDATE_SUCCESS);
+        return statusVO;
     }
 }

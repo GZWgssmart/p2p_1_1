@@ -87,7 +87,7 @@ public class HkbServiceImpl extends AbstractBaseService implements HkbService {
         Hkb hkb1 = (Hkb) object;
         Hkb hkb = (Hkb) hkbDAO.getById(hkb1.getHkid());
         UserMoney userMoney =(UserMoney) userMoneyDAO.getByUserId(hkb.getUid());
-        BigDecimal money = hkb.getYbx().add(hkb.getYlx()).add(hkb.getYbj()).add(hkb.getYfx());
+        BigDecimal money = hkb.getYbx();
         if(userMoney.getKymoney().compareTo(money)<0){
             return ControllerStatusVO.status(ControllerStatusEnum.HKB_UPDATE_FAIL);
         }

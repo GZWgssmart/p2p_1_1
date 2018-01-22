@@ -110,7 +110,23 @@
             <if test="yustartime != null and yustartime!=''">
                 yustartime = #{yustartime},
             </if>
+            <if test="iszd != null and iszd!=''">
+                iszd = #{iszd},
+            </if>
         </set>
-        where hkid = #{hkid}
+        where 1 = 1
+        <if test="hkid != null and hkid != ''">
+            and hkid = #{hkid}
+        </if>
+        <if test="uid != null and uid != ''">
+            and uid = #{uid}
+        </if>
     </update>
+
+    <select id="listByBaid" resultType="hkb">
+        select * from t_hkb where uid = #{query.uid} and state = 1
+        <if test="query != null and query.iszd!=null">
+            and iszd = #{query.iszd}
+        </if>
+    </select>
 </mapper>

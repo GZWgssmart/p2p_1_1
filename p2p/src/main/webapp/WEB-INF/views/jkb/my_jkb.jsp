@@ -228,6 +228,22 @@
         </div>
     </div>
 
+    <div class="account-content" id="repayEdit" style="display: none;">
+        <p class="tips-title">
+            <b>自动还款工具说明:</b><br>
+            a）用户开启自动还款设置后，到达还款日的当天凌晨12点，如果用户账户正常，即会自动进行还款。<br>
+            b）保证用户账户可用余额足够支付还款金额，如果还款日当天超过凌晨12点用户账户可用余额不足而导致自动还款失败，则用户需要进行手动还款，否则会造成还款逾期。
+        </p>
+        <div class="popup-from">
+            <div class="div_state">
+                <label class="text_div">自动还款状态：</label><p class="div_state_text" id="payment_state">已开启</p>
+            </div>
+            <div class="div_state">
+                <label class="text_div">操作：</label><p class="div_state_text"><button type="button" class="btn_start" id="payment_btn">关闭</button></p>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!-- end -->
 

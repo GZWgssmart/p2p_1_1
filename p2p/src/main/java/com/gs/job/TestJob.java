@@ -6,6 +6,7 @@ import java.util.Date;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.springframework.stereotype.Component;
 
 /**
  * 创建类名：TestJob
@@ -20,6 +21,7 @@ public class TestJob implements Job {
     Date d = new Date();
     String returnstr = DateFormat.format(d);
 
+    @Override
     public void execute(JobExecutionContext arg0) throws JobExecutionException {
         // TODO Auto-generated method stub
         System.out.println(returnstr+"★★★★★★★★★★★");

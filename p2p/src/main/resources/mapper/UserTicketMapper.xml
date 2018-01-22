@@ -91,6 +91,10 @@
         update t_userticket set status = #{status} where ukid = #{ukid};
     </update>
 
+    <select id="listAll" resultType="userTicket">
+        select * from t_userticket where status = 1;
+    </select>
+
 </mapper>
 
 
