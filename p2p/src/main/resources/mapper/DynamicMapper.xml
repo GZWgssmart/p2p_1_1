@@ -11,11 +11,11 @@
 		]]>
     </insert>
     <sql id="common_where">
-        <if test="query.title != null and query.title != ''">
+        <if test="query != null and query.title != null and query.title != ''">
             and title like concat('%', #{query.title}, '%')
         </if>
 
-        <if test="query.starttime != null and query.starttime != ''">
+        <if test="query != null and query.starttime != null and query.starttime != ''">
             and date  <![CDATA[ <= ]]> #{query.starttime}
         </if>
     </sql>
