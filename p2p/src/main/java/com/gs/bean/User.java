@@ -30,6 +30,8 @@ public class User {
 
     private Byte isvip;//是否为VIP用户，,1否，2是
 
+    private String date;
+
     private Long int1;
 
     private String str1;

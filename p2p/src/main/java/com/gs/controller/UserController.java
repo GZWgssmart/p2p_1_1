@@ -1,13 +1,9 @@
 package com.gs.controller;
 
-import com.gs.bean.DxModel;
-import com.gs.bean.RzVip;
-import com.gs.bean.User;
-import com.gs.bean.UserMoney;
+import com.gs.bean.*;
 import com.gs.common.CheckCodeUtils;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
-import com.gs.common.SendCode;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
@@ -18,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
 
 /**
  * 创建类名：UserController
@@ -168,29 +165,54 @@ public class UserController {
     public ControllerStatusVO save(String uname, String phone, String upwd, String tzm, RzVip rzVip) {
         ControllerStatusVO statusVO = null;
         User user = new User();
-        user.setUname(uname);
-        user.setPhone(phone);
-        user.setUpwd(EncryptUtils.md5(upwd));
-        String tzmCode = CheckCodeUtils.recommendCode();
-        boolean tzmisExit = true;
-        while (tzmisExit) {
-            int isExit = recommendService.countTzm(tzmCode);
-            //推荐码存在
-            if (isExit == 1) {
-                tzmCode = CheckCodeUtils.recommendCode();
-                //推荐码不存在
-            } else if (isExit == 0) {
-                tzmisExit = false;
-                user.setTzm(tzmCode);
+        User user1 = new User();
+        User user2 = new User();
+        try {
+            Recommend recommend = new Recommend();
+            user.setUname(uname);
+            user.setPhone(phone);
+            user.setUpwd(EncryptUtils.md5(upwd));
+            String tzmCode = CheckCodeUtils.recommendCode();
+            boolean tzmisExit = true;
+            while (tzmisExit) {
+                int isExit = recommendService.countTzm(tzmCode);
+                //推荐码存在
+                if (isExit == 1) {
+                    tzmCode = CheckCodeUtils.recommendCode();
+                    //推荐码不存在
+                } else if (isExit == 0) {
+                    tzmisExit = false;
+                    user.setTzm(tzmCode);
+                }
             }
+            if (tzm != null) {
+                user1 = userService.getByUserCode(tzm);//推荐人信息
+                if (user1 != null) {
+                    user.setTid(user1.getUid());
+                    userService.save(user);
+                    user2 = userService.getByPhone(phone);
+                    recommend.setTid(user1.getUid());
+                    recommend.setTname(user1.getRname());
+                    recommend.setUid(user2.getUid());
+                    recommend.setRname(user2.getUname());
+                    recommend.setDate(Calendar.getInstance().getTime());
+                    recommendService.save(recommend);
+                } else {
+
+                }
+            } else {
+                userService.save(user);
+            }
+            rzVip.setUid(user.getUid());
+            rzVipService.save(rzVip);
+            UserMoney userMoney = new UserMoney();
+            userMoney.setUid(user.getUid());
+            userMoneyService.save(userMoney);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_SAVE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_SAVE_FAIL);
         }
-        userService.save(user);
-        rzVip.setUid(user.getUid());
-        rzVipService.save(rzVip);
-        UserMoney userMoney = new UserMoney();
-        userMoney.setUid(user.getUid());
-        userMoneyService.save(userMoney);
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_SAVE_SUCCESS);
         return statusVO;
     }
 

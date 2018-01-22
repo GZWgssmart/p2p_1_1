@@ -72,7 +72,7 @@
     <!--验证手机号是否存在-->
     <select id="getByPhone" resultType="com.gs.bean.User">
         <![CDATA[
-          select phone from t_user where phone = #{phone}
+          select uid, uname, phone from t_user where phone = #{phone}
         ]]>
     </select>
 <!--还要专门写一个获取书-收集好的方法
@@ -81,7 +81,7 @@
     <!--验证推荐码是否存在-->
     <select id="getByUserCode" resultType="com.gs.bean.User">
         <![CDATA[
-          select uid, tzm from t_user where tzm = #{tzm}
+          select uid, rname, tzm from t_user where tzm = #{tzm}
         ]]>
     </select>
 
@@ -91,7 +91,7 @@
             SELECT LAST_INSERT_ID();
         </selectKey>
         <![CDATA[
-          insert into t_user(uname, phone, upwd, tzm) values(#{uname}, #{phone}, #{upwd}, #{tzm});
+          insert into t_user(uname, phone, upwd, tzm, tid) values(#{uname}, #{phone}, #{upwd}, #{tzm}, #{tid});
         ]]>
     </insert>
 

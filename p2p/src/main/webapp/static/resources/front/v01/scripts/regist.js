@@ -72,29 +72,44 @@ function addAssignmentDebt(phone){
 	});
 	$('#claimm-price').val('');
 	$('#claimm-submit').unbind('click').bind('click',function(){
-		var code = $('#claimm-price').val();
-		if (code == '') {
-			utils.alert('请输入图中验证码');
-			return;
-		} else {
-			$.post(basePath + '/user/checkCode',
-				{code:code},
-				function(data){
-					utils.Dialog();
-					$('.claimm-from').hide();
-					if(data.result == 'ok'){
-					    isSend = true;
-                        $('#getMsgCode').attr("disabled", true);
-                        // console.log($('#getMsgCode'));
-                        utils.getSmsCode($('#getMsgCode'), phone);
-					}else{
-						utils.alert('验证码错误！');
-					}
-				},
-				"json"
-			)
-        }
-	})
+        var url = basePath + "/user/isPhoneExist";
+        $.post(
+            url,
+            {
+                phone:phone
+            },
+            function (data) {
+                if (data.result === 'exist') {
+                    showError("手机号已存在！",$(obj));
+                    return;
+                } else {
+                    var code = $('#claimm-price').val();
+                    if (code == '') {
+                        utils.alert('请输入图中验证码');
+                        return;
+                    } else {
+                        $.post(basePath + '/user/checkCode',
+                            {code:code},
+                            function(data){
+                                utils.Dialog();
+                                $('.claimm-from').hide();
+                                if(data.result == 'ok'){
+                                    isSend = true;
+                                    $('#getMsgCode').attr("disabled", true);
+                                    // console.log($('#getMsgCode'));
+                                    utils.getSmsCode($('#getMsgCode'), phone);
+                                }else{
+                                    utils.alert('验证码错误！');
+                                }
+                            },
+                            "json"
+                        )
+                    }
+                }
+            },
+            "json"
+        );
+	});
 }
 
 //进行注册
@@ -111,22 +126,6 @@ function regist(){
     if(phone==''){
         showError('请输入手机号', $('#phone'));
         return;
-    } else {
-        var url = basePath + "/user/isPhoneExist";
-        $.post(
-            url,
-            {
-                phone:phone
-            },
-            function (data) {
-                if (data.result === 'exist') {
-                    showError("手机号已存在！",$(obj));
-                    return;
-                }
-            },
-            "json"
-        );
-	return;
     };
     if(utils.isPhone(phone)){
         showError('请输入正确的手机号码', $('#phone'));
@@ -173,6 +172,8 @@ function regist(){
                                     utils.alert('注册成功！',function(){
                                         window.location.href= basePath + '/user/login_page';
                                     });
+                                } else {
+                                    utils.alert('注册失败！');
                                 }
                                 $('.btn').text('注册').removeClass('disabled');
                             },
@@ -309,5 +310,5 @@ function AgreeMent(val){
         		
         	}
         }
-    })
+    });
 }
