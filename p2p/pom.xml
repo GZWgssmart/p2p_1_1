@@ -96,6 +96,12 @@
       <groupId>org.apache.shiro</groupId>
       <artifactId>shiro-all</artifactId>
       <version>${shiro-all.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>quartz</artifactId>
+          <groupId>org.opensymphony.quartz</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -236,6 +242,18 @@
       <groupId>dom4j</groupId>
       <artifactId>dom4j</artifactId>
       <version>1.6.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>4.3.10.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>2.3.0</version>
     </dependency>
 
     <dependency>

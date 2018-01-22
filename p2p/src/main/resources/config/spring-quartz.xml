@@ -23,7 +23,7 @@
         <property name="name" value="userTicketJobTrigger" />
         <property name="group" value="group1" />
         <property name="jobDetail" ref="userTicketJobDetail" />
-        <property name="cronExpression" value="0/30 * * * * ?" />
+        <property name="cronExpression" value="0 59 23 * * ?" />
     </bean>
 
     <!--每天凌晨0点还款，如果余额不足则逾期-->
@@ -91,7 +91,7 @@
                 <ref bean="userTicketJobDetail" />
                 <ref bean="hkbJobDetail" />
                 <ref bean="borrowApplyJobDetail" />
-                <ref bean="testJobDetail" />
+                <!--<ref bean="testJobDetail" />-->
             </list>
         </property>
         <property name="triggers">
@@ -99,7 +99,7 @@
                 <ref bean="userTicketJobTrigger" />
                 <ref bean="hkbJobTrigger" />
                 <ref bean="borrowApplyJobTrigger" />
-                <ref bean="testJobTrigger" />
+                <!--<ref bean="testJobTrigger" />-->
             </list>
         </property>
     </bean>
