@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class FileUpload {
     /**
@@ -15,7 +16,9 @@ public class FileUpload {
 
         //拿到文件名称
         String exfileName = file.getOriginalFilename();
-
+        if(exfileName.length() == 0) {
+            return null;
+        }
         //截取文件名称。取从.号开始到后面的所有名称
         String suffix =exfileName.substring(exfileName.indexOf("."));
 
@@ -43,4 +46,6 @@ public class FileUpload {
 
         return path;
     }
+
+
 }

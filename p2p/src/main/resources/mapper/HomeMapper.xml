@@ -22,17 +22,21 @@
             <if test="pic3 != null and pic3 != ''">
                 pic3 = #{pic3},
             </if>
-            <if test="phone != null and phone != ''">
-                phone = #{phone},
+            <if test="l1 != null and l1 != ''">
+                l1 = #{l1},
+            </if>
+            <if test="l2 != null and l2 != ''">
+                l2 = #{l2},
+            </if>
+            <if test="l3 != null and l3 != ''">
+                l3 = #{l3},
             </if>
             <if test="ewm != null and ewm != ''">
                 ewm = #{ewm},
             </if>
             <if test="phone != null and phone != ''">
                 phone = #{phone},
-            </if><if test="phone != null and phone != ''">
-            phone = #{phone},
-        </if>
+            </if>
         </set>
         where hid = #{hid};
     </update>

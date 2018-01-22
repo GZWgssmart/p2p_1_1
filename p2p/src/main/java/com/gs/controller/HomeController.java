@@ -91,7 +91,7 @@ public class HomeController {
                     home.setPic2(pic2img);
             }
             if (file3 != null){
-                    String pic3img = FileUpload.uploadFile(request,file2);
+                    String pic3img = FileUpload.uploadFile(request,file3);
                     home.setPic3(pic3img);
             }
             if (file4 != null){

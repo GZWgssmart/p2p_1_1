@@ -557,7 +557,7 @@ function formatImage(value) {
 }
 
 //图片上传预览    IE是用了滤镜。
-var MAXWIDTH = 120;
+var MAXWIDTH = 300;
 var MAXHEIGHT = 90;
 var img = '';
 function previewImage(file) {
@@ -622,9 +622,6 @@ function previewImages(file) {
     }
 }
 //轮播图一
-var MAXWIDTH = 300;
-var MAXHEIGHT = 90;
-var img = '';
 function previewImage1(file) {
 
     var div = $('.preview');
@@ -687,9 +684,7 @@ function previewImages1(file) {
     }
 }
 //轮播图二
-var MAXWIDTH = 300;
-var MAXHEIGHT = 90;
-var img = '';
+
 function previewImage2(file) {
 
     var div = $('.preview');
@@ -752,9 +747,7 @@ function previewImages2(file) {
     }
 }
 //轮播图三
-var MAXWIDTH = 300;
-var MAXHEIGHT = 90;
-var img = '';
+
 function previewImage3(file) {
 
     var div = $('.preview');
@@ -817,11 +810,8 @@ function previewImages3(file) {
     }
 }
 //二维码
-var MAXWIDTH = 100;
-var MAXHEIGHT = 90;
-var img = '';
-function previewImage4(file) {
 
+function previewImage4(file) {
     var div = $('.preview');
     if (file.files && file.files[0]) {
         div.innerHTML = '<img id=img4 onclick=$("#previewImg4").click()>';

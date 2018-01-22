@@ -150,7 +150,7 @@
                     <div class="preview">
                         <img id="imgs3" name="fpic" border="0" src="http://www.jq22.com/img/cs/500x300.png" width="300" height="90" onclick="$('#previewImgs3').click();">
                     </div>
-                    <input type="file"  onchange="previewImages3(this)" name="file3" style="display: none;" id="previewImgs3"><br>
+                    <input type="file"  onchange="previewImages3(this)" name="file3" style="display: none"  id="previewImgs3"><br>
                 </td>
             </tr>
             <tr>
@@ -220,7 +220,7 @@
                     showInfoAlert(data.message);
                     $("#" + listId).datagrid("reload");
                 } else {
-                    showInfoAlert("添加失败！");
+                    showInfoAlert("操作失败！");
                 }
             },
             error : function(e) {
@@ -234,6 +234,7 @@
         if (row) {
             $("#" + formId).form("load", row);
             $('#imgs1').attr("src","<%=path%>/static/upload/picimg/"+row.pic1);
+            $('#file1').val(row.pic1);
             $('#imgs2').attr("src","<%=path%>/static/upload/picimg/"+row.pic2);
             $('#imgs3').attr("src","<%=path%>/static/upload/picimg/"+row.pic3);
             $('#imgs4').attr("src","<%=path%>/static/upload/picimg/"+row.ewm);
