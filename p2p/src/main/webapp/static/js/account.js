@@ -583,7 +583,7 @@ function tuiJianList(){
     //数据初始化
     var payData = [
         {
-            key:'rname',resolve:function(val, record){
+            key:'tname',resolve:function(val, record){
             return val;
         }
         }, {
@@ -591,7 +591,7 @@ function tuiJianList(){
                 return formatDate(val);
             }
         }, {
-            key:'tname',resolve:function(val, record){
+            key:'rname',resolve:function(val, record){
                 return val;
             }
         }, /*{

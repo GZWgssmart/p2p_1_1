@@ -50,9 +50,7 @@
 
             </ul>
         </div>
-        <div class="bang-list">
-            <a href="javascript:void(0);" target="_blank" class="icon icon-bang">投资、推荐排行榜</a>
-        </div>
+
     </div>
 </div>
 <!-- statis -->

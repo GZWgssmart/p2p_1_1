@@ -16,7 +16,7 @@
     </insert>
     <sql id="cash_query_criteria">
         <if test="query != null and query.uid != null and query.uid!=''">
-            and r.uid = #{query.uid}
+            and r.tid = #{query.uid}
         </if>
         <if test="query != null and query.tname != null and query.tname!=''">
             and r.tname like concat('%', #{query.tname}, '%')
