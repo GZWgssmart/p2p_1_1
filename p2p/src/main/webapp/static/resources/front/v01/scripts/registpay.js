@@ -37,7 +37,7 @@ function submit(){
 	var Marriage = $('#Marriage').val();
 	var bschool = $('#School').val();
     var Address = $('#Address').val();
-    var Job = $('#Job').val();;
+    var Job = $('#Job').val();
     var eduBack = $('#eduBack').val();
 	if(Name==''){
 		showError('请输入真实姓名',$('#Name'));
@@ -52,10 +52,13 @@ function submit(){
 		return;
 	};
 	if(Age==''){
-		showError('请输入手机号码',$('#phone'));
+		showError('请输入年龄',$('#Age'));
 		return;
+	} else if (Age > 100) {
+        showError('请输入正确的年龄',$('#Age'));
+        return;
 	};
-	if(School==''){
+	if(bschool==''){
 		showError('请输入毕业院校',$('#School'));
 		return;
 	};
@@ -67,15 +70,25 @@ function submit(){
         showError('请输入当前职业',$('#Job'));
         return;
     };
+    if (eduBack == 'xl') {
+        showError('请选择学历',$('#eduBack'));
+        return;
+	}
 	$('.btn').addClass('disabled').text('认证中...').unbind('click');
 	$.post(
         basePath + '/rzvip/save',
         $("#form1").serialize(),
         function(data){
-        	// utils.alert("身份认证已提交，请等待审核！");
-        	if(data.result === 'ok'){
-                window.location.href=basePath + '/user/user_safe';
-        	}
+            if(data.result === 'ok'){
+                utils.alert("身份认证已提交，请等待审核！", function () {
+                    window.location.href=basePath + '/user/user_safe';
+				});
+            } else {
+                utils.alert("身份认证提交失败！");
+                $('.btn').removeClass('disabled').text('提交认证').bind('click',function(){
+                    submit();
+                });
+			}
 		},
 		"json"
     );

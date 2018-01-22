@@ -2,15 +2,22 @@ var isPhoneRegist, isUserRegist, isSend = false;
 var localObj = window.location;
 var basePath = localObj.protocol + "//" + localObj.host;
 $(function(){
-	var useCode = $("#useCode").val();
-	if(useCode !=''){
-		$("#asda").show();
-		$("#useCode").attr("readOnly","true");
-	}
-	$(".icon-bottom").click(function(){
-        $("#asda").show();
-	})
+	/*
+
+
+
+
+
+
+
+
+
+
 	utils.initInput();
+	if(utils.getUrlParam('useCode')){
+		$('.from-ext').attr('class','from fadeOutUpBig');
+		$('#useCode').val(utils.getUrlParam('useCode')).attr('disabled',true);
+	};
 	/*
 	var phone;
 	$('.code').one('click',function(){
@@ -111,6 +118,21 @@ function regist(){
     if(phone==''){
         showError('请输入手机号', $('#phone'));
         return;
+    } else {
+        var url = basePath + "/user/isPhoneExist";
+        $.post(
+            url,
+            {
+                phone:phone
+            },
+            function (data) {
+                if (data.result === 'exist') {
+                    showError("手机号已存在！",$(obj));
+                    return;
+                }
+            },
+            "json"
+        );
     };
     if(utils.isPhone(phone)){
         showError('请输入正确的手机号码', $('#phone'));
@@ -156,7 +178,7 @@ function regist(){
                                 if (data.result === 'ok') {
                                     utils.alert('注册成功！',function(){
                                         window.location.href= basePath + '/user/login_page';
-                                    })
+                                    });
                                 }
                                 $('.btn').text('注册').removeClass('disabled');
                             },

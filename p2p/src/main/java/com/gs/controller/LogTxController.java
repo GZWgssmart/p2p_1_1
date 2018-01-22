@@ -91,6 +91,7 @@ public class LogTxController {
 
         return statusVO;
     }
+
     @RequestMapping("select")
     @ResponseBody
     public Pager SelectLogTxPage(HttpSession session, SearchVo param,Integer page, Integer rows) {

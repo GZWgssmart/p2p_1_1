@@ -14,8 +14,8 @@
 
     <select id="getByPhonePwd" resultType="com.gs.bean.HUser">
         <![CDATA[
-        select huid, rname, sex, phone, pwd, huname, email
-         from t_huser where phone = #{phone} and pwd = #{pwd}
+          select huid, rname, sex, phone, pwd, huname, email
+          from t_huser where phone = #{phone} and pwd = #{pwd}
         ]]>
     </select>
 
@@ -91,4 +91,9 @@
         <include refid="hUserQuery_criteria"/>
     </select>
 
+    <select id="getById" resultType="com.gs.bean.HUser">
+        <![CDATA[
+          select huid, rname, sex, phone, huname, email from t_huser where huid = #{huid}
+        ]]>
+    </select>
 </mapper>

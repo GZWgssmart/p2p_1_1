@@ -67,7 +67,7 @@
                         </c:if>
                     </li>
                     <li>
-                        <c:if test="${rzVip.ispass == 1}">
+                        <c:if test="${rzVip.ispass != 2}">
                             <div class="safe-list-1">
                                 <p class="icon icon-wrong">身份认证</p>
                             </div>

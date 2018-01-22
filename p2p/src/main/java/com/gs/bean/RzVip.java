@@ -18,7 +18,7 @@ public class RzVip {
 
     private Integer age;//年龄
 
-    private byte ispass;//是否审核通过，1不通过，2通过
+    private byte ispass;//是否审核通过，1默认值未提交，2通过, 3已提交未审核, 4审核失败
 
     private Long int1;
 

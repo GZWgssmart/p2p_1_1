@@ -9,7 +9,6 @@
           select rid, uid, xl, ism, bschool, addr, work, age, ispass from t_rzvip where uid = #{uid};
        ]]>
    </select>
-<!--, u.uname, u.phone, u.idno, u.email, u.rname, u.sex-->
 
     <!--新增信息-->
     <insert id="save" parameterType="com.gs.bean.RzVip">
@@ -40,10 +39,54 @@
                 work = #{work},
             </if>
             <if test="age != null">
-                age = #{age}
+                age = #{age},
+            </if>
+            <if test="ispass != null">
+                ispass = #{ispass}
             </if>
         </set>
         where uid = #{uid}
     </update>
+
+    <!--条件查询-->
+    <select id="listPagerCriteria" resultType="com.gs.vo.UserVO">
+        select u.uid, u.face, u.uname, u.upwd, u.phone, u.tzm, u.idtype, u.idno, u.zpwd, u.email, u.rname, u.sex, u.isvip,
+         r.rid, r.uid, r.xl, r.ism, r.bschool, r.addr, r.work, r.age, r.age, r.ispass
+        <include refid="user_query_common" />
+        <include refid="user_query_criteria" />
+        <include refid="user_group_common"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(u.uid)
+        <include refid="user_query_common" />
+        <include refid="user_query_criteria"/>
+    </select>
+
+    <sql id="user_query_common">
+        from t_user u, t_rzvip r
+        where u.uid = r.uid
+         and (r.ispass = 3 or r.ispass = 4)
+    </sql>
+
+    <sql id="user_group_common">
+        group by u.uid
+    </sql>
+
+    <sql id="user_query_criteria">
+        <if test="query != null and query.uid != null">
+            and u.uid = #{query.uid}
+        </if>
+        <if test="query != null and query.uname != null and query.uname != ''">
+            and u.uname like concat('%', #{query.uname}, '%')
+        </if>
+        <if test="query != null and query.phone != null and query.phone != ''">
+            and u.phone like concat('%', #{query.phone}, '%')
+        </if>
+        <if test="query != null and query.rname != null and query.rname != ''">
+            and u.rname like concat('%', #{query.rname}, '%')
+        </if>
+      </sql>
 
 </mapper>

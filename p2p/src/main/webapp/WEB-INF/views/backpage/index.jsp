@@ -1,4 +1,5 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 		 pageEncoding="utf-8"%>
 <%
@@ -12,6 +13,16 @@
 		font-size: 16px;
 	}
 </style>
+
+<style>
+	.td{
+		width: 200px;height: 32px;
+		border: none;
+		readonly:true;
+	}
+</style>
+
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -28,14 +39,12 @@
 	<p class="clear"></p>
 </div>
 
-<div data-options="region:'sou\th',split:true" style="height: 50px;">Copyright&copy;WGS</div>
+<div data-options="region:'sou\th',split:true" style="height: 50px;">Copyright&copy;P2P</div>
 <div data-options="region:'west',split:true" title="主菜单" style="width: 250px;">
 	<div class="easyui-accordion">
 		<div title="用户管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
 			<ul>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh"
-					   class="site-navi-tab">个人基本信息管理</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/test/testca"
+				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/huser/userlist_page"
 					   class="site-navi-tab">用户基本信息管理</a></li>
 				<shiro:hasPermission name="recommend:page">
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/recommend/page"
@@ -73,6 +82,8 @@
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/uticket/page"
 						   class="site-navi-tab">用户领券管理</a></li>
 				</shiro:hasPermission>
+				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/huser/huserlist_page"
+							class="site-navi-tab">投资奖励管理</a></li>
 			</ul>
 		</div>
 		<div title="借贷管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
@@ -150,7 +161,7 @@
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/logtx/backtxsh"
 						   class="site-navi-tab">提现审核</a></li>
 				</shiro:hasPermission>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
+				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/rzvip/checkrzVip"
 								   class="site-navi-tab">用户认证审核</a></li>
 			</ul>
 		</div>
@@ -190,12 +201,66 @@
 	</div>
 </div>
 <div id="tabs" class="easyui-tabs" data-options="region:'center'">
-	<div title="主页" style="padding: 10px">
-		<div class="easyui-panel my-panel" title="系统状态">
-			系统状态
-		</div>
-		<div class="easyui-panel my-panel" title="待办任务">
-			待办任务
+	<div title="管理员基本信息管理" style="padding: 10px">
+		<div class="easyui-panel my-panel" title="" style="height: 100%">
+			<table id="list" class="easyui-datagrid" >
+				<thead>
+				<tr>
+					<form id="form1">
+						<input type="hidden" name="huid" id="huid" value="${requestScope.hUser.huid}">
+						<table>
+							<tr>
+								<td width="100px">用户名:</td>
+								<td>
+									<input name="huname" id="huname" class="td" value="${requestScope.hUser.huname}"/>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">手机号:</td>
+								<td>
+									<input name="phone" id="phone" class="td" value="${requestScope.hUser.phone}"/>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">真实姓名:</td>
+								<td>
+									<input name="rname" class="td" id="rname" value="${requestScope.hUser.rname}"/>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">性别:</td>
+								<td  >
+									<c:if test="${hUser.sex == 0}">
+										<select id="sex" name="sex" class="" style="height: 32px;width: 150px;border: none">
+											<option value="0" selected>男</option>
+											<option value="1">女</option>
+										</select>
+									</c:if>
+									<c:if test="${hUser.sex == 1}">
+										<select id="sex" name="sex" class="" style="height: 32px;width: 150px;border: none">
+											<option value="0" >男</option>
+											<option value="1" selected>女</option>
+										</select>
+									</c:if>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">邮箱:</td>
+								<td>
+									<input name="email" id="email" class="td" value="${requestScope.hUser.email}"/>
+								</td>
+							</tr>
+							<tr style="display: none" id="tr1">
+								<td colspan="2">
+									<div style="margin:10px 0;"></div>
+									<a class="easyui-linkbutton" onclick="updatehuser('/huser/update', 'form1');">确认</a>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</tr>
+				</thead>
+			</table>
 		</div>
 	</div>
 </div>
@@ -241,7 +306,48 @@
 	<div id="mm-tabcloseother">关闭其他</div>
 	<div id="mm-tabcloseall">关闭全部</div>
 </div>
-
 </body>
 <%@include file="../master/easyui/footer.jsp" %>
+<script>
+    $(function () {
+        $("#sex").change(function(){
+            $("#tr1").show();
+        })
+        $(".td").change(function(){
+            $("#tr1").show();
+        })
+//        $("#sex").click(function(){
+//            $("#td2").show();
+//            $("#td1").hide();
+//        });
+    });
+
+    function updatehuser(url, formId) {
+		var huid = $('#huid').val();
+        var huname = $('#huname').val();
+        var phone = $('#phone').val();
+        var rname = $('#rname').val();
+        var sex = $('#sex').val();
+        var email = $('#email').val();
+		$.post(contextPath + url,
+			{
+				huid:huid,
+				huname:huname,
+				phone:phone,
+				rname:rname,
+				sex:sex,
+				email:email
+			},
+			function (data) {
+				if (data.result === "ok") {
+					showInfoAlert(data.message);
+				} else {
+					showInfoAlert(data.message);
+				}
+			},
+			'json'
+		);
+	}
+
+</script>
 </html>

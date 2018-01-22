@@ -10,12 +10,7 @@ import java.util.List;
  * Created by Administrator on 2017/12/20
  */
 @Repository
-public interface RzVipDAO extends BaseDAO {
+public interface RzVipCheckDAO extends BaseDAO {
 
-    @Override
-    List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
-
-    @Override
-    Long countCriteria(@Param("query") Object obj);
 
 }

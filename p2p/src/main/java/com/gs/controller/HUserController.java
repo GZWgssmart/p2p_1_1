@@ -1,16 +1,16 @@
 package com.gs.controller;
 
 import com.gs.bean.HUser;
-import com.gs.bean.Role;
-import com.gs.bean.RoleUser;
 import com.gs.common.Combobox;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
 import com.gs.common.Pager;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.query.HUserQuery;
+import com.gs.query.UserQuery;
 import com.gs.service.HUserService;
 import com.gs.service.RoleUserService;
+import com.gs.service.UserService;
 import com.gs.vo.ControllerStatusVO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -23,12 +23,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sun.net.www.http.Hurryable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -43,11 +41,25 @@ public class HUserController {
     @Autowired
     private RoleUserService roleUserService;
 
-
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/login_page")
     public String login_page(){
         return "user/backlogin";
+    }
+
+    @RequestMapping("/userlist_page")
+    public String userPageList(){
+        return "backpage/userList";
+    }
+
+    @RequestMapping("/huserlist_page")
+    public String huserPageList(HttpSession session, HUser hUser, HttpServletRequest request){
+        HUser hUser1 = (HUser) session.getAttribute(Constants.HUSER_IN_SESSION);
+        hUser = (HUser) hUserService.getById(hUser1.getHuid());
+        request.setAttribute("hUser", hUser);
+        return "backpage/huserList";
     }
 
     /**
@@ -96,8 +108,12 @@ public class HUserController {
     }
 
     @RequestMapping("home")
-    public String home() {
-        return "backpage/index";    }
+    public String home(HttpSession session, HUser hUser, HttpServletRequest request) {
+        HUser hUser1 = (HUser) session.getAttribute(Constants.HUSER_IN_SESSION);
+        hUser = (HUser) hUserService.getById(hUser1.getHuid());
+        request.setAttribute("hUser", hUser);
+        return "backpage/index";
+    }
 
     @RequestMapping("down")
     public String loginout() {
@@ -118,6 +134,12 @@ public class HUserController {
             comboboxList.add(new Combobox(hUser.getHuid()+"",hUser.getHuname(),false));
         }
         return comboboxList;
+    }
+
+    @RequestMapping("user_pager_criteria")
+    @ResponseBody
+    public Pager pagerCriteria(int page, int rows, UserQuery userQuery){
+        return userService.listPagerCriteria(page, rows, userQuery);
     }
 
     //普通管理员查询

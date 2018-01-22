@@ -56,7 +56,7 @@
     <select id="listAll" resultType="com.gs.bean.BorrowApply">
         <![CDATA[
         select * from t_borrowapply where state = 0;
-    ]]>
+        ]]>
     </select>
 
     <select id="listPagerCriteria" resultType="com.gs.vo.JkbVO">
@@ -85,9 +85,9 @@
     </select>
     <update id="update" parameterType="borrowApply">
         <![CDATA[
-         update t_borrowapply set money = #{money},bzid = #{bzid},state = #{state},lxid = #{lxid},term = #{term},
-         deadline = #{deadline},sid = #{sid}
-         where baid = #{baid}
+        update t_borrowapply set money = #{money},bzid = #{bzid},state = #{state},lxid = #{lxid},term = #{term},
+            deadline = #{deadline},sid = #{sid}
+        where baid = #{baid}
         ]]>
     </update>
 
@@ -95,13 +95,13 @@
         <![CDATA[
          update t_borrowapply ba
          ]]>
-         <set>
+        <set>
             <if test="huid != null and huid!=''">
                 ba.huid = #{huid},
             </if>
-             <if test="mbtime != null and mbtime!=''">
-                 ba.mbtime = #{mbtime},
-             </if>
+            <if test="mbtime != null and mbtime!=''">
+                ba.mbtime = #{mbtime},
+            </if>
             <if test="excuse != null and excuse!=''">
                 ba.excuse = #{excuse},
             </if>
@@ -109,17 +109,17 @@
                 ba.state = #{state},
             </if>
         </set>
-         where baid = #{baid}
+        where baid = #{baid}
     </update>
     <update id="updateState2" parameterType="com.gs.bean.BorrowApply">
         <![CDATA[
-         update t_borrowapply set huid = #{huid},state = #{state},excuse = #{excuse},`time` = CURRENT_TIMESTAMP where baid = #{baid}
-         ]]>
+        update t_borrowapply set huid = #{huid},state = #{state},excuse = #{excuse},`time` = CURRENT_TIMESTAMP where baid = #{baid}
+        ]]>
     </update>
 
     <select id="listByBzid" resultType="com.gs.vo.investBorrowVo">
         select ba.baid,ba.money,ba.term,ba.state,
-        bd.nprofit as nprofit,bd.ytmoney as ytmoney,bd.cpname as cpname
+            bd.nprofit as nprofit,bd.ytmoney as ytmoney,bd.cpname as cpname
         from t_borrowapply ba, t_borrowdetail bd where ba.baid = bd.baid and ba.state<![CDATA[>]]>2 and ba.state !=6 and ba.bzid = #{bzid} order by ba.state;
     </select>
     <select id="listByUid" resultType="borrowApply">

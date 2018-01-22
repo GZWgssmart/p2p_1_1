@@ -4163,8 +4163,8 @@ function changePwdSubmit(){
 
 //设置交易密码
 function savePwd(){
-	var oldMobileCode = $('#oldMobileCode').val();
-	var oldPhone = $('#oldPhone').val();
+    var oldMobileCode = $('#oldMobileCode').val();
+    var oldPhone = $('#oldPhone').val();
     utils.Dialog(true);
     $('.change-zpwd').fadeIn();
     $('.change-zpwd .close').click(function(){
@@ -4178,11 +4178,11 @@ function savePwd(){
         utils.getSmsCode($('#getpwdMsgCode'),oldPhone);
     });
     $('#zpwd-submit').unbind('click').click(function(){
-        changedealPwdSubmit();
+        savedealPwdSubmit();
     });
 }
 
-function changedealPwdSubmit(){
+function savedealPwdSubmit(){
     var dealPassword = $('#dealPassword').val();
     var confirmdealPassword = $('#confirmdealPassword').val();
     var oldMobileCode = $('#oldMobileCode').val();
@@ -4190,12 +4190,12 @@ function changedealPwdSubmit(){
         utils.toast('交易密码不能为空');
         return;
     }
-    if(dealPassword.length != 6 || isNaN(dealPassword)){
-        utils.toast('交易密码为6位纯数字');
-        return;
-    }
     if(confirmdealPassword == ''){
         utils.toast('确认密码不能为空');
+        return;
+    }
+    if(dealPassword.length != 6 || isNaN(dealPassword)){
+        utils.toast('交易密码为6位纯数字');
         return;
     }
     if(dealPassword != confirmdealPassword){
@@ -4225,10 +4225,10 @@ function changedealPwdSubmit(){
                     function(data){
                         $('.change-zpwd .icon-close').hide();
                         $('#zpwd-submit').removeClass('disabled').text('确认').bind('click');
-						$('.change-zpwd .popup-from').hide().siblings('.popup-result').show();
-						$('#changezpwd-success').click(function(){
-							window.location.reload();
-						});
+                        $('.change-zpwd .popup-from').hide().siblings('.popup-result').show();
+                        $('#changezpwd-success').click(function(){
+                            window.location.reload();
+                        });
                     },
                     "json"
                 );
@@ -4267,12 +4267,12 @@ function changedealPwdSubmit(){
         utils.toast('原始密码不能为空');
         return;
     }
-    if(newPassword.length != 6 || isNaN(newPassword)){
-        utils.toast('交易密码为6位纯数字');
-        return;
-    }
     if(confirmPassword == ''){
         utils.toast('确认密码不能为空');
+        return;
+    }
+    if(newPassword.length != 6 || isNaN(newPassword)){
+        utils.toast('交易密码为6位纯数字');
         return;
     }
     if(oldPassword == newPassword){
@@ -4314,8 +4314,8 @@ function changedealPwdSubmit(){
 
 //忘记交易密码
 function forgetpwd(){
-	var hiddenphone = $('#hiddenphone').val();
-	var hiddenSmscode = $('#hiddenSmscode').val();
+    var hiddenphone = $('#hiddenphone').val();
+    var hiddenSmscode = $('#hiddenSmscode').val();
     utils.Dialog(true);
     $('.forget-zpwd').fadeIn();
     $('.forget-zpwd .close').click(function(){
@@ -4323,20 +4323,19 @@ function forgetpwd(){
         utils.Dialog();
     });
     $('#forgetzPwd-submit').click(function(){
-		utils.getSmsCode($("#hiddenphone"),hiddenphone);
-		$.post(
+        utils.getSmsCode($("#hiddenphone"),hiddenphone);
+        $.post(
             basePath + '/user/checkmsgCode',
             {
                 smsCode:hiddenSmscode
             },
-			function(data) {
-				// utils.alert("初始密码已发送至您的手机，请注意查收！");
-				if (data.result === 'ok') {
+            function(data) {
+                utils.alert("初始密码已发送至您的手机，请注意查收！", function(){
                     window.location.reload();
-                }
-			},
-			'json'
-		)
+                });
+            },
+            'json'
+        )
     });
 }
 
