@@ -103,7 +103,7 @@ function regist(){
     var username = $('#username').val();
     var pwd = $('#pwd').val();
     var msgCode = $('#msgcode').val();
-    var userCode = $('#userCode').val();
+    var userCode = $('#useCode').val();
     if(username==''){
         showError('请输入用户名', $('#username'));
         return;
@@ -126,6 +126,7 @@ function regist(){
             },
             "json"
         );
+	return;
     };
     if(utils.isPhone(phone)){
         showError('请输入正确的手机号码', $('#phone'));
