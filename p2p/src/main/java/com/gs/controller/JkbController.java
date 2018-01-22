@@ -58,6 +58,8 @@ public class JkbController {
     private LetterService letterService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private RzVipService rzVipService;
 
     //进入申请借款页面
     @RequestMapping("/jkb_page")
@@ -70,8 +72,12 @@ public class JkbController {
         request.setAttribute("jklxList",jklxList);
         request.setAttribute("swayList",swayList);
         List<BorrowApply> borrowApplyList = (List)borrowApplyService.listByUid(user.getUid());
+        RzVip rzVip = (RzVip) rzVipService.getById(user.getUid());
+        if (rzVip == null){
+            request.setAttribute("msg","请您先完成认证");
+        }
         if (borrowApplyList.size() != 0){
-            request.setAttribute("msg","你已经存在其他接款，请先完成该借款再来申请借款！");
+            request.setAttribute("msg2","你已经存在其他接款，请先完成该借款再来申请借款！");
         }
         return "jkb/jkb_add";
     }

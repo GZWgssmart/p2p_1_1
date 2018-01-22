@@ -5,7 +5,7 @@ function backlogin() {
             if (data.result === 'ok' || data.result === 'logined') {
                 window.location.href = contextPath + "/huser/home";
             } else {
-                showInfoAlert(data.message);
+                alert(data.message);
             }
         },
         'json'

@@ -12,52 +12,60 @@
 <html>
 <head>
     <title>登录</title>
-    <%@include file="../master/easyui/header.jsp"%>
 </head>
+<style>
+    .login-content {
+        width: 100%;
+        height: 100%;
+        padding-top: 90px;
+        background: url("<%=path%>/static/resources/front/v01/src/images/login.jpg") top center no-repeat;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="<%=path%>/static/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style3.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/static/css/animate-custom.css" />
 <body>
-    <div style="margin:auto; width:600px; height:400px;padding-top:200px;">
-        <div style="float:left;width:60%;"><img style="width:360px;height:150px;"src="<%=path%>/static/images/girl.jpg"></div>
-        <div class="easyui-panel" data-options="title:'登录'" style="float:left;width:40%;">
-            <form id="loginForm">
-                <table>
-                    <tr>
-                        <td>
-                            <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入手机号',
-						required:true,
-						validType:['length[11,11]'],
-						novalidate:true" name="phone" maxlength="11"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="password" class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入密码',
-						required:true,
-						validType:['length[2,20]'],
-						novalidate:true" name="pwd"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input class="easyui-textbox easyui-validatebox" data-options="prompt:'请输入验证码',
-						required:true,
-						validType:['length[2，20]'],
-						novalidate:true" name="code"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                           <img src="<%=path%>/code" onclick="this.src='<%=path%>/code?r=' + Math.random();"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a class="easyui-linkbutton" onclick="backlogin()">登录</a></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-        <p style="clear: both;"></p>
+<div class="login-content">
+    <div class="container">
+        <section>
+            <div id="container_demo" >
+                <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                <a class="hiddenanchor" id="toregister"></a>
+                <a class="hiddenanchor" id="tologin"></a>
+                <div id="wrapper">
+                    <div id="login" class="animate form">
+                        <form id="loginForm"  action="<%=path%>/user/login" autocomplete="on" method="post">
+                            <h1>管理员登录</h1>
+                            <p>
+                                <label for="phone" class="uname" > 手机号码： </label>
+                                <input id="phone" name="phone" maxlength="11" required="required" type="text" placeholder="请输入手机号码"/>
+                            </p>
+                            <p>
+                                <label for="pwd" class="youpasswd"> 登录密码： </label>
+                                <input id="pwd" name="pwd" required="required" type="password" placeholder="请输入登录密码" />
+                            </p>
+                            <p>
+                                <label for="code"> 验证码： </label>
+                                <input id="code" name="code" required="required" type="text" placeholder="请输入验证码" /><br/><br/>
+                                <img src="<%=path%>/code" style="border: 1px solid #b4dbed;height: 38px;" onclick="this.src='<%=path%>/code?r=' + Math.random();"/>
+                            </p>
+                            <p class="login button">
+                                <input type="button" onclick="backlogin()" value="登 录" />
+                            </p>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="login-footer">
+                <p>版权所有 © 普金资本运营（赣州）有限公司 All rights reserved 备案确认书：赣ICP备16004010号</p>
+            </div>
+
+        </section>
     </div>
+</div>
 </body>
-<%@ include file="../master/easyui/footer.jsp"%>
+<%@include file="../master/easyui/footer.jsp" %>
 <script src="<%=path %>/static/js/huser/huser.js"></script>
 </html>

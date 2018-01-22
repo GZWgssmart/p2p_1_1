@@ -166,5 +166,13 @@
         })
     </script>
 </c:if>
+<c:if test="${msg2!=null}">
+    <script type="text/javascript">
+        $(function(){
+            alert("${msg2}");
+            window.location.href = '/user/user_home';
+        })
+    </script>
+</c:if>
 </body>
 </html>
