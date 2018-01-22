@@ -1,7 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-	String path = request.getContextPath();
-%>
+
 <html>
 <head>
 	<title>普金资本平台</title>
@@ -16,60 +13,69 @@
 	<em class="em-line"></em>
 </div>
 <div class="about-content" id="sssjDiv">
-
+	<div class="btnDiv">
+		撮合交易总额（元）
+	</div>
+	<div class="moneyDiv">
+		<div class="item_Div_test">0</div>
+	</div>
 	<div class="btnDiv">平台数据总览</div>
 	<div class="sjList sjList-1">
 		<div class="item">
 			<div class="item-icon icon-dealNumber"></div>
 			<div class="itemText">总用户数（人）</div>
-			<div class="itemSJ" id="dealNumber"></div>
+			<div class="itemSJ" id="dealNumber">${yDataVO.tuser}</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-repayAmount"></div>
 			<div class="itemText">月用户数（人）</div>
-			<div class="itemSJ" id="repayAmount"></div>
+			<div class="itemSJ" id="repayAmount">${yDataVO.muser}</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-unRepayAmount"></div>
 			<div class="itemText">总投资人数（人）</div>
-			<div class="itemSJ" id="unRepayAmount"></div>
+			<div class="itemSJ" id="unRepayAmount">${yDataVO.ttzno}</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-unRepayNumber"></div>
 			<div class="itemText">月投资人数（人）</div>
-			<div class="itemSJ" id="unRepayNumber"></div>
+			<div class="itemSJ" id="unRepayNumber">${yDataVO.mtzno}</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-hasInteres"></div>
 			<div class="itemText">总贷款人数（人）</div>
-			<div class="itemSJ" id="hasInterest"></div>
+			<div class="itemSJ" id="hasInterest">${yDataVO.tdkno}</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-compensatoryMoney"></div>
 			<div class="itemText">月贷款人数（人）</div>
-			<div class="itemSJ" id="compensatoryMoney"></div>
+			<div class="itemSJ" id="compensatoryMoney">${yDataVO.mdkno}</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-compensatoryNumber"></div>
 			<div class="itemText">总贷款笔数（笔）</div>
-			<div class="itemSJ" id="compensatoryNumber"></div>
+			<div class="itemSJ" id="compensatoryNumber">${yDataVO.tdkbno}</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-overdueMoney"></div>
 			<div class="itemText">月贷款笔数（笔）</div>
-			<div class="itemSJ" id="overdueMoney"></div>
+			<div class="itemSJ" id="overdueMoney">${yDataVO.mdkbno}</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-overdueNumber"></div>
-			<div class="itemText">总交易金额（元）</div>
-			<div class="itemSJ" id="overdueNumber"></div>
+			<div class="itemText">逾期笔数（笔）</div>
+			<div class="itemSJ" id="overdueNumber">0</div>
 		</div>
 		<div class="item">
 			<div class="item-icon icon-overtimeNumber"></div>
-			<div class="itemText">月交易金额（元）</div>
-			<div class="itemSJ" id="overtimeNumber"></div>
+			<div class="itemText">逾期90天以上笔数（笔）</div>
+			<div class="itemSJ" id="overtimeNumber">0</div>
 		</div>
-
+		<div class="item">
+			<div class="item-icon icon-overtimeMoney"></div>
+			<div class="itemText">逾期90天以上金额（元）</div>
+			<div class="itemSJ" id="overtimeMoney">0</div>
+		</div>
 	</div>
 
 
