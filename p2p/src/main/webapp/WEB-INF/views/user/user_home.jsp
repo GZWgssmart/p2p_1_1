@@ -36,7 +36,7 @@
                         <a href="<%=path%>/user/logout" class="">退出</a>
                     </c:if>
                 </li>
-                <li><a href="<%=path %>/recommend/handpage" class="icon icon-inv">邀请有礼</a></li>
+                <li><a href="<%=path %>/recommend/handpage" target="mainFrame" class="icon icon-inv">邀请有礼</a></li>
                 <li><a href="<%=path%>/html/about#gdbj">关于我们</a></li>
                 <li><a href="<%=path%>/html/help">帮助中心</a></li>
                 <li id="userName">

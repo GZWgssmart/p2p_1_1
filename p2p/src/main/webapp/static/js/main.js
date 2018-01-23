@@ -2,6 +2,7 @@ var homeTabTitle = '主页';
 var contextPath = "";
 
 var path = "http://"+window.location.host+"/upload/";
+var contpath = "http://"+window.location.host+"/static/upload/";
 function hashChange(){
     var hash =  window.location.pathname;
     /*$('.sub-nav li').removeClass('active');
@@ -553,7 +554,7 @@ function derivation(url,formid) {
 }
 
 function formatImage(value) {
-    return '<img src="'+path+''+value+'" style="width: 350px;height: 90px"/>';
+    return '<img src="'+contpath+''+value+'" style="width: 350px;height: 90px"/>';
 }
 
 //图片上传预览    IE是用了滤镜。

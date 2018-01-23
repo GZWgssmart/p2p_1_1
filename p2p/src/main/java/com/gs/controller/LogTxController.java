@@ -48,10 +48,11 @@ public class LogTxController {
     public ModelAndView showPage(HttpSession session) {
         ModelAndView mav = new ModelAndView("deposit/deposit");
         User user = (User) session.getAttribute(Constants.USER_IN_SESSION);
+        Long uid  = user.getUid();
         if(user != null) {
             user = (User) userService.getById(user.getUid());
             if(bankCardService.countBank(user.getUid()) != 0) {
-                UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(1L);
+                UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(uid);
                 TxInItPage inItPage = new TxInItPage(user.getUid(),user.getRname(),user.getPhone(),userMoney.getKymoney());
                 return  mav.addObject("inItPage",inItPage);
             }else{

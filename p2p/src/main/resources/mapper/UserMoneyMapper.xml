@@ -9,20 +9,20 @@
     <select id="getByUserId" resultType="com.gs.bean.UserMoney">
         <![CDATA[
 		select zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney from t_usermoney
-		where uid = #{user_id}
+		where uid = #{uid}
 		]]>
     </select>
 
     <update id="updateById">
-        update t_usermoney set kymoney = kymoney + #{money} where uid=#{id}
+        update t_usermoney set kymoney = kymoney + #{money},zmoney = zmoney + #{money} where uid=#{id}
     </update>
 
 
     <update id="updateByIdMaoll">
-        update t_usermoney set kymoney = kymoney - #{money} where uid=#{id}
+        update t_usermoney set kymoney = kymoney - #{money},zmoney = zmoney - #{money} where uid=#{id}
     </update>
 
-    <update id="update">
+    <update id="update" parameterType="com.gs.bean.UserMoney">
         <![CDATA[
          update t_usermoney
         ]]>

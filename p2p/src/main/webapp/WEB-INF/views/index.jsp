@@ -59,9 +59,9 @@
         <div class="statis-main">
             <ul class="statis-top cl">
                 <li class="first"><p>普金资本高收益网络借贷信息中介平台</p></li>
-                <li class="center"><p>累计投资金额：<span id="investAmount">30,761,918.00</span><span class="small">元</span></p></li>
+                <li class="center"><p>累计投资金额：<span id="investAmount">2,341,210</span><span class="small">元</span></p></li>
                 <!--<li class="center"><p>累计赚取收益：<span id="hasInterest">0</span><span class="small">元</span></p></li>-->
-                <li class="last"><p>累计注册投资人：<span id="userTotal">11,170</span><span class="small">人</span></p></li>
+                <li class="last"><p>累计注册投资人：<span id="userTotal">23</span><span class="small">人</span></p></li>
             </ul>
             <div class="explian cl">
                 <a href="<%=path%>/html/about" class="first">

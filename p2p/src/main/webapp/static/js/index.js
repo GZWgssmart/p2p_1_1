@@ -1,4 +1,5 @@
 var path = "http://"+window.location.host+"/static/upload/picimg/";
+var contpath = "http://"+window.location.host+"/static/upload/";
 
 $(function (){
 
@@ -28,7 +29,7 @@ $(function (){
                 var linkListContent = $('#linkList');
                 for(var i=0;i<data.length;i++){
                     var lineobjs = data[i];
-                    var linkLi = $('<li><a target="view_frame" href="'+lineobjs.furl+'" title="'+lineobjs.rname+'"><img src="'+path+''+lineobjs.fpic+'" alt="'+lineobjs.rname+'"></a></li>');
+                    var linkLi = $('<li><a target="view_frame" href="'+lineobjs.furl+'" title="'+lineobjs.rname+'"><img src="'+contpath+''+lineobjs.fpic+'" alt="'+lineobjs.rname+'"></a></li>');
                     linkLi.appendTo(linkListContent);
                 }
                 //友情链接滚动

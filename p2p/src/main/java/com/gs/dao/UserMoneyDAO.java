@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Repository
 public interface UserMoneyDAO extends BaseDAO{
-    Object getByUserId(Long id);
+    Object getByUserId(@Param("uid") Long id);
     void updateById(@Param("id") Long id,@Param("money") BigDecimal money);
     void updateByIdMaoll(@Param("id") Long id,@Param("money") BigDecimal money);
     @Override

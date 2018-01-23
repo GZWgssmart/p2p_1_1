@@ -32,7 +32,7 @@
             <form id="form1" method="post">
                 <div class="label cl">
                     <label class="long">真实姓名：</label>
-                    <input class="text" name="rname" id="rname" value="${user.rname }" readonly="readonly">
+                    <input class="text" name="rname" id="rname" value="${user.rname }">
                     <span></span>
                 </div>
                 <div class="label cl">

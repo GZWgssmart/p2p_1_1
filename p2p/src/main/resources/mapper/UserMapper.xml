@@ -7,7 +7,7 @@
     <!--登录验证-->
     <select id="getByPhonePwd" resultType="com.gs.bean.User">
         <![CDATA[
-        select uid, upwd, phone from t_user where phone = #{phone} and upwd = #{upwd}
+        select uid, upwd, phone,rname,idno from t_user where phone = #{phone} and upwd = #{upwd}
         ]]>
     </select>
 

@@ -73,7 +73,8 @@ public class JkbController {
         request.setAttribute("swayList",swayList);
         List<BorrowApply> borrowApplyList = (List)borrowApplyService.listByUid(user.getUid());
         RzVip rzVip = (RzVip) rzVipService.getById(user.getUid());
-        if (rzVip == null){
+        if (rzVip.getXl() == null || rzVip.getXl() == ""){
+            System.out.println("ok");
             request.setAttribute("msg","请您先完成认证");
         }
         if (borrowApplyList.size() != 0){

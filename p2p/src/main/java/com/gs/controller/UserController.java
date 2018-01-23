@@ -4,9 +4,11 @@ import com.gs.bean.*;
 import com.gs.common.CheckCodeUtils;
 import com.gs.common.Constants;
 import com.gs.common.EncryptUtils;
+import com.gs.common.SendCode;
 import com.gs.enums.ControllerStatusEnum;
 import com.gs.service.*;
 import com.gs.vo.ControllerStatusVO;
+import com.gs.vo.UserTicketVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,6 +83,13 @@ public class UserController {
         return "user/safe";
     }
 
+    @RequestMapping("/userbyid")
+    @ResponseBody
+    public User userbyid(HttpSession session)  {
+       User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
+        return user;
+    }
+
     /**
      * 登录
      * @param session
@@ -117,11 +126,11 @@ public class UserController {
         ControllerStatusVO statusVO = null;
         try {
             DxModel dxModel=new DxModel();
-//            String content= SendCode.sendsms(phone)+"";
-            String content = "000000";
+            String content= SendCode.sendsms(phone)+"";
+//            String content = "000000";
             dxModel.setContent(content);
             msgCode = content;
-//            dxModelService.save(dxModel);
+            dxModelService.save(dxModel);
         } catch (RuntimeException e) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.DxModel_SAVE_FAIL);
         }
@@ -207,7 +216,15 @@ public class UserController {
             rzVipService.save(rzVip);
             UserMoney userMoney = new UserMoney();
             userMoney.setUid(user.getUid());
-            userMoneyService.save(userMoney);
+            userMoneyService.save(userMoney);/*
+            UserTicket userTicket = new UserTicket();
+            userTicket.setUid(user.getUid());
+            userTicket.setKid(1L);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(Calendar.getInstance().getTime());
+            userTicket.setTktime(calendar.getTime());
+            userTicket.setStatus(1);
+            userTicketService.save(userTicket);*/
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_SAVE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
@@ -373,6 +390,13 @@ public class UserController {
         User user = (User)session.getAttribute(Constants.USER_IN_SESSION);
         UserMoney userMoney = (UserMoney) userMoneyService.getByUserId(user.getUid());
         request.setAttribute("userMoney",userMoney);
+        /*
+        Long dCount = userTicketService.getCount(user.getUid(),1L);
+        Long xCount = userTicketService.getCount(user.getUid(),2L);
+        UserTicketVO ut = new UserTicketVO();
+        ut.setdCount(dCount);
+        ut.setxCount(xCount);
+        request.setAttribute("ut", ut);*/
         return "user/user_money";
     }
 

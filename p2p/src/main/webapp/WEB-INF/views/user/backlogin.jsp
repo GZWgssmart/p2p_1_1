@@ -21,6 +21,7 @@
         background: url("<%=path%>/static/resources/front/v01/src/images/login.jpg") top center no-repeat;
     }
 </style>
+<link rel="icon" href="<%=path%>/static/resources/front/v01/src/images/logo_title.jpg" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/demo.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style3.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/animate-custom.css" />

@@ -40,11 +40,11 @@
 		</p>
 		<div class="pay-from">
 			<div class="label cl">
-				<input type="hidden" id="uid" value="${sessionScope.user.uid }"/>
-				<label class="long">真实姓名：</label><p class="text" id="realName"></p>
+				<input type="hidden" id="uid" value="${user.uid }"/>
+				<label class="long">真实姓名：</label><p class="text" id="realName">${user.phone }</p>
 			</div>
 			<div class="label cl">
-				<label class="long">身份证：</label><p class="text" id="idno"></p>
+				<label class="long">身份证：</label><p class="text" id="idno">${user.idno }</p>
 			</div>
 			<div class="label cl">
 				<label class="long">卡号：</label><input type="text"  id="cardno" placeholder="请输入卡号">

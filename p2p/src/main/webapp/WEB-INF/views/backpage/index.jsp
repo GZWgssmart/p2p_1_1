@@ -82,8 +82,8 @@
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/uticket/page"
 						   class="site-navi-tab">用户领券管理</a></li>
 				</shiro:hasPermission>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>/huser/huserlist_page"
-							class="site-navi-tab">投资奖励管理</a></li>
+				<%--<li class="asd"><a href="javascript:void(0);" src="<%=path%>/huser/huserlist_page"--%>
+							<%--class="site-navi-tab">投资奖励管理</a></li>--%>
 			</ul>
 		</div>
 		<div title="借贷管理" data-options="iconCls:'icon-ok'" style="padding: 10px;">
@@ -128,10 +128,10 @@
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/home/page"
 									   class="site-navi-tab">首页信息管理</a></li>
 				</shiro:hasPermission>
-				<shiro:hasPermission name="dxModel:dxModel">
-					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/dxModel/dxModel"
-						   class="site-navi-tab">短信模板管理</a></li>
-				</shiro:hasPermission>
+				<%--<shiro:hasPermission name="dxModel:dxModel">--%>
+					<%--<li class="asd"><a href="javascript:void(0);" src="<%=path%>/dxModel/dxModel"--%>
+						   <%--class="site-navi-tab">短信模板管理</a></li>--%>
+				<%--</shiro:hasPermission>--%>
 				<shiro:hasPermission name="notice:page">
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/notice/page"
 									   class="site-navi-tab">公告管理</a></li>
@@ -144,10 +144,10 @@
 					<li class="asd"><a href="javascript:void(0);" src="<%=path%>/letter/page"
 									   class="site-navi-tab">站内信管理</a></li>
 				</shiro:hasPermission>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">活动管理</a></li>
-				<li class="asd"><a href="javascript:void(0);" src="<%=path%>"
-					   class="site-navi-tab">运营数据管理</a></li>
+				<%--<li class="asd"><a href="javascript:void(0);" src="<%=path%>"--%>
+					   <%--class="site-navi-tab">活动管理</a></li>--%>
+				<%--<li class="asd"><a href="javascript:void(0);" src="<%=path%>"--%>
+					   <%--class="site-navi-tab">运营数据管理</a></li>--%>
 			</ul>
 		</div>
 

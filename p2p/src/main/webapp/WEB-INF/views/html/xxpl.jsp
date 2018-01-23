@@ -246,52 +246,32 @@
 	<div id="chengtou" class="content">
 		<div class="logoDiv">
 			<a href="https://www.fadada.com">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/fadadaLogo.png">
+				<img alt="logo" src="<%=path%>/static/upload/f467730a-b91a-4302-bc95-2284b041e6f0.jpg">
 			</a>
 		</div>
 		<div class="logoDiv">
 			<a href="http://www.evergrande.com/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/hddcLogo.png">
+				<img alt="logo" src="<%=path%>/static/upload/0a8a1090-d09c-49ac-bd7d-82a47c9d0b7b.jpg">
 			</a>
 		</div>
 		<div class="logoDiv logoDiv2">
 			<a href="http://www.erongtu.com/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/rtwLogo.png">
+				<img alt="logo" src="<%=path%>/static/upload/15fbb38e-981f-4972-91e2-c061cf41ab43.jpg">
 			</a>
 		</div>
 		<div class="logoDiv">
 			<a href="http://www.gzctgroup.cn/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/ctLogo.png">
+				<img alt="logo" src="<%=path%>/static/upload/e3243a20-7f6e-426a-a4d5-59be91f2149a.jpg">
 			</a>
 		</div>
 		<div class="logoDiv">
 			<a href="http://www.chinapnr.com/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/hftxLogo.png">
+				<img alt="logo" src="<%=path%>/static/upload/1df2471d-2ffb-4cd4-b7e9-b419735cd439.png">
 			</a>
 		</div>
 		<div class="logoDiv logoDiv2">
 			<a href="http://www.heimadc.com/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/hmLogo.png">
-			</a>
-		</div>
-		<div class="logoDiv">
-			<a href="http://www.cgfae.cn/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/jyzxLogo.png">
-			</a>
-		</div>
-		<div class="logoDiv">
-			<a href="http://www.chinacsfl.cn/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/fwlmLogo.png">
-			</a>
-		</div>
-		<div class="logoDiv logoDiv2">
-			<a href="http://www.wdzj.com/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/wdzjLogo.png">
-			</a>
-		</div>
-		<div class="logoDiv">
-			<a href="http://www.jxifa.org.cn/">
-				<img alt="logo" src="<%=path%>/static/resources/front/v01/src/images/about/jrxhLogo.png">
+				<img alt="logo" src="<%=path%>/static/upload/3f334383-47a5-4771-a72d-23ee4fe79922.jpg">
 			</a>
 		</div>
 	</div>

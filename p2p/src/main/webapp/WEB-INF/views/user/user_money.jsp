@@ -55,15 +55,21 @@
                         <div class="center-profit">
                             <p class="amt"><span id="earnSum">${userMoney.symoney}</span>元</p>
                             <p class="text">收益总额</p>
-                            <p class="luckynum">
-                                <i id="DetailsIcon"></i>
-                                <a class="luckyLink" href="https://www.pujinziben.com/activity/lucky.html" target="_blank">抽奖次数<b id="luckynum">0</b>次</a>
-                            </p>
-                            <p class="icon icon-quan">代金券 <b id="voucher">${ut.dCount}</b> 张，现金券 <b id="cashMap">${ut.xCount}</b> 张</p>
-                            <div class="luckyDetails" style="display: none;">
-                                <h1>如何获得抽奖机会</h1>
-                                <p>活动期间：单笔投资满1000元，可获得1次抽奖机会，单笔投资满2000元，可获得2次抽奖机会;以此类推(债权转让标除外)。</p>
-                            </div>
+
+                            <p class="icon icon-quan">代金券 <b id="voucher">
+                                <c:if test="${ut.dCount==null}">
+                                    0
+                                </c:if>
+                                <c:if test="${ut.dCount!=null}">
+                                    ${ut.dCount}
+                                </c:if>
+                               </b> 张，现金券 <b id="cashMap">
+                                <c:if test="${ut.xCount==null}">
+                                    0
+                                </c:if>
+                                <c:if test="${ut.xCount!=null}">
+                                    ${ut.xCount}
+                                </c:if></b> 张</p>
                         </div>
                     </div>
                     <div class="center-main">

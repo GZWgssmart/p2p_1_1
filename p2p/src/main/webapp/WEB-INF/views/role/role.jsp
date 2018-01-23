@@ -172,12 +172,12 @@
                 var input1="";
                 var input2="";
                 for (var i=0; i<data.length;i++){
-                    if(i<20){
+                    if(i<30){
                         input+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                         if(i % 3 == 0 && i != 0){
                             input +="<br/>";
                         }
-                    }else if(i>=20 && i<40){
+                    }else if(i>=30 && i<60){
                         input1+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                         if(i % 3 == 0 && i != 0){
                             input1 +="<br/>";
@@ -223,12 +223,12 @@
                     var input1="";
                     var input2="";
                     for (var i=0; i<data.length;i++){
-                        if(i<20){
+                        if(i<30){
                             input+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                             if(i % 3 == 0 && i != 0){
                                 input +="<br/>";
                             }
-                        }else if(i>=20 && i<40){
+                        }else if(i>=30 && i<60){
                             input1+="<input type='checkbox' name='jids' value='"+data[i].jid+"'>"+data[i].content+"&nbsp;&nbsp;&nbsp;";
                             if(i % 3 == 0 && i != 0){
                                 input1 +="<br/>";
@@ -243,10 +243,11 @@
                     $("#edit").html(input);
                     $("#edit1").html(input1);
                     $("#edit2").html(input2);
+                    getCheckbox(row.rid);
                 },
                 "json"
             );
-            getCheckbox(row.rid);
+
             openWin(winId);
         } else {
             showInfoAlert("请选择需要修改的数据");
