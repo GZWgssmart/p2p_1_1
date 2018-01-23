@@ -151,103 +151,103 @@ public class TzbServiceImpl extends AbstractBaseService implements TzbService {
         userMoney.setTzmoney(userMoney.getTzmoney().add(money));
         userMoney.setDsmoney(userMoney.getDsmoney().add(money.add(syMoney)));
         userMoneyDAO.update(userMoney);
-//        //修改借款人的冻结金额
-//        UserMoney juserMoney = (UserMoney) userMoneyDAO.getByUserId(tzb.getJuid());
-//        juserMoney.setZmoney(juserMoney.getZmoney().add(money));
-//        juserMoney.setUid(tzb.getJuid());
-//        if(borrowDetail.getYtmoney().compareTo(borrowDetailVO.getMoney())==0){
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.setTime(Calendar.getInstance().getTime());
-//            BorrowApply borrowApply = new BorrowApply();
-//            borrowApply.setBaid(borrowDetailVO.getBaid());
-//            borrowApply.setState((byte)4);
-//            borrowApply.setMbtime(calendar.getTime());
-//            borrowApplyDAO.updateState(borrowApply);
-//            //满标时将借款人的冻结金额变成可用余额
-//            juserMoney.setDjmoney(juserMoney.getDjmoney().add(money).subtract(borrowDetailVO.getMoney()));
-//            juserMoney.setKymoney(juserMoney.getKymoney().add(borrowDetailVO.getMoney()));
-//            Long huid = borrowDetailVO.getHuid();
-//            //一次还清的还款清单
-//            if(borrowDetailVO.getWay().equals("一次性还本付息")) {
-//                Hkb hkb = new Hkb();
-//                hkb.setBzname(borrowDetailVO.getBzname());
-//                hkb.setCpname(borrowDetailVO.getCpname());
-//                hkb.setRname(borrowDetailVO.getRname());
-//                hkb.setUid(tzb.getJuid());
-//                hkb.setState((byte)HKStatesEnum.UNREPAY.getCode());
-//                hkb.setYbj(borrowDetailVO.getMoney());
-//                hkb.setYlx(syMoney);
-//                hkb.setYbx(borrowDetailVO.getMoney().add(syMoney));
-//                hkb.setTnum(1);
-//                calendar.add(Calendar.MONTH, term);
-//                hkb.setYtime(calendar.getTime());
-//                hkb.setHuid(huid);
-//                hkb.setBaid(tzb.getBaid());
-//                hkbDAO.save(hkb);
-//
-//            }else {
-//                List<Hkb> hkbList = new ArrayList<>();
-//                for(int i = 1; i <= term; i++) {
-//                    Hkb hkb = new Hkb();
-//                    hkb.setBzname(borrowDetailVO.getBzname());
-//                    hkb.setCpname(borrowDetailVO.getCpname());
-//                    hkb.setRname(borrowDetailVO.getRname());
-//                    hkb.setUid(tzb.getJuid());
-//                    hkb.setState((byte)HKStatesEnum.UNREPAY.getCode());
-//                    hkb.setHuid(huid);
-//                    hkb.setTnum(term);
-//                    hkb.setDjq(i);
-//                    calendar.add(Calendar.MONTH, 1);
-//                    hkb.setYtime(calendar.getTime());
-//                    //每月利息金额
-//                    BigDecimal bigMonthNpro = BigDecimal.valueOf(monthNpro);
-//                    //先息后本还款表
-//                    if( borrowDetailVO.getWay().equals("先息后本")) {
-//                        //每月利息等于总借款乘以月利率
-//                        hkb.setYlx(borrowDetailVO.getMoney().multiply(bigMonthNpro));
-//                        hkb.setYbj(BigDecimal.valueOf(0));
-//                        //最后一个月还本金加利息
-//                        if(i == term) {
-//                            //应还本金
-//                            hkb.setYbj(borrowDetailVO.getMoney());
-//                        }
-//                    }
-//                    // 等额本金还款算法
-//                    else if( borrowDetailVO.getWay().equals("等额本金")) {
-//                        LoanByMonth loanByMonth = new ACMLoanCalculator().calLoan(borrowDetailVO.getMoney(), term, nprofit, LoanUtil.RATE_TYPE_YEAR)
-//                                .getAllLoans().get(i-1);
-//                        // 月还本金
-//                        hkb.setYbj(loanByMonth.getPayPrincipal());
-//                        // 月利息
-//                        hkb.setYlx(loanByMonth.getInterest());
-//
-//                    }
-//                    // 等额本息还款算法
-//                    else if(borrowDetailVO.getWay().equals("等额本息")) {
-//                        LoanByMonth loanByMonth = new ACPIMLoanCalculator().calLoan(borrowDetailVO.getMoney(), term, nprofit, LoanUtil.RATE_TYPE_YEAR)
-//                                .getAllLoans().get(i-1);
-//                        //每月利息
-//                        hkb.setYlx(loanByMonth.getInterest());
-//                        //每月还款本金
-//                        hkb.setYbj(loanByMonth.getPayPrincipal());
-//                    }
-//                    hkb.setYbx(hkb.getYlx().add(hkb.getYbj()));
-//                    hkb.setBaid(tzb.getBaid());
-//                    hkbList.add(hkb);
-//                }
-//                hkbDAO.saveList(hkbList);
-//            }
-//        }else{
-//            juserMoney.setDjmoney(juserMoney.getDjmoney().add(money));
-//        }
-//        userMoneyDAO.update(juserMoney);
-//        //新增流水记录
-//        LogMoney logMoney = new LogMoney();
-//        logMoney.setType((byte)4);
-//        logMoney.setIn(new BigDecimal(0));
-//        logMoney.setOut(money);
-//        logMoney.setUid(tzb.getUid());
-//        logMoneyDAO.save(logMoney);
+        //修改借款人的冻结金额
+        UserMoney juserMoney = (UserMoney) userMoneyDAO.getByUserId(tzb.getJuid());
+        juserMoney.setZmoney(juserMoney.getZmoney().add(money));
+        juserMoney.setUid(tzb.getJuid());
+        if(borrowDetail.getYtmoney().compareTo(borrowDetailVO.getMoney())==0){
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(Calendar.getInstance().getTime());
+            BorrowApply borrowApply = new BorrowApply();
+            borrowApply.setBaid(borrowDetailVO.getBaid());
+            borrowApply.setState((byte)4);
+            borrowApply.setMbtime(calendar.getTime());
+            borrowApplyDAO.updateState(borrowApply);
+            //满标时将借款人的冻结金额变成可用余额
+            juserMoney.setDjmoney(juserMoney.getDjmoney().add(money).subtract(borrowDetailVO.getMoney()));
+            juserMoney.setKymoney(juserMoney.getKymoney().add(borrowDetailVO.getMoney()));
+            Long huid = borrowDetailVO.getHuid();
+            //一次还清的还款清单
+            if(borrowDetailVO.getWay().equals("一次性还本付息")) {
+                Hkb hkb = new Hkb();
+                hkb.setBzname(borrowDetailVO.getBzname());
+                hkb.setCpname(borrowDetailVO.getCpname());
+                hkb.setRname(borrowDetailVO.getRname());
+                hkb.setUid(tzb.getJuid());
+                hkb.setState((byte)HKStatesEnum.UNREPAY.getCode());
+                hkb.setYbj(borrowDetailVO.getMoney());
+                hkb.setYlx(syMoney);
+                hkb.setYbx(borrowDetailVO.getMoney().add(syMoney));
+                hkb.setTnum(1);
+                calendar.add(Calendar.MONTH, term);
+                hkb.setYtime(calendar.getTime());
+                hkb.setHuid(huid);
+                hkb.setBaid(tzb.getBaid());
+                hkbDAO.save(hkb);
+
+            }else {
+                List<Hkb> hkbList = new ArrayList<>();
+                for(int i = 1; i <= term; i++) {
+                    Hkb hkb = new Hkb();
+                    hkb.setBzname(borrowDetailVO.getBzname());
+                    hkb.setCpname(borrowDetailVO.getCpname());
+                    hkb.setRname(borrowDetailVO.getRname());
+                    hkb.setUid(tzb.getJuid());
+                    hkb.setState((byte)HKStatesEnum.UNREPAY.getCode());
+                    hkb.setHuid(huid);
+                    hkb.setTnum(term);
+                    hkb.setDjq(i);
+                    calendar.add(Calendar.MONTH, 1);
+                    hkb.setYtime(calendar.getTime());
+                    //每月利息金额
+                    BigDecimal bigMonthNpro = BigDecimal.valueOf(monthNpro);
+                    //先息后本还款表
+                    if( borrowDetailVO.getWay().equals("先息后本")) {
+                        //每月利息等于总借款乘以月利率
+                        hkb.setYlx(borrowDetailVO.getMoney().multiply(bigMonthNpro));
+                        hkb.setYbj(BigDecimal.valueOf(0));
+                        //最后一个月还本金加利息
+                        if(i == term) {
+                            //应还本金
+                            hkb.setYbj(borrowDetailVO.getMoney());
+                        }
+                    }
+                    // 等额本金还款算法
+                    else if( borrowDetailVO.getWay().equals("等额本金")) {
+                        LoanByMonth loanByMonth = new ACMLoanCalculator().calLoan(borrowDetailVO.getMoney(), term, nprofit, LoanUtil.RATE_TYPE_YEAR)
+                                .getAllLoans().get(i-1);
+                        // 月还本金
+                        hkb.setYbj(loanByMonth.getPayPrincipal());
+                        // 月利息
+                        hkb.setYlx(loanByMonth.getInterest());
+
+                    }
+                    // 等额本息还款算法
+                    else if(borrowDetailVO.getWay().equals("等额本息")) {
+                        LoanByMonth loanByMonth = new ACPIMLoanCalculator().calLoan(borrowDetailVO.getMoney(), term, nprofit, LoanUtil.RATE_TYPE_YEAR)
+                                .getAllLoans().get(i-1);
+                        //每月利息
+                        hkb.setYlx(loanByMonth.getInterest());
+                        //每月还款本金
+                        hkb.setYbj(loanByMonth.getPayPrincipal());
+                    }
+                    hkb.setYbx(hkb.getYlx().add(hkb.getYbj()));
+                    hkb.setBaid(tzb.getBaid());
+                    hkbList.add(hkb);
+                }
+                hkbDAO.saveList(hkbList);
+            }
+        }else{
+            juserMoney.setDjmoney(juserMoney.getDjmoney().add(money));
+        }
+        userMoneyDAO.update(juserMoney);
+        //新增流水记录
+        LogMoney logMoney = new LogMoney();
+        logMoney.setType((byte)4);
+        logMoney.setIn(new BigDecimal(0));
+        logMoney.setOut(money);
+        logMoney.setUid(tzb.getUid());
+        logMoneyDAO.save(logMoney);
         return statusVO;
     }
 
